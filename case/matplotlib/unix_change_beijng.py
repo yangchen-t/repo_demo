@@ -1,6 +1,6 @@
-import pandas as pd
-import datetime
-import time
+# import pandas as pd
+# import datetime
+# import time
 
 '''csv = pd.read_csv('task_log_2021-11-30_162731.csv')
 time_list = csv['time']
@@ -12,13 +12,14 @@ for unix in time_list:
 # import time
 # a = int(input(time.mktime(time.strptime('%Y-%m-%d %H:%M:%S'))))
 # print(a)
-import datetime
-import time
+# import datetime
+# import time
 # while True:
 #     time.sleep(2)
     # print(int(time.time(times)))
     # times = datetime.datetime.fromtimestamp(int(time.time()))
     # print(int(time.time()))‘’‘
+import sys
 
 '''import time
 
@@ -36,14 +37,17 @@ def timestamp_datetime(value):
     dt = time.strftime(format, value)
     return dt
 def datetime_timestamp(dt):
-    s = time.mktime(time.strptime(dt, '%Y-%m-%d %H:%M:%S'))
+    s = time.mktime(time.strptime(dt,'%Y-%m-%d %H:%M:%S'))
     return int(s)
 
 if __name__ == '__main__':
-    a = input(":")
-    b = input(':')
-    c = datetime_timestamp(a)
-    d = datetime_timestamp(b)
-    print(c,d)
-# s = timestamp_datetime(1332888820)
-# print(s)
+    # for a in ['2021-10-10 20:10:20','2021-12-02 10:20:10']:
+        # c = str(datetime_timestamp(sys.argv[1]))
+        # a = sys.argv[1]
+        a = input(':')
+        b = input(':')
+        d = datetime_timestamp(a)
+        c = datetime_timestamp(b)
+        print(a,b,
+              c,d)
+

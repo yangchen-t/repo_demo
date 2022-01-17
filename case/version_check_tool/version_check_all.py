@@ -11,6 +11,7 @@ for ID in IGV_ID:
                         ssh.connect(hostname,port,username,passwd)
                         stdin,stdout,stderr = ssh.exec_command(command)
                         print(stdout.read())
+                        print(stderr.read())
                         ssh.close()
                 ssh_params(IP, 22, 'nvidia', 'nvidia', 'dpkg -l | grep qpilot')
         except:

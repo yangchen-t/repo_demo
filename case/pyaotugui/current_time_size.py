@@ -7,3 +7,9 @@ try:
         print(x, y)
 except KeyboardInterrupt:
     print('\nExit.')
+
+
+
+# while True:
+#     x,y=ui.position()
+#     print(x, y)
