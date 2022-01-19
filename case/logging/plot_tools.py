@@ -1,4 +1,7 @@
+#!/bin/python3
+
 import pandas as pd
+import numpy as np
 import datetime,logging
 
 csv_file = pd.read_csv('task_log_2021-11-22_141220.csv')    ##

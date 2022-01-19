@@ -1,6 +1,6 @@
 import paramiko
 
-IGV_ID = [21,22,26,27,28,29,30,31,32,33,73,76]
+IGV_ID = [1,2,3,4,5,6]
 for ID in IGV_ID:
         try:
                 IP=str('10.159.'+ str(ID) +'.105')
@@ -13,6 +13,6 @@ for ID in IGV_ID:
                         print(stdout.read())
                         print(stderr.read())
                         ssh.close()
-                ssh_params(IP, 22, 'nvidia', 'nvidia', 'dpkg -l | grep qpilot')
+                ssh_params(IP, 22, 'nvidia', 'nvidia', 'cat /data/code/all_ws/ws/install/fpal_uniformar/share/fpal_uniformar/config/igv_control.yaml')
         except:
                 print('ERROR')

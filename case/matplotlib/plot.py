@@ -64,7 +64,7 @@ plt.show(),plt.show()
 if  __name__ == '__main__':
     if len(sys.argv) <3:
         print('Please provide csv path. ')
-#     else:
-#         csv_plot()
+    # else:
+    #     csv_plot()
 
 
