@@ -1,13 +1,10 @@
 #!/bin/python3
-'''编写一个函数cacluate, 可以接收任意多个数,返回的是一个元组.
-     元组的第一个值为所有参数的平均值, 第二个值是大于平均值的所有数'''
 
+'''写函数，判断用户传入的对象（字符串、列表、元组）长度是否大于5。'''
 
-def cacluate(*number):
-    list = []
-    count_number_1 = sum(*number) // len(*number)
-
-    if  big_data > count_number_1 :
-        list[1] = big_data
-        list[0] = count_number_1
-
+def function(number):
+    if len(number) > 5 :
+        print('number > 5')
+    else:
+        print('number < 5')
+function(['wqdqef','qwe','qwe'])

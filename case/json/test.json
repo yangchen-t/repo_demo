@@ -1,0 +1,55 @@
+jstr_test_navi_6 = {
+    "header": {
+        "transId": "49e26505-043a-44ce-a35b-01f2d607694b",
+        "deviceId": "I006",
+        "timestamp": "20210608T063906Z"
+    },
+    "body": {
+        "naviId": "I006_HR_QC_DEMO_0120",
+        "destination": {
+            "locationId": "1102",
+            "refPosition": {
+                "longitude": 175.18576,
+                "latitude": 94.0136,
+                "elevation": -3.14159
+            },
+            "locationType": "QC",
+            "description": "QC_demo"
+        },
+        "estimatedTime": "1.085",
+        "pathGuidance": {
+            "routeId": "1",
+            "points": [
+                {
+                    "pos": {
+                        "longitude": 764.154,
+                        "latitude": 94.00530,
+                        "elevation": -3.14159
+                    },
+                    "heading": -3.14159,
+                    "deviation": None,
+                    "speeds": None,
+                    "timeWindow": None,
+                    "type": "STRAIGHT",
+                    "laneId": 1
+                },
+                {
+                    "pos": {
+                        "longitude": 175.18576,
+                        "latitude": 94.0136,
+                        "elevation": -3.14159
+                    },
+                    "heading": -3.14159,
+                    "deviation": 1,
+                    "speeds": None,
+                    "timeWindow": None,
+                    "type": "STRAIGHT",
+                    "laneId": 1
+                }
+            ]
+        },
+        "routeUpdate": 0,
+        "referId": "38e503f0-c824-11eb-8d68-0242ac1e0116",
+        "isFinalNavi": True
+    }
+}
