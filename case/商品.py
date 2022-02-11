@@ -38,4 +38,4 @@ sleep(2)
 #添加商品属性
 driver.find_element('xpath','//li[@data-value="套餐一"]').click()
 sleep(1)
-driver.find_element('xpath','//li[@data-value="金色"]').clic
+driver.find_element('xpath','//li[@data-value="金色"]').c
