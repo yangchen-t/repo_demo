@@ -1,9 +1,9 @@
 #！/bin/env python3
-from matplotlib.pyplot import MultipleLocator
+from matplotlib.pyplot import MultipleLocator 
 import matplotlib.pyplot as plt
 import pandas as pd
-import time
-import sys
+import time,sys
+# import csv_path
 
 
 def timestamp_datetime(value):
@@ -19,8 +19,11 @@ def datetime_timestamp(dt):
 # def csv_plot():
     # csv_file = pd.read_csv(sys.argv[1])
 csv_file = pd.read_csv(sys.argv[1])
-time_1 = input('start：')
-time_2 = input('stop：')
+speed_csv = pd.read_csv(sys.argv[2])
+# time_1 = input('start：')
+# time_2 = input('stop：')
+time_1 = input(sys.argv[2])
+time_2 = input(sys.argv[3])
 t_1 = datetime_timestamp(time_1)
 t_2 = datetime_timestamp(time_2)
     # t=csv_file["time"]
