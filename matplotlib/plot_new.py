@@ -3,7 +3,7 @@ from matplotlib.pyplot import MultipleLocator
 import matplotlib.pyplot as plt
 import pandas as pd
 import time
-import param
+import params
 
 def timestamp_datetime(value):
     format = '%Y-%m-%d %H:%M:%S'
@@ -82,7 +82,7 @@ class CsvReadPlot():
 
 
 if __name__ == '__main__':
-    csv_read_plot = CsvReadPlot(param.csv_1,param.csv_2,param.time_start,param.time_stop)
+    csv_read_plot = CsvReadPlot(params.csv_1,params.csv_2,params.time_start,params.time_stop)
     csv_read_plot.csv_change()
 
 

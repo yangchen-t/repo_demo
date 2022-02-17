@@ -1,11 +1,11 @@
 import matplotlib.pyplot as plt
 import pandas as pd
-import  param
+import  params
 
 
-csv2_file = pd.read_csv(param.csv_2)
-t_1 = param.time_start
-t_2 = param.time_stop
+csv2_file = pd.read_csv(params.csv_2)
+t_1 = params.time_start
+t_2 = params.time_stop
 csv_2_res=csv2_file[(csv2_file["time"] > float(t_1)) & (csv2_file["time"] < float(t_2))]
 current_v,output_v,speed_time = csv_2_res['current_speed'],csv_2_res['output_speed'],csv_2_res['time']
 x_data = list(range(len(current_v)))
