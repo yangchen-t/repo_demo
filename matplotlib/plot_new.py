@@ -24,7 +24,6 @@ class CsvReadPlot():
         self.time_stop = time_stop
         self.time = time
 
-
     def csv_change(self):
         csv1_file = pd.read_csv(self.csv_1)
         csv2_file = pd.read_csv(self.csv_2)
@@ -74,8 +73,8 @@ class CsvReadPlot():
         plt.xlabel('current_V'),plt.ylabel('output_V')
         x_major_locator, y_major_locator = MultipleLocator(1), MultipleLocator(1)
         ax.yaxis.set_major_locator(x_major_locator), ax.yaxis.set_major_locator(y_major_locator)
-        plt.plot(current_v, ls="-", color='blue', marker='', label='current_v')
-        plt.plot(output_v, ls="--", color='red', marker='', label='output_v')
+        plt.plot(current_v,ls="-", color='blue', marker='', label='current_v')
+        plt.plot(output_v,ls="--", color='red', marker='', label='output_v')
         plt.legend()
         plt.grid()
         plt.show(),plt.show(),plt.show()
