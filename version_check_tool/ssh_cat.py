@@ -1,6 +1,8 @@
 import paramiko
 
 
+
+
 def sshclient_execmd(hostname, port, username, password, execmd):
         s = paramiko.SSHClient()
         s.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -18,8 +20,8 @@ def main():
                 port = 22
                 username = 'nvidia'
                 password = 'nvidia'
-                execmd = [str('cat'+' '+'/opt/qomolo/utils/qpilot_setup/all_supervisord/.env'),
-                          str('cat'+' '+'/opt/qomolo/qpilot-igv/share/igv_task/config/config.yaml')]
+                execmd = [str('cat /opt/qomolo/utils/qpilot_setup/all_supervisord/.env | grep MQTTNAMESPACE -A2'),
+                          str('cat /opt/qomolo/qpilot/qpilot/share/qpilot_parameters/agent/agent.yaml | grep line_speed -A3')]
                 for cmd in execmd:
                         sshclient_execmd(hostname, port, username, password, cmd)
 if __name__ == "__main__":
