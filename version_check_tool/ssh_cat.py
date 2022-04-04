@@ -1,6 +1,8 @@
 import paramiko
 
-
+'''
+查看21/22车的mqtt信息与速度msg
+'''
 
 
 def sshclient_execmd(hostname, port, username, password, execmd):

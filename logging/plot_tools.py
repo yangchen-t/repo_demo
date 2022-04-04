@@ -25,4 +25,4 @@ for time,current_v in zip(times,speed):
                     #日志格式
                     )
         logging.debug('{0}, {1}, {2}'.format(current_v,time,beijing_times))
-#logging.debug('最大的负速度为:'+str(min(speed)))
+logging.debug('最大的负速度为:'+str(min(speed)))
