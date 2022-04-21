@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 
 from matplotlib.pyplot import MultipleLocator
 import matplotlib.pyplot as plt

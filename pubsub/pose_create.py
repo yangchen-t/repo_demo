@@ -1,25 +1,26 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3 
 
-import rclpy
+import rclpy,sys
 from rclpy.node import Node
-import numpy as np
-from function_control_msgs.msg import FunctionState
+from geometry_msgs.msg import Twist
 
 class MinimalPublisher(Node):
 
     def __init__(self):
         super().__init__('move_please')
-        self.publisher_ = self.create_publisher(FunctionState, '/tj003/function_control/state', 10)
-        timer_period = 0.05  # seconds
+        self.publisher_ = self.create_publisher(Twist, "/turtle"+sys.argv[1]+'/cmd_vel', 50)
+        timer_period = 1  # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
         self.i = 0
 
     def timer_callback(self):
-        msg = FunctionState()
-        msg.header.frame_id = "map"
-        msg.header.stamp = self.get_clock().now().to_msg()
-        msg.chassis_ready_sts = True
-        msg.parking = False
+        msg = Twist()
+        msg.linear.x = 0.5
+        msg.linear.y = 0.0
+        msg.linear.z = 0.0
+        msg.angular.x = 0.0
+        msg.angular.y = 0.0
+        msg.angular.z = 0.0
         self.publisher_.publish(msg)
 
 def main(args=None):
@@ -35,3 +36,4 @@ def main(args=None):
 
 if __name__ == "__main__":
     main()
+
