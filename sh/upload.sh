@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #read -p "Enter the vehicle number ~:" vehicle
+
 current_time="`date +%Y-%m-%d-%H-%M-%S`"
 time_now="`date +%Y-%m-%d' '%H:%M:%S`"
 start_time="`date -d "-3 hour" +%F' '%H:%M:%S`"
