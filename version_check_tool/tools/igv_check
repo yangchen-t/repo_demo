@@ -1,0 +1,5 @@
+#!/bin/bash 
+
+
+bash /home/qomolo/tools/check/$1_check.sh
+

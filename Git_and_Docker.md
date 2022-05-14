@@ -848,6 +848,21 @@ Git工作流其实**不仅仅只是个流程**。它其实也是Devops实践中�
 
 Docker 是一个开源的应用容器引擎，可以把应用以及依赖包到一个可移植的[镜像](https://baike.baidu.com/item/镜像/1574)中，然后发布到任何流行的 [Linux](https://baike.baidu.com/item/Linux)或[Windows](https://baike.baidu.com/item/Windows/165458)操作系统的机器上，也可以实现[虚拟化](https://baike.baidu.com/item/虚拟化/547949)。容器是完全使用[沙箱](https://baike.baidu.com/item/沙箱/393318)机制，相互之间不会有任何接口
 
+docker 给普通用户设置权限
+
+```bash
+sudo groupadd docker 
+sudo gpassws -a $xxx docker 
+sudo gpassws -a $USER docker 
+newgrp docekr                   --即可
+```
+
+
+
+
+
+
+
 - #### 一个完整的Docker有以下几个部分组成：
 
 1. DockerClient客户端
