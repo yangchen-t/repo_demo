@@ -32,14 +32,18 @@ if number == str(1):
         stdin.write("Y")            # Generally speaking, the first connection, need a simple interaction.
         print(stdout.read().decode())
         s.close()
-        igv_id = [21,22,23,24,25,26,27,28,29,30,31,32,33,73,76]
-        for i in igv_id:
-            ip = str("10.159."+str(i)+".105")
-            print("update_version =%s" % version)
-            sing_thread = threading.Thread(target=sshclient_execmd,args=(ip, port, username, passwd, command))
-            sing_thread.start()
-            sing_thread.join()
-            print("update-finish!!")
+
+    igv_id = [21,22,23,24,25,26,27,28,29,30,31,32,33,73,76]
+    for i in igv_id:
+        ip = str("10.159."+str(i)+".105")
+        print("update_version =%s" % version)
+        sing_thread = threading.Thread(target=sshclient_execmd,args=(ip, port, username, passwd, command))
+        sing_thread.start()
+        sing_thread.join()
+        print(ip)
+        print("update-finish!!")
+
+
 
 elif number == str(2):
 
@@ -62,6 +66,7 @@ elif number == str(2):
         sing_thread = threading.Thread(target=sshclient_execmd,args=(ip, port, username, passwd, command))
         sing_thread.start()
         sing_thread.join()
+        print(ip)
         print("update-finish!!")
 
 else:
