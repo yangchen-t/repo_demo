@@ -1,0 +1,39 @@
+#!/bin/bash
+
+sudo apt install sshpass
+sudo chown -R  $USER /etc/ssh/ssh_config
+echo "StrictHostKeyChecking=no" >> /etc/ssh/ssh_config 
+sudo sed -i "3,7d" nas
+
+
+source ~/.bashrc
+if [[ ${NASHOSTNAME} == "" ]];then
+    echo -e "\033[31m需要配置nas账号\033[0m"
+    read -p "请输入账号:" hostname
+    echo export NASHOSTNAME=$hostname >> ~/.bashrc
+fi
+
+if [[ ${NASPASSWD} == "" ]];then
+    echo -e "\033[31m需要配置nas密码\033[0m"
+    read -s -p "请输入密码:" passwd
+    echo export NASPASSWD=$passwd >> ~/.bashrc
+fi
+echo -e "\n"
+if [[ ${NAS_DATA_PATH} == "" ]];then
+    echo -e "\033[31m需要配置下载路径\033[0m"
+    read -p "请输入账号:" path
+    if [ ! -d "$path"]; then
+  	mkdir -p "$path"
+    fi
+    echo export NAS_DATA_PATH=$path >> ~/.bashrc
+fi
+
+
+source ~/.bashrc
+sleep 1
+sudo chown -R $USER ${NAS_DATA_PATH}
+sshpass -p ${NASPASSWD} sftp ${NASHOSTNAME}@192.168.103.77: <<EOF
+get $1  ${NAS_DATA_PATH}
+EOF
+
+
