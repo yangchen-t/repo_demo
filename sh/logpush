@@ -1,0 +1,89 @@
+#!/bin/bash
+
+co_path = ''
+
+source ./env
+beijing_date_mark=""
+if [[ ${QOMOLO_ROBOT_ID} == "" ]];then
+    echo -e "\033[31m必须配置QOMOLO_ROBOT_ID\033[0m"
+    exit 0
+fi
+
+if [[ ${GCS_PASSWORD} == "" ]];then
+    echo -e "\033[31m必须配置地面站密码\033[0m"
+    exit 0
+fi
+
+if [[ ${GCS_USERNAME} == "" ]];then
+    echo -e "\033[31m必须配置地面站用户名\033[0m"
+    exit 0
+fi
+
+if [[ ${GCS_IP} == "" ]];then
+    echo -e "\033[31m必须配置地面站IP\033[0m"
+    exit 0
+fi
+
+disk_len=`df -h | grep /data | awk '{print $4}'  | wc -L`
+if [[ disk_len -lt 4 ]];then
+        echo "请立即停车，检查磁盘大小，容量已经低于100G"
+        exit 0
+fi
+
+
+sudo chown -R $USER /data/ws cpc ws
+
+function input_time_gen_folder(){
+
+    read -p  "input problem time:" SEARCH_TIME
+    if [[ ${#SEARCH_TIME} != 19 ]];then
+        echo "时间格式不对，无法执行，请按照格式来输入如2022-02-22 12:00:00"
+        exit 0
+    else      
+        mkdir  -p ${CO_PATH}/logpush_tmp/tmp
+        cd ${CO_PATH}/logpush_tmp
+        sudo rm -rf tmp
+        TMP_LOG_NAME=${HOSTNAME}_`date -d "8 hour" +%Y-%m-%d-%H%M`_co
+        mkdir tmp
+    fi
+}
+
+function Denmark_folder_search_co(){
+        sudo chown -R $USER /home/ws_cpc_ws 
+        cd /home/ws_cpc_ws
+        mkdir -p  /home/ws_cpc/short_time/logpush_tmp/tmp/${TMP_LOG_NAME}/
+        input_timestamp=`date -d "$SEARCH_TIME" +%s`
+        end_time=`expr $input_timestamp - 32401`
+        END_TIME=`date -d @$end_time +%Y-%m-%d\ %H:%M:00`
+        start_time=`expr $input_timestamp - 25200`
+        START_TIME=`date -d @$start_time +%Y-%m-%d\ %H:%M:00`
+        find ./ -name 'co*' -type d -newermt "$START_TIME" ! -newermt "$END_TIME"  | xargs -I {} cp -r {} /home/ws_cpc_ws/logpush_tmp/tmp/${TMP_LOG_NAME}/
+
+}
+
+
+function upload_to_gcs(){
+    echo "=========================================以下数据正在被压缩========================================="
+    cd /data/code/all_ws/ws/logpush_tmp/tmp/
+    sudo tar -zcvf ${TMP_LOG_NAME}.tar.gz ${TMP_LOG_NAME}
+    YEAR=`date -d "8 hour" +%Y`
+    MONTH=`date -d "8 hour" +%-m`
+    DAY=`date -d "8 hour" +%-d`
+    UPLOAD_PATH=${NAS_PATH}/${YEAR}/${MONTH}/${DAY}/${HOSTNAME}
+    echo "===========================================数据压缩已完成=========================================="
+    echo "数据正在传输中......"
+    sshpass -p ${GCS_PASSWORD} scp  -o ServerAliveInterval=60  ${TMP_LOG_NAME}.tar.gz ${GCS_USERNAME}@${GCS_IP}:~
+    if [ $? != 0 ];then
+        echo -e "\033[031m数据因为网络原因传输失败，请联系管理员\033[0m"
+        exit 0
+    else
+        echo "========================================文件存放在地面站~下==================================="
+        echo "下面是文件名"
+        echo ${TMP_LOG_NAME}.tar.gz  
+        echo "=================================================================================================="
+    fi
+}
+
+
+
+if [[ "${HOSTNAME}" =~ ^TJ_IGV.* ]];then
