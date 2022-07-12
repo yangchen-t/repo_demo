@@ -1,11 +1,5 @@
-#!/bin/bash
-
-
-while true
-do
-	while read line
-	do	
-		sleep 2 
-		echo $line
-	done < numbers.csv
-done
+if [[ ! -d  /opt/qomolo/gst-plugin/plugin ]];then
+        sudo mkdir -p /opt/qomolo/gst-plugin/plugin
+else    
+        sudo scp qomolo@10.159.101.1:~/0618.tar.gz .
+fi	
