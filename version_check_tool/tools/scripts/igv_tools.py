@@ -27,7 +27,6 @@ class IgvVehicleTools():
         s.close()
 
 
-
     def qpilot_config(self):
 
         name = input("固件名称：")
