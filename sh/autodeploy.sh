@@ -70,6 +70,7 @@ else
 fi
 
 echo "start lidar deploy"
+
 python3 /opt/qomolo/utils/lidar_config/hesai_config/setup_config.py 192.168.10.11 11
 python3 /opt/qomolo/utils/lidar_config/hesai_config/setup_config.py 192.168.10.12 12
 python3 /opt/qomolo/utils/lidar_config/hesai_config/setup_config.py 192.168.10.13 13
