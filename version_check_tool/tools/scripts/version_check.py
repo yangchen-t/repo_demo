@@ -5,9 +5,9 @@ import subprocess
 import datetime
 import time,csv
 
-igv_id = [1,21,22,23,24,25,26,27,28,29,30,31,32,33,72,73,76]
+igv_id = [1,2,21,22,23,24,25,26,27,28,29,30,31,32,33,72,73,76]
 #igv_id = [1,24]
-port = 22
+port = 22 
 username = "nvidia"
 passwd = "nvidia"
 command = "dpkg -l  | grep qpilot"
