@@ -14,7 +14,6 @@ class FileEventHandler(FileSystemEventHandler):
         name_str = subprocess.getoutput("cat ~/.env")
         subprocess.getoutput('cd /home/westwell/Desktop/qpilot_setup && git pull && git add . && git commit -m "{}" && git push '.format(name_str))
         print(subprocess.getoutput("sudo echo "" > ~/.env"))
-        
         print("git push finish")
 
     def on_moved(self, event):
