@@ -1,0 +1,10 @@
+#!/bin/bash
+
+
+sudo chown -R nvidia /home/nvidia
+if [[ $1 == "" ]];then
+	echo "please input username"
+else
+	echo nvidia | sudo -S echo $1 > /home/nvidia/.env
+	echo "unlock parameters"
+fi
