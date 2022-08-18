@@ -1,0 +1,15 @@
+#!/bin/bash 
+
+if [[ $1 == "-u" ]];then
+	python3 ~/tools/scripts/test.py
+elif [[ $1 == "-v" ]];then
+	python3 ~/tools/scripts/version_check.py
+elif [[ $1 == "-r" ]];then
+	python3 ~/tools/scripts/reboot_igv.py
+else
+	echo "parameter error"
+        echo "-u 更新版本
+-v 查询版本
+-r 重启docker"
+
+fi

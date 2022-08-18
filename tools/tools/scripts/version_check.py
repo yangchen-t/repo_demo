@@ -10,7 +10,7 @@ igv_id = [1,2,21,22,23,24,25,26,27,28,29,30,31,32,33,72,73,76]
 port = 22 
 username = "nvidia"
 passwd = "nvidia"
-command = "dpkg -l  | grep qpilot"
+command = "dpkg -l  | grep qomolo"
 
 
 subprocess.getoutput("echo "" > ~/version.csv")
@@ -20,7 +20,6 @@ print("正在查询所有单车版本号----")
 for ID in igv_id:
         try:
             hostname=str('10.159.'+ str(ID) +'.105')
-            #print(hostname,"---> 写入version.csv")
             ssh = paramiko.SSHClient()
             ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
             ssh.connect(hostname,port,username,passwd)
@@ -34,5 +33,7 @@ for ID in igv_id:
             time.sleep(1)
             ssh.close()
         except:
+            print(hostname)
             print('It seems that the device cannot be connected ~')
 print("查询结果保存至/home/qomolo/version.csv里")
+            

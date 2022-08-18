@@ -1,6 +1,7 @@
 #!/usr/bin/env python3 
 
 import rclpy,sys
+import datetime
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
 
@@ -14,6 +15,7 @@ class MinimalPublisher(Node):
         self.i = 0
 
     def timer_callback(self):
+        print(datetime.datetime.now())
         msg = Twist()
         msg.linear.x = 0.5
         msg.linear.y = 0.0

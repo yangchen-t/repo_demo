@@ -12,9 +12,7 @@ number = str(input(":"))
 print("输入单车序号更新指定版本")
 version = str(input(":"))
 
-command = 'echo nvidia | sudo -S apt update && yes | sudo apt install qpilot=%s' % version
-#command = ['echo nvidia | sudo -S apt update && yes | sudo apt install qpilot=%s &&  \
-#bash /opt/qomolo/utils/qpilot_setup/all_supervisord/start_container.sh',version]
+command = 'echo nvidia | sudo -S apt update && sudo apt install qpilot-setup={0}'.format(version)  
 username = "nvidia"  # 用户名
 passwd = "nvidia"  # 密码 
 port = 22
@@ -28,22 +26,18 @@ if number == str(1):
         s = paramiko.SSHClient()
         s.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         s.connect(hostname=hostname, port=port, username=username, password=password)
-        stdin, stdout, stderr = s.exec_command(execmd)
+        stdin, stdout, stderr = s.exec_command(execmd,timeout=5)
         stdin.write("Y")            # Generally speaking, the first connection, need a simple interaction.
         print(stdout.read().decode())
         s.close()
-
     igv_id = [21,22,23,24,25,26,27,28,29,30,31,32,33,73,76]
     for i in igv_id:
-        ip = str("10.159."+str(i)+".105")
-        print("update_version =%s" % version)
-        sing_thread = threading.Thread(target=sshclient_execmd,args=(ip, port, username, passwd, command))
-        sing_thread.start()
-        sing_thread.join()
-        print(ip)
-        print("update-finish!!")
-
-
+            ip = str("10.159."+str(i)+".105")
+            print(ip)
+            sing_thread = threading.Thread(target=sshclient_execmd,args=(ip, port, username, passwd, command))
+            sing_thread.start()
+            sing_thread.join()
+            print("update-finish!!")
 
 elif number == str(2):
 
@@ -53,7 +47,7 @@ elif number == str(2):
         s = paramiko.SSHClient()
         s.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         s.connect(hostname=hostname, port=port, username=username, password=password)
-        stdin, stdout, stderr = s.exec_command(execmd)
+        stdin, stdout, stderr = s.exec_command(execmd,timeout=2)
         stdin.write("Y")            # Generally speaking, the first connection, need a simple interaction.
         print(stdout.read().decode())
         s.close()
@@ -62,13 +56,13 @@ elif number == str(2):
     for i in igv_id:
         ip = str("10.159."+str(i)+".105")
         print("Begin......")
-        print("start update %s" % version)
+        #print("start update %s" % version)
         sing_thread = threading.Thread(target=sshclient_execmd,args=(ip, port, username, passwd, command))
         sing_thread.start()
         sing_thread.join()
-        print(ip)
         print("update-finish!!")
 
 else:
     print("I don't understand!!")
+
 
