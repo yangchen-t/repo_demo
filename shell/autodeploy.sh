@@ -1,8 +1,12 @@
 #!/bin/bash
 
+
+QOMOLO_IP=$1
 QOMOLO_ROBOT_ID=$2
 
-echo nvidia | sudo -S echo '`$2`' > /etc/hostname 
+sudo chown -R nvidia /etc/hostname
+echo nvidia | sudo -S echo "$QOMOLO_ROBOT_ID" > /etc/hostname     
+
 FIND_FILE="/etc/ssh/ssh_config"
 FIND_STR="StrictHostKeyChecking no"
 # 判断匹配函数，匹配函数不为0，则包含给定字符
@@ -37,10 +41,10 @@ network:
         optional: true
     bonds:
         bond0:
-            addresses: [10.159.$1.105/24]
-            gateway4: 10.159.$1.1
+            addresses: [$QOMOLO_IP/24]
+            gateway4: ${QOMOLO_IP:0:8}.1
             nameservers:
-               addresses: [10.159.$1.1]
+               addresses: [${QOMOLO_IP:0:8}.1]
             dhcp4: false
             interfaces:
                 - eth1
@@ -54,12 +58,12 @@ network:
         bond0.sen:
             id: 2
             link: bond0
-            addresses: [192.168.10.105/24]
+            addresses: [192.168.10.${QOMOLO_IP:9}/24]
 " > ~/etc/netplan/50-bond.yaml
 
 echo "install"
 sudo apt install qomolo-miivii-l4t-core qomolo-miivii-l4t-modules  qomolo-mcbind qomolo-ptp qomolo-sys-monitor
-sudo apt install qomolo-lidar-config sshpass vim  qpilot-setup qomolo-gcs-scripts
+sudo apt install qomolo-lidar-config sshpass vim  qpilot-setup qomolo-gcs-scripts 
 
 echo "deploy lidar launch "
 if [[ ! -d /opt/qomolo/gst-plugin/plugins ]];then
@@ -81,7 +85,7 @@ else
 	echo "skip next"
 fi
 
-echo "start lidar deploy"
+echo "start lidar config"
 
 python3 /opt/qomolo/utils/lidar_config/hesai_config/setup_config.py 192.168.10.11 11
 python3 /opt/qomolo/utils/lidar_config/hesai_config/setup_config.py 192.168.10.12 12
