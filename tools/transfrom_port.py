@@ -24,7 +24,7 @@ def transfrom_func():
 def Doc_func():
         print('''
         需要添加参数：
-        pytho3 transfrom_port.py  4Gip 车辆ip
+        python3 transfrom_port.py  4Gip 车辆ip
         ''')
 
 def main():
