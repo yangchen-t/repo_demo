@@ -27,7 +27,7 @@ fi
 QOMOLO_IP=$1
 QOMOLO_ROBOT_ID=$2
 qpilot=$3
-qpilot-param=$4
+qpilot_param=$4
 
 sudo chown -R nvidia /etc/hostname
 echo nvidia | sudo -S echo "$QOMOLO_ROBOT_ID" > /etc/hostname     
@@ -94,15 +94,15 @@ sudo apt install qomolo-lidar-config sshpass vim  qpilot-setup qomolo-gcs-script
 echo "---> deploy lidar launch <--- "
 
 cd /opt/qomolo/utils/qpilot_setup/tools/ && bash lidar_deploy.sh new-version.tar.gz    #new-veriosn.tar.gz  为最新版本激光驱动  (也可以注释掉这一步进行手动执行) 
-echo "暂时不更新可以回车跳过！！"
-read -p "input qpilot version :" qpilot
-read -p "input qpilot-param version :" qpilot_param
-if [[ $qpilot != "" && $qpilot_param != "" ]];then
-	sudo apt update; sudo apt install qpilot=$qpilot
-	sudo apt update; sudo apt install qpilot-param=$qpilot_param
-else
-	echo "---> skip next <---"
-fi
+# echo "暂时不更新可以回车跳过！！"
+# read -p "input qpilot version :" qpilot
+# read -p "input qpilot-param version :" qpilot_param
+# if [[ $qpilot != "" && $qpilot_param != "" ]];then
+sudo apt update; sudo apt install qpilot=$qpilot
+sudo apt update; sudo apt install qpilot-param=$qpilot_param
+# else
+	# echo "---> skip next <---"
+# fi
 
 echo "---> start lidar config <---"
 
