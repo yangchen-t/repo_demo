@@ -15,7 +15,7 @@ def des_decrypt(secret_key, s):
      de = k.decrypt(binascii.a2b_hex(s), padmode=PAD_PKCS5)
      return de
     
-secret_str = des_encrypt('12345678', 'I love YOU~')
+secret_str = des_encrypt('12345678', 'xiangyang.chen')
 print(secret_str)
 clear_str = des_decrypt('12345678', secret_str)
 print(clear_str)

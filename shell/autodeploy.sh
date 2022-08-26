@@ -66,15 +66,8 @@ sudo apt install qomolo-miivii-l4t-core qomolo-miivii-l4t-modules  qomolo-mcbind
 sudo apt install qomolo-lidar-config sshpass vim  qpilot-setup qomolo-gcs-scripts 
 
 echo "deploy lidar launch "
-if [[ ! -d /opt/qomolo/gst-plugin/plugins ]];then
-	sudo mkdir -p /opt/qomolo/gst-plugin/plugins 
-	sudo sshpass -p xijingkeji scp -o "StrictHostKeyChecking no" user@10.159.201.1:~/0618.tar.gz .
-      	sudo tar -xvf 0618.tar.gz -C /opt/qomolo/gst-plugins/plugin
-else
-	sudo sshpass -p xijingkeji scp -o "StrictHostKeyChecking no" user@10.159.201.1:~/0618.tar.gz .
-        sudo tar -xvf 0618.tar.gz -C /opt/qomolo/gst-plugins/plugin
-fi
 
+bash /opt/qomolo/utils/qpilot-setup/tools/lidar_deploy.sh new-version.tar.gz    #new-veriosn.tar.gz  为最新版本激光驱动  (也可以注释掉这一步进行手动执行) 
 echo "暂时不更新可以回车跳过！！"
 read -p "input qpilot version :" qpilot
 read -p "input qpilot-param version :" qpilot_param
@@ -94,6 +87,8 @@ python3 /opt/qomolo/utils/lidar_config/hesai_config/setup_config.py 192.168.10.1
 
 echo "finish"
 
-sudo netplan apply
+# sudo netplan apply
+
+# sudo reboot
 
 	
