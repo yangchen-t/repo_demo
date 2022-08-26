@@ -1,8 +1,33 @@
 #!/bin/bash
 
+if [[ $1 == '' ]] && [[ $2 == '' ]] && [[ $3 == '' ]] && [[ $4 == '' ]];then
+      echo "示例 ：
+      bash autodeploy.sh 10.159.2.106 dl2-param 0.6.3.46-81503focal.20220824.185443 0.2.81-81508focal.20220824.184413
+      "
+      exit
+fi
+
+if [[ $1 == '' ]] ;then 
+      echo "缺少 qomolo_ip"
+      exit
+fi
+if [[ $2 == '' ]] ;then 
+      echo "缺少 hostname"
+      exit
+fi
+if [[ $1 == '' ]] ;then 
+      echo "缺少 qpilot版本号"
+      exit
+fi
+if [[ $1 == '' ]] ;then 
+      echo "缺少 qpilot-param版本号"
+      exit 
+fi
 
 QOMOLO_IP=$1
 QOMOLO_ROBOT_ID=$2
+qpilot=$3
+qpilot-param=$4
 
 sudo chown -R nvidia /etc/hostname
 echo nvidia | sudo -S echo "$QOMOLO_ROBOT_ID" > /etc/hostname     
@@ -18,13 +43,14 @@ else
 fi 
 
 sudo apt update
-echo "clean netplan config "
-sudo mv ~/etc/netplan/* ~/
+echo "---> clean netplan config <---"
+sudo mv /etc/netplan/* ~/
 
-sudo chown -R nvidia /etc/netplan
 echo nvidia | sudo -S touch /etc/netplan/50-bond.yaml
-echo "set netplan config"
-echo "
+sudo chown -R nvidia /etc/netplan
+
+echo "---> set netplan config <---"
+sudo echo "
 network:
     version: 2
     renderer: networkd
@@ -59,15 +85,15 @@ network:
             id: 2
             link: bond0
             addresses: [192.168.10.${QOMOLO_IP:9}/24]
-" > ~/etc/netplan/50-bond.yaml
+" > /etc/netplan/50-bond.yaml
 
-echo "install"
+echo "---> install <---"
 sudo apt install qomolo-miivii-l4t-core qomolo-miivii-l4t-modules  qomolo-mcbind qomolo-ptp qomolo-sys-monitor
 sudo apt install qomolo-lidar-config sshpass vim  qpilot-setup qomolo-gcs-scripts 
 
-echo "deploy lidar launch "
+echo "---> deploy lidar launch <--- "
 
-bash /opt/qomolo/utils/qpilot-setup/tools/lidar_deploy.sh new-version.tar.gz    #new-veriosn.tar.gz  为最新版本激光驱动  (也可以注释掉这一步进行手动执行) 
+cd /opt/qomolo/utils/qpilot_setup/tools/ && bash lidar_deploy.sh new-version.tar.gz    #new-veriosn.tar.gz  为最新版本激光驱动  (也可以注释掉这一步进行手动执行) 
 echo "暂时不更新可以回车跳过！！"
 read -p "input qpilot version :" qpilot
 read -p "input qpilot-param version :" qpilot_param
@@ -75,20 +101,17 @@ if [[ $qpilot != "" && $qpilot_param != "" ]];then
 	sudo apt update; sudo apt install qpilot=$qpilot
 	sudo apt update; sudo apt install qpilot-param=$qpilot_param
 else
-	echo "skip next"
+	echo "---> skip next <---"
 fi
 
-echo "start lidar config"
+echo "---> start lidar config <---"
 
-python3 /opt/qomolo/utils/lidar_config/hesai_config/setup_config.py 192.168.10.11 11
-python3 /opt/qomolo/utils/lidar_config/hesai_config/setup_config.py 192.168.10.12 12
-python3 /opt/qomolo/utils/lidar_config/hesai_config/setup_config.py 192.168.10.13 13
-python3 /opt/qomolo/utils/lidar_config/hesai_config/setup_config.py 192.168.10.14 14
+lidar_key_list='11 12 13 14'
+for i in $lidar_key_list
+do
+	cd /opt/qomolo/utils/lidar_config/hesai_config/ && python3 setup_config.py 192.168.10.$i $i
+done
+echo "---> finish <---"
 
-echo "finish"
-
-# sudo netplan apply
-
-# sudo reboot
-
-	
+sudo netplan apply
+sudo reboot
