@@ -2,17 +2,17 @@
 
 if [[ $1 == '' ]] && [[ $2 == '' ]] && [[ $3 == '' ]] && [[ $4 == '' ]];then
       echo "示例 ：
-      bash autodeploy.sh 10.159.2.106 dl2-param 0.6.3.46-81503focal.20220824.185443 0.2.81-81508focal.20220824.184413
+      bash autodeploy.sh 10.159.2.106 dl qpilot=0.6.3.46-81503focal.20220824.185443 qpilot-param=0.2.81-81508focal.20220824.184413
       "
       exit
 fi
 
 if [[ $1 == '' ]] ;then 
-      echo "缺少 qomolo_ip"
+      echo "缺少 qomolo_ip ,比如'10.159.2.105'"
       exit
 fi
 if [[ $2 == '' ]] ;then 
-      echo "缺少 hostname"
+      echo "缺少 hostname ,比如'dl'"
       exit
 fi
 if [[ $1 == '' ]] ;then 
@@ -25,12 +25,12 @@ if [[ $1 == '' ]] ;then
 fi
 
 QOMOLO_IP=$1
-QOMOLO_ROBOT_ID=$2
+HOSTNAME=$2${QOMOLO_IP:7:1}-${QOMOLO_IP:9}
 qpilot=$3
 qpilot_param=$4
 
 sudo chown -R nvidia /etc/hostname
-echo nvidia | sudo -S echo "$QOMOLO_ROBOT_ID" > /etc/hostname     
+echo nvidia | sudo -S echo "$HOSTNAME" > /etc/hostname     
 
 FIND_FILE="/etc/ssh/ssh_config"
 FIND_STR="StrictHostKeyChecking no"
@@ -98,8 +98,8 @@ cd /opt/qomolo/utils/qpilot_setup/tools/ && bash lidar_deploy.sh new-version.tar
 # read -p "input qpilot version :" qpilot
 # read -p "input qpilot-param version :" qpilot_param
 # if [[ $qpilot != "" && $qpilot_param != "" ]];then
-sudo apt update; sudo apt install qpilot=$qpilot
-sudo apt update; sudo apt install qpilot-param=$qpilot_param
+sudo apt update; sudo apt install $qpilot
+sudo apt update; sudo apt install $qpilot_param
 # else
 	# echo "---> skip next <---"
 # fi
