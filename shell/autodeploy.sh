@@ -88,8 +88,8 @@ network:
 " > /etc/netplan/50-bond.yaml
 
 echo "---> install <---"
-sudo apt install qomolo-miivii-l4t-core qomolo-miivii-l4t-modules  qomolo-mcbind qomolo-ptp qomolo-sys-monitor
-sudo apt install qomolo-lidar-config sshpass vim  qpilot-setup qomolo-gcs-scripts 
+sudo apt install -y qomolo-miivii-l4t-core qomolo-miivii-l4t-modules  qomolo-mcbind qomolo-ptp qomolo-sys-monitor
+sudo apt install -y qomolo-lidar-config sshpass vim  qpilot-setup qomolo-gcs-scripts 
 
 echo "---> deploy lidar launch <--- "
 
@@ -114,4 +114,5 @@ done
 echo "---> finish <---"
 
 sudo netplan apply
+sleep 2
 sudo reboot
