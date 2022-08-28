@@ -89,30 +89,19 @@ network:
 
 echo "---> install <---"
 sudo apt install -y qomolo-miivii-l4t-core qomolo-miivii-l4t-modules  qomolo-mcbind qomolo-ptp qomolo-sys-monitor
-sudo apt install -y qomolo-lidar-config sshpass vim  qpilot-setup qomolo-gcs-scripts 
+sudo apt install -y qomolo-lidar-config sshpass vim  qpilot-setup qomolo-gcs-scripts  qomolo-gst-plugin-ros2bridge 
 
 echo "---> deploy lidar launch <--- "
 
 cd /opt/qomolo/utils/qpilot_setup/tools/ && bash lidar_deploy.sh new-version.tar.gz    #new-veriosn.tar.gz  为最新版本激光驱动  (也可以注释掉这一步进行手动执行) 
-# echo "暂时不更新可以回车跳过！！"
-# read -p "input qpilot version :" qpilot
-# read -p "input qpilot-param version :" qpilot_param
-# if [[ $qpilot != "" && $qpilot_param != "" ]];then
+
 sudo apt update; sudo apt install $qpilot
 sudo apt update; sudo apt install $qpilot_param
-# else
-	# echo "---> skip next <---"
-# fi
 
-echo "---> start lidar config <---"
-
-lidar_key_list='11 12 13 14'
-for i in $lidar_key_list
-do
-	cd /opt/qomolo/utils/lidar_config/hesai_config/ && python3 setup_config.py 192.168.10.$i $i
-done
 echo "---> finish <---"
 
 sudo netplan apply
+sleep 2
+rm $0
 sleep 2
 sudo reboot
