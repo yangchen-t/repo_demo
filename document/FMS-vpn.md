@@ -17,4 +17,3 @@ sudo apt-get install wireguard
 10.253.253.8        westwell/westwell       # mqtt server
 ```
 
-### 

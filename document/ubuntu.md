@@ -35,3 +35,13 @@ UUID=88069947069936E2 /mnt/data ntfs defaults  0  2
 请注意：如若改错，无法进入桌面，系统无法系统，意味着系统崩溃！请再三核对！否则只有重新安装系统!!       #谨慎操作
 ```
 
+### Q： 如何实现scp 断点续传
+
+```shell
+# rsync -P --rsh=ssh pic.tar.gz 192.168.205.304:/home/199_home.tar
+
+说明：
+-P: 是包含了 "–partial –progress"， 部分传送和显示进度
+-rsh=ssh 表示使用ssh协议传送数据
+```
+
