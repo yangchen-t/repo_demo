@@ -10,4 +10,5 @@ do
 done
 
 PID=`ps -aux |grep led_server.py | awk '{print $2}'`
+
 sudo kill -9 $PID
