@@ -1,11 +1,18 @@
 #!/bin/bash 
 
 if [[ $1 == "-u" ]];then
-	python3 ~/tools/scripts/test.py
+	if [[ $2 == "" ]];then
+		echo "igv -u + 固件
+举例：igv -u qpilot-setup"
+	else
+		python3 ~/tools/test.py $2
+	fi
 elif [[ $1 == "-v" ]];then
-	python3 ~/tools/scripts/version_check.py
+	echo "开始查询版本"
+	python3 ~/tools/version_check.py
 elif [[ $1 == "-r" ]];then
-	python3 ~/tools/scripts/reboot_igv.py
+	echo "注意！！，这将会重启docker"
+	python3 ~/tools/reboot_igv.py
 else
 	echo "parameter error"
         echo "-u 更新版本

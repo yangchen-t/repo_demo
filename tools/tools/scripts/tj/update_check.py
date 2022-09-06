@@ -74,6 +74,3 @@ if __name__ == "__main__" :
     igv = IgvVehicleTools()
     igv.qpilot_config()
 
-
-
-
