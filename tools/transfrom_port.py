@@ -1,3 +1,5 @@
+#!/usr/bin/env python3 
+
 import paramiko
 import base64
 import sys
@@ -6,7 +8,8 @@ import sys
 key = b'Z2F0ZUB3ZXN0Iw=='
 port = 22
 username = "qomolo"
-passwd = base64.b64decode(key).decode()
+passwd = base64.b64decode(key).decode()          #base64        
+
 
 def transfrom_func():
     try:
