@@ -1,0 +1,762 @@
+#!/bin/bash
+
+source /opt/qomolo/utils/qomolo_gcs_scripts/log/env
+beijing_date_mark=""
+if [[ ${QOMOLO_ROBOT_ID} == "" ]];then
+    echo -e "\033[31m必须配置QOMOLO_ROBOT_ID\033[0m"
+    exit 0
+fi
+
+if [[ ${GCS_PASSWORD} == "" ]];then
+    echo -e "\033[31m必须配置地面站密码\033[0m"
+    exit 0
+fi
+
+if [[ ${GCS_USERNAME} == "" ]];then
+    echo -e "\033[31m必须配置地面站用户名\033[0m"
+    exit 0
+fi
+
+if [[ ${GCS_IP} == "" ]];then
+    echo -e "\033[31m必须配置地面站IP\033[0m"
+    exit 0
+fi
+
+disk_len=`df -h | grep /data | awk '{print $4}'  | wc -L`
+if [[ disk_len -lt 4 ]];then
+        echo "请立即停车，检查磁盘大小，容量已经低于100G"
+        exit 0
+fi
+
+sudo chown -R nvidia /data/code/all_ws/ws
+
+read -p "上传日志输入1:
+录定位（凯爷+凌远+影姐）要的数据包输入2:
+录感知（兵兵+家园+许宁）要的数据包输入3:
+录碰撞误检（嘉俊）要的数据包输入4:
+录制编码器航向角标定数据包输入5：
+上传定位坐船数据 6 ：
+" MODE
+
+function input_time_gen_folder(){
+    mkdir -p /data/code/all_ws/ws/logpush_tmp
+    read -p "请输入问题发生时的北京时间:" PROBLEM_TIME
+    if [[ ${#PROBLEM_TIME} != 19 ]];then
+        echo "时间格式不对，无法执行，请按照格式来输入如2022-02-22 12:00:00"
+        exit 0
+    else
+        echo "数据打包中------"
+        echo ${PROBLEM_TIME} BEENINPUTATBJTIME `date -d "8 hour"` >> /data/code/all_ws/ws/.user_input_time_log
+        cd /data/code/all_ws/ws/logpush_tmp
+        sudo rm -rf tmp
+        TMP_LOG_NAME=${HOSTNAME}_`date -d "8 hour" +%Y-%m-%d-%H%M`_log_bag
+        mkdir -p tmp/${TMP_LOG_NAME}/csv
+        mkdir -p tmp/${TMP_LOG_NAME}/qlog
+        mkdir -p tmp/${TMP_LOG_NAME}/supervisord_log
+        mkdir -p tmp/${TMP_LOG_NAME}/localization_bag
+        mkdir -p tmp/${TMP_LOG_NAME}/lidar_bag
+        mkdir -p tmp/${TMP_LOG_NAME}/lidar_estop_bag
+        mkdir -p tmp/${TMP_LOG_NAME}/vdr
+        mkdir -p tmp/${TMP_LOG_NAME}/images
+        input_timestamp=`date -d "$PROBLEM_TIME" +%s`
+        input_utc_timestamp=`expr $input_timestamp - 28801`
+        SEARCH_TIME=`date -d @$input_utc_timestamp +%Y-%m-%d\ %H:%M:00`
+    fi
+}
+
+function bag_gen_folder(){
+    cd /data/code/all_ws/ws/logpush_tmp
+    sudo rm -rf tmp
+    TMP_LOG_NAME=${HOSTNAME}_`date -d "8 hour" +%Y-%m-%d-%H%M`_$1
+    mkdir -p /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}
+    cd /data/code/all_ws/ws
+}
+
+# 提供两种模式进行查询
+# 按照时间进行搜索 + 按照文件进行搜索
+# csv文件共有4种trajectory_conversion + igv_speed_lon_controller + igv_nlfb_lat_controller + alignment_log
+function time_search_copy_csv(){
+    if [ ! -d "/data/code/all_ws/ws/${CSV_FOLDER_NAME}" ];then
+        echo "/data/code/all_ws/ws/${CSV_FOLDER_NAME}路径不存在，请检查并创建"
+        exit 0
+    fi
+    cd /data/code/all_ws/ws/${CSV_FOLDER_NAME}
+    search_time_stamp=`date -d "${SEARCH_TIME}" +%s`
+    older_time_stamp=`expr ${search_time_stamp} - 3600`
+    OLDER_SEARCH_TIME=`date -d @$older_time_stamp +%Y-%m-%d\ %H:%M:00`
+    newer_time_stamp=`expr ${search_time_stamp} + 3600`
+    NEWER_SEARCH_TIME=`date -d @$newer_time_stamp +%Y-%m-%d\ %H:%M:00`
+    nice -n 19 find ./ -name "$1*" -newermt "${OLDER_SEARCH_TIME}" ! -newermt "${NEWER_SEARCH_TIME}" | xargs -I {} rsync -auzq --progress --bwlimit=1000 {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/csv
+}
+
+# 低频csv文件，前后各两个
+function file_search_copy_csv(){
+    cd /data/code/all_ws/ws/${CSV_FOLDER_NAME}
+    oldder_csv=`find ./ -name "$1*" ! -newermt "${SEARCH_TIME}"`
+    ls -t ${oldder_csv} | head -n 2 | xargs -I {} rsync -auzq --progress --bwlimit=1000 {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/csv/
+    newer_csv=`find ./ -name "$1*" -newermt "${SEARCH_TIME}"`
+    ls -rt ${newer_csv} | head -n 2 | xargs -I {} rsync -auzq --progress --bwlimit=1000 {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/csv/
+}
+
+# keep error event
+function keeper_error_event(){
+    rsync -auzq --progress --bwlimit=1000 /data/code/all_ws/ws/igv_log/keeper_error_event.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+}
+
+# log search pre
+function log_search_copy_pre(){
+    cd /data/code/all_ws/ws/
+    beijing_date_mark=`date -d "8 hour" +%Y-%m-%d-%H-%M%S`
+    ls *.log | xargs -I  {} rsync -auzq --progress --bwlimit=1000 {}  /data/code/all_ws/ws/igv_log/{}-${beijing_date_mark}.log
+}
+
+# log search post
+function log_search_copy_post(){
+    cd /data/code/all_ws/ws/igv_log
+    rm *$beijing_date_mark*
+}
+
+# 输入时间点前后各搜索四个文件日志模块
+function file_search_copy_high_HZ_log(){
+    beijing_date=`date -d "8 hour" +%Y-%m-%d-%H-%M%S`
+    cd /data/code/all_ws/ws/igv_log
+    oldder_log=`find ./ -name "$1*" ! -newermt "${SEARCH_TIME}" ! -path "./tmp/*" `
+    ls -t ${oldder_log} | head -n 4 | xargs -I {} rsync -auzq --progress --bwlimit=1000 {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+    newer_log=`find ./ -name "$1*"  -newermt "${SEARCH_TIME}" ! -path "./tmp/*" `
+    ls -rt ${newer_log} | head -n 4 | xargs -I {} rsync -auzq --progress --bwlimit=1000 {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+}
+
+# 输入时间点前后各搜索两个文件日志模块
+function file_search_copy_middle_HZ_log(){
+    beijing_date=`date -d "8 hour" +%Y-%m-%d-%H-%M%S`
+    cd /data/code/all_ws/ws/igv_log
+    oldder_log=`find ./ -name "$1*" ! -newermt "${SEARCH_TIME}" ! -path "./tmp/*" `
+    ls -t ${oldder_log} | head -n 2 | xargs -I {} rsync -auzq --progress --bwlimit=1000 {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+    newer_log=`find ./ -name "$1*"  -newermt "${SEARCH_TIME}" ! -path "./tmp/*" `
+    ls -rt ${newer_log} | head -n 2 | xargs -I {} rsync -auzq --progress --bwlimit=1000 {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+}
+
+# 输入时间点前后各搜索一个文件日志模块
+function file_search_copy_low_HZ_log(){
+    beijing_date=`date -d "8 hour" +%Y-%m-%d-%H-%M%S`
+    cd /data/code/all_ws/ws/igv_log
+    oldder_log=`find ./ -name "$1*" ! -newermt "${SEARCH_TIME}" ! -path "./tmp/*" `
+    ls -t ${oldder_log} | head -n 1 | xargs -I {} rsync -auzq --progress --bwlimit=1000 {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+    newer_log=`find ./ -name "$1*"  -newermt "${SEARCH_TIME}" ! -path "./tmp/*" `
+    ls -rt ${newer_log} | head -n 1 | xargs -I {} rsync -auzq --progress --bwlimit=1000 {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+}
+
+# 输入时间点前后15分钟内的二层数据
+function search_copy_lidar_estop(){
+    cd /data/code/all_ws/ws/lidar_estop_log
+    start_input_timestamp=`date -d "$PROBLEM_TIME" +%s`
+    start_utc_timestamp=`expr $start_input_timestamp - 29700`
+    START_TIME=`date -d @$start_utc_timestamp +%Y-%m-%d\ %H:%M:00`
+    end_input_timestamp=`date -d "$PROBLEM_TIME" +%s`
+    end_utc_timestamp=`expr $end_input_timestamp  - 27900`
+    END_TIME=`date -d @$end_utc_timestamp +%Y-%m-%d\ %H:%M:%S`
+    nice -n 19 find ./ -type d ! -path ./ -newermt "$START_TIME" ! -newermt "$END_TIME" | xargs -I {} rsync -auzq --progress --bwlimit=1000 -r {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/lidar_estop_bag/
+}
+
+# 输入时间点前后15分钟的定位数据包
+function file_search_copy_odom(){
+    cd ${ODOM_FOLDER_NAME}
+    oldder_odom=`find ./ -name "*.db3" ! -newermt "${SEARCH_TIME}"`
+    if [[ $oldder_odom != "" ]];then
+        ls -t $oldder_odom | head -n 3 | xargs -I {} rsync -auzq --progress --bwlimit=1000 -r {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/localization_bag/
+    fi
+    newer_odom=`find ./ -name "*.db3" -newermt "${SEARCH_TIME}"`
+    if [[ $newer_odom != "" ]];then
+        ls -rt $newer_odom | head -n 3 | xargs -I {} rsync -auzq --progress --bwlimit=1000 -r {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/localization_bag/
+    fi
+}
+
+# 嘉俊qp1069拷贝日志
+function file_cp_for_jiajun(){
+    read -p "输入开始时间：" INPUT_TIME
+        if [[ ${#INPUT_TIME} != 19 ]];then
+        echo "时间格式不对，无法执行，请按照格式来输入如2022-02-22 12:00:00"
+        exit 0
+    else
+        cd /data/code/all_ws/ws/
+        mkdir -p /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+        mkdir -p /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/csv
+        rsync -auzq --progress --bwlimit=1000 local_plan.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+        rsync -auzq --progress --bwlimit=1000 mqtt_agent.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+        rsync -auzq --progress --bwlimit=1000 function_controller.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+        rsync -auzq --progress --bwlimit=1000 igv_agent.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+        rsync -auzq --progress --bwlimit=1000 qomolo_assembly.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+        rsync -auzq --progress --bwlimit=1000 vehicle_controller.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+        cd /data/code/all_ws/ws/logpush_tmp
+        nice -n 19 find ./ -type f -newermt "${INPUT_TIME}" ! -path "./tmp/*" -name "local_plan*" | xargs -I {} rsync -auzq --progress --bwlimit=1000 {}  /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+        nice -n 19 find ./ -type f -newermt "${INPUT_TIME}" ! -path "./tmp/*" -name "vehicle*" | xargs -I {} rsync -auzq --progress --bwlimit=1000 {}  /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+        nice -n 19 find ./ -type f -newermt "${INPUT_TIME}" ! -path "./tmp/*" -name "mqtt*" | xargs -I {} rsync -auzq --progress --bwlimit=1000 {}  /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+        nice -n 19 find ./ -type f -newermt "${INPUT_TIME}" ! -path "./tmp/*" -name "function_controller*" | xargs -I {} rsync -auzq --progress --bwlimit=1000 {}  /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+        nice -n 19 find ./ -type f -newermt "${INPUT_TIME}" ! -path "./tmp/*" -name "igv_agent*" | xargs -I {} rsync -auzq --progress --bwlimit=1000 {}  /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+        nice -n 19 find ./ -type f -newermt "${INPUT_TIME}" ! -path "./tmp/*" -name "qomolo_assembly*" | xargs -I {} rsync -auzq --progress --bwlimit=1000 {}  /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+        cd /data/code/all_ws/ws/csv
+        nice -n 19 find ./ -type f -newermt "${INPUT_TIME}" ! -path ./ | xargs -I {} rsync -auzq --progress --bwlimit=1000 {}  /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/csv/
+    fi
+}
+
+# 输入时间点搜索前20分钟+后20分钟的日志数据包
+function time_search_log(){
+    start_input_timestamp=`date -d "$PROBLEM_TIME" +%s`
+    start_utc_timestamp=`expr $start_input_timestamp - 30000`
+    START_TIME=`date -d @$start_utc_timestamp +%Y-%m-%d\ %H:%M:00`
+    end_input_timestamp=`date -d "$PROBLEM_TIME" +%s`
+    end_utc_timestamp=`expr $end_input_timestamp  - 27600`
+    END_TIME=`date -d @$end_utc_timestamp +%Y-%m-%d\ %H:%M:%S`
+    mkdir -p /data/code/all_ws/ws/logpush_tmp/${TMP_LOG_NAME}/qlog/$1
+    cd /data/code/all_ws/ws/qlog/$1
+    nice -n 19 find ./ -type f ! -path ./ -newermt "$START_TIME" ! -newermt "$END_TIME" | xargs -I {} rsync -auzq --progress --bwlimit=1000 -r {} /data/code/all_ws/ws/logpush_tmp/${TMP_LOG_NAME}/qlog/$1/ 
+}
+
+# 输入时间点搜索前5个文件+后5个文件
+function file_search_log(){
+    cd /data/code/all_ws/ws/qlog/$1
+    mkdir -p /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/qlog/$1/
+    oldder_log=`find ./ -type f ! -newermt "${SEARCH_TIME}"`
+    ls -t ${oldder_log} | head -n 5 | xargs -I {} rsync -auzq --progress --bwlimit=1000 {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/qlog/$1/
+    newer_log=`find ./  -type f   -newermt "${SEARCH_TIME}"`
+    ls -rt ${newer_log} | head -n 5 | xargs -I {} rsync -auzq --progress --bwlimit=1000 {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/qlog/$1/
+}
+
+
+function folder_search_lidar(){
+    cd /data/key_log/lidar
+    mkdir -p /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/lidar
+    oldder_lidar=`find ./ -maxdepth 1 ! -path ./ -type d ! -newermt "${SEARCH_TIME}"`
+    if [[ $oldder_lidar != "" ]];then
+      ls -dt $oldder_lidar | head -n 5 |xargs  -I {} rsync -auzq --progress --bwlimit=1000 -r {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/lidar/
+    fi
+    newer_lidar=`find ./ -maxdepth 1 ! -path ./ -type d -newermt "${SEARCH_TIME}"`
+    if [[ $newer_lidar != "" ]];then
+      ls -drt $newer_lidar | head -n 5 |xargs  -I {} rsync -auzq --progress --bwlimit=1000 -r {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/lidar/
+    fi
+}
+
+
+function folder_search_lidar_xm(){
+    cd /data/code/all_ws/ws/key_log/lidar
+    mkdir -p /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/lidar
+    oldder_lidar=`find ./ -maxdepth 1 ! -path ./ -type d ! -newermt "${SEARCH_TIME}"`
+    if [[ $oldder_lidar != "" ]];then
+      ls -dt $oldder_lidar | head -n 5 |xargs  -I {} rsync -auqz --progress --bwlimit=1000 -r {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/lidar/
+    fi
+    newer_lidar=`find ./ -maxdepth 1 ! -path ./ -type d -newermt "${SEARCH_TIME}"`
+    if [[ $newer_lidar != "" ]];then
+      ls -drt $newer_lidar | head -n 5 |xargs  -I {} rsync -auqz --progress --bwlimit=1000 -r {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/lidar/
+    fi
+}
+
+#vehicle-data-record  --> 20 minutes <--
+function folder_search_vdr(){
+    cd /data/code/all_ws/ws/${CSV_FOLDER_NAME}/short_time/
+    mkdir -p /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/vdr
+    start_time=`date -d "$PROBLEM_TIME" +%s`
+    start_utc=`expr $start_time - 30000`
+    start_bj=`date -d @$start_utc "+%Y-%m-%d %H:%M:%S"`
+    end_time=`date -d "$PROBLEM_TIME" +%s`
+    end_utc=`expr $end_time - 27600`
+    end_bj=`date -d @$end_utc "+%Y-%m-%d %H:%M:%S"`
+    nice -n 19 find ./ -name '*vdr*' -type d -newermt "$start_bj" ! -newermt "$end_bj"  | xargs -I {}  rsync -auzq --progress --bwlimit=1000 -r {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/vdr
+    nice -n 19 find ./ -name '*localization*' -type d -newermt "$start_bj" ! -newermt "$end_bj"  | xargs -I {}  rsync -auzq --progress --bwlimit=1000 -r {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/vdr
+    nice -n 19 find ./ -name '*lidar_cps*' -type d -newermt "$start_bj" ! -newermt "$end_bj"  | xargs -I {}  rsync -auzq --progress --bwlimit=1000 -r {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/vdr
+
+
+}
+
+function folder_search_image_xm(){
+    cd /data/code/all_ws/ws/key_log/image
+    mkdir -p /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/images
+    start_time=`date -d "$PROBLEM_TIME" +%s`
+    start_utc=`expr $start_time - 30600`
+    start_bj=`date -d @$start_utc "+%Y-%m-%d %H:%M:%S"`
+    end_time=`date -d "$PROBLEM_TIME" +%s`
+    end_utc=`expr $end_time - 27000`
+    end_bj=`date -d @$end_utc "+%Y-%m-%d %H:%M:%S"`
+    nice -n 19 find ./ -name '*2022*' -type d -newermt "$start_bj" ! -newermt "$end_bj"  | xargs -I {}  rsync -auzq --progress --bwlimit=1000 -r {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/images
+
+
+}
+
+function localization_bag(){
+        TMP_LOG_NAME=${HOSTNAME}_`date -d "8 hour" +%Y-%m-%d-%H%M`_localization_collect
+        mkdir -p /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/odom_bag
+        if [[ ${#START_TIME} != 19 ]];then
+        echo "时间格式不对，无法执行，请按照格式来输入如2022-02-22 12:00:00"
+        exit 0
+        fi
+        if [[ ${#END_TIME} != 19 ]];then
+        echo "时间格式不对，无法执行，请按照格式来输入如2022-02-22 12:00:00"
+        exit 0
+        fi
+        cd ${ODOM_FOLDER_NAME}
+        nice -n 19 find ./ -name '*.db3' -type f -newermt "$START_TIME" ! -newermt "$END_TIME"  | xargs -I {} rsync -auzq --progress --bwlimit=1000 -r {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/odom_bag/
+}
+function localization_log(){      
+        TMP_LOG_NAME=${HOSTNAME}_`date -d "8 hour" +%Y-%m-%d-%H%M`_localization_collect
+        mkdir -p /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/localization_check_log 
+        mkdir -p /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/keep_log
+        cd /data/code/all_ws/ws/igv_log
+        start_time=`date -d "$START_TIME" +%s`
+        start_utc=`expr $start_time - 28000`
+        start_bj=`date -d @$start_utc "+%Y-%m-%d %H:%M:%S"`
+        end_time=`date -d "$END_TIME" +%s`
+        end_utc=`expr $end_time - 28000`
+        end_bj=`date -d @$end_utc "+%Y-%m-%d %H:%M:%S"`
+        nice -n 19 find ./ -name 'localization_check*' -type f -newermt "$start_bj" ! -newermt "$end_bj"  | xargs -I {} rsync -auzq --progress --bwlimit=1000 -r {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/localization_check_log/  
+        nice -n 19 find /data/code/all_ws/ws/igv_log -name "keep*" -type f -newermt "$start_bj" ! -newermt "$end_bj"  | xargs -I {} rsync -auzq --progress --bwlimit=1000 -r {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/keep_log/  
+}
+
+function upload_to_gcs(){
+    rsync -auzq --progress --bwlimit=1000 /opt/qomolo/qpilot/qpilot.repos /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/
+    echo "=========================================以下数据正在被压缩========================================="
+    cd /data/code/all_ws/ws/logpush_tmp/tmp/
+    echo nvidia | sudo -S nice -n 19 tar -zvcf ${TMP_LOG_NAME}.tar.gz ${TMP_LOG_NAME}
+    YEAR=`date -d "8 hour" +%Y`
+    MONTH=`date -d "8 hour" +%-m`
+    DAY=`date -d "8 hour" +%-d`
+    UPLOAD_PATH=${NAS_PATH}/${YEAR}/${MONTH}/${DAY}/${HOSTNAME}
+    echo "===========================================数据压缩已完成=========================================="
+    echo "数据正在传输中......"
+    sshpass -p ${GCS_PASSWORD} scp -l 8000 -o ServerAliveInterval=30 -o "StrictHostKeyChecking no" ${TMP_LOG_NAME}.tar.gz ${GCS_USERNAME}@${GCS_IP}:/key_log/key_log/
+    if [ $? != 0 ];then
+        echo -e "\033[031m数据因为网络原因传输失败，请联系管理员\033[0m"
+        exit 0
+    else
+        echo "========================================请把以下路径粘贴到issue==================================="
+        echo ${UPLOAD_PATH}/${TMP_LOG_NAME}.tar.gz
+        echo "=================================================================================================="
+    fi
+}
+
+
+
+
+
+##main
+case "$MODE" in
+1*)
+#天津
+if [[ "${HOSTNAME}" =~ ^TJ_IGV.* ]];then
+    input_time_gen_folder
+    # trajectory csv
+    time_search_copy_csv trajectory
+    # common csv
+    file_search_copy_csv alignment_log
+    file_search_copy_csv igv_nlfb_lat_controller
+    file_search_copy_csv igv_speed_lon_controller
+    file_search_copy_csv inposition_log
+    file_search_copy_csv lattice_planner
+    file_search_copy_csv planning_trajectorys
+    file_search_copy_csv planning_vehicle_state
+    # log pre
+    log_search_copy_pre
+    # keep error event
+    keeper_error_event
+    # localization odom bag
+    file_search_copy_odom
+    # lidar estop bag
+    search_copy_lidar_estop
+    # low frequency log
+    file_search_copy_low_HZ_log function_controller
+    # middle frequency log
+    file_search_copy_middle_HZ_log mqtt
+    # high frequency log
+    file_search_copy_high_HZ_log mono_lane_tracker_ros2
+    file_search_copy_high_HZ_log canbus
+    file_search_copy_high_HZ_log local_plan
+    file_search_copy_high_HZ_log localization_checker
+    file_search_copy_high_HZ_log vehicle_controller
+    file_search_copy_high_HZ_log qomolo_assembly
+    file_search_copy_high_HZ_log alignment_planner
+    file_search_copy_high_HZ_log agent
+    file_search_copy_high_HZ_log keeper
+    file_search_copy_high_HZ_log landmark_localizer_ros2
+    file_search_copy_high_HZ_log lidar_estop
+    file_search_log agent
+    file_search_log planning 
+    file_search_log perception
+    file_search_log canbus
+    file_search_log control
+    file_search_log keeper
+    file_search_log function_control
+    file_search_log localization
+    folder_search_lidar
+    folder_search_vdr
+    # file_search_log alignment\ planner
+    # log post 
+    log_search_copy_post
+    upload_to_gcs
+
+#策克产品车
+elif [[ "${HOSTNAME}" =~ ^CEKE_IGV.* ]];then
+    input_time_gen_folder
+    # trajectory csv
+    time_search_copy_csv trajectory
+    # common csv
+    file_search_copy_csv alignment_log
+    file_search_copy_csv igv_nlfb_lat_controller
+    file_search_copy_csv igv_speed_lon_controller
+    file_search_copy_csv inposition_log
+    file_search_copy_csv lattice_planner
+    file_search_copy_csv planning_trajectorys
+    file_search_copy_csv planning_vehicle_state
+    # keep error event
+    keeper_error_event
+    # localization odom bag
+    file_search_copy_odom
+    # lidar estop bag
+    search_copy_lidar_estop
+    # log pre
+    log_search_copy_pre
+    # low frequency log
+    file_search_copy_low_HZ_log function_controller
+    
+    # middle frequency log
+    file_search_copy_middle_HZ_log mqtt_agent
+    # high frequency log
+    file_search_copy_high_HZ_log local_plan
+    file_search_copy_high_HZ_log vehicle_controller
+    file_search_copy_high_HZ_log qomolo_assembly
+    file_search_copy_high_HZ_log igv_agent
+    file_search_copy_high_HZ_log igv_keeper
+    file_search_copy_high_HZ_log localization_checker
+    file_search_copy_high_HZ_log fusion_localizer.log
+    file_search_log agent
+    file_search_log planning 
+    file_search_log perception
+    file_search_log canbus
+    file_search_log control
+    file_search_log keeper
+    file_search_log function_control
+    # file_search_log alignment\ planner
+
+    #vehicle-data-record
+    folder_search_lidar
+    folder_search_vdr
+    # log post 
+    log_search_copy_post
+    upload_to_gcs
+
+#策克样品车
+elif [[ "${HOSTNAME}" =~ ^CN_CK.* ]];then
+    input_time_gen_folder
+    # trajectory csv
+    time_search_copy_csv trajectory
+    # common csv
+    file_search_copy_csv alignment_log
+    file_search_copy_csv igv_nlfb_lat_controller
+    file_search_copy_csv igv_speed_lon_controller
+    file_search_copy_csv inposition_log
+    file_search_copy_csv lattice_planner
+    file_search_copy_csv planning_trajectorys
+    file_search_copy_csv planning_vehicle_state
+    # keep error event
+    keeper_error_event
+    # localization odom bag
+    file_search_copy_odom
+    # lidar estop bag
+    search_copy_lidar_estop
+    # log pre
+    log_search_copy_pre
+    # low frequency log
+    file_search_copy_low_HZ_log function_controller
+    # middle frequency log
+    file_search_copy_middle_HZ_log mqtt_agent
+    # high frequency log
+    file_search_copy_high_HZ_log local_plan
+    file_search_copy_high_HZ_log vehicle_controller
+    file_search_copy_high_HZ_log qomolo_assembly
+    file_search_copy_high_HZ_log igv_agent
+    file_search_copy_high_HZ_log igv_keeper
+    file_search_copy_high_HZ_log localization_checker
+    file_search_copy_high_HZ_log fusion_localizer.log
+    file_search_log agent
+    file_search_log planning 
+    file_search_log perception
+    file_search_log canbus
+    file_search_log control
+    file_search_log keeper
+    file_search_log function_control
+    folder_search_lidar
+    #vehicle-data-record
+    folder_search_vdr
+    # log post 
+    log_search_copy_post
+    upload_to_gcs log_bag
+elif [[ "${HOSTNAME}" =~ ^hd.*105 ]];then
+    echo "换电车最新版本尚未匹配"
+elif [[ "${HOSTNAME}" =~ ^hd.*106 ]];then
+    echo "换电车最新版本尚未匹配"
+elif [[ "${HOSTNAME}" =~ ^hr.*105 ]];then
+    input_time_gen_folder
+    # trajectory csv
+    time_search_copy_csv trajectory
+    # common csv
+    file_search_copy_csv alignment_log
+    file_search_copy_csv igv_nlfb_lat_controller
+    file_search_copy_csv igv_speed_lon_controller
+    file_search_copy_csv inposition_log
+    # keep error event
+    keeper_error_event
+    # localization odom bag
+    # file_search_copy_odom
+    # log pre
+    log_search_copy_pre
+    # low frequency log
+    file_search_copy_low_HZ_log function_controller
+    # middle frequency log
+    file_search_copy_middle_HZ_log mqtt_adaptor
+    # high frequency log
+    file_search_copy_high_HZ_log vehicle_controller_node
+    file_search_copy_high_HZ_log control_manager
+    file_search_copy_high_HZ_log alignment_planner
+    file_search_copy_high_HZ_log igv_agent
+    file_search_copy_high_HZ_log igv_keeper
+    file_search_copy_high_HZ_log fusion_localizer
+    file_search_copy_high_HZ_log mono_lane_tracker
+    file_search_copy_high_HZ_log lstr
+    file_search_copy_high_HZ_log lidar_cps_alignment
+    file_search_log agent
+    file_search_log canbus
+    file_search_log control
+    file_search_log keeper
+    file_search_log function_control
+    # file_search_log "alignment planner"
+    # log post 
+    #vehicle-data-record
+    folder_search_vdr
+    folder_search_image_xm
+    log_search_copy_post
+    upload_to_gcs log_bag
+
+
+#厦门
+elif [[ "${HOSTNAME}" =~ ^hr.*106 ]];then
+    input_time_gen_folder
+    # lidar estop bag
+    search_copy_lidar_estop
+    # log pre
+    file_search_copy_odom
+    file_search_copy_csv planning_trajectorys
+    file_search_copy_csv lattice_planner
+    file_search_copy_csv planning_vehicle_state
+    file_search_copy_csv prediction
+    file_search_copy_csv first_level_safety_data
+    log_search_copy_pre
+    file_search_log planning 
+    file_search_log perception
+    file_search_log localization
+    file_search_copy_high_HZ_log localization_checker
+    file_search_copy_high_HZ_log fusion_localizer
+    file_search_copy_high_HZ_log landmark_localizer
+    file_search_copy_high_HZ_log lidar_estop
+    #file_cps_alignment
+    # high frequency log
+    file_search_copy_high_HZ_log local_plan_bringup
+    folder_search_lidar_xm
+    #vehicle-data-record
+    folder_search_vdr
+    folder_search_image_xm
+    # log post 
+    log_search_copy_post
+    upload_to_gcs log_bag
+
+#青浦
+elif [[ "${HOSTNAME}" =~ ^pd.* ]];then
+    input_time_gen_folder
+    # common csv
+    file_search_copy_csv mpc_kinematic_lat_controller
+    file_search_copy_csv igv_speed_lon_controller
+    file_search_copy_csv shuttle_pid_lon_controller
+    # log pre
+    log_search_copy_pre
+    # keep error event
+    keeper_error_event
+    # localization odom bag
+    # file_search_copy_odom
+    # lidar estop bag
+    search_copy_lidar_estop
+    # low frequency log
+    file_search_copy_low_HZ_log function_controller
+    # middle frequency log
+    file_search_copy_middle_HZ_log mqtt_agent
+    # high frequency log
+    file_search_copy_high_HZ_log control_manager
+    file_search_copy_high_HZ_log fusion_ros2
+    file_search_copy_high_HZ_log local_plan_bringup
+    file_search_copy_high_HZ_log lanelet2_routing_server
+    file_search_copy_high_HZ_log prediction
+    file_search_copy_high_HZ_log vehicle_controller_node
+    file_search_copy_high_HZ_log rr_agent_bringup
+    file_search_copy_high_HZ_log igv_keeper
+    file_search_copy_high_HZ_log rr_agent_bringup
+    # log post 
+    log_search_copy_post
+    upload_to_gcs log_bag
+
+#
+elif [[ "${HOSTNAME}" =~ ^wh.* ]];then
+    input_time_gen_folder
+    # trajectory csv
+    time_search_copy_csv trajectory
+    # common csv
+    file_search_copy_csv alignment_log
+    file_search_copy_csv igv_nlfb_lat_controller
+    file_search_copy_csv igv_speed_lon_controller
+    file_search_copy_csv inposition_log
+    file_search_copy_csv lattice_planner
+    file_search_copy_csv planning_trajectorys
+    file_search_copy_csv planning_vehicle_state
+    # log pre
+    log_search_copy_pre
+    # keep error event
+    keeper_error_event
+    # localization odom bag
+    file_search_copy_odom
+    # lidar estop bag
+    search_copy_lidar_estop
+    # low frequency log
+    file_search_copy_low_HZ_log function_controller
+    # middle frequency log
+    file_search_copy_middle_HZ_log mqtt
+    # high frequency log
+    file_search_copy_high_HZ_log mono_lane_tracker_ros2
+    file_search_copy_high_HZ_log canbus
+    file_search_copy_high_HZ_log local_plan
+    file_search_copy_high_HZ_log localization_checker
+    file_search_copy_high_HZ_log vehicle_controller
+    file_search_copy_high_HZ_log qomolo_assembly
+    file_search_copy_high_HZ_log alignment_planner
+    file_search_copy_high_HZ_log agent
+    file_search_copy_high_HZ_log keeper
+    file_search_copy_high_HZ_log landmark_localizer_ros2
+    file_search_copy_high_HZ_log lidar_estop
+     file_search_copy_high_HZ_log lidar_cps_alignment
+    file_search_log agent
+    file_search_log planning 
+    file_search_log perception
+    file_search_log canbus
+    file_search_log control
+    file_search_log keeper
+    file_search_log function_control
+    file_search_log localization
+    folder_search_lidar
+    folder_search_vdr
+    # file_search_log alignment\ planner
+    # log post 
+    log_search_copy_post
+    upload_to_gcs
+
+
+elif [[ "${HOSTNAME}" =~ ^dl.* ]];then
+    input_time_gen_folder
+    # trajectory csv
+    time_search_copy_csv trajectory
+    # common csv
+    file_search_copy_csv alignment_log
+    file_search_copy_csv igv_nlfb_lat_controller
+    file_search_copy_csv igv_speed_lon_controller
+    file_search_copy_csv inposition_log
+    file_search_copy_csv lattice_planner
+    file_search_copy_csv planning_trajectorys
+    file_search_copy_csv planning_vehicle_state
+    # log pre
+    log_search_copy_pre
+    # keep error event
+    keeper_error_event
+    # localization odom bag
+    file_search_copy_odom
+    # lidar estop bag
+    search_copy_lidar_estop
+    # low frequency log
+    file_search_copy_low_HZ_log function_controller
+    # middle frequency log
+    file_search_copy_middle_HZ_log mqtt
+    # high frequency log
+    file_search_copy_high_HZ_log mono_lane_tracker_ros2
+    file_search_copy_high_HZ_log canbus
+    file_search_copy_high_HZ_log local_plan
+    file_search_copy_high_HZ_log localization_checker
+    file_search_copy_high_HZ_log vehicle_controller
+    file_search_copy_high_HZ_log qomolo_assembly
+    file_search_copy_high_HZ_log alignment_planner
+    file_search_copy_high_HZ_log agent
+    file_search_copy_high_HZ_log keeper
+    file_search_copy_high_HZ_log landmark_localizer_ros2
+    file_search_copy_high_HZ_log lidar_estop
+     file_search_copy_high_HZ_log lidar_cps_alignment
+    file_search_log agent
+    file_search_log planning 
+    file_search_log perception
+    file_search_log canbus
+    file_search_log control
+    file_search_log keeper
+    file_search_log function_control
+    file_search_log localization
+    folder_search_lidar
+    folder_search_vdr
+    # file_search_log alignment\ planner
+    # log post 
+    log_search_copy_post
+    upload_to_gcs
+
+
+else
+    echo "所在项目不支持logpush，请联系管理员增加配置!!!"
+fi
+
+;;
+# 录定位数据包
+2*)
+bag_gen_folder localization_bag
+docker exec -it ppc_igv bash -c "source /opt/qomolo/qpilot/setup.bash &&  ros2 bag record /clock /${QOMOLO_ROBOT_ID}/odom /${QOMOLO_ROBOT_ID}/gnss/odom /${QOMOLO_ROBOT_ID}/localization/odom /${QOMOLO_ROBOT_ID}/full_pointcloud"
+bag_folder=`ls rosbag2* -d -t | head -n 1`
+echo "已经录制成功的数据是这份： /data/code/all_ws/ws/"$bag_folder
+rsync -auzq --progress --bwlimit=1000 -r   /data/code/all_ws/ws/$bag_folder /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/
+upload_to_gcs
+;;
+# 录感知数据包
+3*)
+bag_gen_folder perception_bag
+docker exec -it ppc_igv bash -c "source /opt/qomolo/qpilot/setup.bash && ros2 bag record /${QOMOLO_ROBOT_ID}/tf /${QOMOLO_ROBOT_ID}/tf_static /${QOMOLO_ROBOT_ID}/lidar_estop_viz /${QOMOLO_ROBOT_ID}/odom /${QOMOLO_ROBOT_ID}/gnss/odom /${QOMOLO_ROBOT_ID}/livox/front_mid /${QOMOLO_ROBOT_ID}/livox/front_left /${QOMOLO_ROBOT_ID}/livox/front_right1 /${QOMOLO_ROBOT_ID}/livox/front_right2 /${QOMOLO_ROBOT_ID}/livox/rear_mid /${QOMOLO_ROBOT_ID}/livox/rear_right /${QOMOLO_ROBOT_ID}/livox/rear_left1 /${QOMOLO_ROBOT_ID}/livox/rear_left2 /${QOMOLO_ROBOT_ID}/pandar/front_left /${QOMOLO_ROBOT_ID}/pandar/front_right /${QOMOLO_ROBOT_ID}/pandar/rear_left /${QOMOLO_ROBOT_ID}/pandar/rear_right /rslidar_points/front /rslidar_points/rear /${QOMOLO_ROBOT_ID}/lidar_preprocess/wheelbox /${QOMOLO_ROBOT_ID}/filtered_pointcloud"
+bag_folder=`ls rosbag2* -d -t | head -n 1`
+echo "已经录制成功的数据是这份： /data/code/all_ws/ws/"$bag_folder
+rsync -auzq --progress --bwlimit=1000 -r /data/code/all_ws/ws/$bag_folder /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/
+upload_to_gcs
+;;
+# 录规划数据包
+4*)
+bag_gen_folder collision_bag
+docker exec -it ppc_igv bash -c "source /opt/qomolo/qpilot/setup.bash &&  ros2 bag record /${QOMOLO_ROBOT_ID}/tf /${QOMOLO_ROBOT_ID}/tf_static /${QOMOLO_ROBOT_ID}/odom /${QOMOLO_ROBOT_ID}/localization/odom /${QOMOLO_ROBOT_ID}/filtered_pointcloud /${QOMOLO_ROBOT_ID}/local_plan_new /${QOMOLO_ROBOT_ID}/planning_debug"
+bag_folder=`ls rosbag2* -d -t | head -n 1`
+echo "已经录制成功的数据是这份： /data/code/all_ws/ws/"$bag_folder
+rsync -auzq --progress --bwlimit=1000  -r /data/code/all_ws/ws/$bag_folder /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/
+upload_to_gcs
+;;
+5*)
+bag_gen_folder sensor_bag
+docker exec -it ppc_igv bash -c "source /opt/qomolo/qpilot/setup.bash &&  ros2 bag record /clock /${QOMOLO_ROBOT_ID}/odom /${QOMOLO_ROBOT_ID}/gnss/odom"
+bag_folder=`ls rosbag2* -d -t | head -n 1`
+echo "已经录制成功的数据是这份： /data/code/all_ws/ws/"$bag_folder
+rsync -auzq --progress --bwlimit=1000  -r /data/code/all_ws/ws/$bag_folder /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/
+upload_to_gcs
+;;
+6*)
+read -p "输入坐船开始时间：" START_TIME
+read -p "输入坐船结束时间：" END_TIME
+read -p "是否需要rosbag y/n : " number
+if [[ "$number" = "y" ]] || [[ "$number" = "Y" ]] || [[ "$number" = "" ]] || [[ "$number" = "yes" ]];then
+    localization_bag
+    keeper_error_event
+    localization_log 
+    upload_to_gcs
+else 
+    localization_log
+    keeper_error_event
+    upload_to_gcs
+fi
+esac
