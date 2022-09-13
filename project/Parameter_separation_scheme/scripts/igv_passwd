@@ -1,0 +1,99 @@
+#!/bin/bash
+
+sudo chown -R nvidia /home/nvidia/
+sshpass -p xijingkeji scp -r user@10.159.201.1:~/.param-passwd/ ~/         #gateway
+
+key_list=`cat ~/.git_namelist`
+
+sudo chown -R nvidia /home/nvidia/.param-passwd
+
+for i in $key_list
+do
+      if [[ ! -f ~/.param-passwd/$i ]];then
+            sudo chown -R nvidia ~/.param-passwd/; sudo touch ~/.param-passwd/$i 
+      	    sudo chown -R nvidia ~/.param-passwd/$i ;sudo echo "xijingkeji" > .param-passwd/$i
+      else 
+            continue
+	fi
+done
+
+function passwd_set(){
+            read -p  "please enter your name " name
+	      for i in $key_list
+	      do
+		      if [[ $key_list =~ $name ]];then
+			      true
+		      else
+			      echo "The user does not exist!" 
+			      exit 
+		      fi
+    	      done
+            echo "Please enter the current password "
+	      read -p "" -s  pswd
+            now_passwd=`cat ~/.param-passwd/$name`
+            if [[ $pswd == $now_passwd ]];then
+                  echo "Please enter your new password " 
+                  read -p "" -s new_passwd
+                  echo "Please enter again " 
+                  read -p "" -s again_passwd 
+            else 
+                  echo "Wrong password input"
+                  exit
+            fi
+	}
+
+
+if [[ $1 == "-c" ]];then
+      echo "==> This is a function to change the password <=="
+      passwd_set
+      if [[ $new_passwd == $again_passwd ]];then
+            echo "Set successfully"
+	      echo $again_passwd > ~/.param-passwd/$name
+	      sshpass -p xijingkeji scp -r ~/.param-passwd user@10.159.201.1:~
+            exit
+      else 
+            echo "Failed to set the new password. The passwords entered twice are inconsistent"
+            passwd_set
+	      sshpass -p xijingkeji scp -r ~/.param-passwd user@10.159.201.1:~
+	    exit 
+      fi
+fi
+
+
+for i in $key_list
+do
+        if [[ $key_list =~ $1 ]];then
+                true
+        else
+                echo "This account does not have permission"
+        
+                exit 
+	fi
+
+        if [[ $1 == $i ]];then
+                your_passwd=`cat ~/.param-passwd/$i`
+                qpilot_passwd='westwell-lab'
+                echo "please enter your passwd"
+                read -p "" -s passwd 
+                if [[ $passwd == $your_passwd ]];then
+                        echo "==> Unlock HW-parameters <=="
+                        echo nvidia | sudo -S echo $1 > /home/nvidia/.env
+                        sleep 0.2
+                        exit
+                elif [[ $passwd == $qpilot_passwd ]];then
+                        echo "==> Unlock qpilot-param <=="
+                        echo nvidia | sudo -S echo $passwd > /home/nvidia/.env
+                else 
+                        echo "The password you entered is: ==> $passwd <== "
+                        echo "passwd error.Please try again"
+                        exit
+                fi
+
+        elif [[ $1 == "" ]];then
+            echo "Example:"
+                echo "igv_passwd + your_name"
+                echo " -c  ---change your passwd"
+                exit 
+
+        fi
+done
