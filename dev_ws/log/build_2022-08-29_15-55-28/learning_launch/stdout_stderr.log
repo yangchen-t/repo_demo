@@ -1,0 +1,43 @@
+running egg_info
+creating ../../../build/learning_launch/learning_launch.egg-info
+writing ../../../build/learning_launch/learning_launch.egg-info/PKG-INFO
+writing dependency_links to ../../../build/learning_launch/learning_launch.egg-info/dependency_links.txt
+writing entry points to ../../../build/learning_launch/learning_launch.egg-info/entry_points.txt
+writing requirements to ../../../build/learning_launch/learning_launch.egg-info/requires.txt
+writing top-level names to ../../../build/learning_launch/learning_launch.egg-info/top_level.txt
+writing manifest file '../../../build/learning_launch/learning_launch.egg-info/SOURCES.txt'
+reading manifest file '../../../build/learning_launch/learning_launch.egg-info/SOURCES.txt'
+writing manifest file '../../../build/learning_launch/learning_launch.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /debug/Desktop/dev_ws/build/learning_launch/build
+creating /debug/Desktop/dev_ws/build/learning_launch/build/lib
+creating /debug/Desktop/dev_ws/build/learning_launch/build/lib/learning_launch
+copying learning_launch/__init__.py -> /debug/Desktop/dev_ws/build/learning_launch/build/lib/learning_launch
+running install
+running install_lib
+creating /debug/Desktop/dev_ws/install/learning_launch/lib/python3.8/site-packages/learning_launch
+copying /debug/Desktop/dev_ws/build/learning_launch/build/lib/learning_launch/__init__.py -> /debug/Desktop/dev_ws/install/learning_launch/lib/python3.8/site-packages/learning_launch
+byte-compiling /debug/Desktop/dev_ws/install/learning_launch/lib/python3.8/site-packages/learning_launch/__init__.py to __init__.cpython-38.pyc
+running install_data
+creating /debug/Desktop/dev_ws/install/learning_launch/share/ament_index
+creating /debug/Desktop/dev_ws/install/learning_launch/share/ament_index/resource_index
+creating /debug/Desktop/dev_ws/install/learning_launch/share/ament_index/resource_index/packages
+copying resource/learning_launch -> /debug/Desktop/dev_ws/install/learning_launch/share/ament_index/resource_index/packages
+copying package.xml -> /debug/Desktop/dev_ws/install/learning_launch/share/learning_launch
+creating /debug/Desktop/dev_ws/install/learning_launch/share/learning_launch/launch
+copying launch/parameters.launch.py -> /debug/Desktop/dev_ws/install/learning_launch/share/learning_launch/launch
+copying launch/rviz.launch.py -> /debug/Desktop/dev_ws/install/learning_launch/share/learning_launch/launch
+copying launch/namespaces.launch.py -> /debug/Desktop/dev_ws/install/learning_launch/share/learning_launch/launch
+copying launch/parameters_nonamespace.launch.py -> /debug/Desktop/dev_ws/install/learning_launch/share/learning_launch/launch
+copying launch/parameters_yaml.launch.py -> /debug/Desktop/dev_ws/install/learning_launch/share/learning_launch/launch
+copying launch/remapping.launch.py -> /debug/Desktop/dev_ws/install/learning_launch/share/learning_launch/launch
+copying launch/simple.launch.py -> /debug/Desktop/dev_ws/install/learning_launch/share/learning_launch/launch
+creating /debug/Desktop/dev_ws/install/learning_launch/share/learning_launch/config
+copying config/turtlesim.yaml -> /debug/Desktop/dev_ws/install/learning_launch/share/learning_launch/config
+creating /debug/Desktop/dev_ws/install/learning_launch/share/learning_launch/rviz
+copying rviz/turtle_rviz.rviz -> /debug/Desktop/dev_ws/install/learning_launch/share/learning_launch/rviz
+running install_egg_info
+Copying ../../../build/learning_launch/learning_launch.egg-info to /debug/Desktop/dev_ws/install/learning_launch/lib/python3.8/site-packages/learning_launch-0.0.0-py3.8.egg-info
+running install_scripts
+writing list of installed files to '/debug/Desktop/dev_ws/build/learning_launch/install.log'

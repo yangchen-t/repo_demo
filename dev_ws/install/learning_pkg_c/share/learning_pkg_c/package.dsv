@@ -1,0 +1,8 @@
+source;share/learning_pkg_c/hook/cmake_prefix_path.ps1
+source;share/learning_pkg_c/hook/cmake_prefix_path.dsv
+source;share/learning_pkg_c/hook/cmake_prefix_path.sh
+source;share/learning_pkg_c/local_setup.bash
+source;share/learning_pkg_c/local_setup.dsv
+source;share/learning_pkg_c/local_setup.ps1
+source;share/learning_pkg_c/local_setup.sh
+source;share/learning_pkg_c/local_setup.zsh

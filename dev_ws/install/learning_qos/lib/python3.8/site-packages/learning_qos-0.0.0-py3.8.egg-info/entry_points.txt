@@ -1,0 +1,4 @@
+[console_scripts]
+qos_helloworld_pub = learning_qos.qos_helloworld_pub:main
+qos_helloworld_sub = learning_qos.qos_helloworld_sub:main
+

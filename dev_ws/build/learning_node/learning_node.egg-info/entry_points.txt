@@ -1,0 +1,6 @@
+[console_scripts]
+node_helloworld = learning_node.node_helloworld:main
+node_helloworld_class = learning_node.node_helloworld_class:main
+node_object = learning_node.node_object:main
+node_object_webcam = learning_node.node_object_webcam:main
+

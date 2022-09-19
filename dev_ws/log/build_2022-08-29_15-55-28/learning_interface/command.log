@@ -1,0 +1,6 @@
+Invoking command in '/debug/Desktop/dev_ws/build/learning_interface': /usr/bin/cmake /debug/Desktop/dev_ws/src/ros2_21_tutorials/learning_interface -DCMAKE_INSTALL_PREFIX=/debug/Desktop/dev_ws/install/learning_interface
+Invoked command in '/debug/Desktop/dev_ws/build/learning_interface' returned '0': /usr/bin/cmake /debug/Desktop/dev_ws/src/ros2_21_tutorials/learning_interface -DCMAKE_INSTALL_PREFIX=/debug/Desktop/dev_ws/install/learning_interface
+Invoking command in '/debug/Desktop/dev_ws/build/learning_interface': /usr/bin/cmake --build /debug/Desktop/dev_ws/build/learning_interface -- -j4 -l4
+Invoked command in '/debug/Desktop/dev_ws/build/learning_interface' returned '0': /usr/bin/cmake --build /debug/Desktop/dev_ws/build/learning_interface -- -j4 -l4
+Invoking command in '/debug/Desktop/dev_ws/build/learning_interface': /usr/bin/cmake --install /debug/Desktop/dev_ws/build/learning_interface
+Invoked command in '/debug/Desktop/dev_ws/build/learning_interface' returned '0': /usr/bin/cmake --install /debug/Desktop/dev_ws/build/learning_interface

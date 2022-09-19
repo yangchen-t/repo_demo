@@ -70,17 +70,6 @@ sudo chown -R nvidia /data/code/all_ws/ws
 
 read -p " 日志上传 1:
 " MODE
-read -p "speed mode:" speed
-
-function speed_mode()
-{
-      if [[ $speed == "no" ]];then
-            speed_status="xargs -I {} rsync -azv --progress --bwlimit=1024" 
-      else  
-            speed_status="xargs -I {} rsync -azv --progress" 
-      fi
-}
-
 
 workspace="/data/code/all_ws/ws"
 BJ_TIME=`date -d "+8 hour" +%Y_%m_%d_%H%M%S`
@@ -99,58 +88,68 @@ function input_time_create_folder()
     mkdir -p ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/supervisor_log
     mkdir -p ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/localization_bag
     mkdir -p ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/lidar
-    mkdir -p ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/lidar_estop_bag
     mkdir -p ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/vdr 
     mkdir -p ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/images              # xm
     fi
     TIMESTAMP=`date -d "${PROBLEM_TIME}" +%s`
     TIMESTAMP_CHANGE=`expr $TIMESTAMP - 28801`           #8H
-    UTC_TIME=`date -d @$TIMESTAMP_CHANGE +%Y-%m-%d\ %H:%M:00`
+    SEARCH_TIME=`date -d @$TIMESTAMP_CHANGE +%Y-%m-%d\ %H:%M:00`
 }
-# --》 20 《--
-TIMESTAMP=`date -d "${UTC_TIME}" +%s`
-TIMESTAMP_CHANGE=`expr $TIMESTAMP - 1200`           #40min
-START_TIME=`date -d @$TIMESTAMP_CHANGE +%Y-%m-%d\ %H:%M:00`
-TIMESTAMP=`date -d "${UTC_TIME}" +%s`
-TIMESTAMP_CHANGE=`expr $TIMESTAMP + 1200`          
-END_TIME=`date -d @$TIMESTAMP_CHANGE +%Y-%m-%d\ %H:%M:00`
+
+function function_LOGPUSH_name(){
+    cd /data/code/all_ws/ws/logpush_tmp
+    sudo rm -rf tmp
+    UPLOAD_LOG_NAME=${HOSTNAME}_`date -d "8 hour" +%Y-%m-%d-%H%M`_$1
+    mkdir -p /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}
+    cd /data/code/all_ws/ws
+}
 
 
-# --》 10 《--                                      
-TIMESTAMP=`date -d "${PROBLEM_TIME}" +%s`
-TIMESTAMP_CHANGE=`expr $TIMESTAMP - 600`           #20min
-start_time=`date -d @$TIMESTAMP_CHANGE +%Y-%m-%d\ %H:%M:00`
-TIMESTAMP=`date -d "${PROBLEM_TIME}" +%s`
-TIMESTAMP_CHANGE=`expr $TIMESTAMP + 600`          
-end_time=`date -d @$TIMESTAMP_CHANGE +%Y-%m-%d\ %H:%M:00`
 
-
-# 高频搜索文件： 上下20分钟
+#  // CSV
+# 高频率搜索文件： 上下4个文件
 function csv_high_search_copy()
 {
-    cd ${CSV_PATH}
-    find ./ -name "$1*" -newermt "${start_time}" ! -newermt "${end_time}" | xargs -I {} speed_status {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/csv
+    cd /data/code/all_ws/ws/csv/
+    oldder_csv=`find ./ -name "$1*" ! -newermt "${SEARCH_TIME}"`
+    ls -t ${oldder_csv} | head -n 4 | xargs -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}/csv/
+    newer_csv=`find ./ -name "$1*" -newermt "${SEARCH_TIME}"`
+    ls -rt ${newer_csv} | head -n 4 | xargs -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}/csv/
+#     find ./ -name "$1*" -newermt "${start_time}" ! -newermt "${end_time}" | xargs -I {} speed_status {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/csv
 
 }
-# 低频搜索文件： 上下10分钟
+# 低频搜索文件： 上下 2个文件
 function csv_low_search_copy()
 {
-    cd ${CSV_PATH}
-    find ./ -name "$1*" -newermt "${START_TIME}" ! -newermt "${END_TIME}" | xargs -I {} speed_status {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/csv
+#     cd ${CSV_PATH}
+#     find ./ -name "$1*" -newermt "${START_TIME}" ! -newermt "${END_TIME}" | xargs -I {} speed_status {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/csv
+    cd /data/code/all_ws/ws/csv/
+    oldder_csv=`find ./ -name "$1*" ! -newermt "${SEARCH_TIME}"`
+    ls -t ${oldder_csv} | head -n 2 | xargs -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}/csv/
+    newer_csv=`find ./ -name "$1*" -newermt "${SEARCH_TIME}"`
+    ls -rt ${newer_csv} | head -n 2 | xargs -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}/csv/
 }
 
 
+
+#  // LOG
 #keeper_error_event
 function log_keeper_error_event_search_copy()
 {
-    cd ${IGV_LOG_PATH}
+    cd /data/code/all_ws/ws/igv_log
     rsync -azv --progress keeper_error_event.log ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/
 }
 
+#   上下 2个文件
 function log_history_search_copy()
 {
-    cd ${IGV_LOG_PATH}
-    find ./ -name "$1*" -newermt "${START_TIME}" ! -newermt "${END_TIME}" | xargs -I {}  speed_status {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/supervisor_log
+#     cd ${IGV_LOG_PATH}
+    cd /data/code/all_ws/ws/igv_log
+    oldder_csv=`find ./ -name "$1*" ! -newermt "${SEARCH_TIME}"`
+    ls -t ${oldder_csv} | head -n 2 | xargs -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}/supervisor_log
+    newer_csv=`find ./ -name "$1*" -newermt "${SEARCH_TIME}"`
+    ls -rt ${newer_csv} | head -n 2 | xargs -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}/supervisor_log
+#     find ./ -name "$1*" -newermt "${START_TIME}" ! -newermt "${END_TIME}" | xargs -I {}  speed_status {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/supervisor_log
 }
 
 function log_real_time_search_copy()
@@ -182,51 +181,130 @@ function log_real_time_search_copy()
     find ./ -name lidar_config_check* | xargs -I {} rsync -azv --progress ${speed_down} {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/supervisor_log
 } 
 
-
-#rosbag
-function rosbag_lidar_bag_search_copy()
+function log_real_time_search_copy->igv_log()
 {
-    cd ${LOCALIZATION_BAG_PATH}/lidar
-    find ./ -name "1*"  -newermt "${start_time}" ! -newermt "${end_time}" | xargs -I {} `$speed_status` {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/lidar 
+      cd /data/code/all_ws/ws/
+      beijing_date_mark=`date -d "8 hour" +%Y-%m-%d-%H-%M%S`
+      ls *.log | xargs -I  {} rsync -avz --progress   {}  /data/code/all_ws/ws/igv_log/{}-${beijing_date_mark}.log
 }
 
+
+# // ROSBAG 
+#上下两个
+function rosbag_lidar_bag_search_copy()
+{
+#     cd ${LOCALIZATION_BAG_PATH}/lidar
+    cd /data/key_log/lidar
+    oldder_csv=`find ./ -name "$1*" ! -newermt "${SEARCH_TIME}"`
+    ls -t ${oldder_csv} | head -n 2 | xargs -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}/lidar
+    newer_csv=`find ./ -name "$1*" -newermt "${SEARCH_TIME}"`
+    ls -rt ${newer_csv} | head -n 2 | xargs -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}/lidar
+#     find ./ -name "1*"  -newermt "${start_time}" ! -newermt "${end_time}" | xargs -I {} `$speed_status` {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/lidar 
+}
+# 上下两个
 function rosbag_localization_bag_search_copy()
 {
-    cd ${LOCALIZATION_BAG_PATH}/odom  
-    find ./ -name "*.db3"  -newermt "${start_time}" ! -newermt "${end_time}" | xargs -I {}  `$speed_status` {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/localization_bag
+#     cd ${LOCALIZATION_BAG_PATH}/odom 
+    cd /data/key_log/odom 
+    oldder_csv=`find ./ -name "*$1" ! -newermt "${SEARCH_TIME}"`
+    ls -t ${oldder_csv} | head -n 2 | xargs -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}/localization_bag
+    newer_csv=`find ./ -name "*$1" -newermt "${SEARCH_TIME}"`
+    ls -rt ${newer_csv} | head -n 2 | xargs -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}/localization_bag
+#     find ./ -name "*.db3"  -newermt "${start_time}" ! -newermt "${end_time}" | xargs -I {}  `$speed_status` {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/localization_bag
 }
 
 
 #vdr
 function vdr_search_copy()
 {
-    cd ${CSV_PATH}/short_time
-    find ./ -name "*vdr*"  -newermt "${START_TIME}" ! -newermt "${END_TIME}" | xargs -I {}  $speed_status {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/vdr
-    find ./ -name "*localization*" -newermt "${START_TIME}" ! -newermt "${END_TIME}" | xargs -I {}  speed_mode {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/vdr
-    find ./ -name "*lidar_cps*" -newermt "${START_TIME}" ! -newermt "${END_TIME}" | xargs -I {}  speed_mode {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/vdr
+#     cd ${CSV_PATH}/short_time
+      cd /data/code/all_ws/ws/csv/short_time
+      oldder_lidar=`find ./ -maxdepth 1 ! -path ./ -type d ! -newermt "${SEARCH_TIME}"`
+      ls -t ${oldder_csv} | head -n 2 | xargs -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}/vdr
+      newer_lidar=`find ./ -maxdepth 1 ! -path ./ -type d -newermt "${SEARCH_TIME}"`
+      ls -rt ${newer_csv} | head -n 2 | xargs -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}/vdr
+#     find ./ -name "*vdr*"  -newermt "${START_TIME}" ! -newermt "${END_TIME}" | xargs -I {}  $speed_status {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/vdr
+#     find ./ -name "*localization*" -newermt "${START_TIME}" ! -newermt "${END_TIME}" | xargs -I {}  speed_mode {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/vdr
+#     find ./ -name "*lidar_cps*" -newermt "${START_TIME}" ! -newermt "${END_TIME}" | xargs -I {}  speed_mode {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/vdr
 }
 
 
-#qlog
+#  // qlog
+# 上下两个
 function qlog_all_search_copy()
 {
       cd ${workspace}/qlog/$1
       mkdir -p ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/qlog/$1
-      find ./ -name "$1*" -newermt "${start_time}" ! -newermt "${end_time}" | xargs -I {} speed_mode {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/qlog/$1/
+      oldder_csv=`find ./ -name "$1*" ! -newermt "${SEARCH_TIME}"`
+      ls -t ${oldder_csv} | head -n 2 | xargs -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}/qlog/$1
+      newer_csv=`find ./ -name "$1*" -newermt "${SEARCH_TIME}"`
+      ls -rt ${newer_csv} | head -n 2 | xargs -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}/qlog/$1
+      # find ./ -name "$1*" -newermt "${start_time}" ! -newermt "${end_time}" | xargs -I {} speed_mode {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/qlog/$1/
 }
-
+#  // image 
+# 上下3个 
+function folder_search_lidar(){
+    cd /data/key_log/lidar
+    mkdir -p /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/lidar
+    oldder_lidar=`find ./ -maxdepth 1 ! -path ./ -type d ! -newermt "${SEARCH_TIME}"`
+    if [[ $oldder_lidar != "" ]];then
+      ls -dt $oldder_lidar | head -n 5 |xargs  -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/lidar/
+    fi
+    newer_lidar=`find ./ -maxdepth 1 ! -path ./ -type d -newermt "${SEARCH_TIME}"`
+    if [[ $newer_lidar != "" ]];then
+      ls -drt $newer_lidar | head -n 5 |xargs  -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/lidar/
+    fi
+}
 
 #images
-function images_sreach_copy_for_xm()
+# function images_sreach_copy_for_xm()
+# {
+#     cd ${workspace}/key_log/image
+#     find ./ -name "*2022*" -type d -newermt "${START_TIME}" ! -newermt "${END_TIME}" | xargs -I {} rsync -azv --progress ${speed_down} {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/images
+# }
+function upload_to_nas()
 {
-    cd ${workspace}/key_log/image
-    find ./ -name "*2022*" -type d -newermt "${START_TIME}" ! -newermt "${END_TIME}" | xargs -I {} rsync -azv --progress ${speed_down} {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/images
+    rsync -avz --progress --bwlimit=1000     /opt/qomolo/qpilot/qpilot.repos /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}/
+    echo "=========================================以下数据正在被压缩========================================="
+    cd /data/code/all_ws/ws/logpush_tmp/
+    echo nvidia | sudo -S nice -n 19 tar -zvcf ${UPLOAD_LOG_NAME}.tar.gz ${UPLOAD_LOG_NAME}
+    mkdir -p /data/code/all_ws/ws/logpush_nas/
+    cp /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}.tar.gz /data/code/all_ws/ws/logpush_nas/
+    YEAR=`date -d "8 hour" +%Y`
+    MONTH=`date -d "8 hour" +%m`
+    DAY=`date -d "8 hour" +%d`
+    UPLOAD_PATH=${NAS_PATH}/${YEAR}/${MONTH}/${DAY}/${HOSTNAME}
+    echo "========================================请把以下路径粘贴到issue==================================="
+    echo ${UPLOAD_PATH}/${UPLOAD_LOG_NAME}.tar.gz
+    echo "=================================================================================================="
 }
+
+function upload_to_gcs(){
+    rsync -avz --progress --bwlimit=1000     /opt/qomolo/qpilot/qpilot.repos /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/
+    echo "=========================================以下数据正在被压缩========================================="
+    cd /data/code/all_ws/ws/logpush_tmp/tmp/
+    echo nvidia | sudo -S nice -n 19 tar -zvcf ${TMP_LOG_NAME}.tar.gz ${TMP_LOG_NAME}
+    YEAR=`date -d "8 hour" +%Y`
+    MONTH=`date -d "8 hour" +%m`
+    DAY=`date -d "8 hour" +%d`
+    UPLOAD_PATH=${NAS_PATH}/${YEAR}/${MONTH}/${DAY}/${HOSTNAME}
+    echo "===========================================数据压缩已完成=========================================="
+    echo "数据正在传输中......"
+    sshpass -p ${GCS_PASSWORD} scp -l 8000 -o ServerAliveInterval=30 -o "StrictHostKeyChecking no" ${TMP_LOG_NAME}.tar.gz ${GCS_USERNAME}@${GCS_IP}:/key_log/key_log/
+    if [ $? != 0 ];then
+        echo -e "\033[031m数据因为网络原因传输失败，请联系管理员\033[0m"
+        exit 0
+    else
+        echo "========================================请把以下路径粘贴到issue==================================="
+        echo ${UPLOAD_PATH}/${TMP_LOG_NAME}.tar.gz
+        echo "=================================================================================================="
+    fi
+}
+
 
 case "${MODE}" in 
 1*)
 ## TJ - 天津
-# if [[ ${HOSTNAME} =~ ^TJ ]];then
 if [[ "${HOSTNAME}" =~ ^TJ_IGV.* ]];then
     input_time_create_folder
     #csv
@@ -266,9 +344,10 @@ if [[ "${HOSTNAME}" =~ ^TJ_IGV.* ]];then
     # log_real_time_search_copy
     #rosbag
     rosbag_lidar_bag_search_copy
-    rosbag_localization_bag_search_copy
+    rosbag_localization_bag_search_copy .db3
     #vdr
-    vdr_search_copy
+    vdr_search_copy lidar
+    vdr_search_copy localization
     #qlog
     qlog_all_search_copy agent 
     qlog_all_search_copy planning 
@@ -278,6 +357,9 @@ if [[ "${HOSTNAME}" =~ ^TJ_IGV.* ]];then
     qlog_all_search_copy keeper
     qlog_all_search_copy function_control 
     qlog_all_search_copy localization
+    #images
+
+    upload_to_nas
 fi
 ;;
 esac

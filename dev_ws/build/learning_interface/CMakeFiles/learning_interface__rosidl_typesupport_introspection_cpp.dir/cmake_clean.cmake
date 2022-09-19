@@ -1,0 +1,25 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/learning_interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/learning_interface/action/detail/move_circle__type_support.cpp.o"
+  "CMakeFiles/learning_interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/learning_interface/action/detail/move_circle__type_support.cpp.o.d"
+  "CMakeFiles/learning_interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/learning_interface/msg/detail/object_position__type_support.cpp.o"
+  "CMakeFiles/learning_interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/learning_interface/msg/detail/object_position__type_support.cpp.o.d"
+  "CMakeFiles/learning_interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/learning_interface/srv/detail/add_two_ints__type_support.cpp.o"
+  "CMakeFiles/learning_interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/learning_interface/srv/detail/add_two_ints__type_support.cpp.o.d"
+  "CMakeFiles/learning_interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/learning_interface/srv/detail/get_object_position__type_support.cpp.o"
+  "CMakeFiles/learning_interface__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/learning_interface/srv/detail/get_object_position__type_support.cpp.o.d"
+  "liblearning_interface__rosidl_typesupport_introspection_cpp.pdb"
+  "liblearning_interface__rosidl_typesupport_introspection_cpp.so"
+  "rosidl_typesupport_introspection_cpp/learning_interface/action/detail/move_circle__rosidl_typesupport_introspection_cpp.hpp"
+  "rosidl_typesupport_introspection_cpp/learning_interface/action/detail/move_circle__type_support.cpp"
+  "rosidl_typesupport_introspection_cpp/learning_interface/msg/detail/object_position__rosidl_typesupport_introspection_cpp.hpp"
+  "rosidl_typesupport_introspection_cpp/learning_interface/msg/detail/object_position__type_support.cpp"
+  "rosidl_typesupport_introspection_cpp/learning_interface/srv/detail/add_two_ints__rosidl_typesupport_introspection_cpp.hpp"
+  "rosidl_typesupport_introspection_cpp/learning_interface/srv/detail/add_two_ints__type_support.cpp"
+  "rosidl_typesupport_introspection_cpp/learning_interface/srv/detail/get_object_position__rosidl_typesupport_introspection_cpp.hpp"
+  "rosidl_typesupport_introspection_cpp/learning_interface/srv/detail/get_object_position__type_support.cpp"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/learning_interface__rosidl_typesupport_introspection_cpp.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

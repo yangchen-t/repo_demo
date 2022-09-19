@@ -1,0 +1,49 @@
+[0.516s] Invoking command in '/debug/Desktop/dev_ws/src/ros2_21_tutorials/learning_node': PYTHONPATH=/debug/Desktop/dev_ws/install/learning_node/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../build/learning_node build --build-base /debug/Desktop/dev_ws/build/learning_node/build install --prefix /debug/Desktop/dev_ws/install/learning_node --record /debug/Desktop/dev_ws/build/learning_node/install.log --single-version-externally-managed
+[0.930s] running egg_info
+[0.931s] creating ../../../build/learning_node/learning_node.egg-info
+[0.932s] writing ../../../build/learning_node/learning_node.egg-info/PKG-INFO
+[0.932s] writing dependency_links to ../../../build/learning_node/learning_node.egg-info/dependency_links.txt
+[0.932s] writing entry points to ../../../build/learning_node/learning_node.egg-info/entry_points.txt
+[0.933s] writing requirements to ../../../build/learning_node/learning_node.egg-info/requires.txt
+[0.933s] writing top-level names to ../../../build/learning_node/learning_node.egg-info/top_level.txt
+[0.934s] writing manifest file '../../../build/learning_node/learning_node.egg-info/SOURCES.txt'
+[0.994s] reading manifest file '../../../build/learning_node/learning_node.egg-info/SOURCES.txt'
+[0.994s] writing manifest file '../../../build/learning_node/learning_node.egg-info/SOURCES.txt'
+[0.994s] running build
+[0.995s] running build_py
+[0.995s] creating /debug/Desktop/dev_ws/build/learning_node/build
+[0.995s] creating /debug/Desktop/dev_ws/build/learning_node/build/lib
+[0.995s] creating /debug/Desktop/dev_ws/build/learning_node/build/lib/learning_node
+[0.995s] copying learning_node/__init__.py -> /debug/Desktop/dev_ws/build/learning_node/build/lib/learning_node
+[0.995s] copying learning_node/node_object_webcam.py -> /debug/Desktop/dev_ws/build/learning_node/build/lib/learning_node
+[0.996s] copying learning_node/node_helloworld_class.py -> /debug/Desktop/dev_ws/build/learning_node/build/lib/learning_node
+[0.996s] copying learning_node/node_helloworld.py -> /debug/Desktop/dev_ws/build/learning_node/build/lib/learning_node
+[0.996s] copying learning_node/node_object.py -> /debug/Desktop/dev_ws/build/learning_node/build/lib/learning_node
+[0.996s] running install
+[1.000s] running install_lib
+[1.002s] creating /debug/Desktop/dev_ws/install/learning_node/lib/python3.8/site-packages/learning_node
+[1.002s] copying /debug/Desktop/dev_ws/build/learning_node/build/lib/learning_node/__init__.py -> /debug/Desktop/dev_ws/install/learning_node/lib/python3.8/site-packages/learning_node
+[1.002s] copying /debug/Desktop/dev_ws/build/learning_node/build/lib/learning_node/node_object_webcam.py -> /debug/Desktop/dev_ws/install/learning_node/lib/python3.8/site-packages/learning_node
+[1.004s] copying /debug/Desktop/dev_ws/build/learning_node/build/lib/learning_node/node_helloworld_class.py -> /debug/Desktop/dev_ws/install/learning_node/lib/python3.8/site-packages/learning_node
+[1.005s] copying /debug/Desktop/dev_ws/build/learning_node/build/lib/learning_node/node_helloworld.py -> /debug/Desktop/dev_ws/install/learning_node/lib/python3.8/site-packages/learning_node
+[1.005s] copying /debug/Desktop/dev_ws/build/learning_node/build/lib/learning_node/node_object.py -> /debug/Desktop/dev_ws/install/learning_node/lib/python3.8/site-packages/learning_node
+[1.005s] byte-compiling /debug/Desktop/dev_ws/install/learning_node/lib/python3.8/site-packages/learning_node/__init__.py to __init__.cpython-38.pyc
+[1.006s] byte-compiling /debug/Desktop/dev_ws/install/learning_node/lib/python3.8/site-packages/learning_node/node_object_webcam.py to node_object_webcam.cpython-38.pyc
+[1.006s] byte-compiling /debug/Desktop/dev_ws/install/learning_node/lib/python3.8/site-packages/learning_node/node_helloworld_class.py to node_helloworld_class.cpython-38.pyc
+[1.006s] byte-compiling /debug/Desktop/dev_ws/install/learning_node/lib/python3.8/site-packages/learning_node/node_helloworld.py to node_helloworld.cpython-38.pyc
+[1.006s] byte-compiling /debug/Desktop/dev_ws/install/learning_node/lib/python3.8/site-packages/learning_node/node_object.py to node_object.cpython-38.pyc
+[1.006s] running install_data
+[1.007s] creating /debug/Desktop/dev_ws/install/learning_node/share/ament_index
+[1.007s] creating /debug/Desktop/dev_ws/install/learning_node/share/ament_index/resource_index
+[1.007s] creating /debug/Desktop/dev_ws/install/learning_node/share/ament_index/resource_index/packages
+[1.007s] copying resource/learning_node -> /debug/Desktop/dev_ws/install/learning_node/share/ament_index/resource_index/packages
+[1.007s] copying package.xml -> /debug/Desktop/dev_ws/install/learning_node/share/learning_node
+[1.007s] running install_egg_info
+[1.009s] Copying ../../../build/learning_node/learning_node.egg-info to /debug/Desktop/dev_ws/install/learning_node/lib/python3.8/site-packages/learning_node-0.0.0-py3.8.egg-info
+[1.010s] running install_scripts
+[1.039s] Installing node_helloworld script to /debug/Desktop/dev_ws/install/learning_node/lib/learning_node
+[1.040s] Installing node_helloworld_class script to /debug/Desktop/dev_ws/install/learning_node/lib/learning_node
+[1.040s] Installing node_object script to /debug/Desktop/dev_ws/install/learning_node/lib/learning_node
+[1.040s] Installing node_object_webcam script to /debug/Desktop/dev_ws/install/learning_node/lib/learning_node
+[1.040s] writing list of installed files to '/debug/Desktop/dev_ws/build/learning_node/install.log'
+[1.083s] Invoked command in '/debug/Desktop/dev_ws/src/ros2_21_tutorials/learning_node' returned '0': PYTHONPATH=/debug/Desktop/dev_ws/install/learning_node/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../build/learning_node build --build-base /debug/Desktop/dev_ws/build/learning_node/build install --prefix /debug/Desktop/dev_ws/install/learning_node --record /debug/Desktop/dev_ws/build/learning_node/install.log --single-version-externally-managed

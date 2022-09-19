@@ -1,0 +1,48 @@
+running egg_info
+creating ../../../build/learning_urdf/learning_urdf.egg-info
+writing ../../../build/learning_urdf/learning_urdf.egg-info/PKG-INFO
+writing dependency_links to ../../../build/learning_urdf/learning_urdf.egg-info/dependency_links.txt
+writing entry points to ../../../build/learning_urdf/learning_urdf.egg-info/entry_points.txt
+writing requirements to ../../../build/learning_urdf/learning_urdf.egg-info/requires.txt
+writing top-level names to ../../../build/learning_urdf/learning_urdf.egg-info/top_level.txt
+writing manifest file '../../../build/learning_urdf/learning_urdf.egg-info/SOURCES.txt'
+reading manifest file '../../../build/learning_urdf/learning_urdf.egg-info/SOURCES.txt'
+writing manifest file '../../../build/learning_urdf/learning_urdf.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /debug/Desktop/dev_ws/build/learning_urdf/build
+creating /debug/Desktop/dev_ws/build/learning_urdf/build/lib
+creating /debug/Desktop/dev_ws/build/learning_urdf/build/lib/learning_urdf
+copying learning_urdf/__init__.py -> /debug/Desktop/dev_ws/build/learning_urdf/build/lib/learning_urdf
+running install
+running install_lib
+creating /debug/Desktop/dev_ws/install/learning_urdf/lib/python3.8/site-packages/learning_urdf
+copying /debug/Desktop/dev_ws/build/learning_urdf/build/lib/learning_urdf/__init__.py -> /debug/Desktop/dev_ws/install/learning_urdf/lib/python3.8/site-packages/learning_urdf
+byte-compiling /debug/Desktop/dev_ws/install/learning_urdf/lib/python3.8/site-packages/learning_urdf/__init__.py to __init__.cpython-38.pyc
+running install_data
+creating /debug/Desktop/dev_ws/install/learning_urdf/share/ament_index
+creating /debug/Desktop/dev_ws/install/learning_urdf/share/ament_index/resource_index
+creating /debug/Desktop/dev_ws/install/learning_urdf/share/ament_index/resource_index/packages
+copying resource/learning_urdf -> /debug/Desktop/dev_ws/install/learning_urdf/share/ament_index/resource_index/packages
+copying package.xml -> /debug/Desktop/dev_ws/install/learning_urdf/share/learning_urdf
+creating /debug/Desktop/dev_ws/install/learning_urdf/share/learning_urdf/launch
+copying launch/display.launch.py -> /debug/Desktop/dev_ws/install/learning_urdf/share/learning_urdf/launch
+creating /debug/Desktop/dev_ws/install/learning_urdf/share/learning_urdf/urdf
+copying urdf/mbot_with_kinect.urdf -> /debug/Desktop/dev_ws/install/learning_urdf/share/learning_urdf/urdf
+copying urdf/mbot_base.urdf -> /debug/Desktop/dev_ws/install/learning_urdf/share/learning_urdf/urdf
+copying urdf/mbot_with_camera.urdf -> /debug/Desktop/dev_ws/install/learning_urdf/share/learning_urdf/urdf
+copying urdf/mbot_with_laser.urdf -> /debug/Desktop/dev_ws/install/learning_urdf/share/learning_urdf/urdf
+creating /debug/Desktop/dev_ws/install/learning_urdf/share/learning_urdf/urdf/sensors
+copying urdf/sensors/lidar_gazebo.xacro -> /debug/Desktop/dev_ws/install/learning_urdf/share/learning_urdf/urdf/sensors
+copying urdf/sensors/kinect_gazebo.xacro -> /debug/Desktop/dev_ws/install/learning_urdf/share/learning_urdf/urdf/sensors
+copying urdf/sensors/camera_gazebo.xacro -> /debug/Desktop/dev_ws/install/learning_urdf/share/learning_urdf/urdf/sensors
+creating /debug/Desktop/dev_ws/install/learning_urdf/share/learning_urdf/meshes
+copying meshes/kinect.jpg -> /debug/Desktop/dev_ws/install/learning_urdf/share/learning_urdf/meshes
+copying meshes/kinect.dae -> /debug/Desktop/dev_ws/install/learning_urdf/share/learning_urdf/meshes
+copying meshes/kinect.tga -> /debug/Desktop/dev_ws/install/learning_urdf/share/learning_urdf/meshes
+creating /debug/Desktop/dev_ws/install/learning_urdf/share/learning_urdf/rviz
+copying rviz/urdf.rviz -> /debug/Desktop/dev_ws/install/learning_urdf/share/learning_urdf/rviz
+running install_egg_info
+Copying ../../../build/learning_urdf/learning_urdf.egg-info to /debug/Desktop/dev_ws/install/learning_urdf/lib/python3.8/site-packages/learning_urdf-0.0.0-py3.8.egg-info
+running install_scripts
+writing list of installed files to '/debug/Desktop/dev_ws/build/learning_urdf/install.log'
