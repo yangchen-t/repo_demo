@@ -1,5 +1,4 @@
-#!/bin/bash 
-
+#!/bin/bash
 #
 #   针对 logpush 进行优化
 #
@@ -115,14 +114,10 @@ function csv_high_search_copy()
     ls -t ${oldder_csv} | head -n 4 | xargs -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}/csv/
     newer_csv=`find ./ -name "$1*" -newermt "${SEARCH_TIME}"`
     ls -rt ${newer_csv} | head -n 4 | xargs -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}/csv/
-#     find ./ -name "$1*" -newermt "${start_time}" ! -newermt "${end_time}" | xargs -I {} speed_status {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/csv
-
 }
 # 低频搜索文件： 上下 2个文件
 function csv_low_search_copy()
 {
-#     cd ${CSV_PATH}
-#     find ./ -name "$1*" -newermt "${START_TIME}" ! -newermt "${END_TIME}" | xargs -I {} speed_status {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/csv
     cd /data/code/all_ws/ws/csv/
     oldder_csv=`find ./ -name "$1*" ! -newermt "${SEARCH_TIME}"`
     ls -t ${oldder_csv} | head -n 2 | xargs -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}/csv/
@@ -149,13 +144,11 @@ function log_history_search_copy()
     ls -t ${oldder_csv} | head -n 2 | xargs -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}/supervisor_log
     newer_csv=`find ./ -name "$1*" -newermt "${SEARCH_TIME}"`
     ls -rt ${newer_csv} | head -n 2 | xargs -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}/supervisor_log
-#     find ./ -name "$1*" -newermt "${START_TIME}" ! -newermt "${END_TIME}" | xargs -I {}  speed_status {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/supervisor_log
 }
 
 function log_real_time_search_copy()
 {
     cd ${workspace}
-    # find ./ -name "$1*" | xargs -I {} rsync -azv --progress ${speed_down} {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/supervisor_log
     find ./ -name function_controller* | xargs -I {} rsync -azv --progress ${speed_down} {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/supervisor_log
     find ./ -name mqtt_adaptor* | xargs -I {} rsync -azv --progress ${speed_down} {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/supervisor_log
     find ./ -name  mono_lane_tracker_ros2* | xargs -I {} rsync -azv --progress ${speed_down} {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/supervisor_log
@@ -181,7 +174,7 @@ function log_real_time_search_copy()
     find ./ -name lidar_config_check* | xargs -I {} rsync -azv --progress ${speed_down} {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/supervisor_log
 } 
 
-function log_real_time_search_copy->igv_log()
+function log_real_time_search_copy_all()
 {
       cd /data/code/all_ws/ws/
       beijing_date_mark=`date -d "8 hour" +%Y-%m-%d-%H-%M%S`
@@ -191,41 +184,38 @@ function log_real_time_search_copy->igv_log()
 
 # // ROSBAG 
 #上下两个
-function rosbag_lidar_bag_search_copy()
-{
-#     cd ${LOCALIZATION_BAG_PATH}/lidar
+function folder_search_lidar(){
     cd /data/key_log/lidar
-    oldder_csv=`find ./ -name "$1*" ! -newermt "${SEARCH_TIME}"`
-    ls -t ${oldder_csv} | head -n 2 | xargs -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}/lidar
-    newer_csv=`find ./ -name "$1*" -newermt "${SEARCH_TIME}"`
-    ls -rt ${newer_csv} | head -n 2 | xargs -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}/lidar
-#     find ./ -name "1*"  -newermt "${start_time}" ! -newermt "${end_time}" | xargs -I {} `$speed_status` {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/lidar 
-}
+    mkdir -p /data/code/all_ws/ws/logpush_tmp/tmp/${UPLOAD_LOG_NAME}/lidar
+    oldder_lidar=`find ./ -maxdepth 1 ! -path ./ -type d ! -newermt "${SEARCH_TIME}"`
+    if [[ $oldder_lidar != "" ]];then
+      ls -dt $oldder_lidar | head -n 5 |xargs  -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/tmp/${UPLOAD_LOG_NAME}/lidar/
+    fi
+    newer_lidar=`find ./ -maxdepth 1 ! -path ./ -type d -newermt "${SEARCH_TIME}"`
+    if [[ $newer_lidar != "" ]];then
+      ls -drt $newer_lidar | head -n 5 |xargs  -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/tmp/${UPLOAD_LOG_NAME}/lidar/
+    fi
+} 
+
 # 上下两个
 function rosbag_localization_bag_search_copy()
 {
-#     cd ${LOCALIZATION_BAG_PATH}/odom 
     cd /data/key_log/odom 
     oldder_csv=`find ./ -name "*$1" ! -newermt "${SEARCH_TIME}"`
     ls -t ${oldder_csv} | head -n 2 | xargs -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}/localization_bag
     newer_csv=`find ./ -name "*$1" -newermt "${SEARCH_TIME}"`
     ls -rt ${newer_csv} | head -n 2 | xargs -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}/localization_bag
-#     find ./ -name "*.db3"  -newermt "${start_time}" ! -newermt "${end_time}" | xargs -I {}  `$speed_status` {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/localization_bag
 }
 
 
 #vdr
 function vdr_search_copy()
 {
-#     cd ${CSV_PATH}/short_time
-      cd /data/code/all_ws/ws/csv/short_time
-      oldder_lidar=`find ./ -maxdepth 1 ! -path ./ -type d ! -newermt "${SEARCH_TIME}"`
+      cd /data/code/all_ws/ws/csv/short_time/
+      oldder_lidar=`find ./ -name "$1*" -type d ! -newermt "${SEARCH_TIME}"`
       ls -t ${oldder_csv} | head -n 2 | xargs -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}/vdr
-      newer_lidar=`find ./ -maxdepth 1 ! -path ./ -type d -newermt "${SEARCH_TIME}"`
+      newer_lidar=`find ./ -name "$1*" -type d -newermt "${SEARCH_TIME}"`
       ls -rt ${newer_csv} | head -n 2 | xargs -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}/vdr
-#     find ./ -name "*vdr*"  -newermt "${START_TIME}" ! -newermt "${END_TIME}" | xargs -I {}  $speed_status {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/vdr
-#     find ./ -name "*localization*" -newermt "${START_TIME}" ! -newermt "${END_TIME}" | xargs -I {}  speed_mode {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/vdr
-#     find ./ -name "*lidar_cps*" -newermt "${START_TIME}" ! -newermt "${END_TIME}" | xargs -I {}  speed_mode {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/vdr
 }
 
 
@@ -239,23 +229,9 @@ function qlog_all_search_copy()
       ls -t ${oldder_csv} | head -n 2 | xargs -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}/qlog/$1
       newer_csv=`find ./ -name "$1*" -newermt "${SEARCH_TIME}"`
       ls -rt ${newer_csv} | head -n 2 | xargs -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/${UPLOAD_LOG_NAME}/qlog/$1
-      # find ./ -name "$1*" -newermt "${start_time}" ! -newermt "${end_time}" | xargs -I {} speed_mode {} ${workspace}/logpush_tmp/${UPLOAD_LOG_NAME}/qlog/$1/
-}
-#  // image 
-# 上下3个 
-function folder_search_lidar(){
-    cd /data/key_log/lidar
-    mkdir -p /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/lidar
-    oldder_lidar=`find ./ -maxdepth 1 ! -path ./ -type d ! -newermt "${SEARCH_TIME}"`
-    if [[ $oldder_lidar != "" ]];then
-      ls -dt $oldder_lidar | head -n 5 |xargs  -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/lidar/
-    fi
-    newer_lidar=`find ./ -maxdepth 1 ! -path ./ -type d -newermt "${SEARCH_TIME}"`
-    if [[ $newer_lidar != "" ]];then
-      ls -drt $newer_lidar | head -n 5 |xargs  -I {} rsync -avz --progress  {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/lidar/
-    fi
 }
 
+#  // image 
 #images
 # function images_sreach_copy_for_xm()
 # {
@@ -343,7 +319,7 @@ if [[ "${HOSTNAME}" =~ ^TJ_IGV.* ]];then
     log_history_search_copy lidar_config_check 
     # log_real_time_search_copy
     #rosbag
-    rosbag_lidar_bag_search_copy
+    #rosbag_lidar_bag_search_copy
     rosbag_localization_bag_search_copy .db3
     #vdr
     vdr_search_copy lidar
@@ -358,7 +334,7 @@ if [[ "${HOSTNAME}" =~ ^TJ_IGV.* ]];then
     qlog_all_search_copy function_control 
     qlog_all_search_copy localization
     #images
-
+    folder_search_lidar
     upload_to_nas
 fi
 ;;
