@@ -7,9 +7,10 @@ import time as t
 import logging
 import hashlib
 import datetime
+import subprocess
 
 
-log_path_dir = "/data/code/all_ws/ws/logpush_nas"
+log_path_dir = "/key_log/key_log"
 HOST = "192.168.103.77"
 PORT = 22
 USERNAME = "xiangyang.chen"
@@ -24,10 +25,12 @@ def get_md5(filename):
     else:
         logging.info("no file " + filename)
 
-def create_folder(QOMOLO_ROBOT_ID):
+def create_folder(QOMOLO_ROBOT_ID, sftp):
+#     GET_TIME = str(subprocess.getoutput("date +%Y_%m_%d"))
+#     YEAR,MONTH,DAY = GET_TIME[0:4],GET_TIME[5:7],GET_TIME[8:10]
     YEAR = str(datetime.datetime.now().year)
-    MONTH = str(datetime.datetime.now().month)
-    DAY = str(datetime.datetime.now().day)
+    MONTH = str(datetime.datetime.now().month).zfill(2)
+    DAY = str(datetime.datetime.now().day).zfill(2)
     YEAR_PATH = ROOT_PATH + "/" + YEAR
     MONTH_PATH = YEAR_PATH + "/" + MONTH
     DAY_PATH = MONTH_PATH + "/" + DAY
@@ -48,42 +51,80 @@ def create_folder(QOMOLO_ROBOT_ID):
     return DAY_PATH
 
 logging.basicConfig(level=logging.INFO,#控制台打印的日志级别
-                    filename='/home/nvidia/upload.log',
+                    filename='upload.log',
                     filemode='a',##模式，有w和a，w就是写模式，每次都会重新写日志，覆盖之前的日志
                     #a是追加模式，默认如果不写的话，就是追加模式
                     format=
-                    '%(asctime)s - %(pathname)s[line:%(lineno)d] - %(levelname)s: %(message)s'
+                    '%(asctime)s-%(levelname)s: %(message)s'
                     #日志格式
                     )
-transport = paramiko.Transport(HOST, PORT)
-transport.connect(username=USERNAME, password=PASSWORD)
-sftp = paramiko.SFTPClient.from_transport(transport)
 
-while True:
-      current = sorted(os.listdir("/data/code/all_ws/ws/logpush_nas"),key=str.lower)
-      print(current)
-      print("cu")
-      while True :
-            t.sleep(10)
-            new_dir_list = sorted(os.listdir("/data/code/all_ws/ws/logpush_nas"),key=str.lower)
-            print(new_dir_list)
-            print("new")
-            if len(current) < len(new_dir_list):
-                  diff = set(new_dir_list).difference(set(current))
-                  for file in diff:
-                        print(file)
-                        QOMOLO_ROBOT_ID = file.split("_")[0]
-                        DAY_PATH = create_folder(QOMOLO_ROBOT_ID)
-                        file_path = os.path.join(log_path_dir, file)
-                        remote_path = os.path.join(DAY_PATH+"/"+QOMOLO_ROBOT_ID, file)
-                        t.sleep(5)
-                        logging.info(remote_path)
-                        logging.info(remote_path)
-                        sftp.put(file_path, remote_path)
-                        logging.info(file_path +"\033[1;31;36m has been success to upload \033[0m" + remote_path)
+
+def new_sftp_obj():
+    for i in range(10):
+        try:
+            transport = paramiko.Transport(HOST, PORT)
+            transport.connect(username=USERNAME, password=PASSWORD)
+            sftp = paramiko.SFTPClient.from_transport(transport)
+            logging.info("new sftp success")
+            return sftp
+        except Exception as e:
+            logging.info("sftp connect error:{}".format(e))
+            logging.info("retry connect.....")
+            t.sleep(2)
+    return None
+
+
+def check_diff_process(current, new_dir_list):
+    if len(current) < len(new_dir_list):
+        diff = set(new_dir_list).difference(set(current))
+        logging.info("have diff")
+        for file in diff:
+            logging.info("file:  {}".format(file))
+            QOMOLO_ROBOT_ID = file.split("_")[0] + "_" + file.split("_")[1] + "_" + file.split("_")[2]
+            sftp_obj = new_sftp_obj()
+            if sftp_obj:
+                DAY_PATH = create_folder(QOMOLO_ROBOT_ID, sftp_obj)
+                file_path = os.path.join(log_path_dir, file)
+                remote_path = os.path.join(DAY_PATH + "/" + QOMOLO_ROBOT_ID, file)
+                t.sleep(1)
+                logging.info("file_path : {}".format(file_path))
+                logging.info("remote_path : {}".format(remote_path))
+                logging.info("upload...")
+                for i in range(10):
+                    try:
+                        sftp_obj.put(file_path, remote_path)
                         break
-                  break
+                    except Exception as e:
+                        del sftp_obj
+                        sftp_obj = new_sftp_obj()
+                        logging.info("sftp put error!!  retry")
+                logging.info(file_path + "\033[1;31;36m has been success to upload \033[0m" + remote_path)
+                sftp_obj.close()
+                logging.info("close sftp connect")
+                return True
             else:
-                  print("no diff")
-                  break
+                logging.error("sftp obj new error")
+                return False
+
+    else:
+        return False
+
+
+if __name__ == '__main__':
+    while True:
+        current = sorted(os.listdir("/key_log/key_log"), key=str.lower)
+        t.sleep(10)
+        while True:
+            try:
+                new_dir_list = sorted(os.listdir("/key_log/key_log"), key=str.lower)
+                if check_diff_process(current, new_dir_list):
+                    break
+                else:
+                    logging.info("no diff")
+                    break
+            except Exception as e:
+                logging.error("sftp service error:{}".format(e))
+                t.sleep(5)
+                break
 

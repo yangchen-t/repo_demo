@@ -25,39 +25,39 @@ void gettime()
 void turn_picture_display(int mode){
         //config
 	Ouint8* picPath;
-        Ouint8* picPath_back;
+    Ouint8* picPath_back;
 	Ouint8* pIP = (Ouint8*)"192.168.112.11";
-        Ouint8* pIP_back = (Ouint8*)"192.168.112.12";
+    Ouint8* pIP_back = (Ouint8*)"192.168.112.12";
 	Ouint32 nPort = 5005;
 	picPath = (Ouint8*)("/scripts/pic/52.png");
 	picPath_back = (Ouint8*)("/scripts/pic/53.png");
 	E_ScreenColor_G56 color = eSCREEN_COLOR_DOUBLE;
-    	int uAreaId = 0;
-    	int uAreaX = 16;//32
-    	int uAreaY = 0;
-    	int uWidth = 64;
-    	int uHeight = 32;
+    int uAreaId = 0;
+    int uAreaX = 16;//32
+    int uAreaY = 0;
+    int uWidth = 64;
+    int uHeight = 32;
 
 //EQpageHeader_G6
-        EQpageHeader_G6 pheader1;
-    	pheader1.PageStyle = 0x00;
+    EQpageHeader_G6 pheader1;
+    pheader1.PageStyle = 0x00;
    	pheader1.DisplayMode = 0x07;    //0x00 –随机显示 0x01 –静止显示 0x02 –快速打出 0x03 –向左移动 0x04 –向左连移 0x05 –向上移动 0x06 –向上连移 0x07 –闪烁
-    	pheader1.ClearMode = 0x01;
-    	pheader1.Speed = 40;
-    	pheader1.StayTime = 10;
-    	pheader1.RepeatTime = 1;
-    	pheader1.ValidLen = 128;
-    	pheader1.CartoonFrameRate = 0x00;
-    	pheader1.BackNotValidFlag = 0x00;
-    	pheader1.arrMode = eMULTILINE;//eSINGLELINE
-    	pheader1.fontSize = 12;
-    	pheader1.color =E_Color_G56::eRED;
-    	pheader1.fontBold = false;
-    	pheader1.fontItalic = false;
-    	pheader1.tdirection = pNORMAL;
-    	pheader1.txtSpace = 0;
-    	pheader1.Valign = 0;
-    	pheader1.Halign = 0;
+    pheader1.ClearMode = 0x01;
+    pheader1.Speed = 40;
+    pheader1.StayTime = 10;
+    pheader1.RepeatTime = 1;
+    pheader1.ValidLen = 128;
+    pheader1.CartoonFrameRate = 0x00;
+    pheader1.BackNotValidFlag = 0x00;
+    pheader1.arrMode = eMULTILINE;//eSINGLELINE
+    pheader1.fontSize = 12;
+    pheader1.color =E_Color_G56::eRED;
+    pheader1.fontBold = false;
+    pheader1.fontItalic = false;
+    pheader1.tdirection = pNORMAL;
+    pheader1.txtSpace = 0;
+    pheader1.Valign = 0;
+    pheader1.Halign = 0;
 	// del pic
 //	bxDual_dynamicArea_DelArea_6G(pIP, nPort, 0xff);
 
@@ -66,25 +66,24 @@ void turn_picture_display(int mode){
         cout << "\033[31mfront ==> "<< picPath <<"\033[0m\n";
 	bxDual_dynamicArea_AddAreaPic_6G(pIP_back, 5005, color, uAreaId, 32, uAreaY, uWidth, uHeight, &pheader1, (Ouint8*)picPath_back);
         cout << "\033[31mrear ==> "<< picPath_back <<"\033[0m\n";
-	}
-        else if (mode == 2 ){
+	}else if (mode == 2 ){
 	bxDual_dynamicArea_AddAreaPic_6G(pIP_back, 5005, color, uAreaId, 32, uAreaY, uWidth, uHeight, &pheader1, (Ouint8*)picPath);
 	cout << "\033[31mrear ==> "<< picPath_back <<"\033[0m\n";
 	bxDual_dynamicArea_AddAreaPic_6G(pIP, 5005, color, uAreaId, 32, uAreaY, uWidth, uHeight, &pheader1, (Ouint8*)picPath_back);
 	cout << "\033[31mfront ==> "<< picPath <<"\033[0m\n";
-	}
+	}   
 }
 
 int main(int argc, char** argv)
 {
 	ifstream inFile("numbers.csv", ios::in);
-        Ouint8* picPath;
-        Ouint8* picPath_back;
+    Ouint8* picPath;
+    Ouint8* picPath_back;
 	stringstream stream;
 	string num;
 	int n ;
-    	vector<vector<string>> strArray;
-    	while (getline(inFile, num))
+    vector<vector<string>> strArray;
+    while (getline(inFile, num))
 	{
 	stream << num;
 	stream >> n;
@@ -96,15 +95,15 @@ int main(int argc, char** argv)
 			picPath = (Ouint8*)("/scripts/pic/2.png");
 			break;
 		case 3 :
-		    	picPath = (Ouint8*)("/scripts/pic/3.png");
-			break;
-                case 4 :
-                        picPath = (Ouint8*)("/scripts/pic/4.png");
-                        break;
-                case 5 :
-                        picPath = (Ouint8*)("/scripts/pic/5.png");
-                        break;
-                case 6 :
+		    picPath = (Ouint8*)("/scripts/pic/3.png");
+		    break;
+        case 4 :
+            picPath = (Ouint8*)("/scripts/pic/4.png");
+            break;
+        case 5 :
+            picPath = (Ouint8*)("/scripts/pic/5.png");
+            break;
+        case 6 :
                         picPath = (Ouint8*)("/scripts/pic/6.png");
                         break;
                 case 7 :
@@ -206,7 +205,7 @@ int main(int argc, char** argv)
                 case 39 :
                         picPath = (Ouint8*)("/scripts/pic/39.png");
                         break;
-		case 40 :
+		        case 40 :
                         picPath = (Ouint8*)("/scripts/pic/40.png");
                         break;
                 case 41 :
@@ -286,13 +285,11 @@ int main(int argc, char** argv)
                         break;
                 case 68 :
                         picPath = (Ouint8*)("/scripts/pic/68.png");
-                        break;
-
-	
+                        break;	
 	}
 
 	Ouint8* pIP = (Ouint8*)"192.168.112.11";
-        Ouint8* pIP_back = (Ouint8*)"192.168.112.12";
+    Ouint8* pIP_back = (Ouint8*)"192.168.112.12";
 	Ouint32 nPort = 5005;
 //config
 	E_ScreenColor_G56 color = eSCREEN_COLOR_DOUBLE;
@@ -301,11 +298,11 @@ int main(int argc, char** argv)
     	int uAreaY = 0;
     	int uWidth = 64;
     	int uHeight = 32;
-	cout << picPath << endl;
+	    cout << picPath << endl;
 //EQpageHeader_G6
     	EQpageHeader_G6 pheader1;
     	pheader1.PageStyle = 0x00;
-   	pheader1.DisplayMode = 0x02;
+   	    pheader1.DisplayMode = 0x02;
     	pheader1.ClearMode = 0x01;
     	pheader1.Speed = 20;
     	pheader1.StayTime = 10;
@@ -332,12 +329,12 @@ int main(int argc, char** argv)
         }
 //api
         else {
-   	bxDual_dynamicArea_AddAreaPic_6G(pIP, 5005, color, uAreaId, uAreaX, uAreaY, uWidth, uHeight, &pheader1, (Ouint8*)picPath);
-	cout << "\033[31mfront ==> "<< picPath <<"\033[0m\n" ;
-	bxDual_dynamicArea_AddAreaPic_6G(pIP_back, 5005, color, uAreaId, uAreaX, uAreaY, uWidth, uHeight, &pheader1, (Ouint8*)picPath);
-	cout << "\033[31mrear ==> "<< picPath <<"\033[0m\n";
-	}
-                }
+   	    bxDual_dynamicArea_AddAreaPic_6G(pIP, 5005, color, uAreaId, uAreaX, uAreaY, uWidth, uHeight, &pheader1, (Ouint8*)picPath);
+	    cout << "\033[31mfront ==> "<< picPath <<"\033[0m\n" ;
+	    bxDual_dynamicArea_AddAreaPic_6G(pIP_back, 5005, color, uAreaId, uAreaX, uAreaY, uWidth, uHeight, &pheader1, (Ouint8*)picPath);
+	    cout << "\033[31mrear ==> "<< picPath <<"\033[0m\n";
+    	}
+}
 	return 0;
 }
 
