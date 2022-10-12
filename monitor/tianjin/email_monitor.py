@@ -30,7 +30,7 @@ def sendReport():
     password = 'dpfxwudqdpesdfah'  #授权码
     #中文需参数‘utf-8’，单字节字符不需要
     #编写HTML类型的邮件正文
-    test = subprocess.getoutput("cat /home/qomolo/top_report.csv")
+    test = subprocess.getoutput("ls /home/westwell")
     msg = MIMEText(test)
     #主题固定属性
     msg['Subject'] = Header(subject, 'utf-8')
@@ -71,7 +71,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # main()
     sendReport()
 # print("==" * 10 +">"+"print search result"+"<"+ "==" * 10)
 
