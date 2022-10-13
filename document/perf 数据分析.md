@@ -1,6 +1,22 @@
 # `perf 数据分析`
 
+## 编译：
 
+>参考文档： https://developer.nvidia.com/embedded/downloads
+
+```bash 
+sudo wget https://developer.nvidia.com/embedded/l4t/r35_release_v1.0/sources/public_sources.tbz2 
+bzip2 -d public_sources.tbz2
+tar -xvf public_sources.tar
+cd Linux_for_Tegra/source/public/
+cp kernel_src.tbz2 ~
+ bzip2 -d kernel_src.tbz2
+ tar -xvf kernel_src.tar
+ cd kernel/kernel-5.10/tools/perf 
+ make && sudo cp perf  /usr/bin/perf
+```
+
+## 使用：
 
 >参考文档：
 >
