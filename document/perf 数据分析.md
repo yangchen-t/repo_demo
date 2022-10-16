@@ -5,7 +5,8 @@
 >参考文档： https://developer.nvidia.com/embedded/downloads
 
 ```bash 
-sudo wget https://developer.nvidia.com/embedded/l4t/r35_release_v1.0/sources/public_sources.tbz2 
+https://developer.nvidia.com/embedded/downloads
+sudo wget https://developer.nvidia.com/embedded/l4t/r32_release_v7.1/sources/t186/public_sources.tbz2
 bzip2 -d public_sources.tbz2
 tar -xvf public_sources.tar
 cd Linux_for_Tegra/source/public/
