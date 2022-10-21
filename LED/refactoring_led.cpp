@@ -22,7 +22,6 @@ int main(int argc, char** argv)
 	stringstream stream;
 	string num;
 	int n ;
-    vector<vector<string>> strArray;
     while (getline(inFile, num))
 	{
 	stream << num;
