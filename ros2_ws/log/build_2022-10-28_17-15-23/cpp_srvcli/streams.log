@@ -1,0 +1,79 @@
+[0.024s] Invoking command in '/debug/Desktop/cxy/ros2_ws/build/cpp_srvcli': /usr/bin/cmake /debug/Desktop/cxy/ros2_ws/src/cpp_srvcli -DCMAKE_INSTALL_PREFIX=/debug/Desktop/cxy/ros2_ws/install/cpp_srvcli
+[0.102s] -- The C compiler identification is GNU 9.3.0
+[0.209s] -- The CXX compiler identification is GNU 9.3.0
+[0.228s] -- Detecting C compiler ABI info
+[0.361s] -- Detecting C compiler ABI info - done
+[0.377s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.378s] -- Detecting C compile features
+[0.379s] -- Detecting C compile features - done
+[0.384s] -- Detecting CXX compiler ABI info
+[0.531s] -- Detecting CXX compiler ABI info - done
+[0.540s] -- Check for working CXX compiler: /usr/bin/g++ - skipped
+[0.540s] -- Detecting CXX compile features
+[0.541s] -- Detecting CXX compile features - done
+[0.544s] -- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.591s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.591s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.905s] -- Found rclcpp: 2.4.0 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.984s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.997s] -- Found rosidl_adapter: 1.2.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[1.184s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+[1.270s] -- Found FastRTPS: /opt/ros/foxy/include  
+[1.474s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.593s] -- Found rmw_implementation_cmake: 1.0.3 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[1.596s] -- Using RMW implementation 'rmw_cyclonedds_cpp' as default
+[1.599s] -- Looking for pthread.h
+[1.697s] -- Looking for pthread.h - found
+[1.697s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[1.779s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+[1.779s] -- Looking for pthread_create in pthreads
+[1.859s] -- Looking for pthread_create in pthreads - not found
+[1.860s] -- Looking for pthread_create in pthread
+[1.962s] -- Looking for pthread_create in pthread - found
+[1.963s] -- Found Threads: TRUE  
+[2.241s] -- Found example_interfaces: 0.9.1 (/opt/ros/foxy/share/example_interfaces/cmake)
+[2.436s] -- Found ament_lint_auto: 0.9.6 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[2.580s] -- Added test 'copyright' to check source files copyright and LICENSE
+[2.582s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[2.582s] -- Configured cppcheck include dirs: 
+[2.582s] -- Configured cppcheck exclude dirs and/or files: 
+[2.583s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[2.583s] -- Configured cpplint exclude dirs and/or files: 
+[2.585s] -- Added test 'lint_cmake' to check CMake code style
+[2.586s] -- Added test 'uncrustify' to check C / C++ code style
+[2.587s] -- Configured uncrustify additional arguments: 
+[2.587s] -- Added test 'xmllint' to check XML markup files
+[2.589s] -- Configuring done
+[2.608s] -- Generating done
+[2.610s] -- Build files have been written to: /debug/Desktop/cxy/ros2_ws/build/cpp_srvcli
+[2.626s] Invoked command in '/debug/Desktop/cxy/ros2_ws/build/cpp_srvcli' returned '0': /usr/bin/cmake /debug/Desktop/cxy/ros2_ws/src/cpp_srvcli -DCMAKE_INSTALL_PREFIX=/debug/Desktop/cxy/ros2_ws/install/cpp_srvcli
+[2.628s] Invoking command in '/debug/Desktop/cxy/ros2_ws/build/cpp_srvcli': /usr/bin/cmake --build /debug/Desktop/cxy/ros2_ws/build/cpp_srvcli -- -j4 -l4
+[2.790s] [ 25%] [32mBuilding CXX object CMakeFiles/server.dir/src/server.cpp.o[0m
+[2.834s] [ 50%] [32mBuilding CXX object CMakeFiles/client.dir/src/client.cpp.o[0m
+[11.071s] [ 75%] [32m[1mLinking CXX executable server[0m
+[11.588s] [ 75%] Built target server
+[11.959s] [100%] [32m[1mLinking CXX executable client[0m
+[12.277s] [100%] Built target client
+[12.303s] Invoked command in '/debug/Desktop/cxy/ros2_ws/build/cpp_srvcli' returned '0': /usr/bin/cmake --build /debug/Desktop/cxy/ros2_ws/build/cpp_srvcli -- -j4 -l4
+[12.363s] Invoking command in '/debug/Desktop/cxy/ros2_ws/build/cpp_srvcli': /usr/bin/cmake --install /debug/Desktop/cxy/ros2_ws/build/cpp_srvcli
+[12.374s] -- Install configuration: ""
+[12.375s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/lib/cpp_srvcli/client
+[12.375s] -- Set runtime path of "/debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/lib/cpp_srvcli/client" to ""
+[12.375s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/lib/cpp_srvcli/server
+[12.376s] -- Set runtime path of "/debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/lib/cpp_srvcli/server" to ""
+[12.377s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/ament_index/resource_index/package_run_dependencies/cpp_srvcli
+[12.377s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/ament_index/resource_index/parent_prefix_path/cpp_srvcli
+[12.378s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/cpp_srvcli/environment/ament_prefix_path.sh
+[12.379s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/cpp_srvcli/environment/ament_prefix_path.dsv
+[12.379s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/cpp_srvcli/environment/path.sh
+[12.380s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/cpp_srvcli/environment/path.dsv
+[12.380s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/cpp_srvcli/local_setup.bash
+[12.381s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/cpp_srvcli/local_setup.sh
+[12.382s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/cpp_srvcli/local_setup.zsh
+[12.382s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/cpp_srvcli/local_setup.dsv
+[12.384s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/cpp_srvcli/package.dsv
+[12.385s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/ament_index/resource_index/packages/cpp_srvcli
+[12.386s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/cpp_srvcli/cmake/cpp_srvcliConfig.cmake
+[12.386s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/cpp_srvcli/cmake/cpp_srvcliConfig-version.cmake
+[12.387s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/cpp_srvcli/package.xml
+[12.399s] Invoked command in '/debug/Desktop/cxy/ros2_ws/build/cpp_srvcli' returned '0': /usr/bin/cmake --install /debug/Desktop/cxy/ros2_ws/build/cpp_srvcli

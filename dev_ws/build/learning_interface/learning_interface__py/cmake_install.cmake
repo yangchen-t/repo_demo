@@ -1,8 +1,8 @@
-# Install script for directory: /debug/Desktop/dev_ws/build/learning_interface/learning_interface__py
+# Install script for directory: /debug/Desktop/cxy/dev_ws/build/learning_interface/learning_interface__py
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/debug/Desktop/dev_ws/install/learning_interface")
+  set(CMAKE_INSTALL_PREFIX "/debug/Desktop/cxy/dev_ws/install/learning_interface")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

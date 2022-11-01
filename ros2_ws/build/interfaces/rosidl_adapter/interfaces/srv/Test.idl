@@ -1,0 +1,19 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from interfaces/srv/Test.srv
+// generated code does not contain a copyright notice
+
+
+module interfaces {
+  module srv {
+    struct Test_Request {
+      int64 x;
+
+      int64 y;
+
+      int64 z;
+    };
+    struct Test_Response {
+      int64 v;
+    };
+  };
+};

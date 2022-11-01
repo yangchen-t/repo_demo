@@ -1,0 +1,57 @@
+[1.029s] Invoking command in '/debug/Desktop/cxy/dev_ws/src/ros2_21_tutorials/learning_topic': AMENT_PREFIX_PATH=/debug/Desktop/cxy/dev_ws/install/learning_interface:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/debug/Desktop/cxy/dev_ws/install/learning_interface:${CMAKE_PREFIX_PATH} LD_LIBRARY_PATH=/debug/Desktop/cxy/dev_ws/install/learning_interface/lib:${LD_LIBRARY_PATH} PYTHONPATH=/debug/Desktop/cxy/dev_ws/install/learning_topic/lib/python3.8/site-packages:/debug/Desktop/cxy/dev_ws/install/learning_interface/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../build/learning_topic build --build-base /debug/Desktop/cxy/dev_ws/build/learning_topic/build install --prefix /debug/Desktop/cxy/dev_ws/install/learning_topic --record /debug/Desktop/cxy/dev_ws/build/learning_topic/install.log --single-version-externally-managed
+[1.509s] running egg_info
+[1.510s] creating ../../../build/learning_topic/learning_topic.egg-info
+[1.510s] writing ../../../build/learning_topic/learning_topic.egg-info/PKG-INFO
+[1.511s] writing dependency_links to ../../../build/learning_topic/learning_topic.egg-info/dependency_links.txt
+[1.511s] writing entry points to ../../../build/learning_topic/learning_topic.egg-info/entry_points.txt
+[1.511s] writing requirements to ../../../build/learning_topic/learning_topic.egg-info/requires.txt
+[1.512s] writing top-level names to ../../../build/learning_topic/learning_topic.egg-info/top_level.txt
+[1.513s] writing manifest file '../../../build/learning_topic/learning_topic.egg-info/SOURCES.txt'
+[1.551s] reading manifest file '../../../build/learning_topic/learning_topic.egg-info/SOURCES.txt'
+[1.552s] writing manifest file '../../../build/learning_topic/learning_topic.egg-info/SOURCES.txt'
+[1.552s] running build
+[1.552s] running build_py
+[1.553s] creating /debug/Desktop/cxy/dev_ws/build/learning_topic/build
+[1.553s] creating /debug/Desktop/cxy/dev_ws/build/learning_topic/build/lib
+[1.553s] creating /debug/Desktop/cxy/dev_ws/build/learning_topic/build/lib/learning_topic
+[1.553s] copying learning_topic/interface_object_pub.py -> /debug/Desktop/cxy/dev_ws/build/learning_topic/build/lib/learning_topic
+[1.553s] copying learning_topic/topic_webcam_pub.py -> /debug/Desktop/cxy/dev_ws/build/learning_topic/build/lib/learning_topic
+[1.553s] copying learning_topic/__init__.py -> /debug/Desktop/cxy/dev_ws/build/learning_topic/build/lib/learning_topic
+[1.554s] copying learning_topic/topic_helloworld_sub.py -> /debug/Desktop/cxy/dev_ws/build/learning_topic/build/lib/learning_topic
+[1.554s] copying learning_topic/topic_helloworld_pub.py -> /debug/Desktop/cxy/dev_ws/build/learning_topic/build/lib/learning_topic
+[1.554s] copying learning_topic/topic_webcam_sub.py -> /debug/Desktop/cxy/dev_ws/build/learning_topic/build/lib/learning_topic
+[1.554s] copying learning_topic/interface_object_sub.py -> /debug/Desktop/cxy/dev_ws/build/learning_topic/build/lib/learning_topic
+[1.554s] running install
+[1.555s] running install_lib
+[1.557s] creating /debug/Desktop/cxy/dev_ws/install/learning_topic/lib/python3.8/site-packages/learning_topic
+[1.557s] copying /debug/Desktop/cxy/dev_ws/build/learning_topic/build/lib/learning_topic/interface_object_pub.py -> /debug/Desktop/cxy/dev_ws/install/learning_topic/lib/python3.8/site-packages/learning_topic
+[1.558s] copying /debug/Desktop/cxy/dev_ws/build/learning_topic/build/lib/learning_topic/topic_webcam_pub.py -> /debug/Desktop/cxy/dev_ws/install/learning_topic/lib/python3.8/site-packages/learning_topic
+[1.558s] copying /debug/Desktop/cxy/dev_ws/build/learning_topic/build/lib/learning_topic/__init__.py -> /debug/Desktop/cxy/dev_ws/install/learning_topic/lib/python3.8/site-packages/learning_topic
+[1.558s] copying /debug/Desktop/cxy/dev_ws/build/learning_topic/build/lib/learning_topic/topic_helloworld_sub.py -> /debug/Desktop/cxy/dev_ws/install/learning_topic/lib/python3.8/site-packages/learning_topic
+[1.558s] copying /debug/Desktop/cxy/dev_ws/build/learning_topic/build/lib/learning_topic/topic_helloworld_pub.py -> /debug/Desktop/cxy/dev_ws/install/learning_topic/lib/python3.8/site-packages/learning_topic
+[1.559s] copying /debug/Desktop/cxy/dev_ws/build/learning_topic/build/lib/learning_topic/topic_webcam_sub.py -> /debug/Desktop/cxy/dev_ws/install/learning_topic/lib/python3.8/site-packages/learning_topic
+[1.559s] copying /debug/Desktop/cxy/dev_ws/build/learning_topic/build/lib/learning_topic/interface_object_sub.py -> /debug/Desktop/cxy/dev_ws/install/learning_topic/lib/python3.8/site-packages/learning_topic
+[1.560s] byte-compiling /debug/Desktop/cxy/dev_ws/install/learning_topic/lib/python3.8/site-packages/learning_topic/interface_object_pub.py to interface_object_pub.cpython-38.pyc
+[1.561s] byte-compiling /debug/Desktop/cxy/dev_ws/install/learning_topic/lib/python3.8/site-packages/learning_topic/topic_webcam_pub.py to topic_webcam_pub.cpython-38.pyc
+[1.561s] byte-compiling /debug/Desktop/cxy/dev_ws/install/learning_topic/lib/python3.8/site-packages/learning_topic/__init__.py to __init__.cpython-38.pyc
+[1.561s] byte-compiling /debug/Desktop/cxy/dev_ws/install/learning_topic/lib/python3.8/site-packages/learning_topic/topic_helloworld_sub.py to topic_helloworld_sub.cpython-38.pyc
+[1.562s] byte-compiling /debug/Desktop/cxy/dev_ws/install/learning_topic/lib/python3.8/site-packages/learning_topic/topic_helloworld_pub.py to topic_helloworld_pub.cpython-38.pyc
+[1.562s] byte-compiling /debug/Desktop/cxy/dev_ws/install/learning_topic/lib/python3.8/site-packages/learning_topic/topic_webcam_sub.py to topic_webcam_sub.cpython-38.pyc
+[1.563s] byte-compiling /debug/Desktop/cxy/dev_ws/install/learning_topic/lib/python3.8/site-packages/learning_topic/interface_object_sub.py to interface_object_sub.cpython-38.pyc
+[1.563s] running install_data
+[1.564s] creating /debug/Desktop/cxy/dev_ws/install/learning_topic/share/ament_index
+[1.564s] creating /debug/Desktop/cxy/dev_ws/install/learning_topic/share/ament_index/resource_index
+[1.564s] creating /debug/Desktop/cxy/dev_ws/install/learning_topic/share/ament_index/resource_index/packages
+[1.564s] copying resource/learning_topic -> /debug/Desktop/cxy/dev_ws/install/learning_topic/share/ament_index/resource_index/packages
+[1.565s] copying package.xml -> /debug/Desktop/cxy/dev_ws/install/learning_topic/share/learning_topic
+[1.565s] running install_egg_info
+[1.566s] Copying ../../../build/learning_topic/learning_topic.egg-info to /debug/Desktop/cxy/dev_ws/install/learning_topic/lib/python3.8/site-packages/learning_topic-0.0.0-py3.8.egg-info
+[1.567s] running install_scripts
+[1.591s] Installing interface_object_pub script to /debug/Desktop/cxy/dev_ws/install/learning_topic/lib/learning_topic
+[1.591s] Installing interface_object_sub script to /debug/Desktop/cxy/dev_ws/install/learning_topic/lib/learning_topic
+[1.591s] Installing topic_helloworld_pub script to /debug/Desktop/cxy/dev_ws/install/learning_topic/lib/learning_topic
+[1.592s] Installing topic_helloworld_sub script to /debug/Desktop/cxy/dev_ws/install/learning_topic/lib/learning_topic
+[1.592s] Installing topic_webcam_pub script to /debug/Desktop/cxy/dev_ws/install/learning_topic/lib/learning_topic
+[1.593s] Installing topic_webcam_sub script to /debug/Desktop/cxy/dev_ws/install/learning_topic/lib/learning_topic
+[1.593s] writing list of installed files to '/debug/Desktop/cxy/dev_ws/build/learning_topic/install.log'
+[1.627s] Invoked command in '/debug/Desktop/cxy/dev_ws/src/ros2_21_tutorials/learning_topic' returned '0': AMENT_PREFIX_PATH=/debug/Desktop/cxy/dev_ws/install/learning_interface:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/debug/Desktop/cxy/dev_ws/install/learning_interface:${CMAKE_PREFIX_PATH} LD_LIBRARY_PATH=/debug/Desktop/cxy/dev_ws/install/learning_interface/lib:${LD_LIBRARY_PATH} PYTHONPATH=/debug/Desktop/cxy/dev_ws/install/learning_topic/lib/python3.8/site-packages:/debug/Desktop/cxy/dev_ws/install/learning_interface/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../build/learning_topic build --build-base /debug/Desktop/cxy/dev_ws/build/learning_topic/build install --prefix /debug/Desktop/cxy/dev_ws/install/learning_topic --record /debug/Desktop/cxy/dev_ws/build/learning_topic/install.log --single-version-externally-managed

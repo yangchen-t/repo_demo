@@ -25,23 +25,23 @@ void gettime()
 void turn_picture_display(int mode){
         //config
 	Ouint8* picPath;
-        Ouint8* picPath_back;
+    Ouint8* picPath_back;
 	Ouint8* pIP = (Ouint8*)"192.168.112.11";
-        Ouint8* pIP_back = (Ouint8*)"192.168.112.12";
+    Ouint8* pIP_back = (Ouint8*)"192.168.112.12";
 	Ouint32 nPort = 5005;
 	picPath = (Ouint8*)("/scripts/pic/52.png");
 	picPath_back = (Ouint8*)("/scripts/pic/53.png");
 	E_ScreenColor_G56 color = eSCREEN_COLOR_DOUBLE;
-    	int uAreaId = 0;
-    	int uAreaX = 16;//32
-    	int uAreaY = 0;
-    	int uWidth = 64;
-    	int uHeight = 32;
+    int uAreaId = 0;
+    int uAreaX = 16;//32
+    int uAreaY = 0;
+    int uWidth = 64;
+    int uHeight = 32;
 
 //EQpageHeader_G6
         EQpageHeader_G6 pheader1;
     	pheader1.PageStyle = 0x00;
-   	pheader1.DisplayMode = 0x07;    //0x00 –随机显示 0x01 –静止显示 0x02 –快速打出 0x03 –向左移动 0x04 –向左连移 0x05 –向上移动 0x06 –向上连移 0x07 –闪烁
+   	    pheader1.DisplayMode = 0x07;    //0x00 –随机显示 0x01 –静止显示 0x02 –快速打出 0x03 –向左移动 0x04 –向左连移 0x05 –向上移动 0x06 –向上连移 0x07 –闪烁
     	pheader1.ClearMode = 0x01;
     	pheader1.Speed = 40;
     	pheader1.StayTime = 10;

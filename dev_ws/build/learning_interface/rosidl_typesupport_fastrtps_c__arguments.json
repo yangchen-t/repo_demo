@@ -1,12 +1,12 @@
 {
   "package_name": "learning_interface",
-  "output_dir": "/debug/Desktop/dev_ws/build/learning_interface/rosidl_typesupport_fastrtps_c/learning_interface",
+  "output_dir": "/debug/Desktop/cxy/dev_ws/build/learning_interface/rosidl_typesupport_fastrtps_c/learning_interface",
   "template_dir": "/opt/ros/foxy/share/rosidl_typesupport_fastrtps_c/resource",
   "idl_tuples": [
-    "/debug/Desktop/dev_ws/build/learning_interface/rosidl_adapter/learning_interface:msg/ObjectPosition.idl",
-    "/debug/Desktop/dev_ws/build/learning_interface/rosidl_adapter/learning_interface:srv/AddTwoInts.idl",
-    "/debug/Desktop/dev_ws/build/learning_interface/rosidl_adapter/learning_interface:srv/GetObjectPosition.idl",
-    "/debug/Desktop/dev_ws/build/learning_interface/rosidl_adapter/learning_interface:action/MoveCircle.idl"
+    "/debug/Desktop/cxy/dev_ws/build/learning_interface/rosidl_adapter/learning_interface:msg/ObjectPosition.idl",
+    "/debug/Desktop/cxy/dev_ws/build/learning_interface/rosidl_adapter/learning_interface:srv/AddTwoInts.idl",
+    "/debug/Desktop/cxy/dev_ws/build/learning_interface/rosidl_adapter/learning_interface:srv/GetObjectPosition.idl",
+    "/debug/Desktop/cxy/dev_ws/build/learning_interface/rosidl_adapter/learning_interface:action/MoveCircle.idl"
   ],
   "ros_interface_dependencies": [
     "action_msgs:/opt/ros/foxy/share/action_msgs/msg/GoalInfo.idl",
@@ -26,10 +26,10 @@
     "/opt/ros/foxy/share/rosidl_typesupport_fastrtps_c/resource/msg__type_support_c.cpp.em",
     "/opt/ros/foxy/share/rosidl_typesupport_fastrtps_c/resource/srv__rosidl_typesupport_fastrtps_c.h.em",
     "/opt/ros/foxy/share/rosidl_typesupport_fastrtps_c/resource/srv__type_support_c.cpp.em",
-    "/debug/Desktop/dev_ws/build/learning_interface/rosidl_adapter/learning_interface/msg/ObjectPosition.idl",
-    "/debug/Desktop/dev_ws/build/learning_interface/rosidl_adapter/learning_interface/srv/AddTwoInts.idl",
-    "/debug/Desktop/dev_ws/build/learning_interface/rosidl_adapter/learning_interface/srv/GetObjectPosition.idl",
-    "/debug/Desktop/dev_ws/build/learning_interface/rosidl_adapter/learning_interface/action/MoveCircle.idl",
+    "/debug/Desktop/cxy/dev_ws/build/learning_interface/rosidl_adapter/learning_interface/msg/ObjectPosition.idl",
+    "/debug/Desktop/cxy/dev_ws/build/learning_interface/rosidl_adapter/learning_interface/srv/AddTwoInts.idl",
+    "/debug/Desktop/cxy/dev_ws/build/learning_interface/rosidl_adapter/learning_interface/srv/GetObjectPosition.idl",
+    "/debug/Desktop/cxy/dev_ws/build/learning_interface/rosidl_adapter/learning_interface/action/MoveCircle.idl",
     "/opt/ros/foxy/share/action_msgs/msg/GoalInfo.idl",
     "/opt/ros/foxy/share/action_msgs/msg/GoalStatus.idl",
     "/opt/ros/foxy/share/action_msgs/msg/GoalStatusArray.idl",

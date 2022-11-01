@@ -1,8 +1,8 @@
-# Install script for directory: /debug/Desktop/dev_ws/src/ros2_21_tutorials/learning_pkg_c
+# Install script for directory: /debug/Desktop/cxy/dev_ws/src/ros2_21_tutorials/learning_pkg_c
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/debug/Desktop/dev_ws/install/learning_pkg_c")
+  set(CMAKE_INSTALL_PREFIX "/debug/Desktop/cxy/dev_ws/install/learning_pkg_c")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -43,11 +43,11 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ament_index/resource_index/package_run_dependencies" TYPE FILE FILES "/debug/Desktop/dev_ws/build/learning_pkg_c/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/learning_pkg_c")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ament_index/resource_index/package_run_dependencies" TYPE FILE FILES "/debug/Desktop/cxy/dev_ws/build/learning_pkg_c/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/learning_pkg_c")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ament_index/resource_index/parent_prefix_path" TYPE FILE FILES "/debug/Desktop/dev_ws/build/learning_pkg_c/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/learning_pkg_c")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ament_index/resource_index/parent_prefix_path" TYPE FILE FILES "/debug/Desktop/cxy/dev_ws/build/learning_pkg_c/ament_cmake_index/share/ament_index/resource_index/parent_prefix_path/learning_pkg_c")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
@@ -55,7 +55,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/learning_pkg_c/environment" TYPE FILE FILES "/debug/Desktop/dev_ws/build/learning_pkg_c/ament_cmake_environment_hooks/ament_prefix_path.dsv")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/learning_pkg_c/environment" TYPE FILE FILES "/debug/Desktop/cxy/dev_ws/build/learning_pkg_c/ament_cmake_environment_hooks/ament_prefix_path.dsv")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
@@ -63,42 +63,42 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/learning_pkg_c/environment" TYPE FILE FILES "/debug/Desktop/dev_ws/build/learning_pkg_c/ament_cmake_environment_hooks/path.dsv")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/learning_pkg_c/environment" TYPE FILE FILES "/debug/Desktop/cxy/dev_ws/build/learning_pkg_c/ament_cmake_environment_hooks/path.dsv")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/learning_pkg_c" TYPE FILE FILES "/debug/Desktop/dev_ws/build/learning_pkg_c/ament_cmake_environment_hooks/local_setup.bash")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/learning_pkg_c" TYPE FILE FILES "/debug/Desktop/cxy/dev_ws/build/learning_pkg_c/ament_cmake_environment_hooks/local_setup.bash")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/learning_pkg_c" TYPE FILE FILES "/debug/Desktop/dev_ws/build/learning_pkg_c/ament_cmake_environment_hooks/local_setup.sh")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/learning_pkg_c" TYPE FILE FILES "/debug/Desktop/cxy/dev_ws/build/learning_pkg_c/ament_cmake_environment_hooks/local_setup.sh")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/learning_pkg_c" TYPE FILE FILES "/debug/Desktop/dev_ws/build/learning_pkg_c/ament_cmake_environment_hooks/local_setup.zsh")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/learning_pkg_c" TYPE FILE FILES "/debug/Desktop/cxy/dev_ws/build/learning_pkg_c/ament_cmake_environment_hooks/local_setup.zsh")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/learning_pkg_c" TYPE FILE FILES "/debug/Desktop/dev_ws/build/learning_pkg_c/ament_cmake_environment_hooks/local_setup.dsv")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/learning_pkg_c" TYPE FILE FILES "/debug/Desktop/cxy/dev_ws/build/learning_pkg_c/ament_cmake_environment_hooks/local_setup.dsv")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/learning_pkg_c" TYPE FILE FILES "/debug/Desktop/dev_ws/build/learning_pkg_c/ament_cmake_environment_hooks/package.dsv")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/learning_pkg_c" TYPE FILE FILES "/debug/Desktop/cxy/dev_ws/build/learning_pkg_c/ament_cmake_environment_hooks/package.dsv")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ament_index/resource_index/packages" TYPE FILE FILES "/debug/Desktop/dev_ws/build/learning_pkg_c/ament_cmake_index/share/ament_index/resource_index/packages/learning_pkg_c")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ament_index/resource_index/packages" TYPE FILE FILES "/debug/Desktop/cxy/dev_ws/build/learning_pkg_c/ament_cmake_index/share/ament_index/resource_index/packages/learning_pkg_c")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/learning_pkg_c/cmake" TYPE FILE FILES
-    "/debug/Desktop/dev_ws/build/learning_pkg_c/ament_cmake_core/learning_pkg_cConfig.cmake"
-    "/debug/Desktop/dev_ws/build/learning_pkg_c/ament_cmake_core/learning_pkg_cConfig-version.cmake"
+    "/debug/Desktop/cxy/dev_ws/build/learning_pkg_c/ament_cmake_core/learning_pkg_cConfig.cmake"
+    "/debug/Desktop/cxy/dev_ws/build/learning_pkg_c/ament_cmake_core/learning_pkg_cConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/learning_pkg_c" TYPE FILE FILES "/debug/Desktop/dev_ws/src/ros2_21_tutorials/learning_pkg_c/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/learning_pkg_c" TYPE FILE FILES "/debug/Desktop/cxy/dev_ws/src/ros2_21_tutorials/learning_pkg_c/package.xml")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -109,5 +109,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/debug/Desktop/dev_ws/build/learning_pkg_c/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/debug/Desktop/cxy/dev_ws/build/learning_pkg_c/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

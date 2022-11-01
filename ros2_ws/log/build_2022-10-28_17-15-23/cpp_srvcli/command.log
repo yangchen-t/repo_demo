@@ -1,0 +1,6 @@
+Invoking command in '/debug/Desktop/cxy/ros2_ws/build/cpp_srvcli': /usr/bin/cmake /debug/Desktop/cxy/ros2_ws/src/cpp_srvcli -DCMAKE_INSTALL_PREFIX=/debug/Desktop/cxy/ros2_ws/install/cpp_srvcli
+Invoked command in '/debug/Desktop/cxy/ros2_ws/build/cpp_srvcli' returned '0': /usr/bin/cmake /debug/Desktop/cxy/ros2_ws/src/cpp_srvcli -DCMAKE_INSTALL_PREFIX=/debug/Desktop/cxy/ros2_ws/install/cpp_srvcli
+Invoking command in '/debug/Desktop/cxy/ros2_ws/build/cpp_srvcli': /usr/bin/cmake --build /debug/Desktop/cxy/ros2_ws/build/cpp_srvcli -- -j4 -l4
+Invoked command in '/debug/Desktop/cxy/ros2_ws/build/cpp_srvcli' returned '0': /usr/bin/cmake --build /debug/Desktop/cxy/ros2_ws/build/cpp_srvcli -- -j4 -l4
+Invoking command in '/debug/Desktop/cxy/ros2_ws/build/cpp_srvcli': /usr/bin/cmake --install /debug/Desktop/cxy/ros2_ws/build/cpp_srvcli
+Invoked command in '/debug/Desktop/cxy/ros2_ws/build/cpp_srvcli' returned '0': /usr/bin/cmake --install /debug/Desktop/cxy/ros2_ws/build/cpp_srvcli

@@ -1,0 +1,41 @@
+[1.037s] Invoking command in '/debug/Desktop/cxy/dev_ws/src/ros2_21_tutorials/learning_action': AMENT_PREFIX_PATH=/debug/Desktop/cxy/dev_ws/install/learning_interface:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/debug/Desktop/cxy/dev_ws/install/learning_interface:${CMAKE_PREFIX_PATH} LD_LIBRARY_PATH=/debug/Desktop/cxy/dev_ws/install/learning_interface/lib:${LD_LIBRARY_PATH} PYTHONPATH=/debug/Desktop/cxy/dev_ws/install/learning_action/lib/python3.8/site-packages:/debug/Desktop/cxy/dev_ws/install/learning_interface/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../build/learning_action build --build-base /debug/Desktop/cxy/dev_ws/build/learning_action/build install --prefix /debug/Desktop/cxy/dev_ws/install/learning_action --record /debug/Desktop/cxy/dev_ws/build/learning_action/install.log --single-version-externally-managed
+[1.530s] running egg_info
+[1.531s] creating ../../../build/learning_action/learning_action.egg-info
+[1.531s] writing ../../../build/learning_action/learning_action.egg-info/PKG-INFO
+[1.531s] writing dependency_links to ../../../build/learning_action/learning_action.egg-info/dependency_links.txt
+[1.532s] writing entry points to ../../../build/learning_action/learning_action.egg-info/entry_points.txt
+[1.532s] writing requirements to ../../../build/learning_action/learning_action.egg-info/requires.txt
+[1.532s] writing top-level names to ../../../build/learning_action/learning_action.egg-info/top_level.txt
+[1.534s] writing manifest file '../../../build/learning_action/learning_action.egg-info/SOURCES.txt'
+[1.576s] reading manifest file '../../../build/learning_action/learning_action.egg-info/SOURCES.txt'
+[1.579s] writing manifest file '../../../build/learning_action/learning_action.egg-info/SOURCES.txt'
+[1.579s] running build
+[1.580s] running build_py
+[1.580s] creating /debug/Desktop/cxy/dev_ws/build/learning_action/build
+[1.580s] creating /debug/Desktop/cxy/dev_ws/build/learning_action/build/lib
+[1.580s] creating /debug/Desktop/cxy/dev_ws/build/learning_action/build/lib/learning_action
+[1.580s] copying learning_action/__init__.py -> /debug/Desktop/cxy/dev_ws/build/learning_action/build/lib/learning_action
+[1.580s] copying learning_action/action_move_server.py -> /debug/Desktop/cxy/dev_ws/build/learning_action/build/lib/learning_action
+[1.581s] copying learning_action/action_move_client.py -> /debug/Desktop/cxy/dev_ws/build/learning_action/build/lib/learning_action
+[1.581s] running install
+[1.581s] running install_lib
+[1.583s] creating /debug/Desktop/cxy/dev_ws/install/learning_action/lib/python3.8/site-packages/learning_action
+[1.583s] copying /debug/Desktop/cxy/dev_ws/build/learning_action/build/lib/learning_action/__init__.py -> /debug/Desktop/cxy/dev_ws/install/learning_action/lib/python3.8/site-packages/learning_action
+[1.583s] copying /debug/Desktop/cxy/dev_ws/build/learning_action/build/lib/learning_action/action_move_server.py -> /debug/Desktop/cxy/dev_ws/install/learning_action/lib/python3.8/site-packages/learning_action
+[1.584s] copying /debug/Desktop/cxy/dev_ws/build/learning_action/build/lib/learning_action/action_move_client.py -> /debug/Desktop/cxy/dev_ws/install/learning_action/lib/python3.8/site-packages/learning_action
+[1.585s] byte-compiling /debug/Desktop/cxy/dev_ws/install/learning_action/lib/python3.8/site-packages/learning_action/__init__.py to __init__.cpython-38.pyc
+[1.586s] byte-compiling /debug/Desktop/cxy/dev_ws/install/learning_action/lib/python3.8/site-packages/learning_action/action_move_server.py to action_move_server.cpython-38.pyc
+[1.587s] byte-compiling /debug/Desktop/cxy/dev_ws/install/learning_action/lib/python3.8/site-packages/learning_action/action_move_client.py to action_move_client.cpython-38.pyc
+[1.588s] running install_data
+[1.594s] creating /debug/Desktop/cxy/dev_ws/install/learning_action/share/ament_index
+[1.594s] creating /debug/Desktop/cxy/dev_ws/install/learning_action/share/ament_index/resource_index
+[1.594s] creating /debug/Desktop/cxy/dev_ws/install/learning_action/share/ament_index/resource_index/packages
+[1.595s] copying resource/learning_action -> /debug/Desktop/cxy/dev_ws/install/learning_action/share/ament_index/resource_index/packages
+[1.595s] copying package.xml -> /debug/Desktop/cxy/dev_ws/install/learning_action/share/learning_action
+[1.595s] running install_egg_info
+[1.595s] Copying ../../../build/learning_action/learning_action.egg-info to /debug/Desktop/cxy/dev_ws/install/learning_action/lib/python3.8/site-packages/learning_action-0.0.0-py3.8.egg-info
+[1.595s] running install_scripts
+[1.620s] Installing action_move_client script to /debug/Desktop/cxy/dev_ws/install/learning_action/lib/learning_action
+[1.621s] Installing action_move_server script to /debug/Desktop/cxy/dev_ws/install/learning_action/lib/learning_action
+[1.621s] writing list of installed files to '/debug/Desktop/cxy/dev_ws/build/learning_action/install.log'
+[1.659s] Invoked command in '/debug/Desktop/cxy/dev_ws/src/ros2_21_tutorials/learning_action' returned '0': AMENT_PREFIX_PATH=/debug/Desktop/cxy/dev_ws/install/learning_interface:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/debug/Desktop/cxy/dev_ws/install/learning_interface:${CMAKE_PREFIX_PATH} LD_LIBRARY_PATH=/debug/Desktop/cxy/dev_ws/install/learning_interface/lib:${LD_LIBRARY_PATH} PYTHONPATH=/debug/Desktop/cxy/dev_ws/install/learning_action/lib/python3.8/site-packages:/debug/Desktop/cxy/dev_ws/install/learning_interface/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../build/learning_action build --build-base /debug/Desktop/cxy/dev_ws/build/learning_action/build install --prefix /debug/Desktop/cxy/dev_ws/install/learning_action --record /debug/Desktop/cxy/dev_ws/build/learning_action/install.log --single-version-externally-managed

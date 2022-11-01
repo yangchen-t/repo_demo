@@ -1,0 +1,17 @@
+/debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/lib/cpp_srvcli/client
+/debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/lib/cpp_srvcli/server
+/debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/ament_index/resource_index/package_run_dependencies/cpp_srvcli
+/debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/ament_index/resource_index/parent_prefix_path/cpp_srvcli
+/debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/cpp_srvcli/environment/ament_prefix_path.sh
+/debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/cpp_srvcli/environment/ament_prefix_path.dsv
+/debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/cpp_srvcli/environment/path.sh
+/debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/cpp_srvcli/environment/path.dsv
+/debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/cpp_srvcli/local_setup.bash
+/debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/cpp_srvcli/local_setup.sh
+/debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/cpp_srvcli/local_setup.zsh
+/debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/cpp_srvcli/local_setup.dsv
+/debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/cpp_srvcli/package.dsv
+/debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/ament_index/resource_index/packages/cpp_srvcli
+/debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/cpp_srvcli/cmake/cpp_srvcliConfig.cmake
+/debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/cpp_srvcli/cmake/cpp_srvcliConfig-version.cmake
+/debug/Desktop/cxy/ros2_ws/install/cpp_srvcli/share/cpp_srvcli/package.xml

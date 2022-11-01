@@ -1,0 +1,41 @@
+[0.926s] Invoking command in '/debug/Desktop/cxy/dev_ws/src/ros2_21_tutorials/learning_qos': PYTHONPATH=/debug/Desktop/cxy/dev_ws/install/learning_qos/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../build/learning_qos build --build-base /debug/Desktop/cxy/dev_ws/build/learning_qos/build install --prefix /debug/Desktop/cxy/dev_ws/install/learning_qos --record /debug/Desktop/cxy/dev_ws/build/learning_qos/install.log --single-version-externally-managed
+[1.635s] running egg_info
+[1.636s] creating ../../../build/learning_qos/learning_qos.egg-info
+[1.636s] writing ../../../build/learning_qos/learning_qos.egg-info/PKG-INFO
+[1.637s] writing dependency_links to ../../../build/learning_qos/learning_qos.egg-info/dependency_links.txt
+[1.638s] writing entry points to ../../../build/learning_qos/learning_qos.egg-info/entry_points.txt
+[1.638s] writing requirements to ../../../build/learning_qos/learning_qos.egg-info/requires.txt
+[1.638s] writing top-level names to ../../../build/learning_qos/learning_qos.egg-info/top_level.txt
+[1.641s] writing manifest file '../../../build/learning_qos/learning_qos.egg-info/SOURCES.txt'
+[1.719s] reading manifest file '../../../build/learning_qos/learning_qos.egg-info/SOURCES.txt'
+[1.723s] writing manifest file '../../../build/learning_qos/learning_qos.egg-info/SOURCES.txt'
+[1.723s] running build
+[1.723s] running build_py
+[1.724s] creating /debug/Desktop/cxy/dev_ws/build/learning_qos/build
+[1.724s] creating /debug/Desktop/cxy/dev_ws/build/learning_qos/build/lib
+[1.724s] creating /debug/Desktop/cxy/dev_ws/build/learning_qos/build/lib/learning_qos
+[1.725s] copying learning_qos/qos_helloworld_sub.py -> /debug/Desktop/cxy/dev_ws/build/learning_qos/build/lib/learning_qos
+[1.725s] copying learning_qos/__init__.py -> /debug/Desktop/cxy/dev_ws/build/learning_qos/build/lib/learning_qos
+[1.725s] copying learning_qos/qos_helloworld_pub.py -> /debug/Desktop/cxy/dev_ws/build/learning_qos/build/lib/learning_qos
+[1.725s] running install
+[1.726s] running install_lib
+[1.734s] creating /debug/Desktop/cxy/dev_ws/install/learning_qos/lib/python3.8/site-packages/learning_qos
+[1.734s] copying /debug/Desktop/cxy/dev_ws/build/learning_qos/build/lib/learning_qos/qos_helloworld_sub.py -> /debug/Desktop/cxy/dev_ws/install/learning_qos/lib/python3.8/site-packages/learning_qos
+[1.735s] copying /debug/Desktop/cxy/dev_ws/build/learning_qos/build/lib/learning_qos/__init__.py -> /debug/Desktop/cxy/dev_ws/install/learning_qos/lib/python3.8/site-packages/learning_qos
+[1.735s] copying /debug/Desktop/cxy/dev_ws/build/learning_qos/build/lib/learning_qos/qos_helloworld_pub.py -> /debug/Desktop/cxy/dev_ws/install/learning_qos/lib/python3.8/site-packages/learning_qos
+[1.735s] byte-compiling /debug/Desktop/cxy/dev_ws/install/learning_qos/lib/python3.8/site-packages/learning_qos/qos_helloworld_sub.py to qos_helloworld_sub.cpython-38.pyc
+[1.741s] byte-compiling /debug/Desktop/cxy/dev_ws/install/learning_qos/lib/python3.8/site-packages/learning_qos/__init__.py to __init__.cpython-38.pyc
+[1.741s] byte-compiling /debug/Desktop/cxy/dev_ws/install/learning_qos/lib/python3.8/site-packages/learning_qos/qos_helloworld_pub.py to qos_helloworld_pub.cpython-38.pyc
+[1.745s] running install_data
+[1.745s] creating /debug/Desktop/cxy/dev_ws/install/learning_qos/share/ament_index
+[1.745s] creating /debug/Desktop/cxy/dev_ws/install/learning_qos/share/ament_index/resource_index
+[1.745s] creating /debug/Desktop/cxy/dev_ws/install/learning_qos/share/ament_index/resource_index/packages
+[1.745s] copying resource/learning_qos -> /debug/Desktop/cxy/dev_ws/install/learning_qos/share/ament_index/resource_index/packages
+[1.746s] copying package.xml -> /debug/Desktop/cxy/dev_ws/install/learning_qos/share/learning_qos
+[1.746s] running install_egg_info
+[1.751s] Copying ../../../build/learning_qos/learning_qos.egg-info to /debug/Desktop/cxy/dev_ws/install/learning_qos/lib/python3.8/site-packages/learning_qos-0.0.0-py3.8.egg-info
+[1.756s] running install_scripts
+[1.827s] Installing qos_helloworld_pub script to /debug/Desktop/cxy/dev_ws/install/learning_qos/lib/learning_qos
+[1.827s] Installing qos_helloworld_sub script to /debug/Desktop/cxy/dev_ws/install/learning_qos/lib/learning_qos
+[1.827s] writing list of installed files to '/debug/Desktop/cxy/dev_ws/build/learning_qos/install.log'
+[1.922s] Invoked command in '/debug/Desktop/cxy/dev_ws/src/ros2_21_tutorials/learning_qos' returned '0': PYTHONPATH=/debug/Desktop/cxy/dev_ws/install/learning_qos/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../build/learning_qos build --build-base /debug/Desktop/cxy/dev_ws/build/learning_qos/build install --prefix /debug/Desktop/cxy/dev_ws/install/learning_qos --record /debug/Desktop/cxy/dev_ws/build/learning_qos/install.log --single-version-externally-managed

@@ -1,0 +1,39 @@
+running egg_info
+creating ../../../build/learning_parameter/learning_parameter.egg-info
+writing ../../../build/learning_parameter/learning_parameter.egg-info/PKG-INFO
+writing dependency_links to ../../../build/learning_parameter/learning_parameter.egg-info/dependency_links.txt
+writing entry points to ../../../build/learning_parameter/learning_parameter.egg-info/entry_points.txt
+writing requirements to ../../../build/learning_parameter/learning_parameter.egg-info/requires.txt
+writing top-level names to ../../../build/learning_parameter/learning_parameter.egg-info/top_level.txt
+writing manifest file '../../../build/learning_parameter/learning_parameter.egg-info/SOURCES.txt'
+reading manifest file '../../../build/learning_parameter/learning_parameter.egg-info/SOURCES.txt'
+writing manifest file '../../../build/learning_parameter/learning_parameter.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /debug/Desktop/cxy/dev_ws/build/learning_parameter/build
+creating /debug/Desktop/cxy/dev_ws/build/learning_parameter/build/lib
+creating /debug/Desktop/cxy/dev_ws/build/learning_parameter/build/lib/learning_parameter
+copying learning_parameter/__init__.py -> /debug/Desktop/cxy/dev_ws/build/learning_parameter/build/lib/learning_parameter
+copying learning_parameter/param_declare.py -> /debug/Desktop/cxy/dev_ws/build/learning_parameter/build/lib/learning_parameter
+copying learning_parameter/param_object_detect.py -> /debug/Desktop/cxy/dev_ws/build/learning_parameter/build/lib/learning_parameter
+running install
+running install_lib
+creating /debug/Desktop/cxy/dev_ws/install/learning_parameter/lib/python3.8/site-packages/learning_parameter
+copying /debug/Desktop/cxy/dev_ws/build/learning_parameter/build/lib/learning_parameter/__init__.py -> /debug/Desktop/cxy/dev_ws/install/learning_parameter/lib/python3.8/site-packages/learning_parameter
+copying /debug/Desktop/cxy/dev_ws/build/learning_parameter/build/lib/learning_parameter/param_declare.py -> /debug/Desktop/cxy/dev_ws/install/learning_parameter/lib/python3.8/site-packages/learning_parameter
+copying /debug/Desktop/cxy/dev_ws/build/learning_parameter/build/lib/learning_parameter/param_object_detect.py -> /debug/Desktop/cxy/dev_ws/install/learning_parameter/lib/python3.8/site-packages/learning_parameter
+byte-compiling /debug/Desktop/cxy/dev_ws/install/learning_parameter/lib/python3.8/site-packages/learning_parameter/__init__.py to __init__.cpython-38.pyc
+byte-compiling /debug/Desktop/cxy/dev_ws/install/learning_parameter/lib/python3.8/site-packages/learning_parameter/param_declare.py to param_declare.cpython-38.pyc
+byte-compiling /debug/Desktop/cxy/dev_ws/install/learning_parameter/lib/python3.8/site-packages/learning_parameter/param_object_detect.py to param_object_detect.cpython-38.pyc
+running install_data
+creating /debug/Desktop/cxy/dev_ws/install/learning_parameter/share/ament_index
+creating /debug/Desktop/cxy/dev_ws/install/learning_parameter/share/ament_index/resource_index
+creating /debug/Desktop/cxy/dev_ws/install/learning_parameter/share/ament_index/resource_index/packages
+copying resource/learning_parameter -> /debug/Desktop/cxy/dev_ws/install/learning_parameter/share/ament_index/resource_index/packages
+copying package.xml -> /debug/Desktop/cxy/dev_ws/install/learning_parameter/share/learning_parameter
+running install_egg_info
+Copying ../../../build/learning_parameter/learning_parameter.egg-info to /debug/Desktop/cxy/dev_ws/install/learning_parameter/lib/python3.8/site-packages/learning_parameter-0.0.0-py3.8.egg-info
+running install_scripts
+Installing param_declare script to /debug/Desktop/cxy/dev_ws/install/learning_parameter/lib/learning_parameter
+Installing param_object_detect script to /debug/Desktop/cxy/dev_ws/install/learning_parameter/lib/learning_parameter
+writing list of installed files to '/debug/Desktop/cxy/dev_ws/build/learning_parameter/install.log'

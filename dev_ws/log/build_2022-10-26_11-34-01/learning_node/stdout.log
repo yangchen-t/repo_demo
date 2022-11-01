@@ -1,0 +1,47 @@
+running egg_info
+creating ../../../build/learning_node/learning_node.egg-info
+writing ../../../build/learning_node/learning_node.egg-info/PKG-INFO
+writing dependency_links to ../../../build/learning_node/learning_node.egg-info/dependency_links.txt
+writing entry points to ../../../build/learning_node/learning_node.egg-info/entry_points.txt
+writing requirements to ../../../build/learning_node/learning_node.egg-info/requires.txt
+writing top-level names to ../../../build/learning_node/learning_node.egg-info/top_level.txt
+writing manifest file '../../../build/learning_node/learning_node.egg-info/SOURCES.txt'
+reading manifest file '../../../build/learning_node/learning_node.egg-info/SOURCES.txt'
+writing manifest file '../../../build/learning_node/learning_node.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /debug/Desktop/cxy/dev_ws/build/learning_node/build
+creating /debug/Desktop/cxy/dev_ws/build/learning_node/build/lib
+creating /debug/Desktop/cxy/dev_ws/build/learning_node/build/lib/learning_node
+copying learning_node/__init__.py -> /debug/Desktop/cxy/dev_ws/build/learning_node/build/lib/learning_node
+copying learning_node/node_object_webcam.py -> /debug/Desktop/cxy/dev_ws/build/learning_node/build/lib/learning_node
+copying learning_node/node_helloworld_class.py -> /debug/Desktop/cxy/dev_ws/build/learning_node/build/lib/learning_node
+copying learning_node/node_helloworld.py -> /debug/Desktop/cxy/dev_ws/build/learning_node/build/lib/learning_node
+copying learning_node/node_object.py -> /debug/Desktop/cxy/dev_ws/build/learning_node/build/lib/learning_node
+running install
+running install_lib
+creating /debug/Desktop/cxy/dev_ws/install/learning_node/lib/python3.8/site-packages/learning_node
+copying /debug/Desktop/cxy/dev_ws/build/learning_node/build/lib/learning_node/__init__.py -> /debug/Desktop/cxy/dev_ws/install/learning_node/lib/python3.8/site-packages/learning_node
+copying /debug/Desktop/cxy/dev_ws/build/learning_node/build/lib/learning_node/node_object_webcam.py -> /debug/Desktop/cxy/dev_ws/install/learning_node/lib/python3.8/site-packages/learning_node
+copying /debug/Desktop/cxy/dev_ws/build/learning_node/build/lib/learning_node/node_helloworld_class.py -> /debug/Desktop/cxy/dev_ws/install/learning_node/lib/python3.8/site-packages/learning_node
+copying /debug/Desktop/cxy/dev_ws/build/learning_node/build/lib/learning_node/node_helloworld.py -> /debug/Desktop/cxy/dev_ws/install/learning_node/lib/python3.8/site-packages/learning_node
+copying /debug/Desktop/cxy/dev_ws/build/learning_node/build/lib/learning_node/node_object.py -> /debug/Desktop/cxy/dev_ws/install/learning_node/lib/python3.8/site-packages/learning_node
+byte-compiling /debug/Desktop/cxy/dev_ws/install/learning_node/lib/python3.8/site-packages/learning_node/__init__.py to __init__.cpython-38.pyc
+byte-compiling /debug/Desktop/cxy/dev_ws/install/learning_node/lib/python3.8/site-packages/learning_node/node_object_webcam.py to node_object_webcam.cpython-38.pyc
+byte-compiling /debug/Desktop/cxy/dev_ws/install/learning_node/lib/python3.8/site-packages/learning_node/node_helloworld_class.py to node_helloworld_class.cpython-38.pyc
+byte-compiling /debug/Desktop/cxy/dev_ws/install/learning_node/lib/python3.8/site-packages/learning_node/node_helloworld.py to node_helloworld.cpython-38.pyc
+byte-compiling /debug/Desktop/cxy/dev_ws/install/learning_node/lib/python3.8/site-packages/learning_node/node_object.py to node_object.cpython-38.pyc
+running install_data
+creating /debug/Desktop/cxy/dev_ws/install/learning_node/share/ament_index
+creating /debug/Desktop/cxy/dev_ws/install/learning_node/share/ament_index/resource_index
+creating /debug/Desktop/cxy/dev_ws/install/learning_node/share/ament_index/resource_index/packages
+copying resource/learning_node -> /debug/Desktop/cxy/dev_ws/install/learning_node/share/ament_index/resource_index/packages
+copying package.xml -> /debug/Desktop/cxy/dev_ws/install/learning_node/share/learning_node
+running install_egg_info
+Copying ../../../build/learning_node/learning_node.egg-info to /debug/Desktop/cxy/dev_ws/install/learning_node/lib/python3.8/site-packages/learning_node-0.0.0-py3.8.egg-info
+running install_scripts
+Installing node_helloworld script to /debug/Desktop/cxy/dev_ws/install/learning_node/lib/learning_node
+Installing node_helloworld_class script to /debug/Desktop/cxy/dev_ws/install/learning_node/lib/learning_node
+Installing node_object script to /debug/Desktop/cxy/dev_ws/install/learning_node/lib/learning_node
+Installing node_object_webcam script to /debug/Desktop/cxy/dev_ws/install/learning_node/lib/learning_node
+writing list of installed files to '/debug/Desktop/cxy/dev_ws/build/learning_node/install.log'

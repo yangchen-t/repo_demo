@@ -1,0 +1,6 @@
+Invoking command in '/debug/Desktop/cxy/ros2_ws/build/cpp_pubsub': /usr/bin/cmake /debug/Desktop/cxy/ros2_ws/src/cpp_pubsub -DCMAKE_INSTALL_PREFIX=/debug/Desktop/cxy/ros2_ws/install/cpp_pubsub
+Invoked command in '/debug/Desktop/cxy/ros2_ws/build/cpp_pubsub' returned '0': /usr/bin/cmake /debug/Desktop/cxy/ros2_ws/src/cpp_pubsub -DCMAKE_INSTALL_PREFIX=/debug/Desktop/cxy/ros2_ws/install/cpp_pubsub
+Invoking command in '/debug/Desktop/cxy/ros2_ws/build/cpp_pubsub': /usr/bin/cmake --build /debug/Desktop/cxy/ros2_ws/build/cpp_pubsub -- -j4 -l4
+Invoked command in '/debug/Desktop/cxy/ros2_ws/build/cpp_pubsub' returned '0': /usr/bin/cmake --build /debug/Desktop/cxy/ros2_ws/build/cpp_pubsub -- -j4 -l4
+Invoking command in '/debug/Desktop/cxy/ros2_ws/build/cpp_pubsub': /usr/bin/cmake --install /debug/Desktop/cxy/ros2_ws/build/cpp_pubsub
+Invoked command in '/debug/Desktop/cxy/ros2_ws/build/cpp_pubsub' returned '0': /usr/bin/cmake --install /debug/Desktop/cxy/ros2_ws/build/cpp_pubsub

@@ -1,6 +1,0 @@
-Invoking command in '/debug/Desktop/dev_ws/build/learning_pkg_c': /usr/bin/cmake /debug/Desktop/dev_ws/src/ros2_21_tutorials/learning_pkg_c -DCMAKE_INSTALL_PREFIX=/debug/Desktop/dev_ws/install/learning_pkg_c
-Invoked command in '/debug/Desktop/dev_ws/build/learning_pkg_c' returned '0': /usr/bin/cmake /debug/Desktop/dev_ws/src/ros2_21_tutorials/learning_pkg_c -DCMAKE_INSTALL_PREFIX=/debug/Desktop/dev_ws/install/learning_pkg_c
-Invoking command in '/debug/Desktop/dev_ws/build/learning_pkg_c': /usr/bin/cmake --build /debug/Desktop/dev_ws/build/learning_pkg_c -- -j4 -l4
-Invoked command in '/debug/Desktop/dev_ws/build/learning_pkg_c' returned '0': /usr/bin/cmake --build /debug/Desktop/dev_ws/build/learning_pkg_c -- -j4 -l4
-Invoking command in '/debug/Desktop/dev_ws/build/learning_pkg_c': /usr/bin/cmake --install /debug/Desktop/dev_ws/build/learning_pkg_c
-Invoked command in '/debug/Desktop/dev_ws/build/learning_pkg_c' returned '0': /usr/bin/cmake --install /debug/Desktop/dev_ws/build/learning_pkg_c

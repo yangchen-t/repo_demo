@@ -1,0 +1,50 @@
+[1.208s] Invoking command in '/debug/Desktop/cxy/dev_ws/src/ros2_21_tutorials/learning_urdf': PYTHONPATH=/debug/Desktop/cxy/dev_ws/install/learning_urdf/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../build/learning_urdf build --build-base /debug/Desktop/cxy/dev_ws/build/learning_urdf/build install --prefix /debug/Desktop/cxy/dev_ws/install/learning_urdf --record /debug/Desktop/cxy/dev_ws/build/learning_urdf/install.log --single-version-externally-managed
+[1.997s] running egg_info
+[1.998s] creating ../../../build/learning_urdf/learning_urdf.egg-info
+[1.998s] writing ../../../build/learning_urdf/learning_urdf.egg-info/PKG-INFO
+[1.999s] writing dependency_links to ../../../build/learning_urdf/learning_urdf.egg-info/dependency_links.txt
+[1.999s] writing entry points to ../../../build/learning_urdf/learning_urdf.egg-info/entry_points.txt
+[1.999s] writing requirements to ../../../build/learning_urdf/learning_urdf.egg-info/requires.txt
+[1.999s] writing top-level names to ../../../build/learning_urdf/learning_urdf.egg-info/top_level.txt
+[2.002s] writing manifest file '../../../build/learning_urdf/learning_urdf.egg-info/SOURCES.txt'
+[2.071s] reading manifest file '../../../build/learning_urdf/learning_urdf.egg-info/SOURCES.txt'
+[2.073s] writing manifest file '../../../build/learning_urdf/learning_urdf.egg-info/SOURCES.txt'
+[2.073s] running build
+[2.074s] running build_py
+[2.074s] creating /debug/Desktop/cxy/dev_ws/build/learning_urdf/build
+[2.074s] creating /debug/Desktop/cxy/dev_ws/build/learning_urdf/build/lib
+[2.074s] creating /debug/Desktop/cxy/dev_ws/build/learning_urdf/build/lib/learning_urdf
+[2.074s] copying learning_urdf/__init__.py -> /debug/Desktop/cxy/dev_ws/build/learning_urdf/build/lib/learning_urdf
+[2.075s] running install
+[2.076s] running install_lib
+[2.078s] creating /debug/Desktop/cxy/dev_ws/install/learning_urdf/lib/python3.8/site-packages/learning_urdf
+[2.079s] copying /debug/Desktop/cxy/dev_ws/build/learning_urdf/build/lib/learning_urdf/__init__.py -> /debug/Desktop/cxy/dev_ws/install/learning_urdf/lib/python3.8/site-packages/learning_urdf
+[2.080s] byte-compiling /debug/Desktop/cxy/dev_ws/install/learning_urdf/lib/python3.8/site-packages/learning_urdf/__init__.py to __init__.cpython-38.pyc
+[2.082s] running install_data
+[2.083s] creating /debug/Desktop/cxy/dev_ws/install/learning_urdf/share/ament_index
+[2.084s] creating /debug/Desktop/cxy/dev_ws/install/learning_urdf/share/ament_index/resource_index
+[2.084s] creating /debug/Desktop/cxy/dev_ws/install/learning_urdf/share/ament_index/resource_index/packages
+[2.084s] copying resource/learning_urdf -> /debug/Desktop/cxy/dev_ws/install/learning_urdf/share/ament_index/resource_index/packages
+[2.084s] copying package.xml -> /debug/Desktop/cxy/dev_ws/install/learning_urdf/share/learning_urdf
+[2.084s] creating /debug/Desktop/cxy/dev_ws/install/learning_urdf/share/learning_urdf/launch
+[2.084s] copying launch/display.launch.py -> /debug/Desktop/cxy/dev_ws/install/learning_urdf/share/learning_urdf/launch
+[2.085s] creating /debug/Desktop/cxy/dev_ws/install/learning_urdf/share/learning_urdf/urdf
+[2.085s] copying urdf/mbot_with_kinect.urdf -> /debug/Desktop/cxy/dev_ws/install/learning_urdf/share/learning_urdf/urdf
+[2.085s] copying urdf/mbot_base.urdf -> /debug/Desktop/cxy/dev_ws/install/learning_urdf/share/learning_urdf/urdf
+[2.085s] copying urdf/mbot_with_camera.urdf -> /debug/Desktop/cxy/dev_ws/install/learning_urdf/share/learning_urdf/urdf
+[2.086s] copying urdf/mbot_with_laser.urdf -> /debug/Desktop/cxy/dev_ws/install/learning_urdf/share/learning_urdf/urdf
+[2.086s] creating /debug/Desktop/cxy/dev_ws/install/learning_urdf/share/learning_urdf/urdf/sensors
+[2.086s] copying urdf/sensors/lidar_gazebo.xacro -> /debug/Desktop/cxy/dev_ws/install/learning_urdf/share/learning_urdf/urdf/sensors
+[2.086s] copying urdf/sensors/kinect_gazebo.xacro -> /debug/Desktop/cxy/dev_ws/install/learning_urdf/share/learning_urdf/urdf/sensors
+[2.086s] copying urdf/sensors/camera_gazebo.xacro -> /debug/Desktop/cxy/dev_ws/install/learning_urdf/share/learning_urdf/urdf/sensors
+[2.087s] creating /debug/Desktop/cxy/dev_ws/install/learning_urdf/share/learning_urdf/meshes
+[2.087s] copying meshes/kinect.jpg -> /debug/Desktop/cxy/dev_ws/install/learning_urdf/share/learning_urdf/meshes
+[2.087s] copying meshes/kinect.dae -> /debug/Desktop/cxy/dev_ws/install/learning_urdf/share/learning_urdf/meshes
+[2.088s] copying meshes/kinect.tga -> /debug/Desktop/cxy/dev_ws/install/learning_urdf/share/learning_urdf/meshes
+[2.089s] creating /debug/Desktop/cxy/dev_ws/install/learning_urdf/share/learning_urdf/rviz
+[2.089s] copying rviz/urdf.rviz -> /debug/Desktop/cxy/dev_ws/install/learning_urdf/share/learning_urdf/rviz
+[2.089s] running install_egg_info
+[2.122s] Copying ../../../build/learning_urdf/learning_urdf.egg-info to /debug/Desktop/cxy/dev_ws/install/learning_urdf/lib/python3.8/site-packages/learning_urdf-0.0.0-py3.8.egg-info
+[2.129s] running install_scripts
+[2.240s] writing list of installed files to '/debug/Desktop/cxy/dev_ws/build/learning_urdf/install.log'
+[2.313s] Invoked command in '/debug/Desktop/cxy/dev_ws/src/ros2_21_tutorials/learning_urdf' returned '0': PYTHONPATH=/debug/Desktop/cxy/dev_ws/install/learning_urdf/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../../build/learning_urdf build --build-base /debug/Desktop/cxy/dev_ws/build/learning_urdf/build install --prefix /debug/Desktop/cxy/dev_ws/install/learning_urdf --record /debug/Desktop/cxy/dev_ws/build/learning_urdf/install.log --single-version-externally-managed

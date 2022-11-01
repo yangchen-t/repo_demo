@@ -1,0 +1,79 @@
+[0.017s] Invoking command in '/debug/Desktop/cxy/ros2_ws/build/cpp_qomolo': AMENT_PREFIX_PATH=/debug/Desktop/cxy/ros2_ws/install/interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/debug/Desktop/cxy/ros2_ws/install/interfaces:${CMAKE_PREFIX_PATH} LD_LIBRARY_PATH=/debug/Desktop/cxy/ros2_ws/install/interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/debug/Desktop/cxy/ros2_ws/install/interfaces/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake /debug/Desktop/cxy/ros2_ws/src/cpp_qomolo -DCMAKE_INSTALL_PREFIX=/debug/Desktop/cxy/ros2_ws/install/cpp_qomolo
+[0.118s] -- The C compiler identification is GNU 9.3.0
+[0.283s] -- The CXX compiler identification is GNU 9.3.0
+[0.299s] -- Detecting C compiler ABI info
+[0.444s] -- Detecting C compiler ABI info - done
+[0.460s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.461s] -- Detecting C compile features
+[0.461s] -- Detecting C compile features - done
+[0.471s] -- Detecting CXX compiler ABI info
+[0.568s] -- Detecting CXX compiler ABI info - done
+[0.580s] -- Check for working CXX compiler: /usr/bin/g++ - skipped
+[0.580s] -- Detecting CXX compile features
+[0.581s] -- Detecting CXX compile features - done
+[0.585s] -- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.622s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.622s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[1.061s] -- Found rclcpp: 2.4.0 (/opt/ros/foxy/share/rclcpp/cmake)
+[1.164s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.181s] -- Found rosidl_adapter: 1.2.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[1.375s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+[1.458s] -- Found FastRTPS: /opt/ros/foxy/include  
+[1.664s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.774s] -- Found rmw_implementation_cmake: 1.0.3 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[1.775s] -- Using RMW implementation 'rmw_cyclonedds_cpp' as default
+[1.777s] -- Looking for pthread.h
+[1.859s] -- Looking for pthread.h - found
+[1.859s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[1.957s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+[1.957s] -- Looking for pthread_create in pthreads
+[2.023s] -- Looking for pthread_create in pthreads - not found
+[2.023s] -- Looking for pthread_create in pthread
+[2.095s] -- Looking for pthread_create in pthread - found
+[2.097s] -- Found Threads: TRUE  
+[2.308s] -- Found interfaces: 0.0.0 (/debug/Desktop/cxy/ros2_ws/install/interfaces/share/interfaces/cmake)
+[2.321s] -- Found ament_lint_auto: 0.9.6 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[2.440s] -- Added test 'copyright' to check source files copyright and LICENSE
+[2.441s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[2.441s] -- Configured cppcheck include dirs: 
+[2.441s] -- Configured cppcheck exclude dirs and/or files: 
+[2.446s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[2.446s] -- Configured cpplint exclude dirs and/or files: 
+[2.447s] -- Added test 'lint_cmake' to check CMake code style
+[2.447s] -- Added test 'uncrustify' to check C / C++ code style
+[2.447s] -- Configured uncrustify additional arguments: 
+[2.447s] -- Added test 'xmllint' to check XML markup files
+[2.448s] -- Configuring done
+[2.465s] -- Generating done
+[2.467s] -- Build files have been written to: /debug/Desktop/cxy/ros2_ws/build/cpp_qomolo
+[2.481s] Invoked command in '/debug/Desktop/cxy/ros2_ws/build/cpp_qomolo' returned '0': AMENT_PREFIX_PATH=/debug/Desktop/cxy/ros2_ws/install/interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/debug/Desktop/cxy/ros2_ws/install/interfaces:${CMAKE_PREFIX_PATH} LD_LIBRARY_PATH=/debug/Desktop/cxy/ros2_ws/install/interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/debug/Desktop/cxy/ros2_ws/install/interfaces/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake /debug/Desktop/cxy/ros2_ws/src/cpp_qomolo -DCMAKE_INSTALL_PREFIX=/debug/Desktop/cxy/ros2_ws/install/cpp_qomolo
+[2.484s] Invoking command in '/debug/Desktop/cxy/ros2_ws/build/cpp_qomolo': AMENT_PREFIX_PATH=/debug/Desktop/cxy/ros2_ws/install/interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/debug/Desktop/cxy/ros2_ws/install/interfaces:${CMAKE_PREFIX_PATH} LD_LIBRARY_PATH=/debug/Desktop/cxy/ros2_ws/install/interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/debug/Desktop/cxy/ros2_ws/install/interfaces/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /debug/Desktop/cxy/ros2_ws/build/cpp_qomolo -- -j4 -l4
+[2.521s] [ 50%] [32mBuilding CXX object CMakeFiles/test_server.dir/src/server.cpp.o[0m
+[2.521s] [ 50%] [32mBuilding CXX object CMakeFiles/test_client.dir/src/test_client.cpp.o[0m
+[5.349s] [ 75%] [32m[1mLinking CXX executable test_server[0m
+[5.526s] [ 75%] Built target test_server
+[5.664s] [100%] [32m[1mLinking CXX executable test_client[0m
+[5.832s] [100%] Built target test_client
+[5.838s] Invoked command in '/debug/Desktop/cxy/ros2_ws/build/cpp_qomolo' returned '0': AMENT_PREFIX_PATH=/debug/Desktop/cxy/ros2_ws/install/interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/debug/Desktop/cxy/ros2_ws/install/interfaces:${CMAKE_PREFIX_PATH} LD_LIBRARY_PATH=/debug/Desktop/cxy/ros2_ws/install/interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/debug/Desktop/cxy/ros2_ws/install/interfaces/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --build /debug/Desktop/cxy/ros2_ws/build/cpp_qomolo -- -j4 -l4
+[5.865s] Invoking command in '/debug/Desktop/cxy/ros2_ws/build/cpp_qomolo': AMENT_PREFIX_PATH=/debug/Desktop/cxy/ros2_ws/install/interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/debug/Desktop/cxy/ros2_ws/install/interfaces:${CMAKE_PREFIX_PATH} LD_LIBRARY_PATH=/debug/Desktop/cxy/ros2_ws/install/interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/debug/Desktop/cxy/ros2_ws/install/interfaces/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /debug/Desktop/cxy/ros2_ws/build/cpp_qomolo
+[5.872s] -- Install configuration: ""
+[5.872s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_qomolo/lib/cpp_qomolo/test_client
+[5.873s] -- Set runtime path of "/debug/Desktop/cxy/ros2_ws/install/cpp_qomolo/lib/cpp_qomolo/test_client" to ""
+[5.873s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_qomolo/lib/cpp_qomolo/test_server
+[5.874s] -- Set runtime path of "/debug/Desktop/cxy/ros2_ws/install/cpp_qomolo/lib/cpp_qomolo/test_server" to ""
+[5.874s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_qomolo/share/ament_index/resource_index/package_run_dependencies/cpp_qomolo
+[5.874s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_qomolo/share/ament_index/resource_index/parent_prefix_path/cpp_qomolo
+[5.875s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_qomolo/share/cpp_qomolo/environment/ament_prefix_path.sh
+[5.875s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_qomolo/share/cpp_qomolo/environment/ament_prefix_path.dsv
+[5.875s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_qomolo/share/cpp_qomolo/environment/path.sh
+[5.875s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_qomolo/share/cpp_qomolo/environment/path.dsv
+[5.876s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_qomolo/share/cpp_qomolo/local_setup.bash
+[5.876s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_qomolo/share/cpp_qomolo/local_setup.sh
+[5.876s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_qomolo/share/cpp_qomolo/local_setup.zsh
+[5.876s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_qomolo/share/cpp_qomolo/local_setup.dsv
+[5.876s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_qomolo/share/cpp_qomolo/package.dsv
+[5.877s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_qomolo/share/ament_index/resource_index/packages/cpp_qomolo
+[5.877s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_qomolo/share/cpp_qomolo/cmake/cpp_qomoloConfig.cmake
+[5.877s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_qomolo/share/cpp_qomolo/cmake/cpp_qomoloConfig-version.cmake
+[5.877s] -- Installing: /debug/Desktop/cxy/ros2_ws/install/cpp_qomolo/share/cpp_qomolo/package.xml
+[5.881s] Invoked command in '/debug/Desktop/cxy/ros2_ws/build/cpp_qomolo' returned '0': AMENT_PREFIX_PATH=/debug/Desktop/cxy/ros2_ws/install/interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/debug/Desktop/cxy/ros2_ws/install/interfaces:${CMAKE_PREFIX_PATH} LD_LIBRARY_PATH=/debug/Desktop/cxy/ros2_ws/install/interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/debug/Desktop/cxy/ros2_ws/install/interfaces/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/cmake --install /debug/Desktop/cxy/ros2_ws/build/cpp_qomolo
