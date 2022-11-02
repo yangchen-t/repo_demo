@@ -2,8 +2,8 @@ version: "3"
 services: 
   test: 
       image: flask_web_update 
-      container_name: web
-      #      restart: always
+      container_name: flask_web
+      restart: always
       volumes:
         - /tmp:/tmp
         - /dev:/dev
@@ -11,12 +11,18 @@ services:
         - /etc/localtime:/etc/localtime
         - ./config/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf
         - ./config/cyclonedds.xml:/cyclonedds.xml
+        - ./config/DEFAULT_FASTRTPS_PROFILES.xml:/DEFAULT_FASTRTPS_PROFILES.xml
         - ./scripts:/scripts/:rw
+      ports:
+        - 80:80
+        - 5000:5000
+        - 8080:8080
       environment:
         RMW_IMPLEMENTATION: rmw_cyclonedds_cpp
         CYCLONEDDS_URI: file:///cyclonedds.xml
-        # NVIDIA_VISIBLE_DEVICES: all
+        NVIDIA_VISIBLE_DEVICES: all
         DISPLAY: unix$DISPLAY
+        ROS_DOMAIN_ID: 132
       command: bash -c "usr/bin/supervisord"
       network_mode: "host"
       privileged: true
