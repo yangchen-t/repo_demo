@@ -1,0 +1,23 @@
+version: "3"
+services: 
+  test: 
+      image: flask_web_update 
+      container_name: web
+      #      restart: always
+      volumes:
+        - /tmp:/tmp
+        - /dev:/dev
+        - /opt/qomolo:/opt/qomolo
+        - /etc/localtime:/etc/localtime
+        - ./config/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf
+        - ./config/cyclonedds.xml:/cyclonedds.xml
+        - ./scripts:/scripts/:rw
+      environment:
+        RMW_IMPLEMENTATION: rmw_cyclonedds_cpp
+        CYCLONEDDS_URI: file:///cyclonedds.xml
+        # NVIDIA_VISIBLE_DEVICES: all
+        DISPLAY: unix$DISPLAY
+      command: bash -c "usr/bin/supervisord"
+      network_mode: "host"
+      privileged: true
+
