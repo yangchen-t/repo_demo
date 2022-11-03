@@ -19,6 +19,12 @@ def index():
 def user():
     return render_template('login.html')
 
+@app.route('/update')
+def update():
+    GET_input = request.values.get("methods")
+    print(GET_input)
+    return render_template('update.html')
+
 if __name__ == "__main__":
     app.run()
 

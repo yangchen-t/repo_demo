@@ -1,0 +1,31 @@
+.img{
+	color: red;
+        position: absolute;
+        top: 0;
+        right 0;
+        height: 125%;
+        width: 100%;
+        background-image: url(../pic/images.webp);
+        background-size: cover;
+        background-position: center;
+}
+.img h1{
+        width: 90%;
+        height: 10vh;
+        backgroud: #000;
+        padding: 10px 1%;
+        text-align: center;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+}
+.select{
+	width: 200px;
+	height: 50px;
+	background: red;
+	text-align: center;
+}
+.select option{
+	direction: center;		
+}
