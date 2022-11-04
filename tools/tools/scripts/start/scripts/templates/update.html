@@ -2,11 +2,13 @@
 <html>
 	<head>
 		<title>Qpilot update tools</title>
-	        <link rel="stykesheet" href="../static/css/update.css">
+	        <!-- <link rel="stykesheet" href="update.css"> -->
 	</head>
 	<body>
-		<dir class="img">
+		<dir>
 			<h1><<这是一个更新版本的一个工具>></h1>
+			<a href="https://confluence.westwell-lab.com/display/QA/WorkBook">WorkBook参考</a>
+			<br>
 		</dir>
 		<dir class="methods">
 			<select class="select", name="test1">
@@ -17,5 +19,23 @@
 				<option value="4">==>qomolo-sys-monitor<==</option>
 			</select>
 		</dir>
+		<form class="form-horizontal" method="get">
+			<div class="form-group">
+			  <label for="username" class="col-sm-2 control-label">version</label>
+			  <div class="col-sm-10">
+				<input type="text" class="form-control" id="username" name="version" placeholder="version：" autofocus="" >
+			  </div>
+			</div>
+		  <div class="row">
+				<div class="col-sm-2 col-sm-offset-2">
+					<input name="qpilot" value="M" type="radio"  checked="checked"> qpilot
+				</div>
+		 <div class="col-sm-2 ">
+					<input name="qpilot-param" value="F" type="radio"> qpilot-param
+				</div>
+							 
+			</div>
+		</form>
+
 	</body>
 </html>

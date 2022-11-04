@@ -1,0 +1,608 @@
+ * Serving Flask app 'flask_update' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ * Serving Flask app 'flask_update' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+127.0.0.1 - - [04/Nov/2022 15:06:14] "GET /update HTTP/1.1" 200 -
+127.0.0.1 - - [04/Nov/2022 15:06:21] "POST /update HTTP/1.1" 405 -
+127.0.0.1 - - [04/Nov/2022 15:06:33] "GET /update HTTP/1.1" 200 -
+127.0.0.1 - - [04/Nov/2022 15:06:36] "POST /update HTTP/1.1" 405 -
+None
+None
+ * Serving Flask app 'flask_update' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+127.0.0.1 - - [04/Nov/2022 15:07:19] "GET /update HTTP/1.1" 200 -
+127.0.0.1 - - [04/Nov/2022 15:07:22] "POST /update HTTP/1.1" 405 -
+127.0.0.1 - - [04/Nov/2022 15:07:48] "GET /login/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Nov/2022 15:07:52] "GET /login/?username=123&password=123 HTTP/1.1" 200 -
+None
+ * Serving Flask app 'flask_update' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+127.0.0.1 - - [04/Nov/2022 15:09:17] "GET /update HTTP/1.1" 405 -
+ * Serving Flask app 'flask_update' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ * Serving Flask app 'flask_update' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+127.0.0.1 - - [04/Nov/2022 15:10:05] "GET /update HTTP/1.1" 200 -
+127.0.0.1 - - [04/Nov/2022 15:10:08] "GET /update?version=123&qpilot=M HTTP/1.1" 200 -
+127.0.0.1 - - [04/Nov/2022 15:10:29] "GET /update?version=123&qpilot=M&qpilot-param=F HTTP/1.1" 200 -
+None
+123
+123
+ * Serving Flask app 'flask_update' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+127.0.0.1 - - [04/Nov/2022 15:26:03] "GET /update HTTP/1.1" 200 -
+127.0.0.1 - - [04/Nov/2022 15:26:06] "GET /update?version=123&qpilot=M HTTP/1.1" 200 -
+None
+123
+Traceback (most recent call last):
+  File "/scripts/flask_update.py", line 23, in <module>
+    def update():
+  File "/usr/lib/python3/dist-packages/flask/scaffold.py", line 435, in decorator
+    self.add_url_rule(rule, endpoint, f, **options)
+  File "/usr/lib/python3/dist-packages/flask/scaffold.py", line 56, in wrapper_func
+    return f(self, *args, **kwargs)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1085, in add_url_rule
+    rule = self.url_rule_class(rule, methods=methods, **options)
+TypeError: Rule.__init__() got an unexpected keyword argument 'method'
+Traceback (most recent call last):
+  File "/scripts/flask_update.py", line 23, in <module>
+    def update():
+  File "/usr/lib/python3/dist-packages/flask/scaffold.py", line 435, in decorator
+    self.add_url_rule(rule, endpoint, f, **options)
+  File "/usr/lib/python3/dist-packages/flask/scaffold.py", line 56, in wrapper_func
+    return f(self, *args, **kwargs)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1085, in add_url_rule
+    rule = self.url_rule_class(rule, methods=methods, **options)
+TypeError: Rule.__init__() got an unexpected keyword argument 'method'
+Traceback (most recent call last):
+  File "/scripts/flask_update.py", line 23, in <module>
+    def update():
+  File "/usr/lib/python3/dist-packages/flask/scaffold.py", line 435, in decorator
+    self.add_url_rule(rule, endpoint, f, **options)
+  File "/usr/lib/python3/dist-packages/flask/scaffold.py", line 56, in wrapper_func
+    return f(self, *args, **kwargs)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1085, in add_url_rule
+    rule = self.url_rule_class(rule, methods=methods, **options)
+TypeError: Rule.__init__() got an unexpected keyword argument 'method'
+Traceback (most recent call last):
+  File "/scripts/flask_update.py", line 23, in <module>
+    def update():
+  File "/usr/lib/python3/dist-packages/flask/scaffold.py", line 435, in decorator
+    self.add_url_rule(rule, endpoint, f, **options)
+  File "/usr/lib/python3/dist-packages/flask/scaffold.py", line 56, in wrapper_func
+    return f(self, *args, **kwargs)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1085, in add_url_rule
+    rule = self.url_rule_class(rule, methods=methods, **options)
+TypeError: Rule.__init__() got an unexpected keyword argument 'method'
+ * Serving Flask app 'flask_update' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+127.0.0.1 - - [04/Nov/2022 15:32:02] "GET /update HTTP/1.1" 405 -
+127.0.0.1 - - [04/Nov/2022 15:32:16] "GET /update HTTP/1.1" 405 -
+127.0.0.1 - - [04/Nov/2022 15:32:22] "GET /update HTTP/1.1" 405 -
+127.0.0.1 - - [04/Nov/2022 15:32:23] "GET /update HTTP/1.1" 405 -
+ * Serving Flask app 'flask_update' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+127.0.0.1 - - [04/Nov/2022 15:33:07] "GET /update HTTP/1.1" 405 -
+127.0.0.1 - - [04/Nov/2022 15:33:09] "GET /update HTTP/1.1" 405 -
+ * Serving Flask app 'flask_update' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+127.0.0.1 - - [04/Nov/2022 15:34:06] "GET /update HTTP/1.1" 200 -
+127.0.0.1 - - [04/Nov/2022 15:34:08] "GET /update?version=123&qpilot=M HTTP/1.1" 200 -
+None
+123
+ * Serving Flask app 'flask_update' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+127.0.0.1 - - [04/Nov/2022 15:34:49] "GET /update?version=123&qpilot=M HTTP/1.1" 200 -
+127.0.0.1 - - [04/Nov/2022 15:34:53] "GET /update?version=123&qpilot=M HTTP/1.1" 200 -
+123
+123
+ * Serving Flask app 'flask_update' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+127.0.0.1 - - [04/Nov/2022 17:18:15] "GET / HTTP/1.1" 200 -
+[2022-11-04 17:18:19,750] ERROR in app: Exception on /update [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/scripts/flask_update.py", line 28, in update
+    return render_template('update.html', url_for('static', filename='update.css'))
+TypeError: render_template() takes 1 positional argument but 2 were given
+127.0.0.1 - - [04/Nov/2022 17:18:19] "GET /update HTTP/1.1" 500 -
+None
+ * Serving Flask app 'flask_update' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2022-11-04 17:37:50,764] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/scripts/flask_update.py", line 20, in index
+    return url_for(error)
+  File "/usr/lib/python3/dist-packages/flask/helpers.py", line 286, in url_for
+    if endpoint[:1] == ".":
+TypeError: 'function' object is not subscriptable
+127.0.0.1 - - [04/Nov/2022 17:37:50] "GET / HTTP/1.1" 500 -
+[2022-11-04 17:38:20,404] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/scripts/flask_update.py", line 20, in index
+    return url_for(error)
+  File "/usr/lib/python3/dist-packages/flask/helpers.py", line 286, in url_for
+    if endpoint[:1] == ".":
+TypeError: 'function' object is not subscriptable
+127.0.0.1 - - [04/Nov/2022 17:38:20] "GET / HTTP/1.1" 500 -
+ * Serving Flask app 'flask_update' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2022-11-04 17:38:44,933] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/scripts/flask_update.py", line 20, in index
+    return url_for(error)
+  File "/usr/lib/python3/dist-packages/flask/helpers.py", line 286, in url_for
+    if endpoint[:1] == ".":
+TypeError: 'function' object is not subscriptable
+127.0.0.1 - - [04/Nov/2022 17:38:44] "GET / HTTP/1.1" 500 -
+ * Serving Flask app 'flask_update' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2022-11-04 17:39:58,320] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/scripts/flask_update.py", line 20, in index
+    return render_template(url_for(error))
+  File "/usr/lib/python3/dist-packages/flask/helpers.py", line 286, in url_for
+    if endpoint[:1] == ".":
+TypeError: 'function' object is not subscriptable
+127.0.0.1 - - [04/Nov/2022 17:39:58] "GET / HTTP/1.1" 500 -
+[2022-11-04 17:39:59,616] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/scripts/flask_update.py", line 20, in index
+    return render_template(url_for(error))
+  File "/usr/lib/python3/dist-packages/flask/helpers.py", line 286, in url_for
+    if endpoint[:1] == ".":
+TypeError: 'function' object is not subscriptable
+127.0.0.1 - - [04/Nov/2022 17:39:59] "GET / HTTP/1.1" 500 -
+[2022-11-04 17:40:00,117] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/scripts/flask_update.py", line 20, in index
+    return render_template(url_for(error))
+  File "/usr/lib/python3/dist-packages/flask/helpers.py", line 286, in url_for
+    if endpoint[:1] == ".":
+TypeError: 'function' object is not subscriptable
+127.0.0.1 - - [04/Nov/2022 17:40:00] "GET / HTTP/1.1" 500 -
+[2022-11-04 17:40:00,156] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/scripts/flask_update.py", line 20, in index
+    return render_template(url_for(error))
+  File "/usr/lib/python3/dist-packages/flask/helpers.py", line 286, in url_for
+    if endpoint[:1] == ".":
+TypeError: 'function' object is not subscriptable
+127.0.0.1 - - [04/Nov/2022 17:40:00] "GET / HTTP/1.1" 500 -
+[2022-11-04 17:40:00,185] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/scripts/flask_update.py", line 20, in index
+    return render_template(url_for(error))
+  File "/usr/lib/python3/dist-packages/flask/helpers.py", line 286, in url_for
+    if endpoint[:1] == ".":
+TypeError: 'function' object is not subscriptable
+127.0.0.1 - - [04/Nov/2022 17:40:00] "GET / HTTP/1.1" 500 -
+[2022-11-04 17:40:00,229] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/scripts/flask_update.py", line 20, in index
+    return render_template(url_for(error))
+  File "/usr/lib/python3/dist-packages/flask/helpers.py", line 286, in url_for
+    if endpoint[:1] == ".":
+TypeError: 'function' object is not subscriptable
+127.0.0.1 - - [04/Nov/2022 17:40:00] "GET / HTTP/1.1" 500 -
+[2022-11-04 17:40:00,256] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/scripts/flask_update.py", line 20, in index
+    return render_template(url_for(error))
+  File "/usr/lib/python3/dist-packages/flask/helpers.py", line 286, in url_for
+    if endpoint[:1] == ".":
+TypeError: 'function' object is not subscriptable
+127.0.0.1 - - [04/Nov/2022 17:40:00] "GET / HTTP/1.1" 500 -
+[2022-11-04 17:40:00,306] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/scripts/flask_update.py", line 20, in index
+    return render_template(url_for(error))
+  File "/usr/lib/python3/dist-packages/flask/helpers.py", line 286, in url_for
+    if endpoint[:1] == ".":
+TypeError: 'function' object is not subscriptable
+127.0.0.1 - - [04/Nov/2022 17:40:00] "GET / HTTP/1.1" 500 -
+[2022-11-04 17:40:00,343] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/scripts/flask_update.py", line 20, in index
+    return render_template(url_for(error))
+  File "/usr/lib/python3/dist-packages/flask/helpers.py", line 286, in url_for
+    if endpoint[:1] == ".":
+TypeError: 'function' object is not subscriptable
+127.0.0.1 - - [04/Nov/2022 17:40:00] "GET / HTTP/1.1" 500 -
+[2022-11-04 17:40:00,378] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/scripts/flask_update.py", line 20, in index
+    return render_template(url_for(error))
+  File "/usr/lib/python3/dist-packages/flask/helpers.py", line 286, in url_for
+    if endpoint[:1] == ".":
+TypeError: 'function' object is not subscriptable
+127.0.0.1 - - [04/Nov/2022 17:40:00] "GET / HTTP/1.1" 500 -
+[2022-11-04 17:40:00,416] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/scripts/flask_update.py", line 20, in index
+    return render_template(url_for(error))
+  File "/usr/lib/python3/dist-packages/flask/helpers.py", line 286, in url_for
+    if endpoint[:1] == ".":
+TypeError: 'function' object is not subscriptable
+127.0.0.1 - - [04/Nov/2022 17:40:00] "GET / HTTP/1.1" 500 -
+ * Serving Flask app 'flask_update' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2022-11-04 17:40:28,130] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/scripts/flask_update.py", line 20, in index
+    return render_template(url_for(error))
+  File "/usr/lib/python3/dist-packages/flask/helpers.py", line 286, in url_for
+    if endpoint[:1] == ".":
+TypeError: 'function' object is not subscriptable
+127.0.0.1 - - [04/Nov/2022 17:40:28] "GET / HTTP/1.1" 500 -
+127.0.0.1 - - [04/Nov/2022 17:40:32] "GET /login HTTP/1.1" 308 -
+127.0.0.1 - - [04/Nov/2022 17:40:32] "GET /login/ HTTP/1.1" 200 -
+127.0.0.1 - - [04/Nov/2022 17:40:38] "GET /error HTTP/1.1" 200 -
+ * Serving Flask app 'flask_update' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+127.0.0.1 - - [04/Nov/2022 17:41:37] "GET /error HTTP/1.1" 200 -
+[2022-11-04 17:41:41,954] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/scripts/flask_update.py", line 20, in index
+    return redirect(url_for(error))
+  File "/usr/lib/python3/dist-packages/flask/helpers.py", line 286, in url_for
+    if endpoint[:1] == ".":
+TypeError: 'function' object is not subscriptable
+127.0.0.1 - - [04/Nov/2022 17:41:41] "GET / HTTP/1.1" 500 -
+127.0.0.1 - - [04/Nov/2022 17:41:48] "GET /;ogin HTTP/1.1" 404 -
+127.0.0.1 - - [04/Nov/2022 17:41:52] "GET /login/ HTTP/1.1" 200 -
+[2022-11-04 17:41:59,651] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/scripts/flask_update.py", line 20, in index
+    return redirect(url_for(error))
+  File "/usr/lib/python3/dist-packages/flask/helpers.py", line 286, in url_for
+    if endpoint[:1] == ".":
+TypeError: 'function' object is not subscriptable
+127.0.0.1 - - [04/Nov/2022 17:41:59] "GET / HTTP/1.1" 500 -
+[2022-11-04 17:42:04,883] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/scripts/flask_update.py", line 20, in index
+    return redirect(url_for(error))
+  File "/usr/lib/python3/dist-packages/flask/helpers.py", line 286, in url_for
+    if endpoint[:1] == ".":
+TypeError: 'function' object is not subscriptable
+127.0.0.1 - - [04/Nov/2022 17:42:04] "GET / HTTP/1.1" 500 -
+[2022-11-04 17:42:05,388] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/scripts/flask_update.py", line 20, in index
+    return redirect(url_for(error))
+  File "/usr/lib/python3/dist-packages/flask/helpers.py", line 286, in url_for
+    if endpoint[:1] == ".":
+TypeError: 'function' object is not subscriptable
+127.0.0.1 - - [04/Nov/2022 17:42:05] "GET / HTTP/1.1" 500 -
+[2022-11-04 17:42:05,420] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/scripts/flask_update.py", line 20, in index
+    return redirect(url_for(error))
+  File "/usr/lib/python3/dist-packages/flask/helpers.py", line 286, in url_for
+    if endpoint[:1] == ".":
+TypeError: 'function' object is not subscriptable
+127.0.0.1 - - [04/Nov/2022 17:42:05] "GET / HTTP/1.1" 500 -
+[2022-11-04 17:42:05,454] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/scripts/flask_update.py", line 20, in index
+    return redirect(url_for(error))
+  File "/usr/lib/python3/dist-packages/flask/helpers.py", line 286, in url_for
+    if endpoint[:1] == ".":
+TypeError: 'function' object is not subscriptable
+127.0.0.1 - - [04/Nov/2022 17:42:05] "GET / HTTP/1.1" 500 -
+127.0.0.1 - - [04/Nov/2022 17:42:12] "GET /error HTTP/1.1" 200 -
+ * Serving Flask app 'flask_update' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2022-11-04 17:43:40,933] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/scripts/flask_update.py", line 20, in index
+    return redirect(url_for(error))
+  File "/usr/lib/python3/dist-packages/flask/helpers.py", line 286, in url_for
+    if endpoint[:1] == ".":
+TypeError: 'function' object is not subscriptable
+127.0.0.1 - - [04/Nov/2022 17:43:40] "GET / HTTP/1.1" 500 -
+ * Serving Flask app 'flask_update' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ * Serving Flask app 'flask_update' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+127.0.0.1 - - [04/Nov/2022 17:45:41] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [04/Nov/2022 17:45:41] "GET /error HTTP/1.1" 200 -
+ * Serving Flask app 'flask_update' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+127.0.0.1 - - [04/Nov/2022 17:48:00] "GET / HTTP/1.1" 302 -
+127.0.0.1 - - [04/Nov/2022 17:48:00] "GET /error HTTP/1.1" 200 -
+127.0.0.1 - - [04/Nov/2022 17:48:04] "GET /login/ HTTP/1.1" 404 -
+ * Serving Flask app 'flask_update' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2022-11-04 17:59:29,474] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/lib/python3/dist-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/scripts/flask_update.py", line 24, in index
+    return redirect(url_for('page_not_found'))
+  File "/usr/lib/python3/dist-packages/flask/helpers.py", line 338, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/usr/lib/python3/dist-packages/flask/helpers.py", line 325, in url_for
+    rv = url_adapter.build(
+  File "/usr/lib/python3/dist-packages/werkzeug/routing.py", line 2314, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'page_not_found'. Did you mean 'error' instead?
+127.0.0.1 - - [04/Nov/2022 17:59:29] "GET / HTTP/1.1" 500 -
