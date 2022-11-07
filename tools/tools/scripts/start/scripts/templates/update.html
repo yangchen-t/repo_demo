@@ -8,14 +8,33 @@
 		<dir class="img">
 			<h1><<这是一个更新版本的一个工具>></h1>
 		</dir>
-		<dir class="methods">
-			<select class="select", name="test1">
-				<option value="title">==>这里选择版本<==</option>
-				<option value="1">==>qpilot<==</option>
-				<option value="2">==>qpilot-setup<==</option>
-				<option value="3">==>qomolo-gcs-scripts<==</option>
-				<option value="4">==>qomolo-sys-monitor<==</option>
-			</select>
-		</dir>
-	</body>
+		<form action="" method="post">
+			<p>
+				<label for="version:">版本号:</label>
+				<br/>
+				<!-- <input type="text" name="version" size="30" width="500"> -->
+				<input type="search" id="version:" name="version" size="30" 
+				width="40" height="40" placeholder="这里输入版本号" required>
+			</p>
+			<p>固件选择：
+				<select name="packages">
+					<option value="qpilot" selected>qpilot</option>
+					<option value="qpilot-param">qpilot-param</option>
+					<option value="qomolo-gcs-scripts">qomolo-gcs-scripts</option>
+					<option value="qomolo-gcs-scripts">qomol-sys-monitor</option>  
+				</select>
+			</p>
+			<p>固件名称:
+				<br/>
+				<input type="radio" value="qpilot" name="package" checked/>qpilot
+				<input type="radio" value="qpilot-param" name="package"/>qpilot-param
+				<input type="radio" value="qomolo-gcs-scripts" name="package">qomolo-gcs-scripts
+				<input type="radio" value="qomolo-sys-monitor" name="package">qomolo-sys-monitor
+			</p>
+		
+			<input type="submit" value="升级版本"/>
+			<input type="reset" value="清空选项"/>
+		</form>
+	</body> 
 </html>
+  
