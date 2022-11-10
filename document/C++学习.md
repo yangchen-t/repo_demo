@@ -1,5 +1,26 @@
 # C++学习
 
+```c++
+变量的定义方式： 
+    变量类型 变量名称 = 变量初始值;
+    // int a = 10;
+```
+
+```c++
+常量：
+    作用: 用于记录程序中不可更改的数据
+1. #define 宏常量： #define 常量名 常量值
+        通常在文件上方定义 ，表示一下常量
+2. const修饰的变量： const 数据类型 常量名 = 常量值
+        通常在变量定义前加关键字 const ,修饰该变量为常量， 不可修改
+```
+
+
+
+
+
+
+
 
 
 >文件篇
@@ -15,7 +36,7 @@
 #include<iostream>
 using namespace std;
 #include<fstream>
-int main()
+int main()i
 {
 	/*C:\Users\admin\Desktop\c++基础\c++文件的读写*/
 	ofstream ofs;

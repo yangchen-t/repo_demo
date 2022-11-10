@@ -1,4 +1,13 @@
 version: "3"
+
+volumes:
+  test_v:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/westwell/debug.log
+
 services: 
   test: 
       image: flask_web_update 
@@ -11,7 +20,8 @@ services:
         - /etc/localtime:/etc/localtime
         - ./config/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf
         - ./config/cyclonedds.xml:/cyclonedds.xml
-        - ./scripts:/scripts/:rw
+          #        - test_v:/debug/debug.log
+        - ./scripts/:/scripts/
       ports:
         - 80:80
         - 5000:5000
