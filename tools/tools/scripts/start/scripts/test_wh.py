@@ -27,37 +27,14 @@ class IgvVehicleTools():
                         pass
 
         def qpilot_config(self,cmd):
-                igv_ip = int(input("操作全部车辆(0)/还是单个车辆(1)："))
-                if igv_ip == int(0) :
-                        igv_list = range(1,7)
-                        for i in igv_list :
-                             ip = str("10.159."+str(i)+".105")
-                             print(ip)
-                             self.sshclient_execmd(ip, port, username, passwd, cmd)    
-                             ip = str("10.159."+str(i)+".106")  
-                             print(ip)
-                             self.sshclient_execmd(ip, port, username, passwd, cmd)
+                cmd = 'echo nvidia | sudo -S apt update ; sudo apt install -y {0}' .format(cmd_str)
+                igv_list = range(1,9)
+                for i in igv_list :
+                        ip = str("10.159."+str(i)+".105")
+                        print(ip)
+                        self.sshclient_execmd(ip, port, username, passwd, cmd)    
+                        ip = str("10.159."+str(i)+".106")  
+                        print(ip)
+                        self.sshclient_execmd(ip, port, username, passwd, cmd)
 
-                elif igv_ip == int(1):
-                        igv_list = str(input("请输入单车序号:")).split()
-                        for i in igv_list:
-                              ip = str("10.159."+str(i)+".105")
-                              self.sshclient_execmd(ip, port, username, passwd, cmd)
-                              ip = str("10.159."+str(i)+".106")  
-                              print(ip)
-                              self.sshclient_execmd(ip, port, username, passwd, cmd)
-
-                else:
-                        print("please input number 0 or 1 !!")
-   
-
-
-if __name__ == "__main__" :
-      print("这是一个版本升级工具")
-#      print("请输入要升级固件:"）
-#      cmd_str = (input(":"))
-      cmd_str = sys.argv[1]
-      cmd = 'echo nvidia | sudo -S apt update ; sudo apt install -y {0}' .format(cmd_str)
-      igv = IgvVehicleTools()
-      igv.qpilot_config(cmd)
 

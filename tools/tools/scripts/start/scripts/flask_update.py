@@ -29,6 +29,10 @@ def update():
             pass
         else:    
             print("需要升级的版本为: {0}={1}" .format(request.values.get("packages"),VERSION))
+            update_cmd = request.values.get("packages") + "=" + VERSION
+            print(update_cmd)
+            igv_tools.qpilot_config(cmd)
+            
     else:
         print("选择的版本不匹配")
         return render_template('error.html')
