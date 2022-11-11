@@ -13,14 +13,14 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return redirect(url_for('page_not_found'))
+    return render_template("index.html")
 
 @app.route('/login')
 def user():
     abort(401)
-    return render_template('login.html')
+    # return render_template('login.html')
 
-@app.route('/update', methods=["POST"])
+@app.route('/update', methods=["POST","GET"])
 def update():
     if (request.values.get("packages") == 
         request.values.get("package")):

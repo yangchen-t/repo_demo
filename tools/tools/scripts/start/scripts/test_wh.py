@@ -25,7 +25,7 @@ class IgvVehicleTools():
                         pass
 
         def qpilot_config(self,cmd):
-                cmd = 'echo nvidia | sudo -S apt update ; sudo apt install -y {0}' .format(cmd_str)
+                cmd = 'echo nvidia | sudo -S apt update ; sudo apt install -y {0}' .format(cmd)
                 igv_list = range(1,9)
                 for i in igv_list :
                         ip = str("10.159."+str(i)+".105")
