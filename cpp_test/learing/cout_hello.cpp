@@ -16,7 +16,7 @@ int main(){
     short num1 = 10;
     int num2 = 10;
     long num3 = 10;
-    long long num4 = 10;
+    long long num4 = 10;   
     */
 
     /*
@@ -25,8 +25,11 @@ int main(){
     double f2 = 3.14123425;
     */
 
-    cout << f1 << endl;
-    cout << f2 << endl;
+    /*
+    char  a = "a";
+    // */
+    // cout << f1 << endl;
+    // cout << f2 << endl;
     // cout << f1 << endl;
     cout << "hello world" << endl;
     return 0;
