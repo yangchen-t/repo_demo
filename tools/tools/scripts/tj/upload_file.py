@@ -53,6 +53,7 @@ def timer():
 
 
 if __name__ == '__main__':
+    ## 参数1 为 文件名字 ， 参数2 为文件的方式， 1 为上传，2为下载
     if len(sys.argv) < 3:
          raise SystemExit('upload or downloads (1 or 2) :')
     elif len(sys.argv) < 2:
