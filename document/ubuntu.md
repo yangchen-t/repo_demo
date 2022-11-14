@@ -45,6 +45,24 @@ UUID=88069947069936E2 /mnt/data ntfs defaults  0  2
 -rsh=ssh 表示使用ssh协议传送数据
 ```
 
+### 	Q:  显卡及显卡驱动
+
+```bash
+## 查看显卡驱动信息
+nvidia-smi  
+
+## 查看显卡信息
+
+ubuntu-drives devices 
+
+## 查看显卡信息 （已安装显卡驱动）
+nvidia-smi -L 
+```
+
+
+
+
+
 ### Q:   tcpdump
 
 ```bash
