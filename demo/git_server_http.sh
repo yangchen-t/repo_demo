@@ -28,8 +28,8 @@ sudo git init --bare /opt/qpilot-hw-param
 sudo chmod a+w /opt/qpilot-hw-param
 
 # config nginx web http server 
-echo $git_nginx_config | xargs -I {} sudo sed -i '52a {}' /etc/nginx/sites-available/default 
-sudo nginx -s reload 
+# echo $git_nginx_config | xargs -I {} sudo sed -i '52a {}' /etc/nginx/sites-available/default 
+# sudo nginx -s reload 
 
 # add username and passwd 
-sudo htpasswd  /etc/nginx/passwd {}      # {} 用户
+# sudo htpasswd  /etc/nginx/passwd {}      # {} 用户
