@@ -1,53 +1,55 @@
 #include <iostream>
+#include "./include/Point.h"
+#include "./include/Cricle.h"
 
 using namespace std;
 
-class Point
-{
-    public:
-        void setxy(int x, int y)
-        {
-            C_x = x;
-            C_y = y;
-        }
-        int getx()
-        {
-            return C_x;
-        }
-        int gety()
-        {
-            return C_y;
-        }
+// class Point
+// {
+//     public:
+//         void setxy(int x, int y)
+//         {
+//             C_x = x;
+//             C_y = y;
+//         }
+//         int getx()
+//         {
+//             return C_x;
+//         }
+//         int gety()
+//         {
+//             return C_y;
+//         }
 
-    private:
-        int C_x;
-        int C_y;
-};
+//     private:
+//         int C_x;
+//         int C_y;
+// };
 
-class Cricle
-{
-    public:
-        void setRadius(int R)
-        {
-            Radius = R;
-        }
-        int getRadius()
-        {
-            return Radius;
-        }
-        Point getCenter()
-        {
-            return Centerl;
-        }
-        void setcenterl(int x, int y)
-        {
-            Centerl.setxy(x, y);
-        }
+// class Cricle
+// {
+//     public:
+//         void setRadius(int R)
+//         {
+//             Radius = R;
+//         }
+//         int getRadius()
+//         {
+//             return Radius;
+//         }
+//         Point getCenter()
+//         {
+//             return Centerl;
+//         }
+//         void setcenterl(int x, int y)
+//         {
+//             Centerl.setxy(x, y);
+//         }
 
-    private:
-        int Radius;
-        Point Centerl;
-};
+//     private:
+//         int Radius;
+//         Point Centerl;
+// };
 
 
 void iswherePoint(Cricle &c, Point p)
