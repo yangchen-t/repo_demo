@@ -81,7 +81,7 @@ int main()
     c1.setcenterl(10,0);  // 圆心
 
     Point p1;
-    p1.setxy(10,10);      // 点的坐标
+    p1.setxy(10,5);      // 点的坐标
 
     // 判断点的位置
     iswherePoint(c1,p1);
