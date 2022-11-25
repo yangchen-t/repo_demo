@@ -1,0 +1,1 @@
+/usr/bin/g++ CMakeFiles/talker.dir/src/sub.cpp.o -o talker 

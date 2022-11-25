@@ -1,0 +1,4 @@
+Invoking command in '/src/ros2_ws/build/cpp_ps': /usr/bin/cmake /src/ros2_ws/src/cpp_ps -DCMAKE_INSTALL_PREFIX=/src/ros2_ws/install/cpp_ps
+Invoked command in '/src/ros2_ws/build/cpp_ps' returned '0': /usr/bin/cmake /src/ros2_ws/src/cpp_ps -DCMAKE_INSTALL_PREFIX=/src/ros2_ws/install/cpp_ps
+Invoking command in '/src/ros2_ws/build/cpp_ps': /usr/bin/cmake --build /src/ros2_ws/build/cpp_ps -- -j20 -l20
+Invoked command in '/src/ros2_ws/build/cpp_ps' returned '2': /usr/bin/cmake --build /src/ros2_ws/build/cpp_ps -- -j20 -l20

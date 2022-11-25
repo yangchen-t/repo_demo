@@ -23,7 +23,7 @@ class MinimalSubscriber : public rclcpp::Node
     }
 
   private:
-    void topic_callback(const std_msgs::msg::String::SharedPtr msg) const
+    void topic_callback(const std_msgs::msg::String::SharedPtr &msg) const
     {
       Ouint8* pIP = (Ouint8*)"192.168.112.11";
       Ouint8* pIP_back = (Ouint8*)"192.168.112.12";
@@ -57,13 +57,13 @@ class MinimalSubscriber : public rclcpp::Node
       pheader1.Halign = 0;
 
       // turn func
-      if ((int)data.c_str() == 51)
+      if ((int)msg->data == 51)
       {
-      	turn_picture_display((int)data.c_str());
+      	turn_picture_display((int)msg.data.c_str());
       }
-      else if ((int)data.c_str() == 52)
+      else if ((int)msg.data.c_str() == 52)
       {
-      	turn+picture_display((int)data.c_str());
+      	turn_picture_display((int)msg.data.c_str());
       }
       else
       {
@@ -74,7 +74,7 @@ class MinimalSubscriber : public rclcpp::Node
 	cout << "\033[31mrear ==> "<< *return_path() <<"\033[0m\n";
       }  
      rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscription_;
-};
+}
 
 int main(int argc, char * argv[])
 {

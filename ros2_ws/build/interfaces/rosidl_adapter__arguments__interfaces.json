@@ -1,7 +1,0 @@
-{
-  "package_name": "interfaces",
-  "non_idl_tuples": [
-    "/debug/Desktop/cxy/ros2_ws/src/interfaces:srv/Test.srv",
-    "/debug/Desktop/cxy/ros2_ws/src/interfaces:msg/Position.msg"
-  ]
-}
