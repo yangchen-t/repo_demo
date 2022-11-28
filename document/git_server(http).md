@@ -8,13 +8,6 @@
 
 ```bash 
 apt-get install git
-
-
-1
-
-
-1
-
 ```
 
 2、安装nginx

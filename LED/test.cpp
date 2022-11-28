@@ -21,9 +21,9 @@ typedef struct
 int main()
 {
 	a.age = 20;
-	cout << a.>age << endl;
+	cout << a.age << endl;
 	b tom;
 	tom.age = 100;
 	cout << tom.age << endl;
-    	return 0;
+    return 0;
 }
