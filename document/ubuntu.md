@@ -152,3 +152,34 @@ sudo tcpdump portrange 80-10000
 
 ### Q: dig 
 
+### Q:限制cpu核数
+
+- #### MD5SUM /dev/zero
+
+```bash
+> sudo md5sum /dev/zero & 
+```
+
+- #### stress
+
+```bahs 
+stress --cpu 2  # 限制的核数
+```
+
+- ####  屏蔽cpu
+
+某些虚拟化环境允许在运行虚拟机的同时添加或去除 CPU。
+
+要安全去除 CPU，请先执行以下命令以停用这些 CPU
+
+```
+root # echo 0 > /sys/devices/system/cpu/cpuX/online
+```
+
+COPY
+
+请将 *X* 替换为 CPU 编号。要使 CPU 重新联机，请执行
+
+```
+root # echo 1 > /sys/devices/system/cpu/cpuX/online
+```
