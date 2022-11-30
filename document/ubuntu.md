@@ -21,6 +21,8 @@ sudo blkid /dev/sda2
 /dev/sda2: LABEL="Data" UUID="88069947069936E2" TYPE="ntfs" 
 PARTLABEL="Basic data partition" PARTUUID="7170f9a7-9c9f-43d8-
 9916-da47aa9101f7"
+格式化硬盘文件类型：
+sudo mkfs.ext4 /dev/xxxxx 
 4.2修改文件
 打开文件/etc/fstab文件。
 sudo gedit /etc/fstab
