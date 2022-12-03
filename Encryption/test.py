@@ -2,40 +2,26 @@
 # -*- coding: utf-8 -*-
 def encrypt(key, s):
     b = bytearray(str(s).encode("utf-8"))
-    n = len(b)
-    c = bytearray(n*2)
+    c = bytearray(len(b)*2)
     j = 0
-    for i in range(0, n):
-        b1 = b[i]
-        b2 = b1 ^ key
-        c1 = b2 % 19
-        c2 = b2 // 19
-        c1 = c1 + 46
-        c2 = c2 + 46
-        c[j] = c1
-        c[j+1] = c2
+    for i in range(0, len(b)):
+        c[j] = ((b[i] ^ key) % 19) + 46
+        c[j+1] = ((b[i] ^ key) // 19) + 46
         j = j+2
     return c.decode("utf-8")
 
 
 def decrypt(ksa, s):
-    c = bytearray(str(s).encode("utf-8"))
-    n = len(c)
-    if n % 2 != 0:
+    if len(bytearray(str(s).encode("utf-8"))) % 2 != 0:
         return ""
-    n = n // 2
-    b = bytearray(n)
+    b = bytearray(len(bytearray(str(s).encode("utf-8"))) // 2)
     j = 0
-    for i in range(0, n):
-        c1 = c[j]
-        c2 = c[j + 1]
-        j = j + 2
-        c1 = c1 - 46
-        c2 = c2 - 46
-        b2 = c2 * 19 + c1
-        b1 = b2 ^ ksa
-        b[i] = b1
+    for i in range(0, len(bytearray(str(s).encode("utf-8"))) // 2):
+        c1 = (bytearray(str(s).encode("utf-8"))[j]) - 46 
+        c2 = (bytearray(str(s).encode("utf-8"))[j + 1]) -46 
+        j += 2
+        b[i] = (c2 * 19 + c1) ^ ksa
     return b.decode("utf-8")
 
-print(encrypt(11, 'password123'))
-print(decrypt(11, '43<303>3/1.1@041'))
+print(encrypt(1, "echo nvidia|sudo -S chown -R nvidia /data/qtest"))
+print(decrypt(1, '331383=3</>334734373/394.40443=3</4042</1383=324>3</4052</>334734373/3</6043/314/360?31433.414'))
