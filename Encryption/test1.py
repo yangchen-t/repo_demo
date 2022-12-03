@@ -27,6 +27,6 @@ class EncryptStr(object):
 
 if __name__ == '__main__':
     pc = EncryptStr('keyskeyskeyskeys')  # 初始化密钥
-    e = pc.encrypt("passwd123")
+    e = pc.encrypt("192.168.103.77")
     d = pc.decrypt("0e0dbd0509f9eaaafd420b8a2c72cbde")
     print(e, d)

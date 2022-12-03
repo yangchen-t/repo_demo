@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
+# str type
 def encrypt(key, s):
     b = bytearray(str(s).encode("utf-8"))
     c = bytearray(len(b)*2)
@@ -23,5 +25,6 @@ def decrypt(ksa, s):
         b[i] = (c2 * 19 + c1) ^ ksa
     return b.decode("utf-8")
 
+
 print(encrypt(1, "echo nvidia|sudo -S chown -R nvidia /data/qtest"))
-print(decrypt(1, '331383=3</>334734373/394.40443=3</4042</1383=324>3</4052</>334734373/3</6043/314/360?31433.414'))
+print(type(decrypt(66, '/474?3;3/40464;3/4.4@3;31414')))

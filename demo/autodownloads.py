@@ -7,11 +7,12 @@ import subprocess
 
 
 
-class FileAutoDownload():
+class Encryption():
 
-    index = 0 
-
-    def decrypt(ksa, s):
+    def __init__(self) -> None:
+        pass    
+        
+    def decrypt(self,ksa, s):
         if len(bytearray(str(s).encode("utf-8"))) % 2 != 0:
             return ""
         b = bytearray(len(bytearray(str(s).encode("utf-8"))) // 2)
@@ -23,11 +24,16 @@ class FileAutoDownload():
             b[i] = (c2 * 19 + c1) ^ ksa
         return b.decode("utf-8")
 
+
+class FileAutoDownload(Encryption):
+
+    index = 0 
+
     def __init__(
         self, ip , port, username, passwd
         ) -> None:
         # get Permission
-        subprocess.getoutput("{}" (self.decrypt(1, "331383=3</>334734373/394.40443=3</4042</1383=324>3</4052</>334734373/3</6043/314/360?31433.414")))     
+        subprocess.getoutput("{}".format(self.decrypt(1, "331383=3</>334734373/394.40443=3</4042</1383=324>3</4052</>334734373/3</6043/314/360?31433.414")))     
         self.passwd = passwd
         self.username = username
         self.port = port
@@ -58,7 +64,6 @@ class FileAutoDownload():
             remote_dir = remote_dir[0:-1]
 
         for x in sftp.listdir_attr(remote_dir):
-            print(x)
             remote = (remote_dir + "/{}" .format(x.filename))
             local_path = base_local_path + remote
             if stat.S_ISDIR(x.st_mode):
@@ -90,26 +95,25 @@ class FileAutoDownload():
                 print("create: {0} ==> {1}".format(path,local_path))
                 sftp.get(path, local_path)
 
-
-    def print_list(self):
+    def Print_list(self):
         # print(self.remote_all_file_path)
         print(self.remote_all_file_path_dict)
 
-        
-
 def main():
-    fileautodownload = FileAutoDownload(HOST, PORT, USERNAME, PASSWORD)
-    HOST = fileautodownload.decrypt(66, "/474?3;3/40464;3/4.4@3;31414")
-    PORT = fileautodownload.decrypt(55, "3.3.")
-    USERNAME = fileautodownload.decrypt(44, "62:1/271@172/271@10.1291>171")
-    PASSWORD = fileautodownload.decrypt(33, "/3/3;2=1@1=112;1>../@.=.=.")
+    encryption = Encryption()
+    HOST = encryption.decrypt(66, "/474?3;3/40464;3/4.4@3;31414")
+    PORT = 22
+    USERNAME = encryption.decrypt(44, "62:1/271@172/271@10.1291>171")
+    PASSWORD = encryption.decrypt(33, "/3/3;2=1@1=112;1>../@.=.=.")
     REMOTE_DIR = "/data/qtest/"
     LOCAL_PATH = "/data/qtest/"
-    sftp = fileautodownload.Sftp_create()
-    fileautodownload.Get_remote_all_file(sftp, REMOTE_DIR)
-    fileautodownload.Remote_and_local_diff(sftp, LOCAL_PATH)
+    FAD = FileAutoDownload(HOST, PORT, USERNAME, PASSWORD)
+    sftp = FAD.Sftp_create()
+    FAD.Get_remote_all_file(sftp, REMOTE_DIR)
+    FAD.Remote_and_local_diff(sftp, LOCAL_PATH)
 
-    # fileautodownload.print_list()
+    # FAD.Print_list()
 
 if __name__ == "__main__":
     main()
+    print("Synchronization success")
