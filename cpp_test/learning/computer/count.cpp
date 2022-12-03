@@ -15,7 +15,7 @@ public:
     {
         --my_num;
         return *this;
-    }
+    } 
     // 后置递减
     jian operator--(int)
     {
