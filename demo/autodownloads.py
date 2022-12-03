@@ -4,8 +4,9 @@ import time as t
 import stat
 import subprocess
 
-
-
+'''
+function : Incremental backup 
+'''
 
 class Encryption():
 
