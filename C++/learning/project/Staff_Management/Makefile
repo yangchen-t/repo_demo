@@ -1,7 +1,7 @@
 
 CXX = g++
-FILE = staff_management.cpp  workermanage.cpp
-EXECTABLE = test
+FILE = staff_management.cpp workermanage.cpp staff.cpp manager.cpp boss.cpp
+EXECTABLE = out
 CMD = -o
 
 ${EXECTABLE}:${FILE}

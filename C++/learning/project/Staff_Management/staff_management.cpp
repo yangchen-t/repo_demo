@@ -1,28 +1,46 @@
 #include <iostream>
 #include "workermanage.h"
 
+#include "worker.h"
+#include "staff.h"
+#include "manager.h"
+#include "boss.h"
+
 
 using namespace std;
 
 
+void test01()
+{
+    Worker * worker = NULL;
+    worker = new Staff(1, "张三", 1);
+    worker->showinfo();
+    delete worker;
+    worker = new Manager(2, "李四", 2);
+    worker->showinfo();
+    delete worker;
+    worker = new Boss(3, "王二", 3);
+    worker->showinfo();
+    delete worker;   
+}
 
 int main()
 {
-    WorkerManager worker;
+    WorkerManager WM;
     int Choose = 0;
-
 
     while (true)
     {
-        worker.Show_Func();
-        cout << "please input your wank opration number: " << endl;
-        cin >> Choose;
+        WM.Show_Func();
+        cout << "please input your want opration number: " << endl;
+        cin >> Choose;    // received opration
         switch (Choose)
         {
         case 0:
-            worker.Exit_System();
+            WM.Exit_System();
             break;
         case 1:
+            test01();
             break;
         case 2:
             break;
@@ -40,11 +58,7 @@ int main()
             cout << "I do not understand you" << endl;
             break;
         }
-        system("clear");
-
+        // system("clear");
     }
-
-
-
     return 0;
 }
