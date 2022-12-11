@@ -18,6 +18,17 @@ void WorkerManager::Show_Func()
     cout << "=========================================" << endl; 
 }
 
+void WorkerManager::Exit_System()
+{
+    cout << "welcome play again ..." << endl;
+    exit(-1);
+}
+
+void WorkerManager::Add_Staff()
+{
+
+}
+
 WorkerManager::~WorkerManager(){}
 
  

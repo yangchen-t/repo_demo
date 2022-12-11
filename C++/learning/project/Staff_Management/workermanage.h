@@ -11,6 +11,8 @@ public:
     WorkerManager();
 
     void Show_Func();
-    
+    void Exit_System();
+    void Add_Staff();
+
     ~WorkerManager();
 };
