@@ -183,3 +183,21 @@ COPY
 ```
 root # echo 1 > /sys/devices/system/cpu/cpuX/online
 ```
+
+### Q: 查看文件夹的创建时间
+
+- #### stat
+
+1. stat filename /dir   //       ls -i filename 
+
+1. 获取文件inode号 
+
+- #### df -h 
+
+1. df -Th 
+2. 找到对应的磁盘
+
+- ####  debugfs
+
+1. sudo debugfs -R 'stat  <Inode>'  /dev/device
+2. crtime 为创建的时间
