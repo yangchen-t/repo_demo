@@ -40,7 +40,7 @@ int main()
             WM.Exit_System();
             break;
         case 1:
-            test01();
+            WM.Add_Staff();
             break;
         case 2:
             break;
