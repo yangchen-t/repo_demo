@@ -14,22 +14,22 @@ using namespace std;   // 使用标准命名空间
 class WorkerManager
 {
 public:
-    WorkerManager();
+    int m_staff;
+    Worker ** m_workarray;
+    bool m_FILEISEMPTY;
 
+    WorkerManager();
     void Show_Func();
 // 0    
     void Exit_System();
 // 1
-    int m_staff;
-    Worker ** m_workarray;
-    bool m_FILEISEMPTY;
     void Add_Staff();
     void save();
     int get_staffnum();
     void init_staff();
 // 2
     void show_staff();
-
+// 3
 
     ~WorkerManager();
 };

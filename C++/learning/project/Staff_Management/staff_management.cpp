@@ -9,21 +9,6 @@
 
 using namespace std;
 
-
-void test01()
-{
-    Worker * worker = NULL;
-    worker = new Staff(1, "张三", 1);
-    worker->showinfo();
-    delete worker;
-    worker = new Manager(2, "李四", 2);
-    worker->showinfo();
-    delete worker;
-    worker = new Boss(3, "王二", 3);
-    worker->showinfo();
-    delete worker;   
-}
-
 int main()
 {
     WorkerManager WM;
@@ -63,3 +48,18 @@ int main()
     }
     return 0;
 }
+
+
+// void test01()
+// {
+//     Worker * worker = NULL;
+//     worker = new Staff(1, "张三", 1);
+//     worker->showinfo();
+//     delete worker;
+//     worker = new Manager(2, "李四", 2);
+//     worker->showinfo();
+//     delete worker;
+//     worker = new Boss(3, "王二", 3);
+//     worker->showinfo();
+//     delete worker;   
+// }

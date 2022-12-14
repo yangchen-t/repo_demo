@@ -77,7 +77,8 @@ void WorkerManager::Add_Staff()
     if (AddNum > 0)
     {
         int NewSize = this->m_staff + AddNum;
-        Worker ** newSpace = new Worker*[NewSize];
+        // create new space
+        Worker ** newSpace = new Worker*[NewSize];   
         if (this->m_workarray != NULL)
         {
             for (int i =0; i < this->m_staff; i++)
@@ -115,7 +116,7 @@ void WorkerManager::Add_Staff()
             default:
                 break;
             }
-            newSpace[this->m_staff + i] = addworker;
+            newSpace[this->m_staff + i] = addworker;   // add new staff 
         }
         
         delete[] this->m_workarray; 
@@ -158,7 +159,7 @@ int WorkerManager::get_staffnum()
         count++;
     }
     ifs.close();
-    return count;
+    return count;   // count data 
 }
 void WorkerManager::init_staff()
 {
@@ -187,7 +188,7 @@ void WorkerManager::init_staff()
         default:
             break;
         }
-        this->m_workarray[index] = worker;
+        this->m_workarray[index] = worker;  //  add new array size;
         index++;
     }
     ifs.close();
@@ -211,8 +212,6 @@ void WorkerManager::show_staff()
     system("sleep 5");
     system("clear");
 }
-
-
 
 WorkerManager::~WorkerManager()
 {
