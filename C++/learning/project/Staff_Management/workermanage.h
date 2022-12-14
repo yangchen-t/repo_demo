@@ -30,6 +30,7 @@ public:
 // 2
     void show_staff();
 // 3
+    void del_staff();
 
     ~WorkerManager();
 };

@@ -213,6 +213,12 @@ void WorkerManager::show_staff()
     system("clear");
 }
 
+// 3 
+void WorkerManager::del_staff()
+{
+    
+}
+
 WorkerManager::~WorkerManager()
 {
     if (this->m_workarray != NULL)

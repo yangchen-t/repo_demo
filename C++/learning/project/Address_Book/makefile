@@ -1,2 +1,15 @@
+
+CXX = g++
+SRC = scripts.cpp function_implementation.cpp 
+EXECUTABEL = scripts test
+CMD = -o
+
+scripts:scripts.cpp
+	@${CXX} ${SRC} ${CMD} scripts
+
 test:test.cpp
-	@g++ test.cpp -o test
+	@${CXX}] test.cpp {CMD} test
+
+
+cl:
+	@rm -r ${EXECUTABEL}
