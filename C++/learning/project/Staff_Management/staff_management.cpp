@@ -43,6 +43,7 @@ int main()
             WM.Add_Staff();
             break;
         case 2:
+            WM.show_staff();
             break;
         case 3:
             break;
