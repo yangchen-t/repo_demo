@@ -27,10 +27,20 @@ public:
     void save();
     int get_staffnum();
     void init_staff();
+    bool isRepetition(int id);
 // 2
     void show_staff();
 // 3
-    void del_staff();
-
+    int isExist(int id);
+    void Del_Staff();
+// 4 
+    void Modify_staff();
+// 5 
+    void Find_staff();
+// 6 
+    void Sort_staff();
+// 7 
+    void Clear_staff();
+    
     ~WorkerManager();
 };

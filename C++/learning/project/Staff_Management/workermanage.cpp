@@ -94,6 +94,11 @@ void WorkerManager::Add_Staff()
 
             cout << "please input " << i + 1 << " new staff Quantity : " << endl;
             cin >> id;
+            if (this->isRepetition(id))
+            {
+                cout << "id is repeat" << endl;
+                return;
+            }
             cout << "please input " << i + 1 << " new staff Name : " << endl;
             cin >> name;  
             cout << "please select staff post:" << endl;
@@ -193,6 +198,19 @@ void WorkerManager::init_staff()
     }
     ifs.close();
 }
+bool WorkerManager::isRepetition(int id)
+{
+    bool Flag = false;
+    for (int i = 0; i < m_staff; i++)
+    {
+        if (this->m_workarray[i]->m_Id == id)
+        {
+            Flag = true;
+            break;
+        }
+    }
+    return Flag;
+}
 
 // 2 
 void WorkerManager::show_staff()
@@ -209,22 +227,257 @@ void WorkerManager::show_staff()
         }
         
     }
-    system("sleep 5");
-    system("clear");
+    system("sleep 2");
+    // system("clear");
 }
 
 // 3 
-void WorkerManager::del_staff()
+int WorkerManager::isExist(int id)
 {
+    int index = -1;
+    for (int i = 0; i < this->m_staff; i++)
+    {
+        if (this->m_workarray[i]->m_Id == id)
+        {
+            index = i;
+            break;
+        }
+    } 
+    return index;
+} 
+
+void WorkerManager::Del_Staff()
+{
+    if (this->m_FILEISEMPTY)
+    {
+        cout << "file open failed or file is not exist" << endl;
+    }
+    else
+    {
+        cout << "please input want del staff number or id" << endl;
+        int index = 0;
+        cin >> index;
+        int ret = this->isExist(index);
+        if (ret != -1)
+        {
+            for (int i = ret; i < this->m_staff -1; i++)
+            {
+                this->m_workarray[i] = this->m_workarray[i+1];
+            }
+            this->m_staff--;
+            cout << "del finish" << endl;
+            this->save();
+        }
+        else
+        {
+            cout << "input id is invaild!" << endl;
+        }
+    }
+}
+// 4 
+void WorkerManager::Modify_staff()
+{
+    if (this->m_FILEISEMPTY)
+    {
+        cout << "file open failed or file is not exist" << endl;
+    }
+    else
+    {
+        int index = 0;
+        cout << "please input want modify staff id" << endl;
+        cin >> index;
+        int ret = this->isExist(index);
+        if (ret != -1)
+        {
+            delete this->m_workarray[ret];
+            int newid = 0;
+            string newname = "";
+            int newDepartment = 0;
+
+            cout << "select finish id: " << index << endl;
+            cout << "please modify new staff id: " << endl;
+            cin >> newid;
+            cout << "please modify new staff name: " << endl;
+            cin >> newname;
+            cout << "please select staff post:" << endl;
+            cout << " 1，Normal staff " << endl;
+            cout << " 2, Manager " << endl;
+            cout << " 3, Boss " << endl;
+            cin >> newDepartment; 
+            Worker * addworker = NULL;
+            switch (newDepartment)
+            {
+            case 1:
+                addworker = new Staff(newid, newname, newDepartment);
+                break;
+            case 2:
+                addworker = new Manager(newid, newname, newDepartment);
+                break;            
+            case 3:
+                addworker = new Boss(newid, newname, newDepartment);
+                break;
+            default:
+                break;
+            }
+            this->m_workarray[ret] = addworker;
+            cout << "success" << endl;
+            this->save();
+        }
+        else
+        {
+            cout << "Modify failed, index select is not exist" << endl; 
+        }
+
+    }
+
+}
+// 5 
+void WorkerManager::Find_staff()
+{
+    if (this->m_FILEISEMPTY)
+    {
+        cout << "file open failed or file is not exist" << endl;
+    }
+    else
+    {
+        cout << "Please select how you want to find it" << endl;
+        cout << "1. Search by employee number" << endl;
+        cout << "2. Search by employee name" << endl;
+        int select = 0;
+        cin >> select;
+        if (select == 1)
+        {
+            cout << "please input search staff id: " << endl;
+            int id = 0;
+            cin >> id;
+            if (this->isExist(id) != -1)
+            {
+                cout << "search finish, print msg" << endl;
+                this->m_workarray[this->isExist(id)]->showinfo();
+            }
+            else
+            {
+                cout << "search failed" << endl;
+            }
+        }
+        else if (select == 2)
+        {
+            string newname;
+            cout << "please input search staff name:" << endl;
+            cin >> newname;
+            bool flag = false;
+            for (int i = 0; i < m_staff; i++)
+            {
+                if (this->m_workarray[i]->m_Name == newname)
+                {
+                    flag = true;
+                    this->m_workarray[i]->showinfo();
+                }
+            }
+            if (!flag)
+            {
+                cout << "search error,please retry!" << endl;
+            }
+        }
+        else
+        {
+            cout << "Do not understand what you want to use the search method" << endl;
+        }
     
+         
+    }
+}
+// 6 
+void WorkerManager::Sort_staff()
+{
+    if (this->m_FILEISEMPTY)
+    {
+        cout << "file open failed or file is not exist" << endl;
+    }
+    else
+    {
+        int select = 0;
+        cout << "Select the method for sorting" << endl;
+        cout << "1. Positive order" << endl;
+        cout << "2. Reverse  order" << endl;
+        cin >> select;
+        for (int i = 0; i < this->m_staff; i++)
+        {
+            int minormax = i;
+            for (int j = i+1 ; j < this->m_staff; j++)
+            {
+                if (select == 1)
+                {
+                    if(this->m_workarray[minormax]->m_Id > this->m_workarray[j]->m_Id)
+                    {
+                        minormax = j;
+                    }
+                }
+                else
+                {
+                    if(this->m_workarray[minormax]->m_Id < this->m_workarray[j]->m_Id)
+                    {
+                        minormax = j;
+                    }
+                }
+            }
+
+            if (i != minormax)
+            {
+                Worker * temp = this->m_workarray[i];
+                this->m_workarray[i] = this->m_workarray[minormax];
+                this->m_workarray[minormax] = temp;
+            }
+        } 
+    }
+    cout << "sort success" << endl;
+    this->save();
+    this->show_staff();
+}
+// 7 
+void WorkerManager::Clear_staff()
+{
+    cout << "Are you sure you want to clear everything?" << endl;
+    cout << "1. Y" << endl;
+    cout << "2. N" << endl;
+    int select = 0;cin >> select;
+    if (select == 1)
+    {
+        ofstream ofs(FILENAME, ios::trunc);
+        ofs.close();
+
+        if (this->m_workarray != NULL)
+        {
+            for (int i = 0; i < m_staff; i++)
+            {
+                if (this->m_workarray[i] != NULL)
+                {
+                    delete this->m_workarray[i];
+                    this->m_workarray[i] = NULL;
+                }
+            }
+            this->m_staff = 0;
+            delete[] this->m_workarray;
+            this->m_workarray = NULL;
+            this->m_FILEISEMPTY = true;
+        }
+    }
+    cout << "clear finish" << endl;
 }
 
 WorkerManager::~WorkerManager()
 {
     if (this->m_workarray != NULL)
     {
+        for (int i = 0; i < m_staff; i++)
+        {
+            if (this->m_workarray[i] != NULL)
+            {
+                delete this->m_workarray[i];                
+            }
         delete[] this->m_workarray;
         this->m_workarray = NULL;
+        }
     }
 }
 

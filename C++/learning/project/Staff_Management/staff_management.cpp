@@ -17,7 +17,7 @@ int main()
     while (true)
     {
         WM.Show_Func();
-        cout << "please input your want opration number: " << endl;
+        cout << "please input your want opration number: " << endl; 
         cin >> Choose;    // received opration
         switch (Choose)
         {
@@ -31,14 +31,19 @@ int main()
             WM.show_staff();
             break;
         case 3:
+            WM.Del_Staff();
             break;
         case 4:
+            WM.Modify_staff();
             break;
         case 5:
+            WM.Find_staff();
             break;
         case 6:
+            WM.Sort_staff();
             break;
         case 7:
+            WM.Clear_staff();
             break;
         default:
             cout << "I do not understand you" << endl;
