@@ -86,7 +86,7 @@ function log_search_copy_pre()
 {
     beijing_date=`date -d "8 hour" +%Y-%m-%d-%H-%M%S`
     cd /data/code/all_ws/ws/
-    ls /data/code/all_ws/ws/*.log* | xargs -I  {} cp {}  /data/code/all_ws/ws/igv_log/{}-${beijing_date}.log
+    ls *.log* | xargs -I  {} cp {}  /data/code/all_ws/ws/igv_log/{}-${beijing_date}.log
 }
 
 function log_search_copy_post(){
@@ -200,8 +200,8 @@ function upload_to_gcs(){
         echo -e "\033[031m数据因为网络原因传输失败，请联系管理员\033[0m"
         exit 0
     else
-        echo "========================================请把以下路径粘贴到issue==================================="
-        echo ${UPLOAD_PATH}/${UPLOAD_LOG_NAME}.tar.gz
+        echo "========================================数据传输至地面站============================================"
+        echo "/key_log/key_log/${UPLOAD_LOG_NAME}.tar.gz"
         echo "=================================================================================================="
     fi
 }
@@ -287,6 +287,9 @@ case "$MODE" in
 if [[ "${HOSTNAME}" =~ ^nh.* ]];then
     main
     upload_to_nas
+elif [[ "${HOSTNAME}" =~ ^ctn* ]];then
+    main
+    upload_to_gcs
 else 
     echo "所在项目不支持"
 fi
