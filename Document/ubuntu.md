@@ -144,7 +144,7 @@ sudo tcpdump -e
 sudo tcpdump portrange 80-10000
 ```
 
-### Q:    iftop
+### Q:  iftop
 
 ### Q:  nmap 
 
@@ -200,4 +200,58 @@ root # echo 1 > /sys/devices/system/cpu/cpuX/online
 - ####  debugfs
 
 1. sudo debugfs -R 'stat  <Inode>'  /dev/device
-2. crtime 为创建的时间
+2. crtime 为创建的时间Q
+
+### Q: 脚本自动传参 tab补全
+
+template
+
+>complete   : https://www.jianshu.com/p/aa140acbfa62
+>
+>sudo apt install bash-completion
+
+```bash
+# demo.sh
+#!/bin/bash
+
+case "$1:$2:$3" in 
+edit:test2-2:)
+    echo "ok !!!!!!!!!!!"
+;;
+info::)
+    echo "info"
+;;
+gateway::)
+    echo "gateway"
+;;
+test:test1-3:)
+	echo "test ok !!!!!!"
+;;
+esac 
+```
+
+```bash
+# tools         save path : /etc/bash-completion.d/
+#!/bin/bash
+
+function _test_tools(){
+        case $COMP_CWORD in
+        1)
+                COMPREPLY=($(compgen -W "info gateway edit test" -- ${COMP_WORDS[COMP_CWORD]}))
+                ;;
+        2)
+                if [[ ${COMP_WORDS[1]} == "test" ]];then
+                COMPREPLY=($(compgen -W "test1-1 test1-2 test1-3" -- ${COMP_WORDS[COMP_CWORD]}))
+                fi
+                if [[ ${COMP_WORDS[1]} == "edit" ]];then
+                COMPREPLY=($(compgen -W "test2-1 test2-2 test2-3 test2-4" -- ${COMP_WORDS[COMP_CWORD]}))
+                fi
+                ;;
+        esac
+}
+
+complete -F _test_tools demo.sh
+```
+
+
+
