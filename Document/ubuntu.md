@@ -253,5 +253,15 @@ function _test_tools(){
 complete -F _test_tools demo.sh
 ```
 
+other cfg   # add auto source 
+
+```bash
+# vim ~/.bashrc or .zshrc
+for i in $(ls /etc/bash_completion.d/)
+do
+        . /etc/bash_completion.d/$i
+done
+```
+
 
 
