@@ -7,14 +7,12 @@
 ```bash 
 https://developer.nvidia.com/embedded/downloads
 sudo wget https://developer.nvidia.com/embedded/l4t/r32_release_v7.1/sources/t186/public_sources.tbz2
-bzip2 -d public_sources.tbz2
-tar -xvf public_sources.tar
+bzip2 -d public_sources.tbz2 && tar -xvf public_sources.tar
 cd Linux_for_Tegra/source/public/
 cp kernel_src.tbz2 ~
- bzip2 -d kernel_src.tbz2
- tar -xvf kernel_src.tar
- cd kernel/kernel-5.10/tools/perf 
- make && sudo cp perf  /usr/bin/perf
+cd ~ && bzip2 -d kernel_src.tbz2 && tar -xvf kernel_src.tar
+cd kernel/kernel-4.9/tools/perf 
+make && sudo cp perf  /usr/bin/perf
 ```
 
 ## 使用：
