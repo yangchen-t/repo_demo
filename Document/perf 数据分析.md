@@ -67,6 +67,23 @@ sudo perf script -i perf.data &> perf.unfold
 sudo perf script | FlameGraph/stackcollapse-perf.pl | FlameGraph/flamegraph.pl > perf.svg
 ```
 
+```bash
+perf report 讲解
+self： self记录的是最后一列的符号（可以理解为函数）本身的采样书占总采样数的百分比
+目的： 找到最底层的热点函数
+children： 记录的是这个符号调用的其他符号（理解为子函数，包括直接调用和间接调用）的采样数之和占总采样数的百分比
+目的： 找到较高层的热点函数
+
+# self 高是占用比较多  采样抽查比较多
+# children 多是调用占用比较高的父函数
+```
+
+
+
+
+
+
+
 
 
 # `pprof监测C/C++程序`
