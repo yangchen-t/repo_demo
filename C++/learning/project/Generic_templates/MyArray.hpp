@@ -23,7 +23,7 @@ public:
         this->C_Capacity = arr.C_Capacity;
         this->C_Size = arr .C_Size;
         this->pAddress = new T[arr.C_Capacity]；  //  深拷贝
-        // 假设数组有数据情况下
+        // 假设数组有数据情况下,进行数据拷贝
         for (int i = 0; i < this,C_Size; i++)
         {
             this.pAddress[i] = arr->pAddress[i];
