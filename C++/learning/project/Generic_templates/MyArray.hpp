@@ -54,6 +54,49 @@ public:
         return * this;
     }
 
+    // 尾插法
+    void Push_Back(const T & val)
+    {
+        // 判断容量是否等于大小
+        if (this->C_Capacity == this->C_Size)
+        {
+            cout << "capcacity is Max";
+            return;
+        }
+        this->pAddress[this->C_Size] = val; // insert new var
+        this->C_Size++;      // update array size
+    }
+
+    // 尾删法
+    void Pop_Back()
+    {
+        // 让用户访问不到最后一个元素  <逻辑删除>
+        if (this->C_Size == 0)
+        {
+            cout << "size is emtry";
+            return;
+        }
+        this->C_Size--;
+    }
+
+    // 下标访问
+    T& operator[](int index)
+    {
+        return this->pAddress[index];
+    }
+
+    // return size
+    void Get_size()
+    {
+        cout << "size :" << this->C_Size << endl;
+    }
+
+    // return capacity
+    void Get_capacity()
+    {
+        cout << "capacity" << this->C_Capacity << endl;
+    }
+
     ~MyArray()
     {
         if (this->pAddress != NULL)
