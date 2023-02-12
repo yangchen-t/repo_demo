@@ -1,4 +1,4 @@
-#  C++学习
+#  C++
 
 ## 说明:
 
@@ -1077,21 +1077,72 @@ STL六大组件
 
 支持读写操作 向前/向后操作，跳跃式方式访问任何数据， - 功能最强的迭代器
 
+### 容器算法迭代器初识：
 
+>了解STL中容器 算法 迭代器概念之后，我们利用代码感受STL的魅力
+>
+>STL最常用的容器就是Vector,可以理解为数组，下面举例如何向这个容器插入数据，并遍历这个容器
 
+#### Vector存放内置数据类型：
 
+容器 ：Vector
 
+算法： for_each
 
+迭代器： vector<int>::interator
 
+#### String 基本概念：
 
+>本质：
+>
+>string 是C++ 风格的字符串，而string本质上是一个类
 
+>string 和char * 区别：
+>
+>char * 是一个指针
+>
+>string 是一个类，类内部封装了char * ，管理这个字符串，是一个char*型的容器
 
+特点：
 
+- string 类内部封装了很多成员方法
+- 例如： 查找find 拷贝copy, 删除 delete,替换replace,插入insert
+- string 管理char*所分配的内存，不用担心复制越界和取值越界等，由类内部进行负责
 
+string 构造函数：
 
+构造函数原型：
 
+>功能： 构造 string 
 
+- string();   // 创建一个空的字符串，例如： string str;
+- string(const char * s );             // 使用字符串S初始化
+- string(const string & str);        // 使用一个string对象初始化另一个string对象
+- string(int n, char c );                 // 使用n个字符c初始化
 
+string赋值操作:
+
+>功能： 给string字符串进行赋值
+
+- string & operator=(const char * s );      // char * 类型字符串 赋值给当前的字符串
+- string & operator=(const string & s);    //  把字符串S赋给当前的字符串
+- string & operator=(char c);                     // 字符赋值给当前的字符串
+- string & assign(const char * s);              // 把字符串s赋值给当前的字符串
+- string & assign(const char * s, int n);    // 把字符串s的前n个字符赋给当前的字符串
+- string & assign(const string & s);           // 把字符串s赋给当前字符串
+- string & assign(int n, char c);                  // 用n个字符c赋给当前字符串
+
+string 字符串拼接：
+
+>功能： 实现在字符串末尾拼接字符串
+
+- string & operator+=(const char * str);             // 重载+=操作符
+- string & operator+=(const char c);                   // 重载+=操作符
+- string & operator+=(const string & str);          // 重载+=操作符
+- string & append(const char * s);                      // 把字符串s链接到当前字符串结尾
+- string & append(const char * s, int n);            // 把字符串s的前n个字符链接到当前字符串结尾
+- string & append(const string & s);                   // 同operator+=(const string & str)
+- string & append(const string & s, int pos, int n);   //字符串S中从pos开始的n个字符链接到字符串结尾
 
 
 

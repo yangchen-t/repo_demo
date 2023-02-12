@@ -4,7 +4,7 @@
 
 
 
-### Q：如何设置磁盘的自动挂载？
+## Q：如何设置磁盘的自动挂载？
 
 ```shell
 A：
@@ -37,7 +37,7 @@ UUID=88069947069936E2 /mnt/data ntfs defaults  0  2
 请注意：如若改错，无法进入桌面，系统无法系统，意味着系统崩溃！请再三核对！否则只有重新安装系统!!       #谨慎操作
 ```
 
-### Q： 如何实现scp 断点续传
+## Q： 如何实现scp 断点续传
 
 ```shell
 # rsync -P --rsh=ssh pic.tar.gz 192.168.205.304:/home/199_home.tar
@@ -47,7 +47,7 @@ UUID=88069947069936E2 /mnt/data ntfs defaults  0  2
 -rsh=ssh 表示使用ssh协议传送数据
 ```
 
-### 	Q:  显卡及显卡驱动
+## 	Q:  显卡及显卡驱动
 
 ```bash
 ## 查看显卡驱动信息
@@ -65,7 +65,7 @@ nvidia-smi -L
 
 
 
-### Q:   tcpdump
+## Q:   tcpdump
 
 ```bash
 > tcpdump 
@@ -144,7 +144,7 @@ sudo tcpdump -e
 sudo tcpdump portrange 80-10000
 ```
 
-### Q:  iftop
+## Q:  iftop
 
 ```bash
 界面相关说明：
@@ -173,13 +173,13 @@ rates：分别表示过去 2s 10s 40s 的平均流量
 
 
 
-### Q:  nmap 
+## Q:  nmap 
 
-### Q: mcjoin
+## Q: mcjoin
 
-### Q: dig 
+## Q: dig 
 
-### Q:限制cpu核数
+## Q:限制cpu核数
 
 - #### MD5SUM /dev/zero
 
@@ -211,7 +211,7 @@ COPY
 root # echo 1 > /sys/devices/system/cpu/cpuX/online
 ```
 
-### Q: 查看文件夹的创建时间
+## Q: 查看文件夹的创建时间
 
 - #### stat
 
@@ -229,7 +229,7 @@ root # echo 1 > /sys/devices/system/cpu/cpuX/online
 1. sudo debugfs -R 'stat  <Inode>'  /dev/device
 2. crtime 为创建的时间Q
 
-### Q: 脚本自动传参 tab补全
+## Q: 脚本自动传参 tab补全
 
 template
 
@@ -290,5 +290,36 @@ do
 done
 ```
 
+## Q: C++编译保留coredump文件
 
+```bash
+> ulimit -c  
+0表示没有打开，unlimited表示不限制产生文件大小   
+# ulimit -c unlimited  打开core文件生成且不限制    ulimit -c 4194304(示例设置2G，单位为kbyte)
+临时修改：
+修改/proc/sys/kernel/core_pattern文件，但/proc目录本身是动态加载的，每次系统重启都会重新加载，因此这种方法只能作为临时修改
+> echo /tmp/corefile/core-%e-%p-%t > /proc/sys/kernel/core_pattern
+永久修改：
+> vim /etc/sysctl.conf
+'kernel.core_pattern = /tmp/corefile/core-%e-%p-%t'
+'kernel.core_uses_pid = 0'
+# 添加这两行 
+#kernel.core_uses_pid 这个参数控制core文件的文件名是否添加pid作为扩展，如果这个文件的内容被配置成1，即使core_pattern中没有设置%p，最后生成的core dump文件名仍会加上进程ID
+> sysctl –p /etc/sysctl.conf   # 使生效
+
+参数list:
+%p - insert pid into filename 添加pid(进程id)
+%u - insert current uid into filename 添加当前uid(用户id)
+%g - insert current gid into filename 添加当前gid(用户组id)
+%s - insert signal that caused the coredump into the filename 添加导致产生core的信号
+%t - insert UNIX time that the coredump occurred into filename 添加core文件生成时的unix时间
+%h - insert hostname where the coredump happened into filename 添加主机名
+%e - insert coredumping executable name into filename 添加导致产生core的命令名
+```
+
+## Q: **GDB**
+
+```c++
+gdb ./a.out coredump.xxxx 
+```
 
