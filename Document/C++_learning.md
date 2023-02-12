@@ -1,5 +1,9 @@
 #  C++
 
+[TOC]
+
+
+
 ## 说明:
 
 ```c++
@@ -1003,7 +1007,7 @@ C++ 提供两种模板机制：函数模板和类模板
     如果父类是类模板，子类需要指定出父类中T的数据类型
 ```
 
-## STL初始
+# STL初始
 
 STL诞生：
 
@@ -1077,7 +1081,7 @@ STL六大组件
 
 支持读写操作 向前/向后操作，跳跃式方式访问任何数据， - 功能最强的迭代器
 
-### 容器算法迭代器初识：
+## 容器算法迭代器初识：
 
 >了解STL中容器 算法 迭代器概念之后，我们利用代码感受STL的魅力
 >
@@ -1144,11 +1148,24 @@ string 字符串拼接：
 - string & append(const string & s);                   // 同operator+=(const string & str)
 - string & append(const string & s, int pos, int n);   //字符串S中从pos开始的n个字符链接到字符串结尾
 
+string查找与替换：
 
+>功能：
+>
+>查找： 查找指定字符串是否存在
+>
+>替换： 在指定的位置替换字符串
 
-
-
-
+- int find(const string & str, int pos = 0) const;                 //查找str第一次出现位置，从pos开始查找
+- int find(const char * s, int pos = 0) const;                       // 查找s第一次出现位置，从pos开始查找
+- int find(const char * s, int pos, int n) const;                   // 从pos位置查找s的前n个字符第一次位置
+- int find(const char c , int pos = 0) const;                         // 查找字符C第一次出现位置
+- int rfind(const string & str, int pos= npos) const;          // 查找str最后一次位置，从pos开始查找
+- int rfind(const char * s, int pos = npos) const;               // 查找s最后一次出现位置，从pos开始查找
+- int rfind(const char * s, int pos, int n) const;                  // 从pos查找S的前n个字符最后一次位置
+- int rfind(const char c , int pos = 0) const;                        // 查找字符C最后一次出现位置
+- string & replace(int pos, int n, const string & str);         // 替换从pos开始n个字符为字符串str
+- string & replace(int pos, int n, const char * s);               // 替换从pos开始的n个字符为字符串s
 
 
 

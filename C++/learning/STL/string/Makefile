@@ -1,7 +1,7 @@
 
 Build = g++ 
-Src = vector.cpp
-Executable  = vector 
+Src = find.cpp
+Executable  = find 
 Cmd = -o 
 
 ${Executable}:${Src}
