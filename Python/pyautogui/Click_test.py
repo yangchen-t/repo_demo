@@ -23,7 +23,7 @@ def Test_login_durable():
     t.sleep(1)
     auto.moveTo(100, 100, duration=Duration)        # 移动到密码输入窗口
     auto.click()                                    # 鼠标单击
-    auto.typewrite(LOGIN_PASSWD, interval=0.5)        # 输入登录密码
+    auto.typewrite(LOGIN_PASSWD, interval=0.5)      # 输入登录密码
     auto.click(x=100, y=200, duration=Duration)     # 移动到登录按钮并点击
 
 def Exit():
@@ -36,7 +36,7 @@ def Exit():
     t.sleep(1) 
     auto.moveTo(100, 100, duration=Duration)        # 移动到密码输入窗口
     auto.click()                                    # 鼠标单击
-    auto.typewrite(LOGIN_PASSWD, interval=0.5)        # 输入登入密码
+    auto.typewrite(LOGIN_PASSWD, interval=0.5)      # 输入登入密码
     auto.click(x=100, y=200, duration=Duration)     # 移动到退出按钮并点击
 
 
