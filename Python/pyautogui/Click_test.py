@@ -58,7 +58,7 @@ def main():
         t.sleep(1)
         Exit()
         COUNT += 1 
-        with open(".test.log","w+") as f:
+        with open("test.log","w+") as f:
             print(COUNT,file=f)
             f.close()
 
