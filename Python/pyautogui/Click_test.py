@@ -16,32 +16,44 @@ COUNT = 0                   # 统计次数
 
 def Test_login_durable():
     auto.doubleClick(x=388, y=178, button="left")   # 打开 可执行文件
-    t.sleep(60)
-    auto.moveTo(12, 6, duration=Duration)        # 移动到三个点
-    auto.click(x=98, y=42, duration=Duration)     # 点击登入选项
-    t.sleep(1)
-    auto.moveTo(950, 551, duration=Duration)        # 移动到账号输入窗口
+    t.sleep(15)
+    auto.doubleClick(x=12, y=6, button="left")
+    # 移动到三个点
+    auto.doubleClick(x=98, y=42)     # 点击登入选项
+    t.sleep(0.2)
+    auto.doubleClick(x=951, y=551, button="left")
+    # 移动到账号输入窗口
     auto.click()                                    # 鼠标单击
+    t.sleep(0.2)
     auto.typewrite(LOGIN_USER, interval=0.5)        # 输入登录用户名 
     t.sleep(1)
-    auto.moveTo(954, 578, duration=Duration)        # 移动到密码输入窗口
+    auto.doubleClick(x=954, y=578, button="left")
+    # 移动到密码输入窗口
     auto.click()                                    # 鼠标单击
+    t.sleep(0.2)
     auto.typewrite(LOGIN_PASSWD, interval=0.5)      # 输入登录密码
-    auto.click(x=994, y=619, duration=Duration)     # 移动到登录按钮并点击
+    t.sleep(0.2)
+    # 移动到登录按钮并点击
+    auto.doubleClick(x=995, y=619, button="left")
 
 def Exit():
-    auto.moveTo(12, 6, duration=Duration)        # 移动到三个点  
-    auto.click(x=93, y=643, duration=Duration)     # 点击退出选项  
+    auto.doubleClick(x=12, y=6, button="left")      # 移动到三个点  
+    auto.click(x=93, y=643, duration=Duration) 
+    # 点击退出选项 
+    auto.doubleClick(x=951, y=551, button="left")
+    # 移动到账号输入窗口
+    auto.click()                                    # 鼠标单击
+    t.sleep(0.2)
+    auto.typewrite(LOGIN_USER, interval=0.5)        # 输入登录用户名 
     t.sleep(1)
-    auto.moveTo(950, 551, duration=Duration)        # 移动到账号输入窗口
+    auto.doubleClick(x=954, y=578, button="left")
+    # 移动到密码输入窗口
     auto.click()                                    # 鼠标单击
-    auto.typewrite(LOGIN_USER, interval=0.5)        # 输入用户名1
-    t.sleep(1) 
-    auto.moveTo(954, 578, duration=Duration)        # 移动到密码输入窗口
-    auto.click()                                    # 鼠标单击
-    auto.typewrite(LOGIN_PASSWD, interval=0.5)      # 输入登入密码
-    auto.click(x=994, y=619, duration=Duration)     # 移动到退出按钮并点击
-
+    t.sleep(0.2)
+    auto.typewrite(LOGIN_PASSWD, interval=0.5)      # 输入登录密码
+    t.sleep(0.2)
+    # 移动到退出按钮并点击
+    auto.doubleClick(x=994, y=619, button="left")
 
 def main():
     if (TIMES == ""):
