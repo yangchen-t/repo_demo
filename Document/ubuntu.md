@@ -173,6 +173,92 @@ rates：分别表示过去 2s 10s 40s 的平均流量
 
 
 
+## Q:iperf
+
+>
+>
+>Iperf 是一个网络性能测试工具。Iperf可以测试TCP和UDP带宽质量。Iperf可以测量最大TCP带宽，具有多种参数和UDP特性。Iperf可以报告带宽，延迟抖动和数据包丢失。所以三种协议（udp.tcp，icmp）可以用iperf测试
+
+
+
+>**TCP**
+>
+>
+>
+>测量网络带宽
+>
+>报告MSS/MTU值的大小和观测值
+>
+>支持TCP窗口值通过套接字缓冲
+>
+>当P线程或Win32线程可用时，支持多线程。客户端与服务端支持同时多重连接
+>
+>
+>
+>**UDP**
+>
+>
+>
+>客户端可以创建指定带宽的UDP流
+>
+>测量丢包
+>
+>测量延迟
+>
+>支持多播
+
+安装： sudo apt update ;sudo apt install iperf
+
+```bash
+参数说明：
+-s ：以server模式启动，iperf -s
+-c host ： 以client模式启动，host是server端ip，iperf -c 222.35.11.23
+通用参数：
+-f [kmKM] 分别表示以Kbits, Mbits, KBytes, MBytes显示报告，默认以Mbits为单位,
+-i sec 以秒为单位显示报告间隔
+-l 缓冲区大小，默认是8KB,
+-m 显示tcp最大mtu值
+-o 将报告和错误信息输出到文件
+-p 指定服务器端使用的端口或客户端所连接的端口
+-u 使用udp协议
+-w 指定TCP窗口大小，默认是8KB
+-B 绑定一个主机地址或接口（当主机有多个地址或接口时使用该参数）
+-C 兼容旧版本（当server端和client端版本不一样时使用）
+-M 设定TCP数据包的最大mtu值
+-N 设定TCP不延时
+-V 传输ipv6数据包
+
+server 专用参数说明：
+-D 以服务方式运行。
+-R 停止iperf服务。针对-D
+client 专用参数：
+-d 同时进行双向传输测试
+-n 指定传输的字节数，
+-r 单独进行双向传输测试
+-t 测试时间，默认20秒,
+-F 指定需要传输的文件
+-T 指定ttl值
+
+udp 举例： 
+server ：iperf -u -s         # iperf server 启动监听udp                   
+client : iperf -c 10.182.83.13 -u -b 600m    # iperf cilent -c ip -u udp方式 -b 600m  最大发送带宽600M
+举例2：
+cilent : iperf -u -c 10.12.23.47 -p 8080 -l 1380  -B 10.12.32.45 -t 10 -i 1 -b 200M
+参数解释：
+1) 测试对端是10.12.23.47
+2) 测试对端的端口是8080
+3) 数据包大小是1380个字节
+4) 绑定本地网卡10.12.32.45
+5) 测试持续10秒钟
+6) 每隔1秒钟打印一次信息
+7) 最大发送带宽200M
+server : iperf -s -u -i 1 -p 8080 -l 1380
+```
+
+
+
+
+
 ## Q:  nmap 
 
 ## Q: mcjoin
