@@ -24,9 +24,21 @@ void test02()
     cout << str1 << endl;
 }
 
+void test03()
+{
+    string str1 = "hello";
+    string str2 = "hello";
+
+
+    if ( str1.compare(str2) == 0 ){
+        std::cout << "test success" << std::endl;
+    }
+}
+
 int main()
 {
     // test01();
-    test02();
+    // test02();
+    test03();
     return 0;
 }

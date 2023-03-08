@@ -1167,11 +1167,33 @@ string查找与替换：
 - string & replace(int pos, int n, const string & str);         // 替换从pos开始n个字符为字符串str
 - string & replace(int pos, int n, const char * s);               // 替换从pos开始的n个字符为字符串s
 
+string 字符串比较
 
+功能描述：
 
+- 字符串之间比较
 
+比较方式：
 
+- 字符串比较是按字符的ASCLL码进行对比
 
+三种结果:
+
+1.  = 返回 0 
+2.  》返回 1
+3.  < 返回 -1  
+
+函数原型：
+
+- int compare(const string &s) const;  // 与字符串s比较
+- int compare(const char *s) const;   // 与字符串s比较
+
+string 字符串提取
+
+string中单个字符存取方式有两种：
+
+- char & operator[](int n); // 通过[]方式取字符
+- char & at(int n);     //通过at方式获取字符
 
 
 
