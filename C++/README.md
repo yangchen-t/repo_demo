@@ -1087,7 +1087,7 @@ STL六大组件
 >
 >STL最常用的容器就是Vector,可以理解为数组，下面举例如何向这个容器插入数据，并遍历这个容器
 
-#### Vector存放内置数据类型：
+### Vector存放内置数据类型：
 
 容器 ：Vector
 
@@ -1095,7 +1095,7 @@ STL六大组件
 
 迭代器： vector<int>::interator
 
-#### String 基本概念：
+### String 基本概念：
 
 >本质：
 >
@@ -1113,7 +1113,7 @@ STL六大组件
 - 例如： 查找find 拷贝copy, 删除 delete,替换replace,插入insert
 - string 管理char*所分配的内存，不用担心复制越界和取值越界等，由类内部进行负责
 
-string 构造函数：
+#### **string 构造函数：**
 
 构造函数原型：
 
@@ -1124,7 +1124,7 @@ string 构造函数：
 - string(const string & str);        // 使用一个string对象初始化另一个string对象
 - string(int n, char c );                 // 使用n个字符c初始化
 
-string赋值操作:
+#### **string赋值操作:**
 
 >功能： 给string字符串进行赋值
 
@@ -1136,7 +1136,7 @@ string赋值操作:
 - string & assign(const string & s);           // 把字符串s赋给当前字符串
 - string & assign(int n, char c);                  // 用n个字符c赋给当前字符串
 
-string 字符串拼接：
+#### **string 字符串拼接：**
 
 >功能： 实现在字符串末尾拼接字符串
 
@@ -1148,7 +1148,7 @@ string 字符串拼接：
 - string & append(const string & s);                   // 同operator+=(const string & str)
 - string & append(const string & s, int pos, int n);   //字符串S中从pos开始的n个字符链接到字符串结尾
 
-string查找与替换：
+#### **string查找与替换：**
 
 >功能：
 >
@@ -1167,7 +1167,7 @@ string查找与替换：
 - string & replace(int pos, int n, const string & str);         // 替换从pos开始n个字符为字符串str
 - string & replace(int pos, int n, const char * s);               // 替换从pos开始的n个字符为字符串s
 
-string 字符串比较
+#### **string 字符串比较**
 
 功能描述：
 
@@ -1188,20 +1188,149 @@ string 字符串比较
 - int compare(const string &s) const;  // 与字符串s比较
 - int compare(const char *s) const;   // 与字符串s比较
 
-string 字符串提取
+#### **string 字符串提取**:
 
 string中单个字符存取方式有两种：
 
 - char & operator[](int n); // 通过[]方式取字符
 - char & at(int n);     //通过at方式获取字符
 
+#### **string 插入和删除**
 
+>功能描述： 
+>
+>对 string 字符串进行插入和删除字符操作
 
+函数原型：
 
+- string & insert(int pos, const char * s);    //插入字符串
+- string & insert(int pos, const string & str);   // 插入字符串
+- string & insert(int pos, int n. char c);      //在指定位置插入n个字符c
+- string & erase(int pos, int n = npos);      // 删除从pos开始的n个字符
 
+#### **string 子串**
 
+>功能描述： 从字符串中获取想要的子串
 
+函数原型：
 
+- string substr(int pos = 0, int n = npos) const ; //返回由pos开始的n个字符组成的字符串
+
+### Vector容器：
+
+功能：
+
+- vector 数据结构和数组非常相似，也称为单端数组
+
+vector与普通数组区别：
+
+- 不同之处在于数组是静态空间，而verctor是可以动态扩展
+
+动态扩展：
+
+- 并不是在原空间之后继续接新的空间，而是找更大的空间，然后将原数据拷贝新空间，释放原空间
+
+#### **vector构造函数**：
+
+功能描述：
+
+- 创建vector容器
+
+函数原型：
+
+- vector<T> v ;        //采用魔板实现类实现，默认构造函数
+- vector(v.begin(), v.end())；      // 将v[begin(),end()]区间中的元素拷贝给自身
+- vector(n, elem)；                // 构造函数将n个elem拷贝给自身
+- vector(const vector &vec); //拷贝构造函数
+
+#### **vector赋值操作**：
+
+功能描述：
+
+- 给vector 容器赋值
+
+函数原型：
+
+1. vector & operator=(const vector &vec)   // 重载等号操作符
+2. assign(beg, end);       // 将【beg，end】区间中的数据拷贝赋值给本身
+3. assign(n.elem);   // 将n个elem拷贝赋值给本身
+
+#### **vector容量大小**：
+
+功能描述：
+
+- 对vector容器的容量和大小操作
+
+函数原型：
+
+- empty();         // 判断容器是否为空
+- capacity();         //容器的容量
+- size() ;             // 返回容器中元素的个数
+- resize(int num);      //重新指定容器长度为num.若容器边长，则以默认值填充新位置， 如果容器变短，则末尾超出容器长度的元素被删除
+- resize(int num, elem);  // 重启指定容器的长度为num,若容器边长，则以elem值填充新位置 ，如果容器变短，则末尾超出容器长度的元素被删除
+
+#### **vector插入与删除**：
+
+功能描述：
+
+- 对vector容器进行插入，删除操作
+
+函数原型：
+
+- push_back(ele)；    // 尾部插入元素ele
+- pop_back();                      // 删除最后一个元素
+- insert(const_iterator pos, ele);      // 迭代器指向位置pos插入元素ele
+- insere(const_iterator pos, int count, ele);        // 迭代器指向位置pos插入count个元素ele
+- erase(const_iterator pos);       // 删除迭代器指向的元素
+- erase(const_iterator start, const_iterator end);       // 删除迭代器从start到end之间的元素
+- clear();                                                   // 删除容器中所有元素
+
+#### **vector数据存取：**
+
+功能描述：
+
+- 对vector中的数据的存取操作
+
+函数原型：
+
+- at(int index); //返回索引index所指的值
+- operator[];   //返回索引index所指的数据
+- front();             // 返回容器中第一个数据元素
+- back();           // 返回容器中最后一个数据元素
+
+#### **vector互换容器**：
+
+功能描述：
+
+- 实现两个容器内元素进行互换
+
+函数原型：
+
+- swap(vec);           //将vec与本身的元素互换
+
+#### **vector预留空间**：
+
+功能描述：
+
+- 减少vector 在动态扩展容量时的扩展次数
+
+函数原型：
+
+- reserve(int len); // 容器预留len个元素长度，预留位置不可初始化，元素不可访问
+
+### deque容器：
+
+#### deque容器基本概念：
+
+功能：
+
+- 双端数组，可以对头端进行插入删除操作
+
+deque与vector区别：
+
+- vector对于头部的插入删除效率低，数据量越大，效率越低
+- deque相对而言,对头部的插入删除数据比vector快
+- vector访问元素时的速度会被deque快，这和两者内部实现有关
 
 
 
