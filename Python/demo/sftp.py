@@ -88,9 +88,11 @@ def check_diff_process(file):
                 logging.info("file_path : {}".format(file_path))
                 logging.info("remote_path : {}".format(remote_path))
                 logging.info("upload...")
+                t.sleep(400)
                 for i in range(3):
                     try:
                         sftp_obj.put(file_path, remote_path)
+                        break
                     except Exception as e:
                         print("error: {}" .format(e))
                         del sftp_obj
@@ -107,7 +109,7 @@ def check_diff_process(file):
 if __name__ == '__main__':
     while True:
         current = sorted(os.listdir("/key_log/key_log"), key=str.lower)
-        t.sleep(100)
+        t.sleep(10)
         while True:
             try:
                 new_dir_list = sorted(os.listdir("/key_log/key_log"), key=str.lower)
