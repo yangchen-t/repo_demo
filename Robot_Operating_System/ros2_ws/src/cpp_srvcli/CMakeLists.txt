@@ -29,7 +29,7 @@ rclcpp example_interfaces)
 
 install(TARGETS
 	client
-  	server
+  server
 	DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)

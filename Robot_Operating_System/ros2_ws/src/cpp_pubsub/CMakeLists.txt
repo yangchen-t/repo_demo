@@ -18,24 +18,18 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(std_msgs REQUIRED)
+# find_package(std_msgs REQUIRED)
+find_package(example_interfaces REQUIRED)
 
 add_executable(talker src/pub.cpp)
-ament_target_dependencies(talker rclcpp std_msgs)
+ament_target_dependencies(talker rclcpp example_interfaces)
 add_executable(listener src/sub.cpp)
-ament_target_dependencies(listener rclcpp std_msgs)
+ament_target_dependencies(listener rclcpp example_interfaces)
 
 install(TARGETS
   talker
   listener
   DESTINATION lib/${PROJECT_NAME})
-
-install(TARGETS
-  talker
-  DESTINATION lib/${PROJECT_NAME})
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

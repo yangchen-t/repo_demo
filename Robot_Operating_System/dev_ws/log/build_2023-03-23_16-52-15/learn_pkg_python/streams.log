@@ -1,0 +1,33 @@
+[0.140s] Invoking command in '/workspace/cxy/Robot_Operating_System/dev_ws/src/learn_pkg_python': PYTHONPATH=/workspace/cxy/Robot_Operating_System/dev_ws/install/learn_pkg_python/lib/python3.8/site-packages: /usr/bin/python3 setup.py egg_info --egg-base ../../build/learn_pkg_python build --build-base /workspace/cxy/Robot_Operating_System/dev_ws/build/learn_pkg_python/build install --prefix /workspace/cxy/Robot_Operating_System/dev_ws/install/learn_pkg_python --record /workspace/cxy/Robot_Operating_System/dev_ws/build/learn_pkg_python/install.log --single-version-externally-managed
+[0.257s] running egg_info
+[0.257s] creating ../../build/learn_pkg_python/learn_pkg_python.egg-info
+[0.257s] writing ../../build/learn_pkg_python/learn_pkg_python.egg-info/PKG-INFO
+[0.257s] writing dependency_links to ../../build/learn_pkg_python/learn_pkg_python.egg-info/dependency_links.txt
+[0.257s] writing entry points to ../../build/learn_pkg_python/learn_pkg_python.egg-info/entry_points.txt
+[0.257s] writing requirements to ../../build/learn_pkg_python/learn_pkg_python.egg-info/requires.txt
+[0.257s] writing top-level names to ../../build/learn_pkg_python/learn_pkg_python.egg-info/top_level.txt
+[0.259s] writing manifest file '../../build/learn_pkg_python/learn_pkg_python.egg-info/SOURCES.txt'
+[0.279s] reading manifest file '../../build/learn_pkg_python/learn_pkg_python.egg-info/SOURCES.txt'
+[0.279s] writing manifest file '../../build/learn_pkg_python/learn_pkg_python.egg-info/SOURCES.txt'
+[0.279s] running build
+[0.279s] running build_py
+[0.279s] creating /workspace/cxy/Robot_Operating_System/dev_ws/build/learn_pkg_python/build
+[0.280s] creating /workspace/cxy/Robot_Operating_System/dev_ws/build/learn_pkg_python/build/lib
+[0.280s] creating /workspace/cxy/Robot_Operating_System/dev_ws/build/learn_pkg_python/build/lib/learn_pkg_python
+[0.280s] copying learn_pkg_python/__init__.py -> /workspace/cxy/Robot_Operating_System/dev_ws/build/learn_pkg_python/build/lib/learn_pkg_python
+[0.280s] running install
+[0.280s] running install_lib
+[0.281s] creating /workspace/cxy/Robot_Operating_System/dev_ws/install/learn_pkg_python/lib/python3.8/site-packages/learn_pkg_python
+[0.281s] copying /workspace/cxy/Robot_Operating_System/dev_ws/build/learn_pkg_python/build/lib/learn_pkg_python/__init__.py -> /workspace/cxy/Robot_Operating_System/dev_ws/install/learn_pkg_python/lib/python3.8/site-packages/learn_pkg_python
+[0.281s] byte-compiling /workspace/cxy/Robot_Operating_System/dev_ws/install/learn_pkg_python/lib/python3.8/site-packages/learn_pkg_python/__init__.py to __init__.cpython-38.pyc
+[0.282s] running install_data
+[0.282s] creating /workspace/cxy/Robot_Operating_System/dev_ws/install/learn_pkg_python/share/ament_index
+[0.282s] creating /workspace/cxy/Robot_Operating_System/dev_ws/install/learn_pkg_python/share/ament_index/resource_index
+[0.282s] creating /workspace/cxy/Robot_Operating_System/dev_ws/install/learn_pkg_python/share/ament_index/resource_index/packages
+[0.282s] copying resource/learn_pkg_python -> /workspace/cxy/Robot_Operating_System/dev_ws/install/learn_pkg_python/share/ament_index/resource_index/packages
+[0.282s] copying package.xml -> /workspace/cxy/Robot_Operating_System/dev_ws/install/learn_pkg_python/share/learn_pkg_python
+[0.282s] running install_egg_info
+[0.283s] Copying ../../build/learn_pkg_python/learn_pkg_python.egg-info to /workspace/cxy/Robot_Operating_System/dev_ws/install/learn_pkg_python/lib/python3.8/site-packages/learn_pkg_python-0.0.0-py3.8.egg-info
+[0.284s] running install_scripts
+[0.296s] writing list of installed files to '/workspace/cxy/Robot_Operating_System/dev_ws/build/learn_pkg_python/install.log'
+[0.308s] Invoked command in '/workspace/cxy/Robot_Operating_System/dev_ws/src/learn_pkg_python' returned '0': PYTHONPATH=/workspace/cxy/Robot_Operating_System/dev_ws/install/learn_pkg_python/lib/python3.8/site-packages: /usr/bin/python3 setup.py egg_info --egg-base ../../build/learn_pkg_python build --build-base /workspace/cxy/Robot_Operating_System/dev_ws/build/learn_pkg_python/build install --prefix /workspace/cxy/Robot_Operating_System/dev_ws/install/learn_pkg_python --record /workspace/cxy/Robot_Operating_System/dev_ws/build/learn_pkg_python/install.log --single-version-externally-managed
