@@ -406,6 +406,15 @@ done
 ## Q: **GDB**
 
 ```c++
-gdb ./a.out coredump.xxxx 
+gdb ./a.out coredump.xxxx  
+    // gdb /opt/qomolo/qpilot/lib/local_planner_node/local_planner_node core.local_planner_n.1567.1679621749.6
+bt //显示堆栈
+info thread   // 显示线程
+thread apply all bt   // 显示所有线程堆栈 
+thread n 切换线程
+p（print） 打印变量
+n (next)执行下一句（把子函数整个作为一步）， s(step) 执行下一句（函数则进入函数中）
+finish 执行完当前函数
 ```
 
+![coredump](/home/westwell/Pictures/coredump.png)
