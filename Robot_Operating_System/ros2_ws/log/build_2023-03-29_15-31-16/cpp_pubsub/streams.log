@@ -1,0 +1,67 @@
+[0.007s] Invoking command in '/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub': /usr/bin/cmake /workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub -DCMAKE_INSTALL_PREFIX=/workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub
+[0.045s] -- The C compiler identification is GNU 9.3.0
+[0.078s] -- The CXX compiler identification is GNU 9.3.0
+[0.082s] -- Detecting C compiler ABI info
+[0.113s] -- Detecting C compiler ABI info - done
+[0.117s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.117s] -- Detecting C compile features
+[0.117s] -- Detecting C compile features - done
+[0.119s] -- Detecting CXX compiler ABI info
+[0.155s] -- Detecting CXX compiler ABI info - done
+[0.160s] -- Check for working CXX compiler: /usr/bin/g++ - skipped
+[0.160s] -- Detecting CXX compile features
+[0.160s] -- Detecting CXX compile features - done
+[0.162s] -- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.176s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.176s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.292s] -- Found rclcpp: 2.4.0 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.319s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.323s] -- Found rosidl_adapter: 1.2.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.375s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+[0.398s] -- Found FastRTPS: /opt/ros/foxy/include  
+[0.453s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.480s] -- Found rmw_implementation_cmake: 1.0.3 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.480s] -- Using RMW implementation 'rmw_cyclonedds_cpp' as default
+[0.481s] -- Looking for pthread.h
+[0.512s] -- Looking for pthread.h - found
+[0.512s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[0.545s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+[0.545s] -- Looking for pthread_create in pthreads
+[0.569s] -- Looking for pthread_create in pthreads - not found
+[0.569s] -- Looking for pthread_create in pthread
+[0.601s] -- Looking for pthread_create in pthread - found
+[0.602s] -- Found Threads: TRUE  
+[0.675s] -- Found example_interfaces: 0.9.1 (/opt/ros/foxy/share/example_interfaces/cmake)
+[0.729s] -- Found ament_lint_auto: 0.9.6 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[0.771s] -- Added test 'copyright' to check source files copyright and LICENSE
+[0.771s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[0.771s] -- Configured cppcheck include dirs: 
+[0.771s] -- Configured cppcheck exclude dirs and/or files: 
+[0.772s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[0.772s] -- Configured cpplint exclude dirs and/or files: 
+[0.772s] -- Added test 'lint_cmake' to check CMake code style
+[0.773s] -- Added test 'uncrustify' to check C / C++ code style
+[0.773s] -- Configured uncrustify additional arguments: 
+[0.773s] -- Added test 'xmllint' to check XML markup files
+[0.773s] -- Configuring done
+[0.780s] -- Generating done
+[0.780s] -- Build files have been written to: /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub
+[0.786s] Invoked command in '/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub' returned '0': /usr/bin/cmake /workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub -DCMAKE_INSTALL_PREFIX=/workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub
+[0.787s] Invoking command in '/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub': /usr/bin/cmake --build /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub -- -j20 -l20
+[0.801s] [ 50%] [32mBuilding CXX object CMakeFiles/listener.dir/src/sub.cpp.o[0m
+[0.801s] [ 50%] [32mBuilding CXX object CMakeFiles/talker.dir/src/pub.cpp.o[0m
+[0.855s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/src/sub.cpp:4:10:[m[K [01;31m[Kfatal error: [m[Kinterfaces/msg/test.msg: No such file or directory
+[0.855s]     4 | #include [01;31m[K"interfaces/msg/test.msg"[m[K
+[0.855s]       |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[0.855s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/src/pub.cpp:6:10:[m[K [01;31m[Kfatal error: [m[Kinterfaces/msg/test.msg: No such file or directory
+[0.855s]     6 | #include [01;31m[K"interfaces/msg/test.msg"[m[K
+[0.855s]       |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[0.855s] compilation terminated.
+[0.855s] compilation terminated.
+[0.856s] make[2]: *** [CMakeFiles/talker.dir/build.make:76: CMakeFiles/talker.dir/src/pub.cpp.o] Error 1
+[0.856s] make[2]: *** [CMakeFiles/listener.dir/build.make:76: CMakeFiles/listener.dir/src/sub.cpp.o] Error 1
+[0.856s] make[1]: *** [CMakeFiles/Makefile2:139: CMakeFiles/talker.dir/all] Error 2
+[0.856s] make[1]: *** Waiting for unfinished jobs....
+[0.856s] make[1]: *** [CMakeFiles/Makefile2:165: CMakeFiles/listener.dir/all] Error 2
+[0.856s] make: *** [Makefile:146: all] Error 2
+[0.857s] Invoked command in '/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub' returned '2': /usr/bin/cmake --build /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub -- -j20 -l20

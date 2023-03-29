@@ -1,0 +1,4 @@
+Invoking command in '/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub': /usr/bin/cmake /workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub -DCMAKE_INSTALL_PREFIX=/workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub
+Invoked command in '/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub' returned '0': /usr/bin/cmake /workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub -DCMAKE_INSTALL_PREFIX=/workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub
+Invoking command in '/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub': /usr/bin/cmake --build /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub -- -j20 -l20
+Invoked command in '/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub' returned '2': /usr/bin/cmake --build /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub -- -j20 -l20

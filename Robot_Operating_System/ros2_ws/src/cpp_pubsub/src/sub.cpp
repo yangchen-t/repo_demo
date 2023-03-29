@@ -1,7 +1,7 @@
 #include <memory>
 
 #include "rclcpp/rclcpp.hpp"
-#include "example_interfaces/msg/Test.msg"
+#include "interfaces/msg/test.msg"
 
 using std::placeholders::_1;
 
@@ -11,16 +11,16 @@ class MinimalSubscriber : public rclcpp::Node
     MinimalSubscriber()
     : Node("minimal_subscriber")
     {
-      subscription_ = this->create_subscription<interfaces::msg::Test>(
+      subscription_ = this->create_subscription<interfaces::msg::test>(
       "topic", 10, std::bind(&MinimalSubscriber::topic_callback, this, _1));
     }
 
   private:
-    void topic_callback(const interfaces::msg::Test::number msg) const
+    void topic_callback(const interfaces::msg::test::number msg) const
     {
       RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg->data.c_str());
     }
-    rclcpp::Subscription<interfaces::msg::Test>::SharedPtr subscription_;
+    rclcpp::Subscription<interfaces::msg::test>::SharedPtr subscription_;
 };
 
 int main(int argc, char * argv[])

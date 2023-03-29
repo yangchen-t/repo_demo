@@ -3,7 +3,7 @@
 
 #include "rclcpp/rclcpp.hpp"
 
-#include "example_interfaces/msg/Test.msg"
+#include "interfaces/msg/test.msg"
 
 using namespace std::chrono_literals;
 
@@ -16,7 +16,7 @@ class MinimalPublisher : public rclcpp::Node
     MinimalPublisher()
     : Node("minimal_publisher"), count_(0)
     {
-      publisher_ = this->create_publisher<interfaces::msg::Test>("topic", 10);
+      publisher_ = this->create_publisher<interfaces::msg::test>("topic", 10);
       timer_ = this->create_wall_timer(
       500ms, std::bind(&MinimalPublisher::timer_callback, this));
     }
@@ -24,13 +24,13 @@ class MinimalPublisher : public rclcpp::Node
   private:
     void timer_callback()
     {
-      auto message = interfaces::msg::Test();
+      auto message = interfaces::msg::test();
       message.data = "Hello, world! " + std::to_string(count_++);
       RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", message.data.c_str());
       publisher_->publish(message);
     }
     rclcpp::TimerBase::SharedPtr timer_;
-    rclcpp::Publisher<interfaces::msg::Test>::SharedPtr publisher_;
+    rclcpp::Publisher<interfaces::msg::test>::SharedPtr publisher_;
     size_t count_;
   };
 
