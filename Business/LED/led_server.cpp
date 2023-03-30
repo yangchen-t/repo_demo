@@ -7,6 +7,8 @@
 #include "get_info.h"
 
 
+
+
 int main(int argc, char** argv)
 {
 	Ouint8* pIP = (Ouint8*)"192.168.112.11";
@@ -21,7 +23,7 @@ int main(int argc, char** argv)
 	int uWidth = 64;
 	int uHeight = 32;
 
-//EQpageHeader_G6
+	//EQpageHeader_G6
 	EQpageHeader_G6 pheader1;
 	pheader1.PageStyle = 0x00;
    	pheader1.DisplayMode = 0x02;
@@ -41,20 +43,23 @@ int main(int argc, char** argv)
 	pheader1.txtSpace = 0;
 	pheader1.Valign = 0;
 	pheader1.Halign = 0;
-	path_select * pl;
+
+	path_select  p;
 	while (true)
 	{
-		pl = return_path(pl);
-		if (pl->numbers == 52){
+		p = return_path();
+		gettime();
+		if (p.numbers == 52){
 			turn_picture_display(1);
 		}
-		else if (pl->numbers == 53){
+		else if (p.numbers == 53){
 			turn_picture_display(2);
 		}else {
-			bxDual_dynamicArea_AddAreaPic_6G(pIP, 5005, color, uAreaId, uAreaX, uAreaY, uWidth, uHeight, &pheader1, (Ouint8*)pl->path);
-			std::cout << "\033[31mfront ==> "<< pl->path <<"\033[0m\n" ;
-			bxDual_dynamicArea_AddAreaPic_6G(pIP_back, 5005, color, uAreaId, uAreaX, uAreaY, uWidth, uHeight, &pheader1, (Ouint8*)pl->path);
-			std::cout << "\033[31mrear ==> "<< pl->path <<"\033[0m\n";
+			Ouint8 * pic_path = TypeConversion(p.path);
+			bxDual_dynamicArea_AddAreaPic_6G(pIP, 5005, color, uAreaId, uAreaX, uAreaY, uWidth, uHeight, &pheader1, pic_path);
+			std::cout << "\033[31mfront ==> "<< p.path <<"\033[0m\n" ;
+			bxDual_dynamicArea_AddAreaPic_6G(pIP_back, 5005, color, uAreaId, uAreaX, uAreaY, uWidth, uHeight, &pheader1, pic_path);
+			std::cout << "\033[31mrear ==> "<< p.path <<"\033[0m\n";
 		}
 		return 0;
 		sleep(1);

@@ -7,9 +7,10 @@
 
 struct path_select
 {
-    Ouint8 * path;
+    std::string path;
     int numbers;
 };
 void gettime();
+Ouint8 * TypeConversion(std::string str);
 void turn_picture_display(int mode);
-path_select * return_path(path_select * pl);
+path_select return_path();

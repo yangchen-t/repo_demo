@@ -5,6 +5,9 @@
 #include <sstream>
 #include "get_info.h"
 
+std::string PicturesPath = "/debug/test";
+std::string PicturesNumbersPath = "/scripts/pic/lib/numbers.csv";
+
 void gettime()
 {
 	time_t rawtime;
@@ -16,21 +19,24 @@ void gettime()
 	ptminfo->tm_hour, ptminfo->tm_min, ptminfo->tm_sec);
 }
 
-
-path_select * return_path(path_select &pl)
+Ouint8 *TypeConversion(std::string str)
 {
-	std::ifstream inFile("/scripts/pic/lib/numbers.csv", std::ios::in);
+	return (unsigned char *)str.c_str();
+}
+
+path_select return_path()
+{
+	std::ifstream inFile(PicturesNumbersPath, std::ios::in);
 	std::stringstream stream;
 	std::string num;
-	int n ;
+	path_select pl;
     while (getline(inFile, num)){
 		stream << num;
-		stream >> n;            // 文件读取
-		pl.numbers = n;
-		std::string str = "/debug/test" + std::to_string(n);
-		pl.path = (unsigned char *)str.c_str();
-		return &pl;
+		stream >> pl.numbers;            // 文件读取
+		pl.path = PicturesPath + std::to_string(pl.numbers) + ".png";
+		return pl;
 	}
+	return pl;
 }
 
 void turn_picture_display(int mode){
