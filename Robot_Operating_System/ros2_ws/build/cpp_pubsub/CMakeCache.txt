@@ -275,10 +275,7 @@ SITE:STRING=westwell
 TinyXML2_DIR:PATH=TinyXML2_DIR-NOTFOUND
 
 //Path to a library.
-_lib:FILEPATH=/opt/ros/foxy/lib/libexample_interfaces__rosidl_typesupport_fastrtps_cpp.so
-
-//The directory containing a CMake configuration file for action_msgs.
-action_msgs_DIR:PATH=/opt/ros/foxy/share/action_msgs/cmake
+_lib:FILEPATH=/workspace/cxy/Robot_Operating_System/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_fastrtps_cpp.so
 
 //The directory containing a CMake configuration file for ament_cmake.
 ament_cmake_DIR:PATH=/opt/ros/foxy/share/ament_cmake/cmake
@@ -385,9 +382,6 @@ cpp_pubsub_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 cpp_pubsub_SOURCE_DIR:STATIC=/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub
 
-//The directory containing a CMake configuration file for example_interfaces.
-example_interfaces_DIR:PATH=/opt/ros/foxy/share/example_interfaces/cmake
-
 //The directory containing a CMake configuration file for fastcdr.
 fastcdr_DIR:PATH=/opt/ros/foxy/lib/cmake/fastcdr
 
@@ -399,6 +393,9 @@ fastrtps_cmake_module_DIR:PATH=/opt/ros/foxy/share/fastrtps_cmake_module/cmake
 
 //The directory containing a CMake configuration file for foonathan_memory.
 foonathan_memory_DIR:PATH=/opt/ros/foxy/lib/foonathan_memory/cmake
+
+//The directory containing a CMake configuration file for interfaces.
+interfaces_DIR:PATH=/workspace/cxy/Robot_Operating_System/ros2_ws/install/interfaces/share/interfaces/cmake
 
 //The directory containing a CMake configuration file for libstatistics_collector.
 libstatistics_collector_DIR:PATH=/opt/ros/foxy/share/libstatistics_collector/cmake
@@ -501,9 +498,6 @@ std_msgs_DIR:PATH=/opt/ros/foxy/share/std_msgs/cmake
 
 //The directory containing a CMake configuration file for tracetools.
 tracetools_DIR:PATH=/opt/ros/foxy/share/tracetools/cmake
-
-//The directory containing a CMake configuration file for unique_identifier_msgs.
-unique_identifier_msgs_DIR:PATH=/opt/ros/foxy/share/unique_identifier_msgs/cmake
 
 //Path to a program.
 xmllint_BIN:FILEPATH=/usr/bin/xmllint
