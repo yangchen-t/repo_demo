@@ -1,0 +1,6 @@
+[31mCMake Error at CMakeLists.txt:45 (target_link_libraries):
+  Cannot specify link libraries for target "test_node" which is not built by
+  this project.
+
+[0m
+make: *** [Makefile:308: cmake_check_build_system] Error 1

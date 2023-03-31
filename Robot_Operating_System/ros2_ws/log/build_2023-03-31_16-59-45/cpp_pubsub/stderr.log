@@ -1,0 +1,51 @@
+In file included from [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/get_info.h:4[m[K,
+                 from [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/src/sub.cpp:6[m[K:
+[01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1114:[m[K [01;35m[Kwarning: [m[Kignoring #pragma region Common [[01;35m[K-Wunknown-pragmas[m[K]
+ 1114 | #pragma region Common operation
+      | 
+[01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1169:2:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K-Wcomment[m[K]
+ 1169 |  /*! ***************************************************************/
+      |   
+[01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1410:2:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K-Wcomment[m[K]
+ 1410 |  /*! ***************************************************************/
+      |   
+[01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1453:2:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K-Wcomment[m[K]
+ 1453 |  /*! ***************************************************************/
+      |   
+[01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1525:2:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K-Wcomment[m[K]
+ 1525 |  /**UDP CMD END**/
+      |   
+[01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1533:2:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K-Wcomment[m[K]
+ 1533 |  /** TCP命令 控制器维护命令 **/
+      |   
+[01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:2094:2:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K-Wcomment[m[K]
+ 2094 |  /** TCP命令 END **/
+      |   
+[01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:2124:2:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K-Wcomment[m[K]
+ 2124 |  /*! ***************************************************************/
+      |   
+[01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:3640:[m[K [01;35m[Kwarning: [m[Kignoring #pragma endregion Common [[01;35m[K-Wunknown-pragmas[m[K]
+ 3640 | #pragma endregion Common operation
+      | 
+In file included from [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/get_info.h:5[m[K,
+                 from [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/src/sub.cpp:6[m[K:
+[01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_sdk_dual.h:13:1:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K-Wcomment[m[K]
+   13 | /*! ********************************************************************/
+      |  
+[01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/src/sub.cpp:17:18:[m[K [01;31m[Kerror: [m[KISO C++ forbids declaration of ‘[01m[Kgettime[m[K’ with no type [[01;31m[K-fpermissive[m[K]
+   17 |     Pic::gettime([01;31m[K)[m[K;
+      |                  [01;31m[K^[m[K
+[01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/src/sub.cpp:17:18:[m[K [01;31m[Kerror: [m[Kcannot declare member function ‘[01m[KPic::gettime[m[K’ within ‘[01m[KMinimalSubscriber[m[K’
+[01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/src/sub.cpp:19:10:[m[K [01;31m[Kerror: [m[K‘[01m[Kcout[m[K’ in namespace ‘[01m[Kstd[m[K’ does not name a type
+   19 |     std::[01;31m[Kcout[m[K << pl.path << std::endl;
+      |          [01;31m[K^~~~[m[K
+In file included from [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/src/sub.cpp:2[m[K:
+[01m[K/usr/include/c++/9/iostream:61:18:[m[K [01;36m[Knote: [m[K‘[01m[Kstd::cout[m[K’ declared here
+   61 |   extern ostream [01;36m[Kcout[m[K;  /// Linked to standard output
+      |                  [01;36m[K^~~~[m[K
+[01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/src/sub.cpp:18:39:[m[K [01;31m[Kerror: [m[Kcannot call member function ‘[01m[Kpath_select Pic::return_path()[m[K’ without object
+   18 |     path_select pl = Pic::return_path([01;31m[K)[m[K;
+      |                                       [01;31m[K^[m[K
+make[2]: *** [CMakeFiles/listener.dir/build.make:76: CMakeFiles/listener.dir/src/sub.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:165: CMakeFiles/listener.dir/all] Error 2
+make: *** [Makefile:146: all] Error 2

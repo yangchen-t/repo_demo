@@ -25,15 +25,15 @@ include_directories(
   include/cpp_pubsub  
   ${catkin_INCLUDE_DIRS}
 )
-
 link_directories(
-  lib/
-  ${catkin_LIB_DIRS}
+  ${catkin_LIB_DIRS} lib
 )
 
 add_executable(talker src/pub.cpp)
 ament_target_dependencies(talker rclcpp interfaces)
-add_executable(listener src/sub.cpp)
+add_executable(listener
+  src/sub.cpp
+  src/get_info.cpp)
 ament_target_dependencies(listener rclcpp interfaces)
 
 install(TARGETS
@@ -41,12 +41,11 @@ install(TARGETS
   listener
   DESTINATION lib/${PROJECT_NAME})
 
-
-target_link_libraries(test_node
+# add_library(get_info
+#   src/get_info.cpp      # source file is exist
+# )
+target_link_libraries(listener
   ${catkin_LIBRARIES}
-  bx_sdkDual
-  iconv
-  charset
 )
   
 if(BUILD_TESTING)

@@ -1,0 +1,36 @@
+[0.006s] Invoking command in '/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub': CMAKE_PREFIX_PATH=/workspace/cxy/Robot_Operating_System/ros2_ws/install/interfaces:/workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub:/opt/ros/foxy:/opt/third_party/casadi/lib/cmake/casadi:/opt/third_party/ceres/lib/cmake/Ceres:/opt/third_party/osqp-cpp/lib/cmake/:/opt/third_party/abseil-cpp/lib/cmake/:/opt/third_party/osqp/lib/cmake/ /usr/bin/cmake --build /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub -- -j20 -l20
+[0.015s] -- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.029s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.141s] -- Found rclcpp: 2.4.0 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.159s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.161s] -- Found rosidl_adapter: 1.2.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.251s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.274s] -- Found rmw_implementation_cmake: 1.0.3 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.275s] -- Using RMW implementation 'rmw_cyclonedds_cpp' as default
+[0.340s] -- Found interfaces: 0.0.0 (/workspace/cxy/Robot_Operating_System/ros2_ws/install/interfaces/share/interfaces/cmake)
+[0.344s] -- Found ament_lint_auto: 0.9.6 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[0.378s] -- Added test 'copyright' to check source files copyright and LICENSE
+[0.379s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[0.379s] -- Configured cppcheck include dirs: /workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub
+[0.379s] -- Configured cppcheck exclude dirs and/or files: 
+[0.379s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[0.379s] -- Configured cpplint exclude dirs and/or files: 
+[0.379s] -- Added test 'lint_cmake' to check CMake code style
+[0.380s] -- Added test 'uncrustify' to check C / C++ code style
+[0.380s] -- Configured uncrustify additional arguments: 
+[0.380s] -- Added test 'xmllint' to check XML markup files
+[0.380s] -- Configuring done
+[0.386s] -- Generating done
+[0.387s] -- Build files have been written to: /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub
+[0.395s] [35m[1mConsolidate compiler generated dependencies of target talker[0m
+[0.395s] [35m[1mConsolidate compiler generated dependencies of target listener[0m
+[0.402s] [ 75%] [32m[1mLinking CXX executable listener[0m
+[0.402s] [ 75%] Built target talker
+[0.453s] /usr/bin/ld: cannot find -lbx_sdkDual
+[0.453s] /usr/bin/ld: cannot find -liconv
+[0.453s] /usr/bin/ld: cannot find -lcharset
+[0.453s] collect2: error: ld returned 1 exit status
+[0.453s] make[2]: *** [CMakeFiles/listener.dir/build.make:149: listener] Error 1
+[0.453s] make[1]: *** [CMakeFiles/Makefile2:165: CMakeFiles/listener.dir/all] Error 2
+[0.454s] make: *** [Makefile:146: all] Error 2
+[0.456s] Invoked command in '/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub' returned '2': CMAKE_PREFIX_PATH=/workspace/cxy/Robot_Operating_System/ros2_ws/install/interfaces:/workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub:/opt/ros/foxy:/opt/third_party/casadi/lib/cmake/casadi:/opt/third_party/ceres/lib/cmake/Ceres:/opt/third_party/osqp-cpp/lib/cmake/:/opt/third_party/abseil-cpp/lib/cmake/:/opt/third_party/osqp/lib/cmake/ /usr/bin/cmake --build /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub -- -j20 -l20

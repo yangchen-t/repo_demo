@@ -92,3 +92,8 @@ void turn_picture_display(int mode){
 	}
 }
 
+
+int getNum()
+{
+	return 1;
+}

@@ -223,6 +223,46 @@ listener/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/listener.dir/build.make CMakeFiles/listener.dir/build
 .PHONY : listener/fast
 
+#=============================================================================
+# Target rules for targets named get_info
+
+# Build rule for target.
+get_info: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 get_info
+.PHONY : get_info
+
+# fast build rule for target.
+get_info/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/get_info.dir/build.make CMakeFiles/get_info.dir/build
+.PHONY : get_info/fast
+
+src/get_info.o: src/get_info.cpp.o
+.PHONY : src/get_info.o
+
+# target to build an object file
+src/get_info.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/listener.dir/build.make CMakeFiles/listener.dir/src/get_info.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/get_info.dir/build.make CMakeFiles/get_info.dir/src/get_info.cpp.o
+.PHONY : src/get_info.cpp.o
+
+src/get_info.i: src/get_info.cpp.i
+.PHONY : src/get_info.i
+
+# target to preprocess a source file
+src/get_info.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/listener.dir/build.make CMakeFiles/listener.dir/src/get_info.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/get_info.dir/build.make CMakeFiles/get_info.dir/src/get_info.cpp.i
+.PHONY : src/get_info.cpp.i
+
+src/get_info.s: src/get_info.cpp.s
+.PHONY : src/get_info.s
+
+# target to generate assembly for a file
+src/get_info.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/listener.dir/build.make CMakeFiles/listener.dir/src/get_info.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/get_info.dir/build.make CMakeFiles/get_info.dir/src/get_info.cpp.s
+.PHONY : src/get_info.cpp.s
+
 src/pub.o: src/pub.cpp.o
 .PHONY : src/pub.o
 
@@ -286,8 +326,12 @@ help:
 	@echo "... test"
 	@echo "... cpp_pubsub_uninstall"
 	@echo "... uninstall"
+	@echo "... get_info"
 	@echo "... listener"
 	@echo "... talker"
+	@echo "... src/get_info.o"
+	@echo "... src/get_info.i"
+	@echo "... src/get_info.s"
 	@echo "... src/pub.o"
 	@echo "... src/pub.i"
 	@echo "... src/pub.s"

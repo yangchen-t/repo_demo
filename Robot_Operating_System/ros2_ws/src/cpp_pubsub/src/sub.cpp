@@ -1,11 +1,11 @@
 #include <memory>
-
+#include <iostream>
 #include "rclcpp/rclcpp.hpp"
-
 #include "interfaces/msg/num.hpp" // CHANGE
 
-using std::placeholders::_1;
+#include "get_info.h"
 
+using std::placeholders::_1;
 class MinimalSubscriber : public rclcpp::Node
 {
 public:
@@ -14,14 +14,19 @@ public:
         subscription_ = this->create_subscription<interfaces::msg::Num>( // CHANGE
             "led_topic", 10, std::bind(&MinimalSubscriber::topic_callback, this, _1));
     }
-
+    // Pic::gettime();
+    // path_select pl = Pic::return_path();
+    // std::cout << pl.path << std::endl;
 private:
     void topic_callback(const interfaces::msg::Num::SharedPtr msg) const // CHANGE
     {
-        RCLCPP_INFO(this->get_logger(), "I heard: '%d'", msg->num); // CHANGE
+        RCLCPP_INFO(this->get_logger(), "%d", msg->num);
+        gettime();
     }
     rclcpp::Subscription<interfaces::msg::Num>::SharedPtr subscription_; // CHANGE
 };
+
+
 
 int main(int argc, char *argv[])
 
@@ -31,3 +36,5 @@ int main(int argc, char *argv[])
     rclcpp::shutdown();
     return 0;
 }
+
+

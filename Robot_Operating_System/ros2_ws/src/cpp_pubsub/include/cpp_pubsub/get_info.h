@@ -10,7 +10,9 @@ struct path_select
     std::string path;
     int numbers;
 };
+
 void gettime();
 Ouint8 * TypeConversion(std::string str);
 void turn_picture_display(int mode);
 path_select return_path();
+int getNum();

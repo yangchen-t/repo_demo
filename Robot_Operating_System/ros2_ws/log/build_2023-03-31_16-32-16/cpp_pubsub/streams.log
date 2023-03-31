@@ -1,0 +1,64 @@
+[0.006s] Invoking command in '/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub': CMAKE_PREFIX_PATH=/workspace/cxy/Robot_Operating_System/ros2_ws/install/interfaces:/workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub:/opt/ros/foxy:/opt/third_party/casadi/lib/cmake/casadi:/opt/third_party/ceres/lib/cmake/Ceres:/opt/third_party/osqp-cpp/lib/cmake/:/opt/third_party/abseil-cpp/lib/cmake/:/opt/third_party/osqp/lib/cmake/ /usr/bin/cmake --build /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub -- -j20 -l20
+[0.019s] [35m[1mConsolidate compiler generated dependencies of target listener[0m
+[0.022s] [ 28%] Built target get_info
+[0.022s] [ 57%] Built target talker
+[0.025s] [ 71%] [32mBuilding CXX object CMakeFiles/listener.dir/src/sub.cpp.o[0m
+[0.089s] In file included from [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/get_info.h:4[m[K,
+[0.089s]                  from [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/src/sub.cpp:6[m[K:
+[0.089s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1114:[m[K [01;35m[Kwarning: [m[Kignoring #pragma region Common [[01;35m[K-Wunknown-pragmas[m[K]
+[0.089s]  1114 | #pragma region Common operation
+[0.089s]       | 
+[0.089s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1169:2:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K-Wcomment[m[K]
+[0.089s]  1169 |  /*! ***************************************************************/
+[0.089s]       |   
+[0.089s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1410:2:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K-Wcomment[m[K]
+[0.089s]  1410 |  /*! ***************************************************************/
+[0.089s]       |   
+[0.089s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1453:2:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K-Wcomment[m[K]
+[0.089s]  1453 |  /*! ***************************************************************/
+[0.089s]       |   
+[0.089s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1525:2:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K-Wcomment[m[K]
+[0.089s]  1525 |  /**UDP CMD END**/
+[0.089s]       |   
+[0.089s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1533:2:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K-Wcomment[m[K]
+[0.089s]  1533 |  /** TCP命令 控制器维护命令 **/
+[0.089s]       |   
+[0.089s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:2094:2:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K-Wcomment[m[K]
+[0.089s]  2094 |  /** TCP命令 END **/
+[0.089s]       |   
+[0.089s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:2124:2:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K-Wcomment[m[K]
+[0.089s]  2124 |  /*! ***************************************************************/
+[0.090s]       |   
+[0.090s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:3640:[m[K [01;35m[Kwarning: [m[Kignoring #pragma endregion Common [[01;35m[K-Wunknown-pragmas[m[K]
+[0.090s]  3640 | #pragma endregion Common operation
+[0.090s]       | 
+[0.090s] In file included from [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/get_info.h:5[m[K,
+[0.090s]                  from [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/src/sub.cpp:6[m[K:
+[0.090s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_sdk_dual.h:13:1:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K-Wcomment[m[K]
+[0.090s]    13 | /*! ********************************************************************/
+[0.090s]       |  
+[0.666s] In file included from [01m[K/opt/ros/foxy/include/rclcpp/client.hpp:40[m[K,
+[0.666s]                  from [01m[K/opt/ros/foxy/include/rclcpp/callback_group.hpp:23[m[K,
+[0.666s]                  from [01m[K/opt/ros/foxy/include/rclcpp/any_executable.hpp:20[m[K,
+[0.666s]                  from [01m[K/opt/ros/foxy/include/rclcpp/memory_strategy.hpp:24[m[K,
+[0.666s]                  from [01m[K/opt/ros/foxy/include/rclcpp/memory_strategies.hpp:18[m[K,
+[0.666s]                  from [01m[K/opt/ros/foxy/include/rclcpp/executor_options.hpp:20[m[K,
+[0.666s]                  from [01m[K/opt/ros/foxy/include/rclcpp/executor.hpp:33[m[K,
+[0.666s]                  from [01m[K/opt/ros/foxy/include/rclcpp/executors/multi_threaded_executor.hpp:26[m[K,
+[0.666s]                  from [01m[K/opt/ros/foxy/include/rclcpp/executors.hpp:21[m[K,
+[0.666s]                  from [01m[K/opt/ros/foxy/include/rclcpp/rclcpp.hpp:146[m[K,
+[0.666s]                  from [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/src/sub.cpp:3[m[K:
+[0.666s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/src/sub.cpp:[m[K In member function ‘[01m[Kvoid MinimalSubscriber::topic_callback(interfaces::msg::Num_<std::allocator<void> >::SharedPtr) const[m[K’:
+[0.666s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/src/sub.cpp:26:56:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K)[m[K’ before ‘[01m[K;[m[K’ token
+[0.666s]    26 |         RCLCPP_INFO(this->get_logger(), "%s", gettime()[01;31m[K;[m[K );
+[0.666s]       |                                                        [01;31m[K^[m[K
+[0.666s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/src/sub.cpp:26:9:[m[K [01;36m[Knote: [m[Kto match this ‘[01m[K([m[K’
+[0.666s]    26 |         [01;36m[KRCLCPP_INFO[m[K(this->get_logger(), "%s", gettime(); );
+[0.666s]       |         [01;36m[K^~~~~~~~~~~[m[K
+[0.666s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/src/sub.cpp:26:9:[m[K [01;31m[Kerror: [m[Kexpected primary-expression before ‘[01m[K,[m[K’ token
+[0.666s]    26 |         [01;31m[KRCLCPP_INFO[m[K(this->get_logger(), "%s", gettime(); );
+[0.666s]       |         [01;31m[K^~~~~~~~~~~[m[K
+[1.358s] make[2]: *** [CMakeFiles/listener.dir/build.make:76: CMakeFiles/listener.dir/src/sub.cpp.o] Error 1
+[1.358s] make[1]: *** [CMakeFiles/Makefile2:167: CMakeFiles/listener.dir/all] Error 2
+[1.358s] make: *** [Makefile:146: all] Error 2
+[1.360s] Invoked command in '/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub' returned '2': CMAKE_PREFIX_PATH=/workspace/cxy/Robot_Operating_System/ros2_ws/install/interfaces:/workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub:/opt/ros/foxy:/opt/third_party/casadi/lib/cmake/casadi:/opt/third_party/ceres/lib/cmake/Ceres:/opt/third_party/osqp-cpp/lib/cmake/:/opt/third_party/abseil-cpp/lib/cmake/:/opt/third_party/osqp/lib/cmake/ /usr/bin/cmake --build /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub -- -j20 -l20

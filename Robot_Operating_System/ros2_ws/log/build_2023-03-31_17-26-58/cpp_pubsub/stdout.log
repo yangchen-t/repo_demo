@@ -1,0 +1,7 @@
+[35m[1mConsolidate compiler generated dependencies of target listener[0m
+[ 16%] [32mBuilding CXX object CMakeFiles/get_info.dir/src/get_info.cpp.o[0m
+[ 50%] Built target talker
+[ 66%] [32mBuilding CXX object CMakeFiles/listener.dir/src/sub.cpp.o[0m
+[ 83%] [32m[1mLinking CXX static library libget_info.a[0m
+[ 83%] Built target get_info
+[100%] [32m[1mLinking CXX executable listener[0m

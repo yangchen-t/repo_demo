@@ -2,6 +2,7 @@
 /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub/CMakeFiles/cpp_pubsub_uninstall.dir
 /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub/CMakeFiles/talker.dir
 /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub/CMakeFiles/listener.dir
+/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub/CMakeFiles/get_info.dir
 /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub/CMakeFiles/test.dir
 /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub/CMakeFiles/edit_cache.dir
 /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub/CMakeFiles/rebuild_cache.dir
