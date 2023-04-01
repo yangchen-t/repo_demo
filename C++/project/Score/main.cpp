@@ -25,7 +25,7 @@ void test01();
 // 入口
 int main()
 {
-    srand((unsigned int)time(NULL));
+    srand((unsigned int)time(NULL)); // 随机种子
     test01();
     return 0;
 }
