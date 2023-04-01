@@ -1,0 +1,23 @@
+[ 50%] Built target talker
+[ 75%] [32mBuilding CXX object CMakeFiles/listener.dir/src/sub.cpp.o[0m
+[100%] [32m[1mLinking CXX executable listener[0m
+[100%] Built target listener
+-- Install configuration: ""
+-- Up-to-date: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/lib/cpp_pubsub/talker
+-- Installing: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/lib/cpp_pubsub/listener
+-- Set runtime path of "/workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/lib/cpp_pubsub/listener" to ""
+-- Up-to-date: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/ament_index/resource_index/package_run_dependencies/cpp_pubsub
+-- Up-to-date: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/ament_index/resource_index/parent_prefix_path/cpp_pubsub
+-- Up-to-date: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/environment/ament_prefix_path.sh
+-- Installing: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/environment/ament_prefix_path.dsv
+-- Up-to-date: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/environment/path.sh
+-- Installing: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/environment/path.dsv
+-- Up-to-date: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/local_setup.bash
+-- Up-to-date: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/local_setup.sh
+-- Up-to-date: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/local_setup.zsh
+-- Installing: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/local_setup.dsv
+-- Up-to-date: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/package.dsv
+-- Up-to-date: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/ament_index/resource_index/packages/cpp_pubsub
+-- Up-to-date: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/cmake/cpp_pubsubConfig.cmake
+-- Up-to-date: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/cmake/cpp_pubsubConfig-version.cmake
+-- Up-to-date: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/package.xml

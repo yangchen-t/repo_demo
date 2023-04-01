@@ -83,20 +83,36 @@ CMakeFiles/listener.dir/src/sub.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/listener.dir/src/sub.cpp.s"
 	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/src/sub.cpp -o CMakeFiles/listener.dir/src/sub.cpp.s
 
+CMakeFiles/listener.dir/src/get_info.cpp.o: CMakeFiles/listener.dir/flags.make
+CMakeFiles/listener.dir/src/get_info.cpp.o: /workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/src/get_info.cpp
+CMakeFiles/listener.dir/src/get_info.cpp.o: CMakeFiles/listener.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/listener.dir/src/get_info.cpp.o"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/listener.dir/src/get_info.cpp.o -MF CMakeFiles/listener.dir/src/get_info.cpp.o.d -o CMakeFiles/listener.dir/src/get_info.cpp.o -c /workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/src/get_info.cpp
+
+CMakeFiles/listener.dir/src/get_info.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/listener.dir/src/get_info.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/src/get_info.cpp > CMakeFiles/listener.dir/src/get_info.cpp.i
+
+CMakeFiles/listener.dir/src/get_info.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/listener.dir/src/get_info.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/src/get_info.cpp -o CMakeFiles/listener.dir/src/get_info.cpp.s
+
 # Object files for target listener
 listener_OBJECTS = \
-"CMakeFiles/listener.dir/src/sub.cpp.o"
+"CMakeFiles/listener.dir/src/sub.cpp.o" \
+"CMakeFiles/listener.dir/src/get_info.cpp.o"
 
 # External object files for target listener
 listener_EXTERNAL_OBJECTS =
 
 listener: CMakeFiles/listener.dir/src/sub.cpp.o
+listener: CMakeFiles/listener.dir/src/get_info.cpp.o
 listener: CMakeFiles/listener.dir/build.make
 listener: /opt/ros/foxy/lib/librclcpp.so
-listener: /opt/ros/foxy/lib/libexample_interfaces__rosidl_typesupport_introspection_c.so
-listener: /opt/ros/foxy/lib/libexample_interfaces__rosidl_typesupport_c.so
-listener: /opt/ros/foxy/lib/libexample_interfaces__rosidl_typesupport_introspection_cpp.so
-listener: /opt/ros/foxy/lib/libexample_interfaces__rosidl_typesupport_cpp.so
+listener: /workspace/cxy/Robot_Operating_System/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_introspection_c.so
+listener: /workspace/cxy/Robot_Operating_System/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_c.so
+listener: /workspace/cxy/Robot_Operating_System/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_introspection_cpp.so
+listener: /workspace/cxy/Robot_Operating_System/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_cpp.so
 listener: /opt/ros/foxy/lib/liblibstatistics_collector.so
 listener: /opt/ros/foxy/lib/liblibstatistics_collector_test_msgs__rosidl_typesupport_introspection_c.so
 listener: /opt/ros/foxy/lib/liblibstatistics_collector_test_msgs__rosidl_generator_c.so
@@ -130,32 +146,22 @@ listener: /opt/ros/foxy/lib/libstatistics_msgs__rosidl_generator_c.so
 listener: /opt/ros/foxy/lib/libstatistics_msgs__rosidl_typesupport_c.so
 listener: /opt/ros/foxy/lib/libstatistics_msgs__rosidl_typesupport_introspection_cpp.so
 listener: /opt/ros/foxy/lib/libstatistics_msgs__rosidl_typesupport_cpp.so
-listener: /opt/ros/foxy/lib/libtracetools.so
-listener: /opt/ros/foxy/lib/libexample_interfaces__rosidl_generator_c.so
-listener: /opt/ros/foxy/lib/libaction_msgs__rosidl_typesupport_introspection_c.so
-listener: /opt/ros/foxy/lib/libaction_msgs__rosidl_generator_c.so
-listener: /opt/ros/foxy/lib/libaction_msgs__rosidl_typesupport_c.so
-listener: /opt/ros/foxy/lib/libaction_msgs__rosidl_typesupport_introspection_cpp.so
-listener: /opt/ros/foxy/lib/libaction_msgs__rosidl_typesupport_cpp.so
 listener: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_introspection_c.so
 listener: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_generator_c.so
 listener: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_c.so
 listener: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_introspection_cpp.so
 listener: /opt/ros/foxy/lib/libbuiltin_interfaces__rosidl_typesupport_cpp.so
-listener: /opt/ros/foxy/lib/libunique_identifier_msgs__rosidl_typesupport_introspection_c.so
-listener: /opt/ros/foxy/lib/libunique_identifier_msgs__rosidl_generator_c.so
-listener: /opt/ros/foxy/lib/libunique_identifier_msgs__rosidl_typesupport_c.so
-listener: /opt/ros/foxy/lib/libunique_identifier_msgs__rosidl_typesupport_introspection_cpp.so
+listener: /opt/ros/foxy/lib/libtracetools.so
+listener: /workspace/cxy/Robot_Operating_System/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_generator_c.so
 listener: /opt/ros/foxy/lib/librosidl_typesupport_introspection_cpp.so
 listener: /opt/ros/foxy/lib/librosidl_typesupport_introspection_c.so
-listener: /opt/ros/foxy/lib/libunique_identifier_msgs__rosidl_typesupport_cpp.so
 listener: /opt/ros/foxy/lib/librosidl_typesupport_cpp.so
 listener: /opt/ros/foxy/lib/librosidl_typesupport_c.so
 listener: /opt/ros/foxy/lib/librcpputils.so
 listener: /opt/ros/foxy/lib/librosidl_runtime_c.so
 listener: /opt/ros/foxy/lib/librcutils.so
 listener: CMakeFiles/listener.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable listener"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable listener"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/listener.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

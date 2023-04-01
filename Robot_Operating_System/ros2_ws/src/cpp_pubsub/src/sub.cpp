@@ -1,32 +1,40 @@
 #include <memory>
-
+#include <iostream>
 #include "rclcpp/rclcpp.hpp"
-#include "interfaces/msg/test.msg"
+#include "interfaces/msg/num.hpp" // CHANGE
+
+#include "get_info.h"
 
 using std::placeholders::_1;
-
 class MinimalSubscriber : public rclcpp::Node
 {
-  public:
-    MinimalSubscriber()
-    : Node("minimal_subscriber")
+public:
+    MinimalSubscriber(): Node("test_led_sub_node")
     {
-      subscription_ = this->create_subscription<interfaces::msg::test>(
-      "topic", 10, std::bind(&MinimalSubscriber::topic_callback, this, _1));
+        subscription_ = this->create_subscription<interfaces::msg::Num>( // CHANGE
+            "led_topic", 10, std::bind(&MinimalSubscriber::topic_callback, this, _1));
     }
-
-  private:
-    void topic_callback(const interfaces::msg::test::number msg) const
+    // Pic::gettime();
+    // path_select pl = Pic::return_path();
+    // std::cout << pl.path << std::endl;
+private:
+    void topic_callback(const interfaces::msg::Num::SharedPtr msg) const // CHANGE
     {
-      RCLCPP_INFO(this->get_logger(), "I heard: '%s'", msg->data.c_str());
+        RCLCPP_INFO(this->get_logger(), "%d", msg->num);
+        gettime();
     }
-    rclcpp::Subscription<interfaces::msg::test>::SharedPtr subscription_;
+    rclcpp::Subscription<interfaces::msg::Num>::SharedPtr subscription_; // CHANGE
 };
 
-int main(int argc, char * argv[])
+
+
+int main(int argc, char *argv[])
+
 {
-  rclcpp::init(argc, argv);
-  rclcpp::spin(std::make_shared<MinimalSubscriber>());
-  rclcpp::shutdown();
-  return 0;
+    rclcpp::init(argc, argv);
+    rclcpp::spin(std::make_shared<MinimalSubscriber>());
+    rclcpp::shutdown();
+    return 0;
 }
+
+

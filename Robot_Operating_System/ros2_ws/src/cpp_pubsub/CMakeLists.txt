@@ -19,18 +19,35 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 # find_package(std_msgs REQUIRED)
-find_package(example_interfaces REQUIRED)
+find_package(interfaces REQUIRED)
+
+include_directories(
+  include/cpp_pubsub  
+  ${catkin_INCLUDE_DIRS}
+)
+link_directories(
+  ${catkin_LIB_DIRS} lib
+)
 
 add_executable(talker src/pub.cpp)
-ament_target_dependencies(talker rclcpp example_interfaces)
-add_executable(listener src/sub.cpp)
-ament_target_dependencies(listener rclcpp example_interfaces)
+ament_target_dependencies(talker rclcpp interfaces)
+add_executable(listener
+  src/sub.cpp
+  src/get_info.cpp)
+ament_target_dependencies(listener rclcpp interfaces)
 
 install(TARGETS
   talker
   listener
   DESTINATION lib/${PROJECT_NAME})
 
+# add_library(get_info
+#   src/get_info.cpp      # source file is exist
+# )
+target_link_libraries(listener
+  ${catkin_LIBRARIES}
+)
+  
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights

@@ -1,0 +1,6 @@
+Invoking command in '/workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces': /usr/bin/cmake /workspace/cxy/Robot_Operating_System/ros2_ws/src/interfaces -DCMAKE_INSTALL_PREFIX=/workspace/cxy/Robot_Operating_System/ros2_ws/install/interfaces
+Invoked command in '/workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces' returned '0': /usr/bin/cmake /workspace/cxy/Robot_Operating_System/ros2_ws/src/interfaces -DCMAKE_INSTALL_PREFIX=/workspace/cxy/Robot_Operating_System/ros2_ws/install/interfaces
+Invoking command in '/workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces': /usr/bin/cmake --build /workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces -- -j20 -l20
+Invoked command in '/workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces' returned '0': /usr/bin/cmake --build /workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces -- -j20 -l20
+Invoking command in '/workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces': /usr/bin/cmake --install /workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces
+Invoked command in '/workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces' returned '0': /usr/bin/cmake --install /workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces

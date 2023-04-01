@@ -1,0 +1,20 @@
+[0.006s] Invoking command in '/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub': CMAKE_PREFIX_PATH=/workspace/cxy/Robot_Operating_System/ros2_ws/install/interfaces:/workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub:/opt/ros/foxy:/opt/third_party/casadi/lib/cmake/casadi:/opt/third_party/ceres/lib/cmake/Ceres:/opt/third_party/osqp-cpp/lib/cmake/:/opt/third_party/abseil-cpp/lib/cmake/:/opt/third_party/osqp/lib/cmake/ /usr/bin/cmake --build /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub -- -j20 -l20
+[0.015s] -- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.034s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.141s] -- Found rclcpp: 2.4.0 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.158s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.160s] -- Found rosidl_adapter: 1.2.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.250s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.272s] -- Found rmw_implementation_cmake: 1.0.3 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.273s] -- Using RMW implementation 'rmw_cyclonedds_cpp' as default
+[0.337s] -- Found interfaces: 0.0.0 (/workspace/cxy/Robot_Operating_System/ros2_ws/install/interfaces/share/interfaces/cmake)
+[0.341s] [31mCMake Error at CMakeLists.txt:45 (target_link_libraries):
+[0.341s]   Cannot specify link libraries for target "test_node" which is not built by
+[0.341s]   this project.
+[0.341s] 
+[0.341s] [0m
+[0.341s] -- Configuring incomplete, errors occurred!
+[0.341s] See also "/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub/CMakeFiles/CMakeOutput.log".
+[0.341s] See also "/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub/CMakeFiles/CMakeError.log".
+[0.344s] make: *** [Makefile:308: cmake_check_build_system] Error 1
+[0.345s] Invoked command in '/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub' returned '2': CMAKE_PREFIX_PATH=/workspace/cxy/Robot_Operating_System/ros2_ws/install/interfaces:/workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub:/opt/ros/foxy:/opt/third_party/casadi/lib/cmake/casadi:/opt/third_party/ceres/lib/cmake/Ceres:/opt/third_party/osqp-cpp/lib/cmake/:/opt/third_party/abseil-cpp/lib/cmake/:/opt/third_party/osqp/lib/cmake/ /usr/bin/cmake --build /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub -- -j20 -l20

@@ -1,0 +1,74 @@
+[0.005s] Invoking command in '/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub': CMAKE_PREFIX_PATH=/workspace/cxy/Robot_Operating_System/ros2_ws/install/interfaces:/workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub:/opt/ros/foxy:/opt/third_party/casadi/lib/cmake/casadi:/opt/third_party/ceres/lib/cmake/Ceres:/opt/third_party/osqp-cpp/lib/cmake/:/opt/third_party/abseil-cpp/lib/cmake/:/opt/third_party/osqp/lib/cmake/ /usr/bin/cmake --build /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub -- -j20 -l20
+[0.017s] [35m[1mConsolidate compiler generated dependencies of target listener[0m
+[0.021s] [ 16%] [32mBuilding CXX object CMakeFiles/get_info.dir/src/get_info.cpp.o[0m
+[0.021s] [ 50%] Built target talker
+[0.024s] [ 66%] [32mBuilding CXX object CMakeFiles/listener.dir/src/sub.cpp.o[0m
+[0.042s] In file included from [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/get_info.h:4[m[K,
+[0.042s]                  from [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/src/get_info.cpp:6[m[K:
+[0.043s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1114:[m[K [01;35m[Kwarning: [m[Kignoring #pragma region Common [[01;35m[K-Wunknown-pragmas[m[K]
+[0.043s]  1114 | #pragma region Common operation
+[0.043s]       | 
+[0.043s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1169:2:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K-Wcomment[m[K]
+[0.043s]  1169 |  /*! ***************************************************************/
+[0.043s]       |   
+[0.043s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1410:2:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K-Wcomment[m[K]
+[0.043s]  1410 |  /*! ***************************************************************/
+[0.043s]       |   
+[0.043s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1453:2:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K-Wcomment[m[K]
+[0.043s]  1453 |  /*! ***************************************************************/
+[0.043s]       |   
+[0.043s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1525:2:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K-Wcomment[m[K]
+[0.043s]  1525 |  /**UDP CMD END**/
+[0.043s]       |   
+[0.044s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1536:2:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K-Wcomment[m[K]
+[0.044s]  1536 |  /*! *************************************************************** *!/
+[0.044s]       |   
+[0.044s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1537:2:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K-Wcomment[m[K]
+[0.044s]  1537 |  /* 函数名：       cmd_sysReset（）
+[0.044s]       |   
+[0.044s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:3640:[m[K [01;35m[Kwarning: [m[Kignoring #pragma endregion Common [[01;35m[K-Wunknown-pragmas[m[K]
+[0.044s]  3640 | #pragma endregion Common operation
+[0.044s]       | 
+[0.082s] In file included from [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/get_info.h:4[m[K,
+[0.082s]                  from [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/src/sub.cpp:6[m[K:
+[0.082s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1114:[m[K [01;35m[Kwarning: [m[Kignoring #pragma region Common [[01;35m[K-Wunknown-pragmas[m[K]
+[0.083s]  1114 | #pragma region Common operation
+[0.083s]       | 
+[0.083s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1169:2:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K-Wcomment[m[K]
+[0.083s]  1169 |  /*! ***************************************************************/
+[0.083s]       |   
+[0.083s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1410:2:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K-Wcomment[m[K]
+[0.083s]  1410 |  /*! ***************************************************************/
+[0.083s]       |   
+[0.083s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1453:2:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K-Wcomment[m[K]
+[0.083s]  1453 |  /*! ***************************************************************/
+[0.083s]       |   
+[0.083s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1525:2:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K-Wcomment[m[K]
+[0.083s]  1525 |  /**UDP CMD END**/
+[0.083s]       |   
+[0.083s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1536:2:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K-Wcomment[m[K]
+[0.084s]  1536 |  /*! *************************************************************** *!/
+[0.084s]       |   
+[0.084s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1537:2:[m[K [01;35m[Kwarning: [m[K"/*" within comment [[01;35m[K-Wcomment[m[K]
+[0.084s]  1537 |  /* 函数名：       cmd_sysReset（）
+[0.084s]       |   
+[0.084s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:3640:[m[K [01;35m[Kwarning: [m[Kignoring #pragma endregion Common [[01;35m[K-Wunknown-pragmas[m[K]
+[0.084s]  3640 | #pragma endregion Common operation
+[0.084s]       | 
+[0.142s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/src/get_info.cpp:[m[K In function ‘[01m[Kvoid turn_picture_display(int)[m[K’:
+[0.142s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/src/get_info.cpp:47:10:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[KnPort[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[0.142s]    47 |  Ouint32 [01;35m[KnPort[m[K = 5005;
+[0.142s]       |          [01;35m[K^~~~~[m[K
+[0.142s] [01m[K/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/src/get_info.cpp:53:6:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[KuAreaX[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[0.142s]    53 |  int [01;35m[KuAreaX[m[K = 16;//32
+[0.143s]       |      [01;35m[K^~~~~~[m[K
+[0.182s] [ 83%] [32m[1mLinking CXX static library libget_info.a[0m
+[0.190s] [ 83%] Built target get_info
+[2.399s] [100%] [32m[1mLinking CXX executable listener[0m
+[2.507s] /usr/bin/ld: CMakeFiles/listener.dir/src/sub.cpp.o: in function `MinimalSubscriber::topic_callback(std::shared_ptr<interfaces::msg::Num_<std::allocator<void> > >) const':
+[2.507s] sub.cpp:(.text._ZNK17MinimalSubscriber14topic_callbackESt10shared_ptrIN10interfaces3msg4Num_ISaIvEEEE[_ZNK17MinimalSubscriber14topic_callbackESt10shared_ptrIN10interfaces3msg4Num_ISaIvEEEE]+0x1bc): undefined reference to `gettime()'
+[2.516s] collect2: error: ld returned 1 exit status
+[2.516s] make[2]: *** [CMakeFiles/listener.dir/build.make:149: listener] Error 1
+[2.517s] make[1]: *** [CMakeFiles/Makefile2:167: CMakeFiles/listener.dir/all] Error 2
+[2.517s] make: *** [Makefile:146: all] Error 2
+[2.518s] Invoked command in '/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub' returned '2': CMAKE_PREFIX_PATH=/workspace/cxy/Robot_Operating_System/ros2_ws/install/interfaces:/workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub:/opt/ros/foxy:/opt/third_party/casadi/lib/cmake/casadi:/opt/third_party/ceres/lib/cmake/Ceres:/opt/third_party/osqp-cpp/lib/cmake/:/opt/third_party/abseil-cpp/lib/cmake/:/opt/third_party/osqp/lib/cmake/ /usr/bin/cmake --build /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub -- -j20 -l20

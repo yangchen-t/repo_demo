@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/g++
 CXX_DEFINES = -DDEFAULT_RMW_IMPLEMENTATION=rmw_fastrtps_cpp -DRCUTILS_ENABLE_FAULT_INJECTION -DSPDLOG_COMPILED_LIB
 
-CXX_INCLUDES = -isystem /opt/ros/foxy/include
+CXX_INCLUDES = -I/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/include/cpp_pubsub -isystem /workspace/cxy/Robot_Operating_System/ros2_ws/install/interfaces/include -isystem /opt/ros/foxy/include
 
 CXX_FLAGS = -Wall -Wextra -Wpedantic
 

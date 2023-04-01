@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/src/get_info.cpp" "CMakeFiles/listener.dir/src/get_info.cpp.o" "gcc" "CMakeFiles/listener.dir/src/get_info.cpp.o.d"
   "/workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub/src/sub.cpp" "CMakeFiles/listener.dir/src/sub.cpp.o" "gcc" "CMakeFiles/listener.dir/src/sub.cpp.o.d"
   )
 

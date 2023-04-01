@@ -1,0 +1,30 @@
+[0.009s] Invoking command in '/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub': /usr/bin/cmake --build /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub -- -j20 -l20
+[0.025s] [ 25%] [32mBuilding CXX object CMakeFiles/talker.dir/src/pub.cpp.o[0m
+[0.026s] [ 50%] [32mBuilding CXX object CMakeFiles/listener.dir/src/sub.cpp.o[0m
+[1.526s] [ 75%] [32m[1mLinking CXX executable talker[0m
+[1.604s] [ 75%] Built target talker
+[2.438s] [100%] [32m[1mLinking CXX executable listener[0m
+[2.547s] [100%] Built target listener
+[2.558s] Invoked command in '/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub' returned '0': /usr/bin/cmake --build /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub -- -j20 -l20
+[2.574s] Invoking command in '/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub': /usr/bin/cmake --install /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub
+[2.577s] -- Install configuration: ""
+[2.577s] -- Installing: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/lib/cpp_pubsub/talker
+[2.577s] -- Set runtime path of "/workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/lib/cpp_pubsub/talker" to ""
+[2.577s] -- Installing: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/lib/cpp_pubsub/listener
+[2.578s] -- Set runtime path of "/workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/lib/cpp_pubsub/listener" to ""
+[2.578s] -- Installing: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/ament_index/resource_index/package_run_dependencies/cpp_pubsub
+[2.578s] -- Installing: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/ament_index/resource_index/parent_prefix_path/cpp_pubsub
+[2.579s] -- Installing: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/environment/ament_prefix_path.sh
+[2.579s] -- Installing: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/environment/ament_prefix_path.dsv
+[2.579s] -- Installing: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/environment/path.sh
+[2.579s] -- Installing: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/environment/path.dsv
+[2.579s] -- Installing: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/local_setup.bash
+[2.579s] -- Installing: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/local_setup.sh
+[2.579s] -- Installing: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/local_setup.zsh
+[2.579s] -- Installing: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/local_setup.dsv
+[2.579s] -- Up-to-date: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/package.dsv
+[2.579s] -- Installing: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/ament_index/resource_index/packages/cpp_pubsub
+[2.579s] -- Installing: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/cmake/cpp_pubsubConfig.cmake
+[2.579s] -- Installing: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/cmake/cpp_pubsubConfig-version.cmake
+[2.579s] -- Installing: /workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/package.xml
+[2.580s] Invoked command in '/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub' returned '0': /usr/bin/cmake --install /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub
