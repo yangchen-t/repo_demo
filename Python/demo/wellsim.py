@@ -8,6 +8,7 @@ import datetime
 
 
 ROOT_PATH = "/data/qpilot_log/wellsim"
+PASSWD = "qwer"
 
 class Encryption():
     def __init__(self) -> None:
@@ -168,7 +169,7 @@ if __name__ == '__main__':
         if len(sys.argv) > 1:
             cmd = sys.argv[1]
             if cmd == "-r":
-                subprocess.getoutput("echo qwer | sudo -S rm /tmp/*.tar.gz")
+                subprocess.getoutput("echo {0} | sudo -S rm /tmp/*.tar.gz".format(PASSWD))
             else:
                 print(" -r     = delete log history")
         else:
