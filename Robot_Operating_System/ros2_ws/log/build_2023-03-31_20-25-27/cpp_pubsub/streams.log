@@ -1,0 +1,16 @@
+[0.006s] Invoking command in '/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub': CMAKE_PREFIX_PATH=/workspace/cxy/Robot_Operating_System/ros2_ws/install/interfaces:/workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub:/opt/ros/foxy:/opt/third_party/casadi/lib/cmake/casadi:/opt/third_party/ceres/lib/cmake/Ceres:/opt/third_party/osqp-cpp/lib/cmake/:/opt/third_party/abseil-cpp/lib/cmake/:/opt/third_party/osqp/lib/cmake/ /usr/bin/cmake --build /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub -- -j20 -l20
+[0.024s] [ 25%] [32m[1mLinking CXX executable listener[0m
+[0.024s] [ 75%] Built target talker
+[0.132s] /usr/bin/ld: CMakeFiles/listener.dir/src/sub.cpp.o: in function `turn_picture_display(int)':
+[0.132s] sub.cpp:(.text+0x8d2): undefined reference to `bxDual_dynamicArea_AddAreaPic_6G'
+[0.132s] /usr/bin/ld: sub.cpp:(.text+0x948): undefined reference to `bxDual_dynamicArea_AddAreaPic_6G'
+[0.132s] /usr/bin/ld: sub.cpp:(.text+0x9cd): undefined reference to `bxDual_dynamicArea_AddAreaPic_6G'
+[0.132s] /usr/bin/ld: sub.cpp:(.text+0xa43): undefined reference to `bxDual_dynamicArea_AddAreaPic_6G'
+[0.132s] /usr/bin/ld: CMakeFiles/listener.dir/src/sub.cpp.o: in function `apply()':
+[0.133s] sub.cpp:(.text+0xca4): undefined reference to `bxDual_dynamicArea_AddAreaPic_6G'
+[0.133s] /usr/bin/ld: CMakeFiles/listener.dir/src/sub.cpp.o:sub.cpp:(.text+0xd39): more undefined references to `bxDual_dynamicArea_AddAreaPic_6G' follow
+[0.141s] collect2: error: ld returned 1 exit status
+[0.142s] make[2]: *** [CMakeFiles/listener.dir/build.make:149: listener] Error 1
+[0.142s] make[1]: *** [CMakeFiles/Makefile2:165: CMakeFiles/listener.dir/all] Error 2
+[0.142s] make: *** [Makefile:146: all] Error 2
+[0.143s] Invoked command in '/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub' returned '2': CMAKE_PREFIX_PATH=/workspace/cxy/Robot_Operating_System/ros2_ws/install/interfaces:/workspace/cxy/Robot_Operating_System/ros2_ws/install/cpp_pubsub:/opt/ros/foxy:/opt/third_party/casadi/lib/cmake/casadi:/opt/third_party/ceres/lib/cmake/Ceres:/opt/third_party/osqp-cpp/lib/cmake/:/opt/third_party/abseil-cpp/lib/cmake/:/opt/third_party/osqp/lib/cmake/ /usr/bin/cmake --build /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub -- -j20 -l20

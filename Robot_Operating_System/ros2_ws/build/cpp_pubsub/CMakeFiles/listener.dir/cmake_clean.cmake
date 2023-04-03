@@ -1,6 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/listener.dir/src/get_info.cpp.o"
-  "CMakeFiles/listener.dir/src/get_info.cpp.o.d"
   "CMakeFiles/listener.dir/src/sub.cpp.o"
   "CMakeFiles/listener.dir/src/sub.cpp.o.d"
   "listener"

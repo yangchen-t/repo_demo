@@ -28,7 +28,7 @@ int main(int argc, char** argv)
 	pheader1.PageStyle = 0x00;
    	pheader1.DisplayMode = 0x02;
 	pheader1.ClearMode = 0x01;
-	pheader1.Speed = 20;
+	pheader1.Speed = 20;		
 	pheader1.StayTime = 10;
 	pheader1.RepeatTime = 3;
 	pheader1.ValidLen = 128;

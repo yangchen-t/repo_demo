@@ -33,7 +33,7 @@ add_executable(talker src/pub.cpp)
 ament_target_dependencies(talker rclcpp interfaces)
 add_executable(listener
   src/sub.cpp
-  src/get_info.cpp)
+  )
 ament_target_dependencies(listener rclcpp interfaces)
 
 install(TARGETS
@@ -44,6 +44,7 @@ install(TARGETS
 # add_library(get_info
 #   src/get_info.cpp      # source file is exist
 # )
+
 target_link_libraries(listener
   ${catkin_LIBRARIES}
 )

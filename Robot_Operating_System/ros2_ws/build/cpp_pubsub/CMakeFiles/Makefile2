@@ -65,7 +65,6 @@ CMAKE_BINARY_DIR = /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsu
 # The main recursive "all" target.
 all: CMakeFiles/talker.dir/all
 all: CMakeFiles/listener.dir/all
-all: CMakeFiles/get_info.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -77,7 +76,6 @@ clean: CMakeFiles/uninstall.dir/clean
 clean: CMakeFiles/cpp_pubsub_uninstall.dir/clean
 clean: CMakeFiles/talker.dir/clean
 clean: CMakeFiles/listener.dir/clean
-clean: CMakeFiles/get_info.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -139,7 +137,7 @@ CMakeFiles/cpp_pubsub_uninstall.dir/clean:
 CMakeFiles/talker.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/talker.dir/build.make CMakeFiles/talker.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/talker.dir/build.make CMakeFiles/talker.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub/CMakeFiles --progress-num=6,7 "Built target talker"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub/CMakeFiles --progress-num=3,4 "Built target talker"
 .PHONY : CMakeFiles/talker.dir/all
 
 # Build rule for subdir invocation for target.
@@ -165,12 +163,12 @@ CMakeFiles/talker.dir/clean:
 CMakeFiles/listener.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/listener.dir/build.make CMakeFiles/listener.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/listener.dir/build.make CMakeFiles/listener.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub/CMakeFiles --progress-num=3,4,5 "Built target listener"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub/CMakeFiles --progress-num=1,2 "Built target listener"
 .PHONY : CMakeFiles/listener.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/listener.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/listener.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub/CMakeFiles 0
 .PHONY : CMakeFiles/listener.dir/rule
@@ -183,32 +181,6 @@ listener: CMakeFiles/listener.dir/rule
 CMakeFiles/listener.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/listener.dir/build.make CMakeFiles/listener.dir/clean
 .PHONY : CMakeFiles/listener.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/get_info.dir
-
-# All Build rule for target.
-CMakeFiles/get_info.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/get_info.dir/build.make CMakeFiles/get_info.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/get_info.dir/build.make CMakeFiles/get_info.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub/CMakeFiles --progress-num=1,2 "Built target get_info"
-.PHONY : CMakeFiles/get_info.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/get_info.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/get_info.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub/CMakeFiles 0
-.PHONY : CMakeFiles/get_info.dir/rule
-
-# Convenience name for target.
-get_info: CMakeFiles/get_info.dir/rule
-.PHONY : get_info
-
-# clean rule for target.
-CMakeFiles/get_info.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/get_info.dir/build.make CMakeFiles/get_info.dir/clean
-.PHONY : CMakeFiles/get_info.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

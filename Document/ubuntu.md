@@ -418,3 +418,79 @@ finish 执行完当前函数
 ```
 
 ![coredump](/home/westwell/Pictures/coredump.png)
+
+## Q:ntp deploy
+
+```bash
+sudo apt install ntp 
+sudo vim /etc/ntp.conf
+#系统时间与BIOS事件的偏差记录
+driftfile /var/lib/ntp/drift
+
+restrict default kod nomodify notrap nopeer noquery    # 拒绝所有IPv4的client连接此NTP服务器
+restrict -6 default kod nomodify notrap nopeer noquery    # 拒绝所有IPv6的client连接此NTP服务器
+
+
+restrict 127.0.0.1    # 放行本机localhost对NTP服务的访问
+restrict -6 ::1
+
+
+# Hosts on local network are less restricted.
+#restrict 192.168.1.0 mask 255.255.255.0 nomodify notrap    # 放行192.168.1.0网段主机与NTP服务器进行时间同步
+
+# Use public servers from the pool.ntp.org project.
+# Please consider joining the pool (http://www.pool.ntp.org/join.html).
+
+server 0.centos.pool.ntp.org iburst    # 代表的同步时间服务器
+server 1.centos.pool.ntp.org iburst
+server 2.centos.pool.ntp.org iburst
+server 3.centos.pool.ntp.org iburst
+
+利用restrict 来管理权限控制
+Restrict [IP] mask [netmask_IP] [parameter]
+
+Parameter 的
+ignore :拒绝所有类型的NTP联机。
+nomodify: 客户端不能使用ntpc与ntpq这两个程序来修改服务器的时间参数，但客户端可透过这部主机来进行网络校时；
+noquery:客户端不能够使用ntpc与ntpq等指令来查询时间服务器，不提供NTP的网络校时。
+notrap:不提供trap 这个运程事件登入的功能。
+notrust:拒绝没有认证的客户端。
+Kod:kod技术可以阻止“Kiss of Death “包对服务器的破坏。
+Nopeer:不与其他同一层的NTP服务器进行时间同步。
+
+利用server 设定上层NTP服务器，格式如下：
+server [IP or hostname] [prefer]
+
+参数主要如下：
+perfer:表示优先级最高
+burst ：当一个运程NTP服务器可用时，向它发送一系列的并发包进行检测。
+iburst ：当一个运程NTP服务器不可用时，向它发送一系列的并发包进行检测。
+
+
+sudo systemctl restart ntp 
+
+sudo apt install ntpdate 
+
+# debug 
+sudo ntpdate -d xx.xx.xx.xx 
+
+# sync 
+sudo ntpdate -u xx.xx.xx.xx 
+
+# info 
+sudo ntpq -np 
+
+remote ：响应这个请求的NTP服务器的名称。
+refid ：NTP服务器使用的上一级ntp服务器。
+st ：remote远程服务器的级别。从1-16。
+t ：待定。
+when ：上一次成功请求之后到现在的秒数。
+poll ：本地机和远程服务器多少时间进行一次同步(单位为秒)。 在一开始运行NTP的时候这个poll值会比较小，那样和服务器同步的频率也就增加了，可以尽快调整到正确的时间范围，之后poll值会逐渐增大，同步的频率也就会相应减小。
+reach ：这是一个八进制值，用来测试能否和服务器连接，每成功连接一次它的值就会增加。
+delay ：从本地机发送同步要求到ntp服务器的round trip time（往返时延）。
+offset ：主机通过NTP时钟同步与所同步时间源的时间偏移量，单位为毫秒（ms）。offset越接近于0,主机和ntp服务器的时间越接近。
+jitter ：这是一个用来做统计的值。 它统计了在特定个连续的连接数里offset的分布情况。简单地说这个数值的绝对值越小，主机的时间就越精确。
+```
+
+
+
