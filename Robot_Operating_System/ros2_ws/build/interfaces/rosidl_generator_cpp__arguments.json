@@ -1,9 +1,9 @@
 {
   "package_name": "interfaces",
-  "output_dir": "/workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces/rosidl_generator_cpp/interfaces",
+  "output_dir": "/scripts/ros2_ws/build/interfaces/rosidl_generator_cpp/interfaces",
   "template_dir": "/opt/ros/foxy/share/rosidl_generator_cpp/cmake/../resource",
   "idl_tuples": [
-    "/workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces/rosidl_adapter/interfaces:msg/Num.idl"
+    "/scripts/ros2_ws/build/interfaces/rosidl_adapter/interfaces:msg/Num.idl"
   ],
   "target_dependencies": [
     "/opt/ros/foxy/share/rosidl_generator_cpp/cmake/../../../lib/rosidl_generator_cpp/rosidl_generator_cpp",
@@ -21,6 +21,6 @@
     "/opt/ros/foxy/share/rosidl_generator_cpp/cmake/../resource/srv__builder.hpp.em",
     "/opt/ros/foxy/share/rosidl_generator_cpp/cmake/../resource/srv__struct.hpp.em",
     "/opt/ros/foxy/share/rosidl_generator_cpp/cmake/../resource/srv__traits.hpp.em",
-    "/workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces/rosidl_adapter/interfaces/msg/Num.idl"
+    "/scripts/ros2_ws/build/interfaces/rosidl_adapter/interfaces/msg/Num.idl"
   ]
 }

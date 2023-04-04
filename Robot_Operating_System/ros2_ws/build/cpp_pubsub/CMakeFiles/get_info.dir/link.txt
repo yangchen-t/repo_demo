@@ -1,2 +1,0 @@
-/usr/bin/ar qc libget_info.a CMakeFiles/get_info.dir/src/get_info.cpp.o
-/usr/bin/ranlib libget_info.a

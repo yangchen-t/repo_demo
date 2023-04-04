@@ -1,9 +1,0 @@
-/usr/bin/ld: CMakeFiles/listener.dir/src/get_info.cpp.o: in function `turn_picture_display(int)':
-get_info.cpp:(.text+0x43a): undefined reference to `bxDual_dynamicArea_AddAreaPic_6G'
-/usr/bin/ld: get_info.cpp:(.text+0x4b0): undefined reference to `bxDual_dynamicArea_AddAreaPic_6G'
-/usr/bin/ld: get_info.cpp:(.text+0x535): undefined reference to `bxDual_dynamicArea_AddAreaPic_6G'
-/usr/bin/ld: get_info.cpp:(.text+0x5ab): undefined reference to `bxDual_dynamicArea_AddAreaPic_6G'
-collect2: error: ld returned 1 exit status
-make[2]: *** [CMakeFiles/listener.dir/build.make:165: listener] Error 1
-make[1]: *** [CMakeFiles/Makefile2:167: CMakeFiles/listener.dir/all] Error 2
-make: *** [Makefile:146: all] Error 2

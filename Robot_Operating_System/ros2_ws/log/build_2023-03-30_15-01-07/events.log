@@ -1,8 +1,0 @@
-[0.000000] (-) TimerEvent: {}
-[0.000112] (-) JobUnselected: {'identifier': 'cpp_qomolo'}
-[0.000139] (-) JobUnselected: {'identifier': 'cpp_srvcli'}
-[0.000148] (-) JobUnselected: {'identifier': 'interfaces'}
-[0.000158] (cpp_pubsub) JobQueued: {'identifier': 'cpp_pubsub', 'dependencies': OrderedDict([('interfaces', '/workspace/cxy/Robot_Operating_System/ros2_ws/install/interfaces')])}
-[0.000169] (cpp_pubsub) JobStarted: {'identifier': 'cpp_pubsub'}
-[0.006163] (cpp_pubsub) JobEnded: {'identifier': 'cpp_pubsub', 'rc': 1}
-[0.016573] (-) EventReactorShutdown: {}

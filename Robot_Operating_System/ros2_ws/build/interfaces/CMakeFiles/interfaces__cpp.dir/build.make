@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /workspace/cxy/Robot_Operating_System/ros2_ws/src/interfaces
+CMAKE_SOURCE_DIR = /scripts/ros2_ws/src/interfaces
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces
+CMAKE_BINARY_DIR = /scripts/ros2_ws/build/interfaces
 
 # Utility rule file for interfaces__cpp.
 
@@ -87,8 +87,8 @@ rosidl_generator_cpp/interfaces/msg/num.hpp: /opt/ros/foxy/share/rosidl_generato
 rosidl_generator_cpp/interfaces/msg/num.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/srv__struct.hpp.em
 rosidl_generator_cpp/interfaces/msg/num.hpp: /opt/ros/foxy/share/rosidl_generator_cpp/resource/srv__traits.hpp.em
 rosidl_generator_cpp/interfaces/msg/num.hpp: rosidl_adapter/interfaces/msg/Num.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C++ code for ROS interfaces"
-	/usr/bin/python3 /opt/ros/foxy/share/rosidl_generator_cpp/cmake/../../../lib/rosidl_generator_cpp/rosidl_generator_cpp --generator-arguments-file /workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces/rosidl_generator_cpp__arguments.json
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/scripts/ros2_ws/build/interfaces/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C++ code for ROS interfaces"
+	/usr/bin/python3 /opt/ros/foxy/share/rosidl_generator_cpp/cmake/../../../lib/rosidl_generator_cpp/rosidl_generator_cpp --generator-arguments-file /scripts/ros2_ws/build/interfaces/rosidl_generator_cpp__arguments.json
 
 rosidl_generator_cpp/interfaces/msg/detail/num__builder.hpp: rosidl_generator_cpp/interfaces/msg/num.hpp
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_cpp/interfaces/msg/detail/num__builder.hpp
@@ -116,6 +116,6 @@ CMakeFiles/interfaces__cpp.dir/clean:
 .PHONY : CMakeFiles/interfaces__cpp.dir/clean
 
 CMakeFiles/interfaces__cpp.dir/depend:
-	cd /workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /workspace/cxy/Robot_Operating_System/ros2_ws/src/interfaces /workspace/cxy/Robot_Operating_System/ros2_ws/src/interfaces /workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces /workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces /workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces/CMakeFiles/interfaces__cpp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /scripts/ros2_ws/build/interfaces && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /scripts/ros2_ws/src/interfaces /scripts/ros2_ws/src/interfaces /scripts/ros2_ws/build/interfaces /scripts/ros2_ws/build/interfaces /scripts/ros2_ws/build/interfaces/CMakeFiles/interfaces__cpp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/interfaces__cpp.dir/depend
 

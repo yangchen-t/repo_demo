@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /workspace/cxy/Robot_Operating_System/ros2_ws/src/interfaces
+CMAKE_SOURCE_DIR = /scripts/ros2_ws/src/interfaces
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces
+CMAKE_BINARY_DIR = /scripts/ros2_ws/build/interfaces
 
 # Utility rule file for interfaces__py.
 
@@ -87,8 +87,8 @@ rosidl_generator_py/interfaces/_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c:
 rosidl_generator_py/interfaces/_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/foxy/share/rosidl_generator_py/resource/_srv_pkg_typesupport_entry_point.c.em
 rosidl_generator_py/interfaces/_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c: /opt/ros/foxy/share/rosidl_generator_py/resource/_srv.py.em
 rosidl_generator_py/interfaces/_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c: rosidl_adapter/interfaces/msg/Num.idl
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Python code for ROS interfaces"
-	cd /workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces/interfaces__py && /usr/bin/python3 /opt/ros/foxy/share/rosidl_generator_py/cmake/../../../lib/rosidl_generator_py/rosidl_generator_py --generator-arguments-file /workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces/rosidl_generator_py__arguments.json --typesupport-impls "rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c;rosidl_typesupport_c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/scripts/ros2_ws/build/interfaces/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Python code for ROS interfaces"
+	cd /scripts/ros2_ws/build/interfaces/interfaces__py && /usr/bin/python3 /opt/ros/foxy/share/rosidl_generator_py/cmake/../../../lib/rosidl_generator_py/rosidl_generator_py --generator-arguments-file /scripts/ros2_ws/build/interfaces/rosidl_generator_py__arguments.json --typesupport-impls "rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c;rosidl_typesupport_c"
 
 rosidl_generator_py/interfaces/_interfaces_s.ep.rosidl_typesupport_introspection_c.c: rosidl_generator_py/interfaces/_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c
 	@$(CMAKE_COMMAND) -E touch_nocreate rosidl_generator_py/interfaces/_interfaces_s.ep.rosidl_typesupport_introspection_c.c
@@ -120,10 +120,10 @@ interfaces__py/CMakeFiles/interfaces__py.dir/build: interfaces__py
 .PHONY : interfaces__py/CMakeFiles/interfaces__py.dir/build
 
 interfaces__py/CMakeFiles/interfaces__py.dir/clean:
-	cd /workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces/interfaces__py && $(CMAKE_COMMAND) -P CMakeFiles/interfaces__py.dir/cmake_clean.cmake
+	cd /scripts/ros2_ws/build/interfaces/interfaces__py && $(CMAKE_COMMAND) -P CMakeFiles/interfaces__py.dir/cmake_clean.cmake
 .PHONY : interfaces__py/CMakeFiles/interfaces__py.dir/clean
 
 interfaces__py/CMakeFiles/interfaces__py.dir/depend:
-	cd /workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /workspace/cxy/Robot_Operating_System/ros2_ws/src/interfaces /workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces/interfaces__py /workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces /workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces/interfaces__py /workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces/interfaces__py/CMakeFiles/interfaces__py.dir/DependInfo.cmake --color=$(COLOR)
+	cd /scripts/ros2_ws/build/interfaces && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /scripts/ros2_ws/src/interfaces /scripts/ros2_ws/build/interfaces/interfaces__py /scripts/ros2_ws/build/interfaces /scripts/ros2_ws/build/interfaces/interfaces__py /scripts/ros2_ws/build/interfaces/interfaces__py/CMakeFiles/interfaces__py.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : interfaces__py/CMakeFiles/interfaces__py.dir/depend
 

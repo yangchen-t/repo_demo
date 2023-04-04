@@ -1,8 +1,8 @@
-# Install script for directory: /workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces/interfaces__py
+# Install script for directory: /scripts/ros2_ws/build/interfaces/interfaces__py
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/workspace/cxy/Robot_Operating_System/ros2_ws/install/interfaces")
+  set(CMAKE_INSTALL_PREFIX "/scripts/ros2_ws/install/interfaces")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

@@ -1,0 +1,629 @@
+[0.000000] (-) TimerEvent: {}
+[0.000915] (-) JobUnselected: {'identifier': 'cpp_qomolo'}
+[0.001810] (-) JobUnselected: {'identifier': 'cpp_srvcli'}
+[0.002246] (interfaces) JobQueued: {'identifier': 'interfaces', 'dependencies': OrderedDict()}
+[0.002380] (cpp_pubsub) JobQueued: {'identifier': 'cpp_pubsub', 'dependencies': OrderedDict([('interfaces', '/scripts/ros2_ws/install/interfaces')])}
+[0.002470] (interfaces) JobStarted: {'identifier': 'interfaces'}
+[0.043883] (interfaces) JobProgress: {'identifier': 'interfaces', 'progress': 'cmake'}
+[0.045152] (interfaces) Command: {'cmd': ['/usr/bin/cmake', '/scripts/ros2_ws/src/interfaces', '-DCMAKE_INSTALL_PREFIX=/scripts/ros2_ws/install/interfaces'], 'cwd': '/scripts/ros2_ws/build/interfaces', 'env': OrderedDict([('OPENBLAS_CORETYPE', 'ARMV8'), ('HOSTNAME', 'miivii-tegra'), ('QOMOLO_CONFIGURATION_PATH', '/opt/qomolo/qpilot/share/qpilot_parameters'), ('LOG_PATH', '/debug/devlog'), ('MQTT_NAMESPACE', ''), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib:/opt/third_party/pangolin/lib:/opt/third_party/casadi/lib:/opt/opencv/lib/:/opt/third_party/osqp-cpp/lib/:/opt/third_party/abseil-cpp/lib/:/opt/third_party/osqp/lib/'), ('HOME', '/root'), ('CYCLONEDDS_URI', 'file:///cyclonedds.xml'), ('OLDPWD', '/scripts'), ('ROS_PYTHON_VERSION', '3'), ('MQTT_SERVER_PORT', '1883'), ('CPLUS_INCLUDE_PATH', '/opt/third_party/osqp/include/'), ('ROS_DISTRO', 'foxy'), ('VOC_SERVER_URL', ''), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('NVIDIA_DRIVER_CAPABILITIES', 'compute,utility,graphics'), ('TERM', 'xterm'), ('QOMOLO_MAP_ID', ''), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/foxy/bin:/home/nvidia/.local/bin:/home/nvidia/.local/bin:/usr/local/cuda-10.2/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/opt/qomolo/utils/qomolo_gcs_scripts/tools/:/opt/qomolo/utils/qpilot_setup/tools/scripts:/home/nvidia/go/bin:/usr/local/go/bin:/opt/qomolo/utils/qpilot_perf/scripts'), ('FASTRTPS_DEFAULT_PROFILES_FILE', '/DEFAULT_FASTRTPS_PROFILES.xml'), ('QT_GRAPHICSSYSTEM', 'native'), ('DISPLAY', 'unix'), ('LANG', 'en_US.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_cyclonedds_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('ROS_DOMAIN_ID', '187'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('DEBIAN_FRONTEND', 'noninteractive'), ('TYPE', 'RELEASE'), ('QOMOLO_ROBOT_ID', 'tj1'), ('MQTT_SERVER_IP', ''), ('PWD', '/scripts/ros2_ws/build/interfaces'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('QPILOT_VERSION', '2.6.250-131130focal.20230328.155157'), ('NVIDIA_VISIBLE_DEVICES', 'all'), ('COLCON', '1'), ('ROS_WORKSPACE', ''), ('CMAKE_PREFIX_PATH', '/opt/ros/foxy:/opt/third_party/casadi/lib/cmake/casadi:/opt/third_party/ceres/lib/cmake/Ceres:/opt/third_party/osqp-cpp/lib/cmake/:/opt/third_party/abseil-cpp/lib/cmake/:/opt/third_party/osqp/lib/cmake/')]), 'shell': False}
+[0.099191] (-) TimerEvent: {}
+[0.200418] (-) TimerEvent: {}
+[0.220011] (interfaces) StdoutLine: {'line': b'-- The C compiler identification is GNU 9.4.0\n'}
+[0.300612] (-) TimerEvent: {}
+[0.383385] (interfaces) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 9.4.0\n'}
+[0.400747] (-) TimerEvent: {}
+[0.402472] (interfaces) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.500932] (-) TimerEvent: {}
+[0.553719] (interfaces) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.581781] (interfaces) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.582469] (interfaces) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.583830] (interfaces) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.592961] (interfaces) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.601012] (-) TimerEvent: {}
+[0.701820] (-) TimerEvent: {}
+[0.771452] (interfaces) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.798953] (interfaces) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.799969] (interfaces) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.801556] (interfaces) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.801761] (-) TimerEvent: {}
+[0.810110] (interfaces) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[0.877864] (interfaces) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") \n'}
+[0.878487] (interfaces) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[0.902072] (-) TimerEvent: {}
+[1.003045] (-) TimerEvent: {}
+[1.104546] (-) TimerEvent: {}
+[1.206460] (-) TimerEvent: {}
+[1.307925] (-) TimerEvent: {}
+[1.410450] (-) TimerEvent: {}
+[1.434074] (interfaces) StdoutLine: {'line': b'-- Found rosidl_default_generators: 1.0.1 (/opt/ros/foxy/share/rosidl_default_generators/cmake)\n'}
+[1.442090] (interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[1.459191] (interfaces) StdoutLine: {'line': b'-- Found rosidl_adapter: 1.2.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)\n'}
+[1.510646] (-) TimerEvent: {}
+[1.611594] (-) TimerEvent: {}
+[1.712815] (-) TimerEvent: {}
+[1.755878] (interfaces) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/aarch64-linux-gnu/libcrypto.so (found version "1.1.1f")  \n'}
+[1.812972] (-) TimerEvent: {}
+[1.848888] (interfaces) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/foxy/include  \n'}
+[1.913174] (-) TimerEvent: {}
+[2.015336] (-) TimerEvent: {}
+[2.096051] (interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[2.115498] (-) TimerEvent: {}
+[2.216967] (-) TimerEvent: {}
+[2.231310] (interfaces) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found version "3.8.10") \n'}
+[2.317303] (-) TimerEvent: {}
+[2.418173] (-) TimerEvent: {}
+[2.518792] (-) TimerEvent: {}
+[2.581513] (interfaces) StdoutLine: {'line': b'-- Found ament_cmake_ros: 0.9.2 (/opt/ros/foxy/share/ament_cmake_ros/cmake)\n'}
+[2.619024] (-) TimerEvent: {}
+[2.720040] (-) TimerEvent: {}
+[2.821885] (-) TimerEvent: {}
+[2.899590] (interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[2.914815] (interfaces) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[2.922058] (-) TimerEvent: {}
+[2.976575] (interfaces) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3.5") \n'}
+[2.983792] (interfaces) StdoutLine: {'line': b'-- Found python_cmake_module: 0.8.1 (/opt/ros/foxy/share/python_cmake_module/cmake)\n'}
+[3.022206] (-) TimerEvent: {}
+[3.056366] (interfaces) StdoutLine: {'line': b'-- Found PythonLibs: /usr/lib/aarch64-linux-gnu/libpython3.8.so (found suitable version "3.8.10", minimum required is "3.5") \n'}
+[3.057066] (interfaces) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[3.057405] (interfaces) StdoutLine: {'line': b'-- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.8\n'}
+[3.057602] (interfaces) StdoutLine: {'line': b'-- Using PYTHON_LIBRARIES: /usr/lib/aarch64-linux-gnu/libpython3.8.so\n'}
+[3.118364] (interfaces) StdoutLine: {'line': b'-- Found PythonExtra: .so  \n'}
+[3.122355] (-) TimerEvent: {}
+[3.223303] (-) TimerEvent: {}
+[3.227673] (interfaces) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.9.6 (/opt/ros/foxy/share/ament_lint_auto/cmake)\n'}
+[3.290078] (interfaces) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[3.294871] (interfaces) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[3.297762] (interfaces) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[3.304555] (interfaces) StdoutLine: {'line': b'-- Configuring done\n'}
+[3.323395] (-) TimerEvent: {}
+[3.388918] (interfaces) StdoutLine: {'line': b'-- Generating done\n'}
+[3.395431] (interfaces) StdoutLine: {'line': b'-- Build files have been written to: /scripts/ros2_ws/build/interfaces\n'}
+[3.412163] (interfaces) CommandEnded: {'returncode': 0}
+[3.414329] (interfaces) JobProgress: {'identifier': 'interfaces', 'progress': 'build'}
+[3.416664] (interfaces) Command: {'cmd': ['/usr/bin/cmake', '--build', '/scripts/ros2_ws/build/interfaces', '--', '-j8', '-l8'], 'cwd': '/scripts/ros2_ws/build/interfaces', 'env': OrderedDict([('OPENBLAS_CORETYPE', 'ARMV8'), ('HOSTNAME', 'miivii-tegra'), ('QOMOLO_CONFIGURATION_PATH', '/opt/qomolo/qpilot/share/qpilot_parameters'), ('LOG_PATH', '/debug/devlog'), ('MQTT_NAMESPACE', ''), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib:/opt/third_party/pangolin/lib:/opt/third_party/casadi/lib:/opt/opencv/lib/:/opt/third_party/osqp-cpp/lib/:/opt/third_party/abseil-cpp/lib/:/opt/third_party/osqp/lib/'), ('HOME', '/root'), ('CYCLONEDDS_URI', 'file:///cyclonedds.xml'), ('OLDPWD', '/scripts'), ('ROS_PYTHON_VERSION', '3'), ('MQTT_SERVER_PORT', '1883'), ('CPLUS_INCLUDE_PATH', '/opt/third_party/osqp/include/'), ('ROS_DISTRO', 'foxy'), ('VOC_SERVER_URL', ''), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('NVIDIA_DRIVER_CAPABILITIES', 'compute,utility,graphics'), ('TERM', 'xterm'), ('QOMOLO_MAP_ID', ''), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/foxy/bin:/home/nvidia/.local/bin:/home/nvidia/.local/bin:/usr/local/cuda-10.2/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/opt/qomolo/utils/qomolo_gcs_scripts/tools/:/opt/qomolo/utils/qpilot_setup/tools/scripts:/home/nvidia/go/bin:/usr/local/go/bin:/opt/qomolo/utils/qpilot_perf/scripts'), ('FASTRTPS_DEFAULT_PROFILES_FILE', '/DEFAULT_FASTRTPS_PROFILES.xml'), ('QT_GRAPHICSSYSTEM', 'native'), ('DISPLAY', 'unix'), ('LANG', 'en_US.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_cyclonedds_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('ROS_DOMAIN_ID', '187'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('DEBIAN_FRONTEND', 'noninteractive'), ('TYPE', 'RELEASE'), ('QOMOLO_ROBOT_ID', 'tj1'), ('MQTT_SERVER_IP', ''), ('PWD', '/scripts/ros2_ws/build/interfaces'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('QPILOT_VERSION', '2.6.250-131130focal.20230328.155157'), ('NVIDIA_VISIBLE_DEVICES', 'all'), ('COLCON', '1'), ('ROS_WORKSPACE', ''), ('CMAKE_PREFIX_PATH', '/opt/ros/foxy:/opt/third_party/casadi/lib/cmake/casadi:/opt/third_party/ceres/lib/cmake/Ceres:/opt/third_party/osqp-cpp/lib/cmake/:/opt/third_party/abseil-cpp/lib/cmake/:/opt/third_party/osqp/lib/cmake/')]), 'shell': False}
+[3.424681] (-) TimerEvent: {}
+[3.476553] (interfaces) StdoutLine: {'line': b'[  3%] \x1b[34m\x1b[1mGenerating C code for ROS interfaces\x1b[0m\n'}
+[3.489896] (interfaces) StdoutLine: {'line': b'[  6%] \x1b[34m\x1b[1mGenerating C++ code for ROS interfaces\x1b[0m\n'}
+[3.524828] (-) TimerEvent: {}
+[3.625467] (-) TimerEvent: {}
+[3.727607] (-) TimerEvent: {}
+[3.829613] (-) TimerEvent: {}
+[3.931576] (-) TimerEvent: {}
+[4.033533] (-) TimerEvent: {}
+[4.043340] (interfaces) StdoutLine: {'line': b'[  6%] Built target interfaces__cpp\n'}
+[4.060677] (interfaces) StdoutLine: {'line': b'[  9%] \x1b[34m\x1b[1mGenerating C++ type support for eProsima Fast-RTPS\x1b[0m\n'}
+[4.062448] (interfaces) StdoutLine: {'line': b'[ 12%] \x1b[34m\x1b[1mGenerating C++ type support dispatch for ROS interfaces\x1b[0m\n'}
+[4.063933] (interfaces) StdoutLine: {'line': b'[ 16%] \x1b[34m\x1b[1mGenerating C++ introspection for ROS interfaces\x1b[0m\n'}
+[4.082473] (interfaces) StdoutLine: {'line': b'[ 19%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_generator_c.dir/rosidl_generator_c/interfaces/msg/detail/num__functions.c.o\x1b[0m\n'}
+[4.133710] (-) TimerEvent: {}
+[4.188179] (interfaces) StdoutLine: {'line': b'[ 22%] \x1b[32m\x1b[1mLinking C shared library libinterfaces__rosidl_generator_c.so\x1b[0m\n'}
+[4.234199] (-) TimerEvent: {}
+[4.248314] (interfaces) StdoutLine: {'line': b'[ 22%] Built target interfaces__rosidl_generator_c\n'}
+[4.265916] (interfaces) StdoutLine: {'line': b'[ 25%] \x1b[34m\x1b[1mGenerating C type support dispatch for ROS interfaces\x1b[0m\n'}
+[4.267484] (interfaces) StdoutLine: {'line': b'[ 29%] \x1b[34m\x1b[1mGenerating C introspection for ROS interfaces\x1b[0m\n'}
+[4.334360] (-) TimerEvent: {}
+[4.434958] (-) TimerEvent: {}
+[4.535923] (-) TimerEvent: {}
+[4.590734] (interfaces) StdoutLine: {'line': b'[ 32%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/interfaces/msg/num__type_support.cpp.o\x1b[0m\n'}
+[4.627390] (interfaces) StdoutLine: {'line': b'[ 35%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/interfaces/msg/detail/num__type_support.cpp.o\x1b[0m\n'}
+[4.636116] (-) TimerEvent: {}
+[4.676093] (interfaces) StdoutLine: {'line': b'[ 38%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/interfaces/msg/detail/dds_fastrtps/num__type_support.cpp.o\x1b[0m\n'}
+[4.736575] (-) TimerEvent: {}
+[4.787309] (interfaces) StdoutLine: {'line': b'[ 41%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_c.dir/rosidl_typesupport_c/interfaces/msg/num__type_support.cpp.o\x1b[0m\n'}
+[4.836778] (-) TimerEvent: {}
+[4.846131] (interfaces) StdoutLine: {'line': b'[ 45%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/interfaces/msg/detail/num__type_support.c.o\x1b[0m\n'}
+[4.867502] (interfaces) StdoutLine: {'line': b'[ 48%] \x1b[32m\x1b[1mLinking CXX shared library libinterfaces__rosidl_typesupport_c.so\x1b[0m\n'}
+[4.927757] (interfaces) StdoutLine: {'line': b'[ 51%] \x1b[32m\x1b[1mLinking C shared library libinterfaces__rosidl_typesupport_introspection_c.so\x1b[0m\n'}
+[4.937021] (-) TimerEvent: {}
+[4.944109] (interfaces) StdoutLine: {'line': b'[ 51%] Built target interfaces__rosidl_typesupport_c\n'}
+[4.978873] (interfaces) StdoutLine: {'line': b'[ 51%] Built target interfaces__rosidl_typesupport_introspection_c\n'}
+[5.037193] (-) TimerEvent: {}
+[5.138003] (-) TimerEvent: {}
+[5.238795] (-) TimerEvent: {}
+[5.339558] (-) TimerEvent: {}
+[5.415264] (interfaces) StdoutLine: {'line': b'[ 54%] \x1b[32m\x1b[1mLinking CXX shared library libinterfaces__rosidl_typesupport_cpp.so\x1b[0m\n'}
+[5.427601] (interfaces) StdoutLine: {'line': b'[ 58%] \x1b[32m\x1b[1mLinking CXX shared library libinterfaces__rosidl_typesupport_introspection_cpp.so\x1b[0m\n'}
+[5.439779] (-) TimerEvent: {}
+[5.480418] (interfaces) StdoutLine: {'line': b'[ 58%] Built target interfaces__rosidl_typesupport_cpp\n'}
+[5.501723] (interfaces) StdoutLine: {'line': b'[ 58%] Built target interfaces__rosidl_typesupport_introspection_cpp\n'}
+[5.539956] (-) TimerEvent: {}
+[5.640676] (-) TimerEvent: {}
+[5.741428] (-) TimerEvent: {}
+[5.842148] (-) TimerEvent: {}
+[5.903523] (interfaces) StdoutLine: {'line': b'[ 61%] \x1b[32m\x1b[1mLinking CXX shared library libinterfaces__rosidl_typesupport_fastrtps_cpp.so\x1b[0m\n'}
+[5.942316] (-) TimerEvent: {}
+[6.043023] (-) TimerEvent: {}
+[6.093558] (interfaces) StdoutLine: {'line': b'[ 61%] Built target interfaces__rosidl_typesupport_fastrtps_cpp\n'}
+[6.105869] (interfaces) StdoutLine: {'line': b'[ 64%] \x1b[34m\x1b[1mGenerating C type support for eProsima Fast-RTPS\x1b[0m\n'}
+[6.143178] (-) TimerEvent: {}
+[6.243929] (-) TimerEvent: {}
+[6.345086] (-) TimerEvent: {}
+[6.445950] (-) TimerEvent: {}
+[6.546691] (-) TimerEvent: {}
+[6.647809] (-) TimerEvent: {}
+[6.680413] (interfaces) StdoutLine: {'line': b'[ 67%] \x1b[32mBuilding CXX object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/interfaces/msg/detail/num__type_support_c.cpp.o\x1b[0m\n'}
+[6.748001] (-) TimerEvent: {}
+[6.849780] (-) TimerEvent: {}
+[6.951641] (-) TimerEvent: {}
+[7.052700] (-) TimerEvent: {}
+[7.153483] (-) TimerEvent: {}
+[7.254265] (-) TimerEvent: {}
+[7.355026] (-) TimerEvent: {}
+[7.458148] (-) TimerEvent: {}
+[7.559065] (-) TimerEvent: {}
+[7.659947] (-) TimerEvent: {}
+[7.697506] (interfaces) StdoutLine: {'line': b'[ 70%] \x1b[32m\x1b[1mLinking CXX shared library libinterfaces__rosidl_typesupport_fastrtps_c.so\x1b[0m\n'}
+[7.760058] (-) TimerEvent: {}
+[7.860913] (-) TimerEvent: {}
+[7.880928] (interfaces) StdoutLine: {'line': b'[ 70%] Built target interfaces__rosidl_typesupport_fastrtps_c\n'}
+[7.906765] (interfaces) StdoutLine: {'line': b'[ 70%] Built target interfaces\n'}
+[7.933658] (interfaces) StdoutLine: {'line': b'[ 74%] \x1b[34m\x1b[1mGenerating Python code for ROS interfaces\x1b[0m\n'}
+[7.961036] (-) TimerEvent: {}
+[8.061814] (-) TimerEvent: {}
+[8.162781] (-) TimerEvent: {}
+[8.263471] (-) TimerEvent: {}
+[8.364158] (-) TimerEvent: {}
+[8.464842] (-) TimerEvent: {}
+[8.566190] (-) TimerEvent: {}
+[8.666847] (-) TimerEvent: {}
+[8.767665] (-) TimerEvent: {}
+[8.868373] (-) TimerEvent: {}
+[8.969126] (-) TimerEvent: {}
+[8.988539] (interfaces) StdoutLine: {'line': b'[ 74%] Built target interfaces__py\n'}
+[9.014162] (interfaces) StdoutLine: {'line': b'[ 77%] \x1b[32mBuilding C object CMakeFiles/interfaces__python.dir/rosidl_generator_py/interfaces/msg/_num_s.c.o\x1b[0m\n'}
+[9.069436] (-) TimerEvent: {}
+[9.170947] (-) TimerEvent: {}
+[9.272323] (-) TimerEvent: {}
+[9.288232] (interfaces) StdoutLine: {'line': b'[ 80%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/interfaces/libinterfaces__python.so\x1b[0m\n'}
+[9.364375] (interfaces) StdoutLine: {'line': b'[ 80%] Built target interfaces__python\n'}
+[9.372561] (-) TimerEvent: {}
+[9.391803] (interfaces) StdoutLine: {'line': b'[ 83%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/interfaces/_interfaces_s.ep.rosidl_typesupport_introspection_c.c.o\x1b[0m\n'}
+[9.392552] (interfaces) StdoutLine: {'line': b'[ 90%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/interfaces/_interfaces_s.ep.rosidl_typesupport_fastrtps_c.c.o\x1b[0m\n'}
+[9.392959] (interfaces) StdoutLine: {'line': b'[ 90%] \x1b[32mBuilding C object CMakeFiles/interfaces__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/interfaces/_interfaces_s.ep.rosidl_typesupport_c.c.o\x1b[0m\n'}
+[9.472749] (-) TimerEvent: {}
+[9.574072] (-) TimerEvent: {}
+[9.588580] (interfaces) StdoutLine: {'line': b'[ 93%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/interfaces/interfaces_s__rosidl_typesupport_c.cpython-38-aarch64-linux-gnu.so\x1b[0m\n'}
+[9.592336] (interfaces) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX shared library rosidl_generator_py/interfaces/interfaces_s__rosidl_typesupport_fastrtps_c.cpython-38-aarch64-linux-gnu.so\x1b[0m\n'}
+[9.592877] (interfaces) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking C shared library rosidl_generator_py/interfaces/interfaces_s__rosidl_typesupport_introspection_c.cpython-38-aarch64-linux-gnu.so\x1b[0m\n'}
+[9.645937] (interfaces) StdoutLine: {'line': b'[100%] Built target interfaces__rosidl_typesupport_c__pyext\n'}
+[9.652300] (interfaces) StdoutLine: {'line': b'[100%] Built target interfaces__rosidl_typesupport_introspection_c__pyext\n'}
+[9.674250] (-) TimerEvent: {}
+[9.709974] (interfaces) StdoutLine: {'line': b'[100%] Built target interfaces__rosidl_typesupport_fastrtps_c__pyext\n'}
+[9.726188] (interfaces) CommandEnded: {'returncode': 0}
+[9.775021] (-) TimerEvent: {}
+[9.877706] (-) TimerEvent: {}
+[9.906572] (interfaces) JobProgress: {'identifier': 'interfaces', 'progress': 'install'}
+[9.924895] (interfaces) Command: {'cmd': ['/usr/bin/cmake', '--install', '/scripts/ros2_ws/build/interfaces'], 'cwd': '/scripts/ros2_ws/build/interfaces', 'env': OrderedDict([('OPENBLAS_CORETYPE', 'ARMV8'), ('HOSTNAME', 'miivii-tegra'), ('QOMOLO_CONFIGURATION_PATH', '/opt/qomolo/qpilot/share/qpilot_parameters'), ('LOG_PATH', '/debug/devlog'), ('MQTT_NAMESPACE', ''), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib:/opt/third_party/pangolin/lib:/opt/third_party/casadi/lib:/opt/opencv/lib/:/opt/third_party/osqp-cpp/lib/:/opt/third_party/abseil-cpp/lib/:/opt/third_party/osqp/lib/'), ('HOME', '/root'), ('CYCLONEDDS_URI', 'file:///cyclonedds.xml'), ('OLDPWD', '/scripts'), ('ROS_PYTHON_VERSION', '3'), ('MQTT_SERVER_PORT', '1883'), ('CPLUS_INCLUDE_PATH', '/opt/third_party/osqp/include/'), ('ROS_DISTRO', 'foxy'), ('VOC_SERVER_URL', ''), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('NVIDIA_DRIVER_CAPABILITIES', 'compute,utility,graphics'), ('TERM', 'xterm'), ('QOMOLO_MAP_ID', ''), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/foxy/bin:/home/nvidia/.local/bin:/home/nvidia/.local/bin:/usr/local/cuda-10.2/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/opt/qomolo/utils/qomolo_gcs_scripts/tools/:/opt/qomolo/utils/qpilot_setup/tools/scripts:/home/nvidia/go/bin:/usr/local/go/bin:/opt/qomolo/utils/qpilot_perf/scripts'), ('FASTRTPS_DEFAULT_PROFILES_FILE', '/DEFAULT_FASTRTPS_PROFILES.xml'), ('QT_GRAPHICSSYSTEM', 'native'), ('DISPLAY', 'unix'), ('LANG', 'en_US.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_cyclonedds_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('ROS_DOMAIN_ID', '187'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('DEBIAN_FRONTEND', 'noninteractive'), ('TYPE', 'RELEASE'), ('QOMOLO_ROBOT_ID', 'tj1'), ('MQTT_SERVER_IP', ''), ('PWD', '/scripts/ros2_ws/build/interfaces'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('QPILOT_VERSION', '2.6.250-131130focal.20230328.155157'), ('NVIDIA_VISIBLE_DEVICES', 'all'), ('COLCON', '1'), ('ROS_WORKSPACE', ''), ('CMAKE_PREFIX_PATH', '/opt/ros/foxy:/opt/third_party/casadi/lib/cmake/casadi:/opt/third_party/ceres/lib/cmake/Ceres:/opt/third_party/osqp-cpp/lib/cmake/:/opt/third_party/abseil-cpp/lib/cmake/:/opt/third_party/osqp/lib/cmake/')]), 'shell': False}
+[9.940586] (interfaces) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[9.941211] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/ament_index/resource_index/rosidl_interfaces/interfaces\n'}
+[9.942038] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/include/interfaces\n'}
+[9.942603] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/include/interfaces/msg\n'}
+[9.943070] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/include/interfaces/msg/detail\n'}
+[9.943552] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/include/interfaces/msg/detail/num__functions.h\n'}
+[9.944046] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/include/interfaces/msg/detail/num__functions.c\n'}
+[9.944516] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/include/interfaces/msg/detail/num__type_support.h\n'}
+[9.944869] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/include/interfaces/msg/detail/num__struct.h\n'}
+[9.945696] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/include/interfaces/msg/num.h\n'}
+[9.946058] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/include/interfaces/msg/rosidl_generator_c__visibility_control.h\n'}
+[9.946306] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/environment/library_path.sh\n'}
+[9.946780] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/environment/library_path.dsv\n'}
+[9.946979] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_generator_c.so\n'}
+[9.947551] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/scripts/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_generator_c.so" to ""\n'}
+[9.947840] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /scripts/ros2_ws/install/interfaces/include/interfaces\n'}
+[9.948088] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /scripts/ros2_ws/install/interfaces/include/interfaces/msg\n'}
+[9.948466] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /scripts/ros2_ws/install/interfaces/include/interfaces/msg/detail\n'}
+[9.948664] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/include/interfaces/msg/detail/num__rosidl_typesupport_fastrtps_c.h\n'}
+[9.948875] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/include/interfaces/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[9.949071] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_fastrtps_c.so\n'}
+[9.949687] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/scripts/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_fastrtps_c.so" to ""\n'}
+[9.950067] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /scripts/ros2_ws/install/interfaces/include/interfaces\n'}
+[9.950291] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /scripts/ros2_ws/install/interfaces/include/interfaces/msg\n'}
+[9.950468] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /scripts/ros2_ws/install/interfaces/include/interfaces/msg/detail\n'}
+[9.950637] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/include/interfaces/msg/detail/dds_fastrtps\n'}
+[9.950824] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/include/interfaces/msg/detail/num__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[9.951060] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/include/interfaces/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[9.951398] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_fastrtps_cpp.so\n'}
+[9.951770] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/scripts/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_fastrtps_cpp.so" to ""\n'}
+[9.952024] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /scripts/ros2_ws/install/interfaces/include/interfaces\n'}
+[9.952291] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /scripts/ros2_ws/install/interfaces/include/interfaces/msg\n'}
+[9.952477] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /scripts/ros2_ws/install/interfaces/include/interfaces/msg/detail\n'}
+[9.952651] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/include/interfaces/msg/detail/num__type_support.c\n'}
+[9.952981] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/include/interfaces/msg/detail/num__rosidl_typesupport_introspection_c.h\n'}
+[9.953192] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/include/interfaces/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[9.953452] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_introspection_c.so\n'}
+[9.953653] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/scripts/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_introspection_c.so" to ""\n'}
+[9.954095] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_c.so\n'}
+[9.954408] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/scripts/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_c.so" to ""\n'}
+[9.955328] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /scripts/ros2_ws/install/interfaces/include/interfaces\n'}
+[9.956017] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /scripts/ros2_ws/install/interfaces/include/interfaces/msg\n'}
+[9.956275] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /scripts/ros2_ws/install/interfaces/include/interfaces/msg/detail\n'}
+[9.956640] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/include/interfaces/msg/detail/num__traits.hpp\n'}
+[9.956851] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/include/interfaces/msg/detail/num__builder.hpp\n'}
+[9.957031] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/include/interfaces/msg/detail/num__struct.hpp\n'}
+[9.957383] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/include/interfaces/msg/num.hpp\n'}
+[9.957768] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /scripts/ros2_ws/install/interfaces/include/interfaces\n'}
+[9.957978] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /scripts/ros2_ws/install/interfaces/include/interfaces/msg\n'}
+[9.958281] (interfaces) StdoutLine: {'line': b'-- Up-to-date: /scripts/ros2_ws/install/interfaces/include/interfaces/msg/detail\n'}
+[9.958459] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/include/interfaces/msg/detail/num__type_support.cpp\n'}
+[9.958686] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/include/interfaces/msg/detail/num__rosidl_typesupport_introspection_cpp.hpp\n'}
+[9.958879] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_introspection_cpp.so\n'}
+[9.959095] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/scripts/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_introspection_cpp.so" to ""\n'}
+[9.959269] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_cpp.so\n'}
+[9.959450] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/scripts/ros2_ws/install/interfaces/lib/libinterfaces__rosidl_typesupport_cpp.so" to ""\n'}
+[9.959621] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/environment/pythonpath.sh\n'}
+[9.959815] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/environment/pythonpath.dsv\n'}
+[9.960045] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/lib/python3.8/site-packages/interfaces/__init__.py\n'}
+[9.977780] (-) TimerEvent: {}
+[10.044070] (interfaces) StdoutLine: {'line': b"Compiling '/scripts/ros2_ws/install/interfaces/lib/python3.8/site-packages/interfaces/__init__.py'...\n"}
+[10.056403] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/lib/python3.8/site-packages/interfaces/msg\n'}
+[10.057095] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/lib/python3.8/site-packages/interfaces/msg/_num_s.c\n'}
+[10.057549] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/lib/python3.8/site-packages/interfaces/msg/__init__.py\n'}
+[10.057978] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/lib/python3.8/site-packages/interfaces/msg/_num.py\n'}
+[10.058474] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/lib/python3.8/site-packages/interfaces/interfaces_s__rosidl_typesupport_fastrtps_c.cpython-38-aarch64-linux-gnu.so\n'}
+[10.059637] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/scripts/ros2_ws/install/interfaces/lib/python3.8/site-packages/interfaces/interfaces_s__rosidl_typesupport_fastrtps_c.cpython-38-aarch64-linux-gnu.so" to ""\n'}
+[10.060709] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/lib/python3.8/site-packages/interfaces/interfaces_s__rosidl_typesupport_introspection_c.cpython-38-aarch64-linux-gnu.so\n'}
+[10.061757] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/scripts/ros2_ws/install/interfaces/lib/python3.8/site-packages/interfaces/interfaces_s__rosidl_typesupport_introspection_c.cpython-38-aarch64-linux-gnu.so" to ""\n'}
+[10.062257] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/lib/python3.8/site-packages/interfaces/interfaces_s__rosidl_typesupport_c.cpython-38-aarch64-linux-gnu.so\n'}
+[10.063017] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/scripts/ros2_ws/install/interfaces/lib/python3.8/site-packages/interfaces/interfaces_s__rosidl_typesupport_c.cpython-38-aarch64-linux-gnu.so" to ""\n'}
+[10.063888] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/lib/libinterfaces__python.so\n'}
+[10.064566] (interfaces) StdoutLine: {'line': b'-- Set runtime path of "/scripts/ros2_ws/install/interfaces/lib/libinterfaces__python.so" to ""\n'}
+[10.065131] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/msg/Num.idl\n'}
+[10.065916] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/msg/Num.msg\n'}
+[10.066784] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/ament_index/resource_index/package_run_dependencies/interfaces\n'}
+[10.067246] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/ament_index/resource_index/parent_prefix_path/interfaces\n'}
+[10.067752] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/environment/ament_prefix_path.sh\n'}
+[10.068103] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/environment/ament_prefix_path.dsv\n'}
+[10.068377] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/environment/path.sh\n'}
+[10.068634] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/environment/path.dsv\n'}
+[10.068861] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/local_setup.bash\n'}
+[10.069188] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/local_setup.sh\n'}
+[10.069619] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/local_setup.zsh\n'}
+[10.070277] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/local_setup.dsv\n'}
+[10.070633] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/package.dsv\n'}
+[10.071215] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/ament_index/resource_index/packages/interfaces\n'}
+[10.071539] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_generator_cExport.cmake\n'}
+[10.071824] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_generator_cExport-noconfig.cmake\n'}
+[10.072060] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_introspection_cExport.cmake\n'}
+[10.072289] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[10.072514] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_cExport.cmake\n'}
+[10.072732] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[10.072994] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_generator_cppExport.cmake\n'}
+[10.073212] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[10.073532] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[10.073844] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_cppExport.cmake\n'}
+[10.074153] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/cmake/interfaces__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[10.074418] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/cmake/rosidl_cmake-extras.cmake\n'}
+[10.074666] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[10.074898] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[10.075091] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[10.075283] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[10.075457] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[10.075686] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[10.075878] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/cmake/interfacesConfig.cmake\n'}
+[10.076068] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/cmake/interfacesConfig-version.cmake\n'}
+[10.076283] (interfaces) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/interfaces/share/interfaces/package.xml\n'}
+[10.078019] (-) TimerEvent: {}
+[10.080484] (interfaces) CommandEnded: {'returncode': 0}
+[10.178603] (-) TimerEvent: {}
+[10.280193] (-) TimerEvent: {}
+[10.339437] (interfaces) JobEnded: {'identifier': 'interfaces', 'rc': 0}
+[10.346688] (cpp_pubsub) JobStarted: {'identifier': 'cpp_pubsub'}
+[10.367962] (cpp_pubsub) JobProgress: {'identifier': 'cpp_pubsub', 'progress': 'cmake'}
+[10.369517] (cpp_pubsub) Command: {'cmd': ['/usr/bin/cmake', '/scripts/ros2_ws/src/cpp_pubsub', '-DCMAKE_INSTALL_PREFIX=/scripts/ros2_ws/install/cpp_pubsub'], 'cwd': '/scripts/ros2_ws/build/cpp_pubsub', 'env': OrderedDict([('OPENBLAS_CORETYPE', 'ARMV8'), ('HOSTNAME', 'miivii-tegra'), ('QOMOLO_CONFIGURATION_PATH', '/opt/qomolo/qpilot/share/qpilot_parameters'), ('LOG_PATH', '/debug/devlog'), ('MQTT_NAMESPACE', ''), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/scripts/ros2_ws/install/interfaces/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib:/opt/third_party/pangolin/lib:/opt/third_party/casadi/lib:/opt/opencv/lib/:/opt/third_party/osqp-cpp/lib/:/opt/third_party/abseil-cpp/lib/:/opt/third_party/osqp/lib/'), ('HOME', '/root'), ('CYCLONEDDS_URI', 'file:///cyclonedds.xml'), ('OLDPWD', '/scripts'), ('ROS_PYTHON_VERSION', '3'), ('MQTT_SERVER_PORT', '1883'), ('CPLUS_INCLUDE_PATH', '/opt/third_party/osqp/include/'), ('ROS_DISTRO', 'foxy'), ('VOC_SERVER_URL', ''), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('NVIDIA_DRIVER_CAPABILITIES', 'compute,utility,graphics'), ('TERM', 'xterm'), ('QOMOLO_MAP_ID', ''), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/foxy/bin:/home/nvidia/.local/bin:/home/nvidia/.local/bin:/usr/local/cuda-10.2/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/opt/qomolo/utils/qomolo_gcs_scripts/tools/:/opt/qomolo/utils/qpilot_setup/tools/scripts:/home/nvidia/go/bin:/usr/local/go/bin:/opt/qomolo/utils/qpilot_perf/scripts'), ('FASTRTPS_DEFAULT_PROFILES_FILE', '/DEFAULT_FASTRTPS_PROFILES.xml'), ('QT_GRAPHICSSYSTEM', 'native'), ('DISPLAY', 'unix'), ('LANG', 'en_US.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_cyclonedds_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('ROS_DOMAIN_ID', '187'), ('AMENT_PREFIX_PATH', '/scripts/ros2_ws/install/interfaces:/opt/ros/foxy'), ('DEBIAN_FRONTEND', 'noninteractive'), ('TYPE', 'RELEASE'), ('QOMOLO_ROBOT_ID', 'tj1'), ('MQTT_SERVER_IP', ''), ('PWD', '/scripts/ros2_ws/build/cpp_pubsub'), ('PYTHONPATH', '/scripts/ros2_ws/install/interfaces/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('QPILOT_VERSION', '2.6.250-131130focal.20230328.155157'), ('NVIDIA_VISIBLE_DEVICES', 'all'), ('COLCON', '1'), ('ROS_WORKSPACE', ''), ('CMAKE_PREFIX_PATH', '/scripts/ros2_ws/install/interfaces:/opt/ros/foxy:/opt/third_party/casadi/lib/cmake/casadi:/opt/third_party/ceres/lib/cmake/Ceres:/opt/third_party/osqp-cpp/lib/cmake/:/opt/third_party/abseil-cpp/lib/cmake/:/opt/third_party/osqp/lib/cmake/')]), 'shell': False}
+[10.380308] (-) TimerEvent: {}
+[10.481395] (-) TimerEvent: {}
+[10.518081] (cpp_pubsub) StdoutLine: {'line': b'-- The C compiler identification is GNU 9.4.0\n'}
+[10.581528] (-) TimerEvent: {}
+[10.681371] (cpp_pubsub) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 9.4.0\n'}
+[10.681920] (-) TimerEvent: {}
+[10.699797] (cpp_pubsub) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[10.782178] (-) TimerEvent: {}
+[10.856969] (cpp_pubsub) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[10.882362] (-) TimerEvent: {}
+[10.887486] (cpp_pubsub) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[10.888525] (cpp_pubsub) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[10.889561] (cpp_pubsub) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[10.897702] (cpp_pubsub) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[10.982543] (-) TimerEvent: {}
+[11.070356] (cpp_pubsub) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[11.082703] (-) TimerEvent: {}
+[11.096876] (cpp_pubsub) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[11.098014] (cpp_pubsub) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[11.101228] (cpp_pubsub) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[11.108507] (cpp_pubsub) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[11.178507] (cpp_pubsub) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") \n'}
+[11.179218] (cpp_pubsub) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[11.182794] (-) TimerEvent: {}
+[11.284011] (-) TimerEvent: {}
+[11.384656] (-) TimerEvent: {}
+[11.485340] (-) TimerEvent: {}
+[11.585989] (-) TimerEvent: {}
+[11.686730] (-) TimerEvent: {}
+[11.755386] (cpp_pubsub) StdoutLine: {'line': b'-- Found rclcpp: 2.4.0 (/opt/ros/foxy/share/rclcpp/cmake)\n'}
+[11.786840] (-) TimerEvent: {}
+[11.881182] (cpp_pubsub) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[11.886980] (-) TimerEvent: {}
+[11.898833] (cpp_pubsub) StdoutLine: {'line': b'-- Found rosidl_adapter: 1.2.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)\n'}
+[11.987211] (-) TimerEvent: {}
+[12.088733] (-) TimerEvent: {}
+[12.120439] (cpp_pubsub) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/aarch64-linux-gnu/libcrypto.so (found version "1.1.1f")  \n'}
+[12.188896] (-) TimerEvent: {}
+[12.215323] (cpp_pubsub) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/foxy/include  \n'}
+[12.289126] (-) TimerEvent: {}
+[12.389908] (-) TimerEvent: {}
+[12.460661] (cpp_pubsub) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[12.490249] (-) TimerEvent: {}
+[12.592034] (-) TimerEvent: {}
+[12.607276] (cpp_pubsub) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 1.0.3 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)\n'}
+[12.610841] (cpp_pubsub) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_cyclonedds_cpp' as default\n"}
+[12.613704] (cpp_pubsub) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[12.692432] (-) TimerEvent: {}
+[12.772227] (cpp_pubsub) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[12.773486] (cpp_pubsub) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[12.792525] (-) TimerEvent: {}
+[12.893484] (-) TimerEvent: {}
+[12.937146] (cpp_pubsub) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed\n'}
+[12.937885] (cpp_pubsub) StdoutLine: {'line': b'-- Looking for pthread_create in pthreads\n'}
+[12.993610] (-) TimerEvent: {}
+[13.067760] (cpp_pubsub) StdoutLine: {'line': b'-- Looking for pthread_create in pthreads - not found\n'}
+[13.069282] (cpp_pubsub) StdoutLine: {'line': b'-- Looking for pthread_create in pthread\n'}
+[13.093807] (-) TimerEvent: {}
+[13.194659] (-) TimerEvent: {}
+[13.219086] (cpp_pubsub) StdoutLine: {'line': b'-- Looking for pthread_create in pthread - found\n'}
+[13.223454] (cpp_pubsub) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[13.294815] (-) TimerEvent: {}
+[13.395564] (-) TimerEvent: {}
+[13.496830] (-) TimerEvent: {}
+[13.592040] (cpp_pubsub) StdoutLine: {'line': b'-- Found interfaces: 0.0.0 (/scripts/ros2_ws/install/interfaces/share/interfaces/cmake)\n'}
+[13.597000] (-) TimerEvent: {}
+[13.613728] (cpp_pubsub) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.9.6 (/opt/ros/foxy/share/ament_lint_auto/cmake)\n'}
+[13.697144] (-) TimerEvent: {}
+[13.797849] (-) TimerEvent: {}
+[13.835352] (cpp_pubsub) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[13.838775] (cpp_pubsub) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[13.839943] (cpp_pubsub) StdoutLine: {'line': b'-- Configured cppcheck include dirs: /scripts/ros2_ws/src/cpp_pubsub/include;$<BUILD_INTERFACE:/scripts/ros2_ws/src/cpp_pubsub/include>\n'}
+[13.840350] (cpp_pubsub) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[13.843581] (cpp_pubsub) StdoutLine: {'line': b"-- Added test 'cpplint' to check C / C++ code against the Google style\n"}
+[13.844132] (cpp_pubsub) StdoutLine: {'line': b'-- Configured cpplint exclude dirs and/or files: \n'}
+[13.845460] (cpp_pubsub) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[13.848088] (cpp_pubsub) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[13.848357] (cpp_pubsub) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[13.849394] (cpp_pubsub) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[13.852532] (cpp_pubsub) StdoutLine: {'line': b'-- Configuring done\n'}
+[13.885817] (cpp_pubsub) StdoutLine: {'line': b'-- Generating done\n'}
+[13.890480] (cpp_pubsub) StdoutLine: {'line': b'-- Build files have been written to: /scripts/ros2_ws/build/cpp_pubsub\n'}
+[13.897935] (-) TimerEvent: {}
+[13.919193] (cpp_pubsub) CommandEnded: {'returncode': 0}
+[13.921852] (cpp_pubsub) JobProgress: {'identifier': 'cpp_pubsub', 'progress': 'build'}
+[13.923476] (cpp_pubsub) Command: {'cmd': ['/usr/bin/cmake', '--build', '/scripts/ros2_ws/build/cpp_pubsub', '--', '-j8', '-l8'], 'cwd': '/scripts/ros2_ws/build/cpp_pubsub', 'env': OrderedDict([('OPENBLAS_CORETYPE', 'ARMV8'), ('HOSTNAME', 'miivii-tegra'), ('QOMOLO_CONFIGURATION_PATH', '/opt/qomolo/qpilot/share/qpilot_parameters'), ('LOG_PATH', '/debug/devlog'), ('MQTT_NAMESPACE', ''), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/scripts/ros2_ws/install/interfaces/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib:/opt/third_party/pangolin/lib:/opt/third_party/casadi/lib:/opt/opencv/lib/:/opt/third_party/osqp-cpp/lib/:/opt/third_party/abseil-cpp/lib/:/opt/third_party/osqp/lib/'), ('HOME', '/root'), ('CYCLONEDDS_URI', 'file:///cyclonedds.xml'), ('OLDPWD', '/scripts'), ('ROS_PYTHON_VERSION', '3'), ('MQTT_SERVER_PORT', '1883'), ('CPLUS_INCLUDE_PATH', '/opt/third_party/osqp/include/'), ('ROS_DISTRO', 'foxy'), ('VOC_SERVER_URL', ''), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('NVIDIA_DRIVER_CAPABILITIES', 'compute,utility,graphics'), ('TERM', 'xterm'), ('QOMOLO_MAP_ID', ''), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/foxy/bin:/home/nvidia/.local/bin:/home/nvidia/.local/bin:/usr/local/cuda-10.2/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/opt/qomolo/utils/qomolo_gcs_scripts/tools/:/opt/qomolo/utils/qpilot_setup/tools/scripts:/home/nvidia/go/bin:/usr/local/go/bin:/opt/qomolo/utils/qpilot_perf/scripts'), ('FASTRTPS_DEFAULT_PROFILES_FILE', '/DEFAULT_FASTRTPS_PROFILES.xml'), ('QT_GRAPHICSSYSTEM', 'native'), ('DISPLAY', 'unix'), ('LANG', 'en_US.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_cyclonedds_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('ROS_DOMAIN_ID', '187'), ('AMENT_PREFIX_PATH', '/scripts/ros2_ws/install/interfaces:/opt/ros/foxy'), ('DEBIAN_FRONTEND', 'noninteractive'), ('TYPE', 'RELEASE'), ('QOMOLO_ROBOT_ID', 'tj1'), ('MQTT_SERVER_IP', ''), ('PWD', '/scripts/ros2_ws/build/cpp_pubsub'), ('PYTHONPATH', '/scripts/ros2_ws/install/interfaces/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('QPILOT_VERSION', '2.6.250-131130focal.20230328.155157'), ('NVIDIA_VISIBLE_DEVICES', 'all'), ('COLCON', '1'), ('ROS_WORKSPACE', ''), ('CMAKE_PREFIX_PATH', '/scripts/ros2_ws/install/interfaces:/opt/ros/foxy:/opt/third_party/casadi/lib/cmake/casadi:/opt/third_party/ceres/lib/cmake/Ceres:/opt/third_party/osqp-cpp/lib/cmake/:/opt/third_party/abseil-cpp/lib/cmake/:/opt/third_party/osqp/lib/cmake/')]), 'shell': False}
+[13.998454] (-) TimerEvent: {}
+[14.001745] (cpp_pubsub) StdoutLine: {'line': b'[ 66%] \x1b[32mBuilding CXX object CMakeFiles/sub.dir/src/sub.cpp.o\x1b[0m\n'}
+[14.002432] (cpp_pubsub) StdoutLine: {'line': b'[ 66%] \x1b[32mBuilding CXX object CMakeFiles/sub.dir/src/get_info.cpp.o\x1b[0m\n'}
+[14.098530] (-) TimerEvent: {}
+[14.121006] (cpp_pubsub) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/scripts/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/get_info.h:4\x1b[m\x1b[K,\n'}
+[14.121891] (cpp_pubsub) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/scripts/ros2_ws/src/cpp_pubsub/src/get_info.cpp:6\x1b[m\x1b[K:\n'}
+[14.122146] (cpp_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/scripts/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1114:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kignoring #pragma region Common [\x1b[01;35m\x1b[K-Wunknown-pragmas\x1b[m\x1b[K]\n'}
+[14.122412] (cpp_pubsub) StderrLine: {'line': b' 1114 | #pragma region Common operation\n'}
+[14.122624] (cpp_pubsub) StderrLine: {'line': b'      | \n'}
+[14.122834] (cpp_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/scripts/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1169:2:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K"/*" within comment [\x1b[01;35m\x1b[K-Wcomment\x1b[m\x1b[K]\n'}
+[14.123143] (cpp_pubsub) StderrLine: {'line': b' 1169 |  /*! ***************************************************************/\n'}
+[14.123321] (cpp_pubsub) StderrLine: {'line': b'      |   \n'}
+[14.123562] (cpp_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/scripts/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1410:2:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K"/*" within comment [\x1b[01;35m\x1b[K-Wcomment\x1b[m\x1b[K]\n'}
+[14.123782] (cpp_pubsub) StderrLine: {'line': b' 1410 |  /*! ***************************************************************/\n'}
+[14.123961] (cpp_pubsub) StderrLine: {'line': b'      |   \n'}
+[14.124132] (cpp_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/scripts/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1453:2:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K"/*" within comment [\x1b[01;35m\x1b[K-Wcomment\x1b[m\x1b[K]\n'}
+[14.124306] (cpp_pubsub) StderrLine: {'line': b' 1453 |  /*! ***************************************************************/\n'}
+[14.124491] (cpp_pubsub) StderrLine: {'line': b'      |   \n'}
+[14.124660] (cpp_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/scripts/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1525:2:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K"/*" within comment [\x1b[01;35m\x1b[K-Wcomment\x1b[m\x1b[K]\n'}
+[14.124882] (cpp_pubsub) StderrLine: {'line': b' 1525 |  /**UDP CMD END**/\n'}
+[14.125089] (cpp_pubsub) StderrLine: {'line': b'      |   \n'}
+[14.125361] (cpp_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/scripts/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1536:2:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K"/*" within comment [\x1b[01;35m\x1b[K-Wcomment\x1b[m\x1b[K]\n'}
+[14.125574] (cpp_pubsub) StderrLine: {'line': b' 1536 |  /*! *************************************************************** *!/\n'}
+[14.125750] (cpp_pubsub) StderrLine: {'line': b'      |   \n'}
+[14.125921] (cpp_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/scripts/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1537:2:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K"/*" within comment [\x1b[01;35m\x1b[K-Wcomment\x1b[m\x1b[K]\n'}
+[14.126094] (cpp_pubsub) StderrLine: {'line': b' 1537 |  /* \xe5\x87\xbd\xe6\x95\xb0\xe5\x90\x8d\xef\xbc\x9a       cmd_sysReset\xef\xbc\x88\xef\xbc\x89\n'}
+[14.126264] (cpp_pubsub) StderrLine: {'line': b'      |   \n'}
+[14.126458] (cpp_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/scripts/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:3640:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kignoring #pragma endregion Common [\x1b[01;35m\x1b[K-Wunknown-pragmas\x1b[m\x1b[K]\n'}
+[14.126697] (cpp_pubsub) StderrLine: {'line': b' 3640 | #pragma endregion Common operation\n'}
+[14.126894] (cpp_pubsub) StderrLine: {'line': b'      | \n'}
+[14.198710] (-) TimerEvent: {}
+[14.274653] (cpp_pubsub) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/scripts/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/get_info.h:4\x1b[m\x1b[K,\n'}
+[14.275263] (cpp_pubsub) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/scripts/ros2_ws/src/cpp_pubsub/src/sub.cpp:12\x1b[m\x1b[K:\n'}
+[14.275575] (cpp_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/scripts/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1114:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kignoring #pragma region Common [\x1b[01;35m\x1b[K-Wunknown-pragmas\x1b[m\x1b[K]\n'}
+[14.275813] (cpp_pubsub) StderrLine: {'line': b' 1114 | #pragma region Common operation\n'}
+[14.276332] (cpp_pubsub) StderrLine: {'line': b'      | \n'}
+[14.276577] (cpp_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/scripts/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1169:2:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K"/*" within comment [\x1b[01;35m\x1b[K-Wcomment\x1b[m\x1b[K]\n'}
+[14.276789] (cpp_pubsub) StderrLine: {'line': b' 1169 |  /*! ***************************************************************/\n'}
+[14.277049] (cpp_pubsub) StderrLine: {'line': b'      |   \n'}
+[14.277340] (cpp_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/scripts/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1410:2:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K"/*" within comment [\x1b[01;35m\x1b[K-Wcomment\x1b[m\x1b[K]\n'}
+[14.277558] (cpp_pubsub) StderrLine: {'line': b' 1410 |  /*! ***************************************************************/\n'}
+[14.277754] (cpp_pubsub) StderrLine: {'line': b'      |   \n'}
+[14.277970] (cpp_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/scripts/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1453:2:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K"/*" within comment [\x1b[01;35m\x1b[K-Wcomment\x1b[m\x1b[K]\n'}
+[14.278195] (cpp_pubsub) StderrLine: {'line': b' 1453 |  /*! ***************************************************************/\n'}
+[14.278458] (cpp_pubsub) StderrLine: {'line': b'      |   \n'}
+[14.278651] (cpp_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/scripts/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1525:2:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K"/*" within comment [\x1b[01;35m\x1b[K-Wcomment\x1b[m\x1b[K]\n'}
+[14.278838] (cpp_pubsub) StderrLine: {'line': b' 1525 |  /**UDP CMD END**/\n'}
+[14.279019] (cpp_pubsub) StderrLine: {'line': b'      |   \n'}
+[14.279199] (cpp_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/scripts/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1536:2:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K"/*" within comment [\x1b[01;35m\x1b[K-Wcomment\x1b[m\x1b[K]\n'}
+[14.279469] (cpp_pubsub) StderrLine: {'line': b' 1536 |  /*! *************************************************************** *!/\n'}
+[14.279690] (cpp_pubsub) StderrLine: {'line': b'      |   \n'}
+[14.279869] (cpp_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/scripts/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:1537:2:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K"/*" within comment [\x1b[01;35m\x1b[K-Wcomment\x1b[m\x1b[K]\n'}
+[14.280085] (cpp_pubsub) StderrLine: {'line': b' 1537 |  /* \xe5\x87\xbd\xe6\x95\xb0\xe5\x90\x8d\xef\xbc\x9a       cmd_sysReset\xef\xbc\x88\xef\xbc\x89\n'}
+[14.280267] (cpp_pubsub) StderrLine: {'line': b'      |   \n'}
+[14.280460] (cpp_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/scripts/ros2_ws/src/cpp_pubsub/include/cpp_pubsub/bx_dual_sdk.h:3640:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kignoring #pragma endregion Common [\x1b[01;35m\x1b[K-Wunknown-pragmas\x1b[m\x1b[K]\n'}
+[14.280705] (cpp_pubsub) StderrLine: {'line': b' 3640 | #pragma endregion Common operation\n'}
+[14.280923] (cpp_pubsub) StderrLine: {'line': b'      | \n'}
+[14.298912] (-) TimerEvent: {}
+[14.400557] (-) TimerEvent: {}
+[14.501435] (-) TimerEvent: {}
+[14.602371] (-) TimerEvent: {}
+[14.703330] (-) TimerEvent: {}
+[14.757881] (cpp_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/scripts/ros2_ws/src/cpp_pubsub/src/get_info.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid turn_picture_display(int)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[14.758373] (cpp_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/scripts/ros2_ws/src/cpp_pubsub/src/get_info.cpp:47:10:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[KnPort\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[14.758611] (cpp_pubsub) StderrLine: {'line': b'   47 |  Ouint32 \x1b[01;35m\x1b[KnPort\x1b[m\x1b[K = 5005;\n'}
+[14.758799] (cpp_pubsub) StderrLine: {'line': b'      |          \x1b[01;35m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[14.758975] (cpp_pubsub) StderrLine: {'line': b'\x1b[01m\x1b[K/scripts/ros2_ws/src/cpp_pubsub/src/get_info.cpp:53:6:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[KuAreaX\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[14.759166] (cpp_pubsub) StderrLine: {'line': b'   53 |  int \x1b[01;35m\x1b[KuAreaX\x1b[m\x1b[K = 16;//32\n'}
+[14.759341] (cpp_pubsub) StderrLine: {'line': b'      |      \x1b[01;35m\x1b[K^~~~~~\x1b[m\x1b[K\n'}
+[14.803492] (-) TimerEvent: {}
+[14.904241] (-) TimerEvent: {}
+[15.005435] (-) TimerEvent: {}
+[15.107480] (-) TimerEvent: {}
+[15.208708] (-) TimerEvent: {}
+[15.309589] (-) TimerEvent: {}
+[15.410334] (-) TimerEvent: {}
+[15.511117] (-) TimerEvent: {}
+[15.611813] (-) TimerEvent: {}
+[15.712545] (-) TimerEvent: {}
+[15.813440] (-) TimerEvent: {}
+[15.914314] (-) TimerEvent: {}
+[16.015628] (-) TimerEvent: {}
+[16.116538] (-) TimerEvent: {}
+[16.218258] (-) TimerEvent: {}
+[16.318990] (-) TimerEvent: {}
+[16.419741] (-) TimerEvent: {}
+[16.520547] (-) TimerEvent: {}
+[16.621396] (-) TimerEvent: {}
+[16.722200] (-) TimerEvent: {}
+[16.823172] (-) TimerEvent: {}
+[16.923940] (-) TimerEvent: {}
+[17.025191] (-) TimerEvent: {}
+[17.126055] (-) TimerEvent: {}
+[17.229668] (-) TimerEvent: {}
+[17.330829] (-) TimerEvent: {}
+[17.431615] (-) TimerEvent: {}
+[17.532330] (-) TimerEvent: {}
+[17.633048] (-) TimerEvent: {}
+[17.733878] (-) TimerEvent: {}
+[17.834842] (-) TimerEvent: {}
+[17.935602] (-) TimerEvent: {}
+[18.036310] (-) TimerEvent: {}
+[18.137024] (-) TimerEvent: {}
+[18.237802] (-) TimerEvent: {}
+[18.338537] (-) TimerEvent: {}
+[18.439335] (-) TimerEvent: {}
+[18.540141] (-) TimerEvent: {}
+[18.640841] (-) TimerEvent: {}
+[18.741594] (-) TimerEvent: {}
+[18.842300] (-) TimerEvent: {}
+[18.943113] (-) TimerEvent: {}
+[19.044161] (-) TimerEvent: {}
+[19.144873] (-) TimerEvent: {}
+[19.245694] (-) TimerEvent: {}
+[19.346525] (-) TimerEvent: {}
+[19.447605] (-) TimerEvent: {}
+[19.548356] (-) TimerEvent: {}
+[19.649355] (-) TimerEvent: {}
+[19.750561] (-) TimerEvent: {}
+[19.851336] (-) TimerEvent: {}
+[19.952112] (-) TimerEvent: {}
+[20.052885] (-) TimerEvent: {}
+[20.153755] (-) TimerEvent: {}
+[20.254673] (-) TimerEvent: {}
+[20.355661] (-) TimerEvent: {}
+[20.456357] (-) TimerEvent: {}
+[20.557229] (-) TimerEvent: {}
+[20.658387] (-) TimerEvent: {}
+[20.759178] (-) TimerEvent: {}
+[20.859868] (-) TimerEvent: {}
+[20.960737] (-) TimerEvent: {}
+[21.062097] (-) TimerEvent: {}
+[21.162928] (-) TimerEvent: {}
+[21.264178] (-) TimerEvent: {}
+[21.365178] (-) TimerEvent: {}
+[21.466114] (-) TimerEvent: {}
+[21.567251] (-) TimerEvent: {}
+[21.668113] (-) TimerEvent: {}
+[21.768845] (-) TimerEvent: {}
+[21.869594] (-) TimerEvent: {}
+[21.970358] (-) TimerEvent: {}
+[22.071199] (-) TimerEvent: {}
+[22.172025] (-) TimerEvent: {}
+[22.272810] (-) TimerEvent: {}
+[22.373604] (-) TimerEvent: {}
+[22.474428] (-) TimerEvent: {}
+[22.575198] (-) TimerEvent: {}
+[22.675982] (-) TimerEvent: {}
+[22.776833] (-) TimerEvent: {}
+[22.878078] (-) TimerEvent: {}
+[22.978795] (-) TimerEvent: {}
+[23.079490] (-) TimerEvent: {}
+[23.180185] (-) TimerEvent: {}
+[23.280924] (-) TimerEvent: {}
+[23.381714] (-) TimerEvent: {}
+[23.482416] (-) TimerEvent: {}
+[23.583090] (-) TimerEvent: {}
+[23.683819] (-) TimerEvent: {}
+[23.784543] (-) TimerEvent: {}
+[23.885317] (-) TimerEvent: {}
+[23.986275] (-) TimerEvent: {}
+[24.087287] (-) TimerEvent: {}
+[24.188569] (-) TimerEvent: {}
+[24.289318] (-) TimerEvent: {}
+[24.390140] (-) TimerEvent: {}
+[24.491256] (-) TimerEvent: {}
+[24.592067] (-) TimerEvent: {}
+[24.693141] (-) TimerEvent: {}
+[24.793958] (-) TimerEvent: {}
+[24.894858] (-) TimerEvent: {}
+[24.995695] (-) TimerEvent: {}
+[25.096416] (-) TimerEvent: {}
+[25.197109] (-) TimerEvent: {}
+[25.297883] (-) TimerEvent: {}
+[25.398793] (-) TimerEvent: {}
+[25.499499] (-) TimerEvent: {}
+[25.600358] (-) TimerEvent: {}
+[25.701300] (-) TimerEvent: {}
+[25.802017] (-) TimerEvent: {}
+[25.902748] (-) TimerEvent: {}
+[26.003564] (-) TimerEvent: {}
+[26.104556] (-) TimerEvent: {}
+[26.205340] (-) TimerEvent: {}
+[26.306141] (-) TimerEvent: {}
+[26.407093] (-) TimerEvent: {}
+[26.507870] (-) TimerEvent: {}
+[26.608836] (-) TimerEvent: {}
+[26.626257] (cpp_pubsub) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable sub\x1b[0m\n'}
+[26.708983] (-) TimerEvent: {}
+[26.810135] (-) TimerEvent: {}
+[26.911240] (-) TimerEvent: {}
+[27.012609] (-) TimerEvent: {}
+[27.113384] (-) TimerEvent: {}
+[27.214219] (-) TimerEvent: {}
+[27.224926] (cpp_pubsub) StdoutLine: {'line': b'[100%] Built target sub\n'}
+[27.240458] (cpp_pubsub) CommandEnded: {'returncode': 0}
+[27.306534] (cpp_pubsub) JobProgress: {'identifier': 'cpp_pubsub', 'progress': 'install'}
+[27.308565] (cpp_pubsub) Command: {'cmd': ['/usr/bin/cmake', '--install', '/scripts/ros2_ws/build/cpp_pubsub'], 'cwd': '/scripts/ros2_ws/build/cpp_pubsub', 'env': OrderedDict([('OPENBLAS_CORETYPE', 'ARMV8'), ('HOSTNAME', 'miivii-tegra'), ('QOMOLO_CONFIGURATION_PATH', '/opt/qomolo/qpilot/share/qpilot_parameters'), ('LOG_PATH', '/debug/devlog'), ('MQTT_NAMESPACE', ''), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/scripts/ros2_ws/install/interfaces/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/aarch64-linux-gnu:/opt/ros/foxy/lib:/opt/third_party/pangolin/lib:/opt/third_party/casadi/lib:/opt/opencv/lib/:/opt/third_party/osqp-cpp/lib/:/opt/third_party/abseil-cpp/lib/:/opt/third_party/osqp/lib/'), ('HOME', '/root'), ('CYCLONEDDS_URI', 'file:///cyclonedds.xml'), ('OLDPWD', '/scripts'), ('ROS_PYTHON_VERSION', '3'), ('MQTT_SERVER_PORT', '1883'), ('CPLUS_INCLUDE_PATH', '/opt/third_party/osqp/include/'), ('ROS_DISTRO', 'foxy'), ('VOC_SERVER_URL', ''), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('NVIDIA_DRIVER_CAPABILITIES', 'compute,utility,graphics'), ('TERM', 'xterm'), ('QOMOLO_MAP_ID', ''), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/opt/ros/foxy/bin:/home/nvidia/.local/bin:/home/nvidia/.local/bin:/usr/local/cuda-10.2/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/opt/qomolo/utils/qomolo_gcs_scripts/tools/:/opt/qomolo/utils/qpilot_setup/tools/scripts:/home/nvidia/go/bin:/usr/local/go/bin:/opt/qomolo/utils/qpilot_perf/scripts'), ('FASTRTPS_DEFAULT_PROFILES_FILE', '/DEFAULT_FASTRTPS_PROFILES.xml'), ('QT_GRAPHICSSYSTEM', 'native'), ('DISPLAY', 'unix'), ('LANG', 'en_US.UTF-8'), ('RMW_IMPLEMENTATION', 'rmw_cyclonedds_cpp'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('ROS_DOMAIN_ID', '187'), ('AMENT_PREFIX_PATH', '/scripts/ros2_ws/install/interfaces:/opt/ros/foxy'), ('DEBIAN_FRONTEND', 'noninteractive'), ('TYPE', 'RELEASE'), ('QOMOLO_ROBOT_ID', 'tj1'), ('MQTT_SERVER_IP', ''), ('PWD', '/scripts/ros2_ws/build/cpp_pubsub'), ('PYTHONPATH', '/scripts/ros2_ws/install/interfaces/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('QPILOT_VERSION', '2.6.250-131130focal.20230328.155157'), ('NVIDIA_VISIBLE_DEVICES', 'all'), ('COLCON', '1'), ('ROS_WORKSPACE', ''), ('CMAKE_PREFIX_PATH', '/scripts/ros2_ws/install/interfaces:/opt/ros/foxy:/opt/third_party/casadi/lib/cmake/casadi:/opt/third_party/ceres/lib/cmake/Ceres:/opt/third_party/osqp-cpp/lib/cmake/:/opt/third_party/abseil-cpp/lib/cmake/:/opt/third_party/osqp/lib/cmake/')]), 'shell': False}
+[27.320633] (-) TimerEvent: {}
+[27.330842] (cpp_pubsub) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[27.332011] (cpp_pubsub) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/cpp_pubsub/lib/\n'}
+[27.332316] (cpp_pubsub) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/cpp_pubsub/lib//libbx_sdkDual.so.1.0\n'}
+[27.337456] (cpp_pubsub) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/cpp_pubsub/lib//libiconv.so.2\n'}
+[27.346474] (cpp_pubsub) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/cpp_pubsub/lib//libbx_sdkDual.so.1.0.0\n'}
+[27.349404] (cpp_pubsub) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/cpp_pubsub/lib//libbx_sdkDual.so.1\n'}
+[27.353375] (cpp_pubsub) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/cpp_pubsub/lib//libcharset.so.1\n'}
+[27.354464] (cpp_pubsub) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/cpp_pubsub/lib//libcharset.so.1.0.0\n'}
+[27.354844] (cpp_pubsub) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/cpp_pubsub/lib//libiconv.so.2.6.0\n'}
+[27.362638] (cpp_pubsub) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/cpp_pubsub/lib//libtest.so\n'}
+[27.363636] (cpp_pubsub) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/cpp_pubsub/lib/cpp_pubsub/sub\n'}
+[27.370496] (cpp_pubsub) StdoutLine: {'line': b'-- Set runtime path of "/scripts/ros2_ws/install/cpp_pubsub/lib/cpp_pubsub/sub" to ""\n'}
+[27.370927] (cpp_pubsub) StdoutLine: {'line': b'-- Up-to-date: /scripts/ros2_ws/install/cpp_pubsub/lib/cpp_pubsub/sub\n'}
+[27.371752] (cpp_pubsub) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/cpp_pubsub/share/ament_index/resource_index/package_run_dependencies/cpp_pubsub\n'}
+[27.372342] (cpp_pubsub) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/cpp_pubsub/share/ament_index/resource_index/parent_prefix_path/cpp_pubsub\n'}
+[27.372799] (cpp_pubsub) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/environment/ament_prefix_path.sh\n'}
+[27.373132] (cpp_pubsub) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/environment/ament_prefix_path.dsv\n'}
+[27.373448] (cpp_pubsub) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/environment/path.sh\n'}
+[27.373776] (cpp_pubsub) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/environment/path.dsv\n'}
+[27.374050] (cpp_pubsub) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/local_setup.bash\n'}
+[27.374279] (cpp_pubsub) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/local_setup.sh\n'}
+[27.374530] (cpp_pubsub) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/local_setup.zsh\n'}
+[27.374848] (cpp_pubsub) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/local_setup.dsv\n'}
+[27.375143] (cpp_pubsub) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/package.dsv\n'}
+[27.375421] (cpp_pubsub) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/cpp_pubsub/share/ament_index/resource_index/packages/cpp_pubsub\n'}
+[27.375813] (cpp_pubsub) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/cmake/cpp_pubsubConfig.cmake\n'}
+[27.376047] (cpp_pubsub) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/cmake/cpp_pubsubConfig-version.cmake\n'}
+[27.376354] (cpp_pubsub) StdoutLine: {'line': b'-- Installing: /scripts/ros2_ws/install/cpp_pubsub/share/cpp_pubsub/package.xml\n'}
+[27.384689] (cpp_pubsub) CommandEnded: {'returncode': 0}
+[27.420846] (-) TimerEvent: {}
+[27.514265] (cpp_pubsub) JobEnded: {'identifier': 'cpp_pubsub', 'rc': 0}
+[27.517588] (-) EventReactorShutdown: {}

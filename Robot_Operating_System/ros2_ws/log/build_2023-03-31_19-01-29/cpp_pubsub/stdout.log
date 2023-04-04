@@ -1,4 +1,0 @@
-[35m[1mConsolidate compiler generated dependencies of target listener[0m
-[ 50%] Built target talker
-[ 75%] [32mBuilding CXX object CMakeFiles/listener.dir/src/sub.cpp.o[0m
-[100%] [32m[1mLinking CXX executable listener[0m

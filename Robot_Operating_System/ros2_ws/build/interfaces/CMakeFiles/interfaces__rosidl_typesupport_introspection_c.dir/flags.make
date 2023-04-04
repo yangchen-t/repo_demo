@@ -4,7 +4,7 @@
 # compile C with /usr/bin/cc
 C_DEFINES = -DRCUTILS_ENABLE_FAULT_INJECTION -DROS_PACKAGE_NAME=\"interfaces\" -Dinterfaces__rosidl_typesupport_introspection_c_EXPORTS
 
-C_INCLUDES = -I/workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces/rosidl_generator_c -I/workspace/cxy/Robot_Operating_System/ros2_ws/build/interfaces/rosidl_typesupport_introspection_c -isystem /opt/ros/foxy/include
+C_INCLUDES = -I/scripts/ros2_ws/build/interfaces/rosidl_generator_c -I/scripts/ros2_ws/build/interfaces/rosidl_typesupport_introspection_c -isystem /opt/ros/foxy/include
 
 C_FLAGS = -fPIC -Wall -std=gnu11
 

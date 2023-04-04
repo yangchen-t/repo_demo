@@ -15,40 +15,49 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
+include_directories(include) # 添加项目中的include文件夹路径
+add_executable(sub
+  src/sub.cpp
+  src/get_info.cpp
+)
+
+
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
-# find_package(std_msgs REQUIRED)
+find_package(std_msgs REQUIRED)
 find_package(interfaces REQUIRED)
 
-include_directories(
-  include/cpp_pubsub  
-  ${catkin_INCLUDE_DIRS}
-)
-link_directories(
-  ${catkin_LIB_DIRS} lib
-)
 
-add_executable(talker src/pub.cpp)
-ament_target_dependencies(talker rclcpp interfaces)
-add_executable(listener
-  src/sub.cpp
+target_include_directories(sub PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>)
+
+
+ament_target_dependencies(
+    sub
+    "rclcpp"
+    interfaces
   )
-ament_target_dependencies(listener rclcpp interfaces)
 
-install(TARGETS
-  talker
-  listener
+target_link_libraries(sub
+  ${PROJECT_SOURCE_DIR}/lib/libbx_sdkDual.so.1.0.0
+  ${PROJECT_SOURCE_DIR}/lib/libiconv.so.2.6.0
+  ${PROJECT_SOURCE_DIR}/lib/libcharset.so.1.0.0
+)
+
+install(
+  DIRECTORY lib/                       # 发现你项目中的lib中所有的文件
+  DESTINATION lib/      # 拷贝到install目录中
+)
+install(TARGETS sub
+  RUNTIME DESTINATION lib/${PROJECT_NAME}    # 程序运行的时候调用install中的路径
+)
+
+install(TARGETS 
+  sub
   DESTINATION lib/${PROJECT_NAME})
 
-# add_library(get_info
-#   src/get_info.cpp      # source file is exist
-# )
-
-target_link_libraries(listener
-  ${catkin_LIBRARIES}
-)
-  
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights

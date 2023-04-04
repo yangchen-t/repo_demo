@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /workspace/cxy/Robot_Operating_System/ros2_ws/src/cpp_pubsub
+CMAKE_SOURCE_DIR = /scripts/ros2_ws/src/cpp_pubsub
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub
+CMAKE_BINARY_DIR = /scripts/ros2_ws/build/cpp_pubsub
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -142,9 +142,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub/CMakeFiles /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /scripts/ros2_ws/build/cpp_pubsub/CMakeFiles /scripts/ros2_ws/build/cpp_pubsub//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /workspace/cxy/Robot_Operating_System/ros2_ws/build/cpp_pubsub/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /scripts/ros2_ws/build/cpp_pubsub/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -172,6 +172,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named sub
+
+# Build rule for target.
+sub: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 sub
+.PHONY : sub
+
+# fast build rule for target.
+sub/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sub.dir/build.make CMakeFiles/sub.dir/build
+.PHONY : sub/fast
+
+#=============================================================================
 # Target rules for targets named uninstall
 
 # Build rule for target.
@@ -197,62 +210,36 @@ cpp_pubsub_uninstall/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/cpp_pubsub_uninstall.dir/build.make CMakeFiles/cpp_pubsub_uninstall.dir/build
 .PHONY : cpp_pubsub_uninstall/fast
 
-#=============================================================================
-# Target rules for targets named talker
-
-# Build rule for target.
-talker: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 talker
-.PHONY : talker
-
-# fast build rule for target.
-talker/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/talker.dir/build.make CMakeFiles/talker.dir/build
-.PHONY : talker/fast
-
-#=============================================================================
-# Target rules for targets named listener
-
-# Build rule for target.
-listener: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 listener
-.PHONY : listener
-
-# fast build rule for target.
-listener/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/listener.dir/build.make CMakeFiles/listener.dir/build
-.PHONY : listener/fast
-
-src/pub.o: src/pub.cpp.o
-.PHONY : src/pub.o
+src/get_info.o: src/get_info.cpp.o
+.PHONY : src/get_info.o
 
 # target to build an object file
-src/pub.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/talker.dir/build.make CMakeFiles/talker.dir/src/pub.cpp.o
-.PHONY : src/pub.cpp.o
+src/get_info.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sub.dir/build.make CMakeFiles/sub.dir/src/get_info.cpp.o
+.PHONY : src/get_info.cpp.o
 
-src/pub.i: src/pub.cpp.i
-.PHONY : src/pub.i
+src/get_info.i: src/get_info.cpp.i
+.PHONY : src/get_info.i
 
 # target to preprocess a source file
-src/pub.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/talker.dir/build.make CMakeFiles/talker.dir/src/pub.cpp.i
-.PHONY : src/pub.cpp.i
+src/get_info.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sub.dir/build.make CMakeFiles/sub.dir/src/get_info.cpp.i
+.PHONY : src/get_info.cpp.i
 
-src/pub.s: src/pub.cpp.s
-.PHONY : src/pub.s
+src/get_info.s: src/get_info.cpp.s
+.PHONY : src/get_info.s
 
 # target to generate assembly for a file
-src/pub.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/talker.dir/build.make CMakeFiles/talker.dir/src/pub.cpp.s
-.PHONY : src/pub.cpp.s
+src/get_info.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sub.dir/build.make CMakeFiles/sub.dir/src/get_info.cpp.s
+.PHONY : src/get_info.cpp.s
 
 src/sub.o: src/sub.cpp.o
 .PHONY : src/sub.o
 
 # target to build an object file
 src/sub.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/listener.dir/build.make CMakeFiles/listener.dir/src/sub.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sub.dir/build.make CMakeFiles/sub.dir/src/sub.cpp.o
 .PHONY : src/sub.cpp.o
 
 src/sub.i: src/sub.cpp.i
@@ -260,7 +247,7 @@ src/sub.i: src/sub.cpp.i
 
 # target to preprocess a source file
 src/sub.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/listener.dir/build.make CMakeFiles/listener.dir/src/sub.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sub.dir/build.make CMakeFiles/sub.dir/src/sub.cpp.i
 .PHONY : src/sub.cpp.i
 
 src/sub.s: src/sub.cpp.s
@@ -268,7 +255,7 @@ src/sub.s: src/sub.cpp.s
 
 # target to generate assembly for a file
 src/sub.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/listener.dir/build.make CMakeFiles/listener.dir/src/sub.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sub.dir/build.make CMakeFiles/sub.dir/src/sub.cpp.s
 .PHONY : src/sub.cpp.s
 
 # Help Target
@@ -286,11 +273,10 @@ help:
 	@echo "... test"
 	@echo "... cpp_pubsub_uninstall"
 	@echo "... uninstall"
-	@echo "... listener"
-	@echo "... talker"
-	@echo "... src/pub.o"
-	@echo "... src/pub.i"
-	@echo "... src/pub.s"
+	@echo "... sub"
+	@echo "... src/get_info.o"
+	@echo "... src/get_info.i"
+	@echo "... src/get_info.s"
 	@echo "... src/sub.o"
 	@echo "... src/sub.i"
 	@echo "... src/sub.s"
