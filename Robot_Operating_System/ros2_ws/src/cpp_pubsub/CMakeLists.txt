@@ -20,7 +20,9 @@ add_executable(sub
   src/sub.cpp
   src/get_info.cpp
 )
-
+add_executable(pub
+  src/pub.cpp
+)
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
@@ -35,7 +37,12 @@ target_include_directories(sub PUBLIC
 
 
 ament_target_dependencies(
-    sub
+    sub 
+    "rclcpp"
+    interfaces
+  )
+ament_target_dependencies(
+    pub
     "rclcpp"
     interfaces
   )
@@ -56,6 +63,7 @@ install(TARGETS sub
 
 install(TARGETS 
   sub
+  pub 
   DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)
