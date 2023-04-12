@@ -17,13 +17,6 @@ void gettime()
 	ptminfo->tm_hour, ptminfo->tm_min, ptminfo->tm_sec);
 }
 
-Ouint8 *TypeConversion(std::string str)
-{
-	return (unsigned char *)str.c_str();
-}
-
-
-
 void turn_picture_display(int mode){
 	
 	//config
@@ -31,8 +24,8 @@ void turn_picture_display(int mode){
 	Ouint8* pIP_back = (Ouint8*)"192.168.112.12";
 	Ouint32 nPort = 5005;
 
-	Ouint8* picPath = (Ouint8*)("/scripts/pic/52.png");
-	Ouint8* picPath_back = (Ouint8*)("/scripts/pic/53.png");
+	Ouint8* picPath = (Ouint8*)("/opt/qomolo/utils/led_server/pic/52.png");
+	Ouint8* picPath_back = (Ouint8*)("/opt/qomolo/utils/led_server/pic/53.png");
 	E_ScreenColor_G56 color = eSCREEN_COLOR_DOUBLE;
 	int uAreaId = 0;
 	int uAreaX = 16;//32
@@ -68,8 +61,8 @@ void turn_picture_display(int mode){
 	    bxDual_dynamicArea_AddAreaPic_6G(pIP_back, 5005, color, uAreaId, 32, uAreaY, uWidth, uHeight, &pheader1, (Ouint8*)picPath_back);
         std::cout << "\033[31mrear ==> "<< picPath_back <<"\033[0m\n";
 	}
-    else if (mode == 53)
-    {
+    	else if (mode == 53 )
+    	{
 	    bxDual_dynamicArea_AddAreaPic_6G(pIP_back, 5005, color, uAreaId, 32, uAreaY, uWidth, uHeight, &pheader1, (Ouint8*)picPath_back);
 	    std::cout << "\033[31mrear ==> "<< picPath_back <<"\033[0m\n";
 	    bxDual_dynamicArea_AddAreaPic_6G(pIP, 5005, color, uAreaId, 32, uAreaY, uWidth, uHeight, &pheader1, (Ouint8*)picPath);

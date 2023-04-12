@@ -1,6 +1,0 @@
-Invoking command in '/scripts/ros2_ws/build/interfaces': /usr/bin/cmake /scripts/ros2_ws/src/interfaces -DCMAKE_INSTALL_PREFIX=/scripts/ros2_ws/install/interfaces
-Invoked command in '/scripts/ros2_ws/build/interfaces' returned '0': /usr/bin/cmake /scripts/ros2_ws/src/interfaces -DCMAKE_INSTALL_PREFIX=/scripts/ros2_ws/install/interfaces
-Invoking command in '/scripts/ros2_ws/build/interfaces': /usr/bin/cmake --build /scripts/ros2_ws/build/interfaces -- -j8 -l8
-Invoked command in '/scripts/ros2_ws/build/interfaces' returned '0': /usr/bin/cmake --build /scripts/ros2_ws/build/interfaces -- -j8 -l8
-Invoking command in '/scripts/ros2_ws/build/interfaces': /usr/bin/cmake --install /scripts/ros2_ws/build/interfaces
-Invoked command in '/scripts/ros2_ws/build/interfaces' returned '0': /usr/bin/cmake --install /scripts/ros2_ws/build/interfaces
