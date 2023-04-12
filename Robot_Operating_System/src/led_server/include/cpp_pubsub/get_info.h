@@ -15,5 +15,4 @@ struct path_select
     int numbers;
 };
 void gettime();
-Ouint8 * TypeConversion(std::string str);
 void turn_picture_display(int mode);

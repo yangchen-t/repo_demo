@@ -1,6 +1,0 @@
-{
-  "package_name": "interfaces",
-  "non_idl_tuples": [
-    "/scripts/ros2_ws/src/interfaces:msg/Num.msg"
-  ]
-}
