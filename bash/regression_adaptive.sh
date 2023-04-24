@@ -65,39 +65,44 @@ function modify_conf() {
     sudo sed -i "${Location}cQOMOLO_ROBOT_ID=${project}1" .env
 
     case $version:$project:$device in
-    0.8:tj:1)
-        replace_conf $version qpilot_supervisord
+    2.9:tj:1)
+        replace_conf $version tj_supervisor_2.9
         ;;
-    0.8:tj:2)
-        replace_conf $version # TODO  start two docker unit
+    2.9:tj:2)
+        replace_conf $version tj_supervisor_105_2.9/tj_supervisor_106_2.9
         ;;
-        # 2.6
-    2.6:tj:1)
-        replace_conf $version qpilot_supervisord
+    2.9:ck:1)
+        replace_conf $version ceke_supervisor_2.9
         ;;
-    2.6:tj:2)
-        replace_conf $version qpilot_supervisord
+    2.9:wh:2)
+        replace_conf $version wh_supervisor_105_2.9/wh_supervisor_106_2.9
         ;;
-    2.6:wh:2)
-        replace_conf $version qpilot_supervisord
+    2.9:dl:2)
+        replace_conf $version dl_supervisor_105_2.9/dl_supervisor_106_2.9
         ;;
-    2.6:eh:1)
-        replace_conf $version qpilot_supervisord
+    2.9:eh:1)
+        replace_conf $version eh_supervisor_2.9
         ;;
-    2.6:eh:2)
-        replace_conf $version qpilot_supervisord
+    2.9:qp:2)
+        replace_conf $version Q_qp_supervisor_105_2.9/Q_qp_supervisor_106_2.9
         ;;
-    0.8:tj:1)
-        replace_conf $version qpilot_supervisord
+    2.9:qp:1)
+        replace_conf $version B_qp_supervisor_105.2.9/B_qp_supervisor_106.2.9
         ;;
-    0.8:tj:1)
-        replace_conf $version qpilot_supervisord
+    2.9:xm:2)
+        replace_conf $version xm_supervisor_105_2.9/xm_supervisor_106.2.9
         ;;
-    0.8:tj:1)
-        replace_conf $version qpilot_supervisord
+    2.9:jk:2)
+        replace_conf $version Q_jk_supervisor_105_2.9/Q_jk_supervisor_106_2.9
         ;;
-    0.8:tj:1)
-        replace_conf $version qpilot_supervisord
+    2.9:jk:1)
+        replace_conf $version jk_supervisor_105_2.9/jk_supervisor_106_2.9
+        ;;
+    2.9:jj:2)
+        replace_conf $version T_jj_supervisor_105_2.9/T_jj_supervisor_106_2.9
+        ;;
+    2.9:jj:1)
+        replace_conf $version T_jj_supervisor_2.9
         ;;
     esac
 }
