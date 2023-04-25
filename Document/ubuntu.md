@@ -494,3 +494,99 @@ jitter ：这是一个用来做统计的值。 它统计了在特定个连续的
 
 
 
+## Q:工程打包为deb
+
+```bash
+deb包结构分为：DEBIAN目录 和 软件具体安装目录（如etc, usr, opt, tmp等，之后 deb 的安装会根据这个目录把文件放到到对应的目录，如 etc/file 会放到你 linux 中的 /etc 下 ）。
+在 DEBIAN 目录中至少有 control 文件，还可能有 postinst(postinstallation)、postrm(postremove)、preinst(preinstallation)、prerm(preremove)、copyright (版权）、changlog （修订记录）和 conffiles 等。
+
+control:
+#
+Package: mysoftware       (软件名称，中间不能有空格，支持下划线)
+Version: 1               （软件版本）
+Section：申明软件的类别，常见的有`utils’, `net’, `mail’, `text’, `x11′ 等；
+Priority：申明软件对于系统的重要程度，如`required’, `standard’, `optional’, `extra’ 等；
+Essential：申明是否是系统最基本的软件包（选项为yes/no），如果是的话，这就表明该软件是维持系统稳定和正常运行的软件包，不允许任何形式的卸载（除非进行强制性的卸载）
+Architecture：软件包结构，如基于`i386′, ‘amd64’,`m68k’, `sparc’, `alpha’, `powerpc’ 等；
+Source：软件包的源代码名称；
+Depends：软件所依赖的其他软件包和库文件。如果是依赖多个软件包和库文件，彼此之间采用逗号隔开；
+Pre-Depends：软件安装前必须安装、配置依赖性的软件包和库文件，它常常用于必须的预运行脚本需求；
+Recommends：这个字段表明推荐的安装的其他软件包和库文件；
+Suggests：建议安装的其他软件包和库文件。
+#
+######## 示例 #######
+Package: mysoftware
+Version: 2016-02-26
+Section: free
+Priority: optional
+Depends: libssl.0.0.so, libstdc++2.10-glibc2.2
+Suggests: Openssl
+Architecture: i386
+Installed-Size: 66666
+Maintainer: xxx <your_email@example.com>
+Provides: mysoftware
+Description: just for test
+                    (此处必须空一行再结束)
+----------------------------------------
+Package: mysoftware       （软件名称，中间不能有空格）
+Version: 1                （软件版本）
+Section: free             （软件类别）
+Prioritt: optional        （软件对于系统的重要性）
+Architecture: amd64       （软件所支持的平台架构）
+Maintainer: xxx <>        （打包人和联系方式）
+Description: mydeb        （对软件的描述）
+　　　　　　　　　　(此处必须空一行再结束)
+       
+#####################
+
+（2）postinst文件：包含了软件在进行正常目录文件拷贝到系统后，所需要执行的配置工作。
+（3）prerm文件：软件卸载前需要执行的脚本。
+（4）postrm文件：软件卸载后需要执行的脚本。
+（5）preinst文件：软件安装前需要执行的脚本
+# 目录结构： 
+mydeb
+|----DEBIAN                # debian 配置文件
+       |-------control
+       |-------postinst
+       |-------postrm
+|----boot                   # scripts 
+       |----- mysoftware
+
+postinst文件内容（ 软件安装完后，执行该Shell脚本，一般用来配置软件执行环境，必须以“#!/bin/sh”为首行，然后给该脚本赋予可执行权限：chmod +x postinst    
+postrm文件内容（ 软件卸载后，执行该Shell脚本，一般作为清理收尾工作，必须以“#!/bin/sh”为首行，然后给该脚本赋予可执行权限：chmod +x postrm）
+
+## 构建 deb包
+> sudo dpkg-deb -b 本地文件夹 deb包名.deb 
+```
+
+- #### deb 管理命令:
+
+```bash
+# install deb 
+> dpkg -i mydeb.deb 
+# remove  deb
+> dpkg -r mydeb
+# deb yes or no install? 
+> dpkg -s mysofware
+# deb info 
+> dpkg -c mydeb.deb 
+# deb inside info 
+> dpkg --info mydeb.deb
+# 解压deb 中安装的文件
+> dpkg -X mydeb.deb local_path
+# 解压包内指定文件到 本地文件夹
+> dpkg -e mydeb.deb local_path/DEBIAN
+# all deb info 
+> dpkg -l | grep mydeb 
+# install debug msg 
+> dpkg -L mydeb 
+# purge dpkg 
+> dpkg --purge mydeb 
+```
+
+
+
+
+
+
+
