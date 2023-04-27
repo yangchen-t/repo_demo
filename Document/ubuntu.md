@@ -260,6 +260,105 @@ server : iperf -s -u -i 1 -p 8080 -l 1380
 ## Q: mcjoin
 
 ## Q: dig 
+>
+>
+>dig 命令主要用于 查询单个主机的信息 (DNS)
+```bash
+> dig baidu.com
+
+; <<>> DiG 9.16.1-Ubuntu <<>> www.baidu.com
+;; global options: +cmd
+
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 51219
+;; flags: qr rd ra; QUERY: 1, ANSWER: 3, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;www.baidu.com.			IN	A
+
+;; ANSWER SECTION:
+www.baidu.com.		548	IN	CNAME	www.a.shifen.com.
+www.a.shifen.com.	218	IN	A	36.152.44.96
+www.a.shifen.com.	218	IN	A	36.152.44.95
+
+;; Query time: 12 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53)
+;; WHEN: 四 4月 27 22:44:37 CST 2023
+;; MSG SIZE  rcvd: 101
+------------------------------------------------------------------------
+dig 命令默认的输出信息比较丰富，大概可以分为 5 个部分。
+第一部分显示 dig 命令的版本和输入的参数。
+第二部分显示服务返回的一些技术详情，比较重要的是 status。如果 status 的值为 NOERROR 则说明本次查询成功结束。
+第三部分中的 "QUESTION SECTION" 显示我们要查询的域名。
+第四部分的 "ANSWER SECTION" 是查询到的结果。
+第五部分则是本次查询的一些统计信息，比如用了多长时间，查询了哪个 DNS 服务器，在什么时间进行的查询等等。
+默认情况下 dig 命令查询 A 记录，上图中显示的 A 即说明查询的记录类型为 A 记录。在尝试查询其它类型的记录前让我们先来了解一下常见的 DNS 记录类型。
+```
+- #### 常见 DNS 记录的类型
+
+| 类型  | 目的                                                         |
+| ----- | ------------------------------------------------------------ |
+| A     | 地址记录，用来指定域名的 IPv4 地址，如果需要将域名指向一个 IP 地址，就需要添加 A 记录。 |
+| AAAA  | 用来指定主机名(或域名)对应的 IPv6 地址记录。                 |
+| CNAME | 如果需要将域名指向另一个域名，再由另一个域名提供 ip 地址，就需要添加 CNAME 记录。 |
+| MX    | 如果需要设置邮箱，让邮箱能够收到邮件，需要添加 MX 记录。     |
+| NS    | 域名服务器记录，如果需要把子域名交给其他 DNS 服务器解析，就需要添加 NS 记录。 |
+| SOA   | SOA 这种记录是所有区域性文件中的强制性记录。它必须是一个文件中的第一个记录。 |
+| TXT   | 可以写任何东西，长度限制为 255。绝大多数的 TXT记录是用来做 SPF 记录(反垃圾邮件)。 |
+
+- 查询 CNAME 类型的记录
+
+>举例
+
+```bash
+> dig agc.filterinto.com CHAME
+
+; <<>> DiG 9.16.1-Ubuntu <<>> agc.filterinto.com CHAME
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 41919
+;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;agc.filterinto.com.		IN	A
+
+;; Query time: 1280 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53)
+;; WHEN: 四 4月 27 22:49:56 CST 2023
+;; MSG SIZE  rcvd: 47
+
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: SERVFAIL, id: 44189
+;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;CHAME.				IN	A
+
+;; Query time: 0 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53)
+;; WHEN: 四 4月 27 22:49:56 CST 2023
+;; MSG SIZE  rcvd: 34
+# 这样结果中就只有 CNAME 的记录。其实我们可以在查询中指定任何 DNS 记录的类型。
+```
+
+- 反向查询
+
+在前面的查询中我们指定了查询服务器为 8.8.8.8，这是谁家的 DNS 服务器？其实我们可以使用 dig 的 -x 选项来反向解析 IP 地址对应的域名：
+
+```
+$ dig -x 8.8.8.8 +short
+dns.google.
+```
+
+好吧，应该是谷歌家的，可以放心使用了。
+
+
 
 ## Q:限制cpu核数
 
