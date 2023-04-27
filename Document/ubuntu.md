@@ -183,8 +183,6 @@ rates：分别表示过去 2s 10s 40s 的平均流量
 
 >**TCP**
 >
->
->
 >测量网络带宽
 >
 >报告MSS/MTU值的大小和观测值
@@ -196,8 +194,6 @@ rates：分别表示过去 2s 10s 40s 的平均流量
 >
 >
 >**UDP**
->
->
 >
 >客户端可以创建指定带宽的UDP流
 >
@@ -417,8 +413,6 @@ n (next)执行下一句（把子函数整个作为一步）， s(step) 执行下
 finish 执行完当前函数
 ```
 
-![coredump](/home/westwell/Pictures/coredump.png)
-
 ## Q:ntp deploy
 
 ```bash
@@ -491,8 +485,6 @@ delay ：从本地机发送同步要求到ntp服务器的round trip time（往�
 offset ：主机通过NTP时钟同步与所同步时间源的时间偏移量，单位为毫秒（ms）。offset越接近于0,主机和ntp服务器的时间越接近。
 jitter ：这是一个用来做统计的值。 它统计了在特定个连续的连接数里offset的分布情况。简单地说这个数值的绝对值越小，主机的时间就越精确。
 ```
-
-
 
 ## Q:工程打包为deb
 
@@ -583,6 +575,50 @@ postrm文件内容（ 软件卸载后，执行该Shell脚本，一般作为清�
 # purge dpkg 
 > dpkg --purge mydeb 
 ```
+
+## Q:ssh hostname@ip 卡在expecting ssh2_msg_kex_ecdh_reply 
+
+>##### /etc/ssh/
+>
+>ssh_config和sshd_config都是ssh服务器的配置文件，二者区别在于，前者是针对客户端的配置文件，后者则是针对服务端的配置文件
+
+```bash
+#### 原因：
+ssh 弱加密算法漏洞导致
+
+#### 现象:
+ping ip            // right 
+ssh hostname@ip    // error 
+ssh -v hostname@ip 
+.........
+expecting ssh2_msg_kex_ecdh_reply
+
+#### 解决方法：
+1. 屏蔽arcfour,arcfour128,arcfour256等弱加密算法  
+配置文件里删除若加密算法，
+sudo vim /etc/ssh/ssh_config
+Ciphers aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc,blowfish-cbc,cast128-cbc,aes192-cbc,aes25-cbc
+保存文件后重启ssh服务
+systemctl restart sshd
+
+2. ssh -c  xxx      指定一个加密算法
+cat  /etc/ssh/ssh_config |grep Ciphers  
+ssh -c $(cat  /etc/ssh/ssh_config |grep Ciphers | awk '{print$1}') hostname@IP
+
+##
+-c 指定ssh使用的加密算法, 默认可以使用全部算法
+```
+
+```bash
+$ ssh -Q cipher
+# 通过下以命令查看ssh使用了哪些ciphers
+```
+
+![](/home/westwell/workspace/cxy/Document/ssh_bug.png)
+
+>参考网址：
+>
+>https://blog.csdn.net/weixin_47297088/article/details/117036609?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-117036609-blog-120504344.235%5Ev32%5Epc_relevant_default_base3&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-117036609-blog-120504344.235%5Ev32%5Epc_relevant_default_base3&utm_relevant_index=1
 
 
 
