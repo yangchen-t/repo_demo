@@ -719,12 +719,12 @@ $ ssh -Q cipher
 >
 >https://blog.csdn.net/weixin_47297088/article/details/117036609?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-117036609-blog-120504344.235%5Ev32%5Epc_relevant_default_base3&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-117036609-blog-120504344.235%5Ev32%5Epc_relevant_default_base3&utm_relevant_index=1
 
+<<<<<<< HEAD
 ## Q:liunx内核版本降级
 
 >
 >
 >function1: 你不嫌麻烦的话，每次切换内核直接开机启动的时候手工切换即可，就那个开始屏幕，问你用哪个版本的 
-## Q:ubuntu 硬链接与软连接
 
 >
 >
@@ -759,7 +759,8 @@ $ ssh -Q cipher
 >$ sudo reboot 
 >```
 >
->
+## Q:ubuntu 硬链接与软连接
+
 ```bash
 # 软链接
 ln -s 文件 被创建软连接文件
@@ -788,6 +789,7 @@ ln 文件 被创建软连接文件
 
 
 按照这个步骤，在给源文件 /root/test 建立了硬链接文件 /tmp/test-hard 之后，在 /root/ 目录和 /tmp/ 目录的 block 中就会建立 test 和 test-hard 的信息，这个信息主要就是文件名和对应的 inode 号。但是我们会发现 test 和 test-hard 的 inode 信息居然是一样的，那么，我们无论访问哪个文件，最终都会访问 inode 号是 262147 的文件信息。
+>>>>>>> c2f266bbc3a5128bcda9c5a4980fd404309efc47
 
 这就是硬链接的原理。硬链接的特点如下：
 
