@@ -93,7 +93,7 @@ func Arrcmp(src []string, dest []string) ([]string, []string) {
 
 func UselessLogClean(diff []string) string {
 	for _, v := range diff {
-		logname := "sudo rm -rv /data/code/all_ws/ws/" + v
+		logname := "echo nvidia | sudo -S rm -rv /data/code/all_ws/ws/" + v
 		_, err := execShell(logname)
 		if err != nil {
 			return "operation error"
@@ -142,6 +142,7 @@ func supervisorCompare() {
 		colorize(ColorRed, "You are not welcome here! Goodbye!")
 	}
 }
+
 func main() {
 	flag.Parse()
 	supervisorCompare()
