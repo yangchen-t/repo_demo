@@ -713,12 +713,52 @@ $ ssh -Q cipher
 # 通过下以命令查看ssh使用了哪些ciphers
 ```
 
-![](/home/westwell/workspace/cxy/Document/ssh_bug.png)
+![](./ssh_bug.png)
 
 >参考网址：
 >
 >https://blog.csdn.net/weixin_47297088/article/details/117036609?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-117036609-blog-120504344.235%5Ev32%5Epc_relevant_default_base3&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-117036609-blog-120504344.235%5Ev32%5Epc_relevant_default_base3&utm_relevant_index=1
 
+<<<<<<< HEAD
+## Q:liunx内核版本降级
+
+>
+>
+>function1: 你不嫌麻烦的话，每次切换内核直接开机启动的时候手工切换即可，就那个开始屏幕，问你用哪个版本的 
+
+>
+>
+>function2: 
+>
+>```bash
+>step1: 
+>查看已经安装的内核版本：
+>$ grep menuentry /boot/grub/grub.cfg 
+>menuentry 'Ubuntu' --class ubuntu --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-simple-9ce1b297-0f01-4513-b3f1-4b98dbe4a66f' {
+>submenu 'Advanced options for Ubuntu' $menuentry_id_option 'gnulinux-advanced-9ce1b297-0f01-4513-b3f1-4b98dbe4a66f' {
+>	menuentry 'Ubuntu, with Linux 4.13.0-36-generic' --class ubuntu --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-4.13.0-36-generic-advanced-9ce1b297-0f01-4513-b3f1-4b98dbe4a66f' {
+>	menuentry 'Ubuntu, with Linux 4.13.0-36-generic (upstart)' --class ubuntu --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-4.13.0-36-generic-init-upstart-9ce1b297-0f01-4513-b3f1-4b98dbe4a66f' {
+>	menuentry 'Ubuntu, with Linux 4.13.0-36-generic (recovery mode)' --class ubuntu --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-4.13.0-36-generic-recovery-9ce1b297-0f01-4513-b3f1-4b98dbe4a66f' {
+>	menuentry 'Ubuntu, with Linux 4.8.0-040800-generic' --class ubuntu --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-4.8.0-040800-generic-advanced-9ce1b297-0f01-4513-b3f1-4b98dbe4a66f' {
+>	menuentry 'Ubuntu, with Linux 4.8.0-040800-generic (upstart)' --class ubuntu --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-4.8.0-040800-generic-init-upstart-9ce1b297-0f01-4513-b3f1-4b98dbe4a66f' {
+>	menuentry 'Ubuntu, with Linux 4.8.0-040800-generic (recovery mode)' --class ubuntu --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-4.8.0-040800-generic-recovery-9ce1b297-0f01-4513-b3f1-4b98dbe4a66f' {
+>menuentry 'Memory test (memtest86+)' {
+>menuentry 'Memory test (memtest86+, serial console 115200)' {
+>
+>上面我又两个内核，完整的名称是 Linux 4.8.0-040800-generic 和 4.13.0-36-generic。
+>step2:
+>切换内核版本：
+>$ sudo vim /etc/default/grub
+>找到：GRUB_DEFAULT=0，更改为下面的命令 
+>GRUB_DEFAULT="Previous Linux versions>Ubuntu, with Linux 4.8.0-040800-generic"   # Linux 4.8.0-040800-generic == 你要替换的版本 
+>step3:
+>更新改动：
+>$ sudo update-grub
+>step4：
+>重启设备：
+>$ sudo reboot 
+>```
+>
 ## Q:ubuntu 硬链接与软连接
 
 ```bash
@@ -749,6 +789,7 @@ ln 文件 被创建软连接文件
 
 
 按照这个步骤，在给源文件 /root/test 建立了硬链接文件 /tmp/test-hard 之后，在 /root/ 目录和 /tmp/ 目录的 block 中就会建立 test 和 test-hard 的信息，这个信息主要就是文件名和对应的 inode 号。但是我们会发现 test 和 test-hard 的 inode 信息居然是一样的，那么，我们无论访问哪个文件，最终都会访问 inode 号是 262147 的文件信息。
+>>>>>>> c2f266bbc3a5128bcda9c5a4980fd404309efc47
 
 这就是硬链接的原理。硬链接的特点如下：
 

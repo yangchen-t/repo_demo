@@ -26,5 +26,5 @@ def decrypt(ksa, s):
     return b.decode("utf-8")
 
 
-print(encrypt(1, "echo nvidia|sudo -S chown -R nvidia /data/qtest"))
-print(type(decrypt(66, '/474?3;3/40464;3/4.4@3;31414')))
+print(encrypt(66, "gate@west#"))
+print(decrypt(66, '@/>/>0/00.=0/090>003'))
