@@ -51,7 +51,7 @@ def unitcpudata(FILENAME, MODULE):
 
 def dataview(msg):
     x = range(len(timelist))
-    plt.figure(figsize=(8, 4))
+    plt.figure(figsize=(10, 4))
     plt.grid()
     plt.plot(x, datalist, 'o-')
     plt.legend([msg])
@@ -83,6 +83,7 @@ def main():
 
 if __name__ == '__main__':
     main()
-    print(datalist)
-    print(timelist)
+    # print(datalist)
+    # print(timelist)
     print("avg: ", sum(datalist)/len(datalist))
+

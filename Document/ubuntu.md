@@ -514,6 +514,8 @@ finish 执行完当前函数
 
 ## Q:ntp deploy
 
+>遵循网络时间协议(NTP) 规范，该规范要求使用**UDP 端口123** 进行所有时间同步。 计算机同步其时钟或向另一台计算机提供时间时，该同步在UDP 端口123 上进行
+
 ```bash
 sudo apt install ntp 
 sudo vim /etc/ntp.conf
