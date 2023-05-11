@@ -1,10 +1,11 @@
+
 #include <iostream>
 
 using namespace std;
 
 int main(){
-	
-	int var =20;
+
+	int var =20; 
 	int A = 40;
 	int& B = A;
 	int *ip;
@@ -17,3 +18,4 @@ int main(){
 	cout << "B position:" << &B << endl;
 	return 0;
 }
+ 
