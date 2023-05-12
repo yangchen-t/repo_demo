@@ -1,3 +1,11 @@
+'''
+Author: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
+Date: 2023-05-12 11:58:54
+LastEditors: error: error: git config user.name & please set dead value or install git && error: git config user.email & please set dead value or install git & please set dead value or install git
+LastEditTime: 2023-05-12 14:22:54
+FilePath: /workspace/cxy/Vehicle_Tools/performanceTools/datacompare.py
+Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+'''
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -51,7 +59,7 @@ left =      [115.84, 128.71, 115.84, 129.7, 117.82, 119.8, 114.85, 122.77, 117.8
 right =     [55.45, 53.47, 55.45, 61.39, 64.36, 63.37, 64.36, 64.36, 62.38, 61.76, 59.8, 63.37, 57.43, 56.44, 56.44, 56.44, 57.43, 54.46, 52.48, 53.47, 54.9, 54.46, 54.46, 54.46, 52.48, 53.47, 53.92, 51.49, 54.46, 55.88, 54.46, 54.46, 52.48, 54.46, 53.47, 55.88, 55.45, 53.47, 54.46, 54.46, 54.46, 56.44, 55.45, 56.44, 53.47, 52.94, 55.88, 52.48, 55.45, 54.46, 53.92, 52.94, 55.45, 55.45, 54.46, 55.45, 54.46, 54.46]
 lidar_obj = [32.67, 29.7, 29.7, 31.68, 29.7, 28.71, 30.69, 27.72, 29.41, 31.37, 30.69, 29.7, 31.68, 31.68, 30.69, 31.68, 31.68, 31.68, 37.62, 51.96, 56.44, 55.45, 49.5, 45.54, 44.55, 48.04, 49.5, 49.5, 48.04, 50.5, 49.5, 46.53, 45.54, 44.55, 43.14, 41.58, 44.55, 41.58, 39.6, 40.59, 36.63, 37.62, 38.61, 37.62, 36.27, 37.25, 37.62, 37.62, 37.62, 37.25, 34.31, 36.63, 34.65, 33.66, 33.66, 35.64, 32.67, 33.66]
 
-print(len(xticks),len(left),len(right),len(lidar_obj))
+# print(len(xticks),len(left),len(right),len(lidar_obj))
 plt.plot(xticks, left, c='red', label="fusion")
 plt.plot(xticks, right, c='green', linestyle='--', label="planner_ndoe")
 plt.plot(xticks, lidar_obj, c='blue', linestyle='-.', label="lidar_obj")
