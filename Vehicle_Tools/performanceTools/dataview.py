@@ -18,7 +18,7 @@ def DataAllocation(datacmd, timecmd, ret):
             timecmd + "| head -n {0} | tail -n 1".format(i))
         DataRet = subprocess.getoutput(
             datacmd + "|head -n {0} | tail -n 1".format(i))
-        # ret = subprocess.getoutput("date -d '{0}' +%s".format(ret))      # unix time
+        ret = subprocess.getoutput("date -d '{0}' +%s".format(ret))      # unix time
         timelist.append(ret)
         datalist.append(float(DataRet))
     return 0
