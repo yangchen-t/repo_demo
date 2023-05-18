@@ -65,7 +65,7 @@ sudo systemctl restart nginx
 cd ${workspace}
 sudo mkdir work.git 
 cd work.git 
-sudo git --bare init
+sudo git init
 sudo git update-server-info 
 sudo chown -R ${USER}:${USER} .
 sudo chomod -R 755 . 
