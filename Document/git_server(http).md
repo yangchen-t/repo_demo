@@ -1,83 +1,126 @@
+[TOC]
 
+# Ubuntu18.04
 
-服务器：Ubuntu18.04
+## Server
 
-## 准备工作：
-
-1、安装Git
-
-```bash 
-apt-get install git
-```
-
-2、安装nginx
+### 1.install
 
 ```bash
-apt-get install nginx
+sudo apt update ;sudo apt install nginx git fcgiwrap -y 
 ```
 
-3、安装 fcgiwrap
+### 2.Create Git Repositories
 
 ```bash
-apt-get install fcgiwrap
+workspace = "/data/repo.git"
+sudo mkdir ${workspace}
+sudo chown -R ${USER}:${USER} ${workspace}
 ```
 
-4、新建裸仓库
+### 3.Set configure Nginx
 
 ```bash
-sudo git init --bare /opt/config/
-```
+sudo vim /etc/nginx/sites-available/default
 
-修改仓库权限，让所有用户均可修改
+Look for the following section:
 
-```bash
-sudo chmod -R a+w /opt/config/
-```
+        location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                try_files $uri $uri/ =404;
+        }
 
-5、Nginx配置访问路径
-我的目的是在 nginx 的默认网站下添加一个虚拟目录 /git/ ， 通过访问 /git/xxx 的形式来访问服务器上的 xxx.git 代码库， 这就需要修改一下 nginx 默认网站的配置文件 /etc/nginx/sites-available/default ， 添加下面的信息：
-
-## 配置以 /git 开始的虚拟目录
-```c++
-location ~ /git(/.*) {
-使用 Basic 认证
-    auth_basic "Restricted";
-    # 认证的用户文件
-    auth_basic_user_file /etc/nginx/passwd;
-    # FastCGI 参数
-    fastcgi_pass  unix:/var/run/fcgiwrap.socket;
-    fastcgi_param SCRIPT_FILENAME /usr/lib/git-core/git-http-backend;
+Under that section, paste the following:
+# add below this line 
+location ~ (/.*) {
+    client_max_body_size 0; # Git pushes can be massive, just to make sure nginx doesn't suddenly cut the connection add this.
+    auth_basic "Git Login"; # Whatever text will do.
+    auth_basic_user_file "${workspace}/htpasswd";
+    include /etc/nginx/fastcgi_params; # Include the default fastcgi configs
+    fastcgi_param SCRIPT_FILENAME /usr/lib/git-core/git-http-backend; # Tells fastcgi to pass the request to the git http backend executable
     fastcgi_param GIT_HTTP_EXPORT_ALL "";
-    # git 库在服务器上的跟目录
-    fastcgi_param GIT_PROJECT_ROOT    /opt;
-    fastcgi_param PATH_INFO           $1;
-    # 将认证用户信息传递给 fastcgi 程序
+    fastcgi_param GIT_PROJECT_ROOT ${workspace}; # /var/www/git is the location of all of your git repositories.
     fastcgi_param REMOTE_USER $remote_user;
-    # 包涵默认的 fastcgi 参数；
-    include       fastcgi_params;
-    # 将允许客户端 post 的最大值调整为 100 兆
-    max_client_body_size 100M;
+    fastcgi_param PATH_INFO $1; # Takes the capture group from our location directive and gives git that.
+    fastcgi_pass  unix:/var/run/fcgiwrap.socket; # Pass the request to fastcgi
 }
+
+sudo nginx -t     # check configuration
+# normal output 
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
 ```
 
-重新加载nginx配置
+### 4.Create a User Account
 
 ```bash
-nginx -s reload
+sudo htpasswd -c ${workspace}/htpasswd new_account   
+sudo systemctl restart nginx
 ```
 
-6、Nginx鉴权
-让Nginx来管理访问时的用户鉴权，用以下命令增加一个git用户并按提示设置密码，可以创建多个用户。
+### 5.Create Your First Repositories
 
 ```bash
-htpasswd  /etc/nginx/passwd git
+cd ${workspace}
+sudo mkdir work.git 
+cd work.git 
+sudo git --bare init
+sudo git update-server-info 
+sudo chown -R ${USER}:${USER} .
+sudo chomod -R 755 . 
 ```
 
-如果提示没有htpasswd命令，需要先安装apache2-utils包：apt-get install apache2-utils。
+## Client
 
-/etc/nginx/passwd为用户名和密码文件，-c 参数表示创建一个新的密码文件，原来没有这个文件时必须要带，已经存在这个文件了就不要带-c参数了。
+### push remote repositories
 
-7、结束
-可以使用 git clone https://server-name/git/config 克隆仓库。
+#### 	1.Connect to the Repositories
 
-若仓库接收git push时报错403，可在仓库中设置git config http.receivepack true
+```bash
+sudo apt update ;sudo apt install git -y 
+mkdir ~/workspace 
+cd ~/worksapce
+git init 
+git remote add origin http://new_account@SERVER_IP/work.git 
+# test 
+mkdir test1 test2 test3 
+touch test1/1 test2/2 test3/3
+git add . && git commit -am "test directories and files added"
+git push origin master 
+```
+
+### pull remote repositories
+
+#### 	1.Clone the New Repositories
+
+```bash
+git clone http://new_account@SERVER_IP:/${workspace}/work.git 
+```
+
+>reference:
+>
+>https://thenewstack.io/how-to-set-up-the-http-git-server-for-private-projects/
+
+
+
+## Q&A
+
+- nginx  [Failed to start A high performance web server and a reverse proxy server](https://stackoverflow.com/questions/51525710/nginx-failed-to-start-a-high-performance-web-server-and-a-reverse-proxy-server)
+
+try this first
+
+```bash
+sudo service apache2 stop
+sudo systemctl restart nginx
+```
+
+- git push  error: remote unpack failed: unable to create temporary object directory
+
+try this first 
+
+```bash
+in server 
+sudo chmod -R 777 ${workspace}
+```
+
