@@ -123,4 +123,9 @@ try this first
 in server 
 sudo chmod -R 777 ${workspace}
 ```
+- connect() to unix:/var/run/fcgiwrap.socket failed (111: Connection refused) while connecting  to upstream, client: 172.17.0.1, server: localhost, request: "GET /test.py HTTP/1.1", upstream: "fastcgi://unix:/var/run/fcgiwrap.socket:"
 
+```bash
+in server 
+spawn-fcgi -s /var/run/fcgiwrap.socket -M 766 /usr/sbin/fcgiwrap 
+```
