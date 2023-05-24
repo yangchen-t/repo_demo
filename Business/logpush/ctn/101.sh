@@ -6,19 +6,19 @@ sudo chown -R $USER /data
 
 function input_time_gen_folder(){
     mkdir -p /data/code/all_ws/ws/logpush_tmp
-    read -p "请输入问题发生时的丹麦时间【examples:2022-04-21 15:00:00】:" PROBLEM_TIME
+    read -p "请输入问题发生时的瑞典时间【examples:2022-04-21 15:00:00】:" PROBLEM_TIME
     if [[ ${#PROBLEM_TIME} != 19 ]];then
         echo "时间格式不对，无法执行，请按照格式来输入如2022-02-22 12:00:00"
         exit 0
     else
         cd /data/code/all_ws/ws/logpush_tmp
         sudo rm -rf tmp
-        TMP_LOG_NAME=WS-navi_`date +%Y-%m-%d-%H%M`_log_bag
+        TMP_LOG_NAME=${HOSTNAME}_`date +%Y-%m-%d-%H%M`_log_bag
         mkdir -p tmp/${TMP_LOG_NAME}/csv
-#        mkdir -p tmp/${TMP_LOG_NAME}/qlog
+        mkdir -p tmp/${TMP_LOG_NAME}/qlog
         mkdir -p tmp/${TMP_LOG_NAME}/supervisord_log
-#        mkdir -p tmp/${TMP_LOG_NAME}/localization_bag
-#        mkdir -p tmp/${TMP_LOG_NAME}/CO
+        mkdir -p tmp/${TMP_LOG_NAME}/localization_bag
+        mkdir -p tmp/${TMP_LOG_NAME}/CO
         # mkdir -p tmp/${TMP_LOG_NAME}/lidar_bag
         # mkdir -p tmp/${TMP_LOG_NAME}/lidar_estop_bag
         input_timestamp=`date -d "$PROBLEM_TIME" +%s`
@@ -33,18 +33,6 @@ function bag_gen_folder(){
     TMP_LOG_NAME=${HOSTNAME}_`date -d "8 hour" +%Y-%m-%d-%H%M`_$1
     mkdir -p /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}
     cd /data/code/all_ws/ws
-}
-## csv
-function csv_extract(){
-    # /csv_path
-    cd  $DEPLOY_PATH_DEBUG
-    search_time_stamp=`date -d "${PROBLEM_TIME}" +%s`
-    older_time_stamp=`expr ${search_time_stamp} - 1800`
-    OLDER_SEARCH_TIME=`date -d @$older_time_stamp +%Y-%m-%d\ %H:%M:00`
-    newer_time_stamp=`expr ${search_time_stamp} + 1800`
-    NEWER_SEARCH_TIME=`date -d @$newer_time_stamp +%Y-%m-%d\ %H:%M:00`
-    find  $DEPLOY_PATH_DEBUG -name "$1*" -newermt "${OLDER_SEARCH_TIME}" ! -newermt "${NEWER_SEARCH_TIME}" | xargs -I {} cp {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/csv
-
 }
 
 # 提供两种模式进行查询
@@ -100,14 +88,14 @@ function high_file_search_copy_csv(){
 
 # 上下一小时文件夹so提取
 function Denmark_folder_search_co(){
-    cd  $DEPLOY_PATH_DEBUG/csv/short_time
+    cd  $DEPLOY_PATH_DEBUG/short_time
     mkdir -p  /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/CO
     input_timestamp=`date -d "$PROBLEM_TIME" +%s`
     end_time=`expr $input_timestamp - 3600`
     START_TIME=`date -d @$end_time +%Y-%m-%d\ %H:%M:00`
     start_time=`expr $input_timestamp + 3600`
     END_TIME=`date -d @$start_time +%Y-%m-%d\ %H:%M:00`
-    find  $DEPLOY_PATH_DEBUG/csv/short_time -name 'CO*' -type d -newermt "$START_TIME" ! -newermt "$END_TIME"  | xargs -I {} cp -r {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/CO
+    find  $DEPLOY_PATH_DEBUG/short_time -name 'CO*' -type d -newermt "$START_TIME" ! -newermt "$END_TIME"  | xargs -I {} cp -r {} /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/CO
 }
 
 # keep error event
@@ -248,7 +236,7 @@ function upload_to_gcs(){
     UPLOAD_PATH=${NAS_PATH}/${YEAR}/${MONTH}/${DAY}/${HOSTNAME}
     echo "===========================================数据压缩已完成=========================================="
     echo "数据正在传输中......"
-    sshpass -p xijingkeji scp  -o ServerAliveInterval=60  ${TMP_LOG_NAME}_$1.tar.gz qomolo@10.159.101.128:/key_log/key_log/
+    sshpass -p q scp  -o ServerAliveInterval=60  ${TMP_LOG_NAME}_$1.tar.gz qomolo@10.159.101.128:/key_log/key_log/
     if [ $? != 0 ];then
         echo -e "\033[031m数据因为网络原因传输失败，请联系管理员\033[0m"
         exit 0
@@ -262,51 +250,48 @@ function upload_to_gcs(){
 
 input_time_gen_folder
 # trajectory csv
-time_search_copy_csv
+time_search_copy_csv 
 # common csv
-#file_search_copy_odom
-#file_search_copy_csv lattice_planner
-#high_time_search_copy_csv ws_lqr_lat_controller
-#file_search_copy_csv igv_speed_lon_controller
-#file_search_copy_csv lattice_planner
-#file_search_copy_csv planning_trajectorys
-#file_search_copy_csv planning_vehicle_state
-#Denmark_folder_search_co
+file_search_copy_odom
+file_search_copy_csv lattice_planner
+high_time_search_copy_csv ws_lqr_lat_controller
+high_time_search_copy_csv trajectory_conversion
+file_search_copy_csv igv_speed_lon_controller
+file_search_copy_csv lattice_planner
+file_search_copy_csv planning
+file_search_copy_csv control 
+file_search_copy_csv planning_trajectorys
+file_search_copy_csv planning_vehicle_state
+Denmark_folder_search_co
 # log pre
 # log_search_copy_pre
 # keep error event
 # keeper_error_event
-#cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/agent.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
-#cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/assembly.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
-#cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/canbus.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
-#cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/container.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
-#cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/control.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
-#cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/empty_pc.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
-#cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/function.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
-#cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/keeper.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
-#cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/keeper_error_event.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
-#cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/lidar_driver.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
-#cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/lidar_perception.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
-#cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/localization_fuse.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
-#cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/localization_adaptor.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
-#cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/mqtt.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
-cp /opt/qomolo/utils/ws_setup/navi_supervisord/log/navigation.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
-#cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/safety_reporter.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
-#cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/vdr.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/agent.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/assembly.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/canbus.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/container.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/control.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/empty_pc.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/function.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/keeper.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/keeper_error_event.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/lidar_driver.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/lidar_perception.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/localization_fuse.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/localization_adaptor.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/mqtt.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/navigation.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/safety_reporter.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
+cp /opt/qomolo/utils/ws_setup/cpc_supervisord/log/vdr.log /data/code/all_ws/ws/logpush_tmp/tmp/${TMP_LOG_NAME}/supervisord_log/
 
-#file_search_log agent
-#file_search_log container_operation_planner
-#file_search_log planning
-#file_search_log localization
-#file_search_log control
-#file_search_log keeper
+file_search_log agent
+file_search_log container_operation_planner
+file_search_log planning
+file_search_log localization
+file_search_log control
+file_search_log keeper
 # file_search_log alignment\ planner
 # log post
 # log_search_copy_post
-csv_extract lattice_plan
-csv_extract planning_vehicle
-csv_extract prediction_data
-csv_extract planning_trajectory  
-csv_extract control
-csv_extract trajectory_conversion
 upload_to_gcs log_bag
