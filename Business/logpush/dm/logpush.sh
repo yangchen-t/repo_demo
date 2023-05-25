@@ -257,10 +257,13 @@ time_search_copy_csv
 file_search_copy_odom
 file_search_copy_csv lattice_planner
 high_time_search_copy_csv ws_lqr_lat_controller
+high_time_search_copy_csv trajectory_conversion
 file_search_copy_csv igv_speed_lon_controller
 file_search_copy_csv lattice_planner
 file_search_copy_csv planning_trajectorys
 file_search_copy_csv planning_vehicle_state
+file_search_copy_csv control 
+file_search_copy_csv planning
 Denmark_folder_search_co
 # log pre
 # log_search_copy_pre
