@@ -510,6 +510,12 @@ thread n 切换线程
 p（print） 打印变量
 n (next)执行下一句（把子函数整个作为一步）， s(step) 执行下一句（函数则进入函数中）
 finish 执行完当前函数
+###### 日志保留
+    > set logging file filename 
+    > set logging on    # start
+    > thread apply all bt   # cmd 
+    > xxxxxxxx
+    > set logging off   # end 
 ```
 
 ## Q:ntp deploy
@@ -864,3 +870,4 @@ ll -i
 29233868	drwxrwxr-x	11	1000	1000	4096
 ```
 
+# 
