@@ -65,7 +65,7 @@ user 任何用户都可以挂载
 当修改完此文件并保存后，重启服务器生效。
 ```
 
-## Q： 如何实现scp 断点续传
+## Q： 如何实现rsync 断点续传
 
 ```shell
 # rsync -P --rsh=ssh pic.tar.gz 192.168.205.304:/home/199_home.tar
@@ -755,7 +755,6 @@ $ ssh -Q cipher
 >
 >https://blog.csdn.net/weixin_47297088/article/details/117036609?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-117036609-blog-120504344.235%5Ev32%5Epc_relevant_default_base3&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-117036609-blog-120504344.235%5Ev32%5Epc_relevant_default_base3&utm_relevant_index=1
 
-<<<<<<< HEAD
 ## Q:liunx内核版本降级
 
 >
@@ -795,6 +794,29 @@ $ ssh -Q cipher
 >$ sudo reboot 
 >```
 >
+>#### 禁用 kernel 自动升级
+>
+>查看安装内核
+>
+>```bash
+>dpkg --list | grep linux-image
+>dpkg --list | grep linux-headers
+>dpkg --list | grep linux-modules
+>```
+>
+>禁用自动更新
+>
+>```bash 
+>vi /etc/apt/apt.conf.d/10periodic
+>vi /etc/apt/apt.conf.d/20auto-upgrades
+># 把文件内左右一位都改为0
+>```
+>
+>重启设备
+>
+>```bash
+>sudo reboot 
+>```
 ## Q:ubuntu 硬链接与软连接
 
 ```bash
@@ -897,5 +919,3 @@ ll -i
 29234092	-rw-r--r--	1	root	root	1028
 29233868	drwxrwxr-x	11	1000	1000	4096
 ```
-
-# 
