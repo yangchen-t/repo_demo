@@ -1,6 +1,8 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 2.8...3.2)
 
-project(cmake_test)
+project(cmake_test VERSION 1.0
+    DESCRIPTION "this is cmake test project"
+    LANGUAGES CXX)
 
 set(EXECUTABLE main)
 
