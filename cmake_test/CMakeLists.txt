@@ -19,7 +19,7 @@ option (USE_MYADD
 if (USE_MYADD)
     include_directories ("${PROJECT_SOURCE_DIR}/add")
     add_subdirectory(add)
-    set (EXTRA_LIBS ${EXTRA_LIBS} Add)
+    set (EXTRA_LIBS Add)
 endif()
 
 add_executable(${EXECUTABLE} main.cpp ${SrcList})
