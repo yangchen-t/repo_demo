@@ -11,19 +11,24 @@ configure_file (
   "${PROJECT_BINARY_DIR}/config.h"
 )
 
-aux_source_directory(func SrcList)
+aux_source_directory(func SECLIST)
 
 option (USE_MYADD
        "Use provided add implementation" ON)
 
 if (USE_MYADD)
     include_directories ("${PROJECT_SOURCE_DIR}/add")
-    add_subdirectory(add)
-    set (EXTRA_LIBS Add)
+    # add_subdirectory(add)   # sub Cmakefile.txt
+    # set (EXTRA_LIBS Add)
+
+    set(LIBADD Add)
+    aux_source_directory(./add SRC_LIST)
+    add_library(${LIBADD} ${SRC_LIST})
 endif()
 
-add_executable(${EXECUTABLE} main.cpp ${SrcList})
-target_link_libraries(${EXECUTABLE} ${EXTRA_LIBS})
+add_executable(${EXECUTABLE} main.cpp ${SECLIST})
+target_link_libraries(${EXECUTABLE} ${LIBADD})
+
 
 # add  gdb
 set(CMAKE_BUILD_TYPE "Debug")
@@ -32,5 +37,5 @@ set(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall")
 
 # install on /usr/local/
 install (TARGETS ${EXECUTABLE} DESTINATION bin)
-install (FILES "${PROJECT_BINARY_DIR}/config.h"
-         DESTINATION include)
+install (FILES "${PROJECT_BINARY_DIR}/config.h" DESTINATION include)
+install (FILES add.h DESTINATION include)
