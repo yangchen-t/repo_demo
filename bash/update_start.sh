@@ -1,5 +1,8 @@
 #!/bin/bash
 
+WORKING_PATH=$(dirname $(realpath $0))
+source ${WORKING_PATH}/.env
+
 readonly QPILOT_NAME="qpilot-group"
 readonly TOOLS_1="qomolo-get"
 readonly TOOLS_2="yq"
@@ -18,36 +21,34 @@ MQTT_NAMESPACE=$(yq ".MQTT_NAMESPACE" ${PROJECT_PROFILE})
 MQTT_SERVER_IP=$(yq ".MQTT_SERVER_IP" ${PROJECT_PROFILE})
 MQTT_SERVER_PORT=$(yq ".MQTT_SERVER_PORT" ${PROJECT_PROFILE})
 FMS_COMMON_IP=$(yq ".FMS_COMMON_IP" ${PROJECT_PROFILE})
-FMS_COMMON_PORT=$(yq ".FMS_COMMON_PORT" ${PROJECT_PROFILE}) 
+FMS_COMMON_PORT=$(yq ".FMS_COMMON_PORT" ${PROJECT_PROFILE})
 FMS_TRAJECTORY_PRY_PORT=$(yq ".FMS_TRAJECTORY_PRY_PORT" ${PROJECT_PROFILE})
-QOMOLO_MAP_PATH=$(yq ".QOMOLO_MAP_PATH" ${PROJECT_PROFILE}) 
+QOMOLO_MAP_PATH=$(yq ".QOMOLO_MAP_PATH" ${PROJECT_PROFILE})
 VOC_SERVER_URL=$(yq ".VOC_SERVER_URL" ${PROJECT_PROFILE})
 PROJECT_NAME=$(yq ".profile_name" ${PROJECT_PROFILE})
 VEHICLE_TYPE=$(yq ".profile_name" ${VEHICLE_PROFILE})
 VEHICLE_ID=$(yq ".vehicle_id" ${GLOBAL_PROFILE})
 
-WORKING_PATH=$(dirname $(realpath $0))
-
-case ${VEHICLE_TYPE} in 
+case ${VEHICLE_TYPE} in
 qt*)
     VEHICLE_TYPE=Q_
-;;
+    ;;
 igv*)
     VEHICLE_TYPE=
-;;
+    ;;
 ws*)
     VEHICLE_TYPE=W_
-;;
+    ;;
 bus*)
     VEHICLE_TYPE=B_
-;;
+    ;;
 esac
 
 case ${PROJECT_NAME} in
 cnwxijk)
     PROJECT=jk
-;;
-esac 
+    ;;
+esac
 
 # check group
 function Check() {
@@ -55,10 +56,10 @@ function Check() {
         sudo apt update
         sudo apt install ${TOOLS_1} -y
     fi
-    if [ ! -f /usr/local/bin/${TOOLS_2} ];then 
-        sudo apt update 
-        sudo apt install qomolo-${TOOLS_2} -y 
-    fi 
+    if [ ! -f /usr/local/bin/${TOOLS_2} ]; then
+        sudo apt update
+        sudo apt install qomolo-${TOOLS_2} -y
+    fi
     result=$(QLOG_STD_DISABLED=1 timeout 10s qomolo_get g ${QPILOT_NAME} --diff)
     case $? in
     1)
@@ -66,7 +67,8 @@ function Check() {
         ;;
     2)
         echo -e "\033[31m[Error]: Found some erros, program suspension\033[0m"
-        echo ${result};exit -1
+        echo ${result}
+        exit -1
         ;;
     124)
         echo -e "\033[33m[Ignore]: Check timeout, skip check ${QPILOT_NAME} \033[0m"
@@ -74,8 +76,8 @@ function Check() {
     esac
 }
 
-function Init(){
-    xhost + 
+function Init() {
+    xhost +
     if [ ! -d "${WORKSPACE}/coredump" ]; then
         sudo mkdir -p ${WORKSPACE}/coredump
     fi
@@ -88,29 +90,29 @@ function Init(){
     if [ ! -d "${WORKSPACE}/qpilot_log" ]; then
         sudo mkdir -p ${WORKSPACE}/qpilot_log
     fi
-    # hardware.dcu > host_id 
+    # hardware.dcu > host_id
     DCU_COUNT=$(yq ".hardware.dcu | length" ${VEHICLE_PROFILE})
-    if [[ ${DCU_COUNT} == 3 ]];then
+    if [[ ${DCU_COUNT} == 3 ]]; then
         HOST=$(yq ".host_id" ${GLOBAL_PROFILE})
-	    if [[ ${HOST} == 1 ]];then
+        if [[ ${HOST} == 1 ]]; then
             DEVICE=105
             SUPER=${VEHICLE_TYPE}${PROJECT}_supervisor_${DEVICE}_2.10.conf
         else
             DEVICE=106
-            SUPER=${VEHICLE_TYPE}${PROJECT}_supervisor_${DEVICE}_2.10.conf  
-    	fi 
+            SUPER=${VEHICLE_TYPE}${PROJECT}_supervisor_${DEVICE}_2.10.conf
+        fi
     else
-    	SUPER=${VEHICLE_TYPE}${PROJECT}_supervisor_2.10.conf
+        SUPER=${VEHICLE_TYPE}${PROJECT}_supervisor_2.10.conf
     fi
-    echo "conf:" ${WORKING_PATH}/conf/${SUPER}
+    echo -e "\033[34mconf:\033[0m" ${WORKING_PATH}/conf/${SUPER}
     if [[ ! -f ${WORKING_PATH}/conf/${SUPER} ]]; then
-        echo -e "\033[31m current supervisor conf is not exist \033[0m";exit -1
+        echo -e "\033[31m current supervisor conf is not exist \033[0m"
+        exit -1
     fi
 }
-
+# -e QOMOLO_ROBOT_ID=${PROJECT}${VEHICLE_ID} \
 function Start() {
-    echo "workspace: " $WORKING_PATH
-
+    echo -e "\033[34mworkspace:\033[0m" $WORKING_PATH
     docker container stop qpilot || true
     docker container rm qpilot || true
 
@@ -132,7 +134,7 @@ function Start() {
         -v /tmp/.X11-unix:/tmp/.X11-unix \
         -v /dev:/dev \
         -e QOMOLO_CONFIGURATION_PATH=${QOMOLO_CONFIGURATION_PATH} \
-        -e QOMOLO_ROBOT_ID=${PROJECT}${VEHICLE_ID} \
+        -e QOMOLO_ROBOT_ID=${QOMOLO_ROBOT_ID} \
         -e ROS_DOMAIN_ID=${VEHICLE_ID} \
         -e ROS_WORKSPACE=${QPILOT} \
         -e MQTT_NAMESPACE=${MQTT_NAMESPACE} \
@@ -145,7 +147,7 @@ function Start() {
         -e VOC_SERVER_URL=${VOC_SERVER_URL} \
         -e QPILOT_VERSION=${QPILOT_VERSION} \
         -e RMW_IMPLEMENTATION=rmw_cyclonedds_cpp \
-        -e LOG_PATH=/debug/csv/ \
+        -e LOG_PATH=${LOG_PATH} \
         -e CYCLONEDDS_URI=file:///cyclonedds.xml \
         -e FASTRTPS_DEFAULT_PROFILES_FILE=/DEFAULT_FASTRTPS_PROFILES.xml \
         -e TYPE=${TYPE} \
