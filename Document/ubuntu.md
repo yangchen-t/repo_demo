@@ -919,3 +919,50 @@ ll -i
 29234092	-rw-r--r--	1	root	root	1028
 29233868	drwxrwxr-x	11	1000	1000	4096
 ```
+
+## Q:异常消耗的线程排查方法
+
+>
+>
+>工具：top ps pstack strace 
+>
+>install : apt-get install top ps strace  
+>
+>```
+>source install:  <pstack>
+>git clone git@github.com:peadar/pstack.git
+>cd pstack
+>mkdir build
+>cd build
+>cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo ..
+>make -j8
+>```
+
+```bash
+top
+	PID — 进程id 
+	USER — 进程所有者 
+	PR — 进程优先级 
+    NI — nice值。负值表示高优先级，正值表示低优先级 
+    VIRT — 进程使用的虚拟内存总量，单位kb。VIRT=SWAP+RES 
+    RES — 进程使用的、未被换出的物理内存大小，单位kb。RES=CODE+DATA 
+    SHR — 共享内存大小，单位kb 
+    S — 进程状态。D=不可中断的睡眠状态 R=运行 S=睡眠 T=跟踪/停止 Z=僵尸进程 
+    %CPU — 上次更新到现在的CPU时间占用百分比 
+    %MEM — 进程使用的物理内存百分比 
+    TIME+ — 进程使用的CPU时间总计，单位1/100秒 
+    COMMAND — 进程名称（命令名/命令行） 
+# 排查对应的cpu占用最高的一个程序
+top -Hp <pid> 
+# 列出对应的所有线程占比
+ps -eLo pid,lwp,pcpu | grep <pid>
+# 打印出该进程所有内部线程的调用耗时
+pstack <pid>
+# 列出该进程所有的线程调用栈
+strace <pid>
+	-f 跟踪目标进程，以及目标进程创建的所有子进程   # 查看该进程下执行了内核交互函数最多执行的部分
+	-t 在输出中的每一行前加上时间信息(-tt 表示微秒级) 
+	-T 显示每个系统调用所耗的时间 
+# 跟踪一个进程产生的系统调用,包括参数，返回值，执行消耗的时间 进程执行时的系统调用和所接收的信号、
+```
+
