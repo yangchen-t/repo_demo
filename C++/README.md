@@ -588,10 +588,12 @@ c++ 中空指针也是可以调用成员函数的，但是也要注意有没有�
 总结：
     重载左移运算符配合友元可以实现输出自定义数据类型
 ```
+
  ### 递增运算符重载
+
  ```c++
- 作用： 
-    通过重载递增运算符，实现自己的整形数据
+作用： 
+   通过重载递增运算符，实现自己的整形数据
  ```
 
 ### 赋值运算符重载
@@ -1830,3 +1832,71 @@ map/multimap区别：
 	如果operator()接受两个参数，那么就叫二元谓词
 ```
 
+### 内建函数对象
+
+#### 内建函数对象意义
+
+概念：
+
+- STL内建了一些函数对象
+
+分类：
+
+- 算术仿函数
+- 关系仿函数
+- 逻辑仿函数
+
+用法:
+
+- 这些仿函数所产生的对象，用法和一般函数完全相同
+
+- 使用内建函数对象，需要引入头文件`#incloud <functional>`
+
+  
+
+#### 算术仿函数
+
+功能描述：
+
+- 实现四则运算
+- 其中negate是一元运算，其他都是二元运算
+
+仿函数原型：
+
+- `template<class T> T plus<T> `      // 加法仿函数
+- `template<class T> T minus<T>`    // 减法仿函数
+- `template<class T>  T mutiplies<T>`  // 乘法仿函数
+- `template<class T> T divides<T>`    // 除法仿函数
+- `template<class T> T modulus <T> `  // 取模仿函数
+- `template<class T> T negate<T> `  // 取余仿函数
+
+#### 关系仿函数
+
+功能描述：
+
+- 实现关系对比
+
+仿函数原型：
+
+- `template<class T>bool equal_to<T> `  // 等于
+- `template<class T>bool not_equal_to<T>` // 不等于
+- `template<class T>bool greater<T>`  // 大于
+- `template<class T>bool greater_equal<T>`  // 大于等于
+- `template<class T>bool less<T>`  // 小于
+- `template<class T>bool less_equal<T>`  // 小于等于
+
+#### 逻辑仿函数
+
+功能描述：
+
+- 实现逻辑运算
+
+函数原型：
+
+- `template<class T>bool logical_and<T>`   // 逻辑与
+
+- `template<class T>bool logical_or<T>`    // 逻辑或
+
+- `template<class T>bool logical_not<T>`   // 逻辑非
+
+  
