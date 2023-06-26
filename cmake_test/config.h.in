@@ -1,1 +1,5 @@
-#cmakedefine USE_MYADD
+// the configured options and settings for main
+#define hello_VERSION_MAJOR @VERSION_MAJOR@
+#define hello_VERSION_MINOR @VERSION_MINOR@
+
+#define flag @FLAG@
