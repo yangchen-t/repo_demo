@@ -1,4 +1,4 @@
-#include "../include/getTime.hpp"
+#include "../include/getTime.h"
 
 void gettime()
 {

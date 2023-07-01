@@ -19,7 +19,6 @@ if (USE_MYMATH)
   add_subdirectory (math)
   set (EXTRA_LIBS ${EXTRA_LIBS} MathFunctions)
 endif (USE_MYMATH)
-
 # 加入一个配置头文件，用于处理 CMake 对源码的设置
 # configure_file 必须放在 option下面
 configure_file (
@@ -30,7 +29,6 @@ configure_file (
 # 查找当前目录下的所有源文件
 # 并将名称保存到 DIR_SRCS 变量
 aux_source_directory(func DIR_SRCS)
-
 # 指定生成目标
 add_executable (${EXEC} main.cpp ${DIR_SRCS})
 target_link_libraries (${EXEC} ${EXTRA_LIBS})

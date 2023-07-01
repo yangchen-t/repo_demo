@@ -1,4 +1,4 @@
-#include "math.hpp"
+#include "math.h"
 
 int Add(int v1, int v2)
 {
