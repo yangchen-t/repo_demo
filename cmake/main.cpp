@@ -2,6 +2,7 @@
 #include <functional>
 #include <iostream>
 #include "build/config.h"
+#include "color_tools.hpp"
 
 #ifdef USE_MYMATH
   #include <math.hpp>
@@ -16,6 +17,7 @@ int main()
     std::cout << "Now we use our own Math library." << std::endl;
     std::cout << "YES is true" << std::endl;
     std::cout << "test print:" << Add(1, 20) << std::endl;
+    Color::tools:bule("test success");
 #else
     std::cout << "Now we use the standard library." << std::endl;
     std::plus<int> add;
