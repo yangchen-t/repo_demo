@@ -722,6 +722,16 @@ postrm文件内容（ 软件卸载后，执行该Shell脚本，一般作为清�
 > dpkg --purge mydeb 
 ```
 
+```bash
+sink: https://askubuntu.com/questions/482928/ignore-apt-get-postinstall-scripts-automatically
+deb包解压拆分安装
+apt-get download <package>
+sudo dpkg --unpack <package>*.deb
+sudo rm /var/lib/dpkg/info/<package>.postinst -f
+sudo dpkg --configure <package>
+sudo apt-get install -yf  #To fix dependencies
+```
+
 ## Q:ssh hostname@ip 卡在expecting ssh2_msg_kex_ecdh_reply 
 
 >##### /etc/ssh/
@@ -996,3 +1006,26 @@ kswapd0进程占用了系统大量CPU资源。
 - 通过free 、ps等指令进一步查询系统及系统内进程的内存占用情况，做进一步排查分析。
 - 针对系统当前内存不足的问题，您可以重启一些服务，释放内存。
 
+## Q:docker build 使用 gpu 驱动
+
+>sink: https://stackoverflow.com/questions/59691207/docker-build-with-nvidia-runtime
+
+```bash
+step-1: Install nvidia-container-runtime:
+$ sudo apt-get install nvidia-container-runtime
+step-2: Edit/create the /etc/docker/daemon.json with content:
+$ sudo vim /etc/docker/daemon.json
+{
+    "runtimes": {
+        "nvidia": {
+            "path": "/usr/bin/nvidia-container-runtime",
+            "runtimeArgs": []
+         } 
+    },
+    "default-runtime": "nvidia" 
+}
+step-3: Restart docker daemon:
+$sudo systemctl restart docker
+step-4: Build your image (now GPU available during build):
+$ nvidia-docker build -t my_image_name:latest .
+```
