@@ -3,7 +3,7 @@
 
 
 using namespace std;
-void print_people(struct people *p);
+void print_people(struct people &p);
 
 typedef struct PEOPLE
 {
@@ -26,16 +26,16 @@ int main()
 	strcpy(p2.sex, "woman");
 	p2.age = 1;
 
-	print_people(&p1);
-	print_people(&p2);
+	print_people(p1);
+	print_people(p2);
 
 	return 0 ;
 }
 
-void print_people(struct people *p)
+void print_people(struct people &p)
 {
 	cout << "====================================" << endl; 
-	cout << "name:" << p->name << endl;
-	cout << "age:" << p->age << endl;
-	cout << "sex:" << p->sex << endl;
+	cout << "name:" << p.name << endl;
+	cout << "age:" << p.age << endl;
+	cout << "sex:" << p.sex << endl;
 }

@@ -2,7 +2,7 @@
 #include <cstring>
 
 using namespace std;
-void printBook( struct Books *b );
+void printBook(struct Books &b);
 
 struct Books
 {
@@ -28,18 +28,17 @@ int main( )
    Book2.book_id = 6495700;
 
    // 通过传 Book1 的地址来输出 Book1 信息
-   printBook( &Book1 );
-   printBook( &Book2 );
+   printBook(Book1);
+   printBook(Book2);
 
    return 0;
 }
 
-
 // 该函数以结构指针作为参数
-void printBook( struct Books *b )
+void printBook(struct Books &b )
 {
-   cout << "Book title : " << b->title <<endl;
-   cout << "Book author : " << b->author <<endl;
-   cout << "Book subject : " << b->subject <<endl;
-   cout << "Book id : " << b->book_id <<endl;
+   cout << "Book title : " << b.title <<endl;
+   cout << "Book author : " << b.author <<endl;
+   cout << "Book subject : " << b.subject <<endl;
+   cout << "Book id : " << b.book_id <<endl;
 }

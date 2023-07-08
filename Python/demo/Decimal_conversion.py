@@ -1,6 +1,6 @@
 #!/usr/bin/env python3 
 
-def ten_conversion()
+def ten_conversion():
     list1=['A','B','C','D','E','F']
     while True:
         x=int(input('请输入一个十进制数：'))
@@ -24,7 +24,7 @@ def ten_conversion()
             q=str(n)+q
         print('该数的十六进制为：',q)
 
-def two_converiosn()
+def two_converiosn():
     list1=['A','B','C','D','E','F']
     while True:
         num=input('请输入一个二进制数:')
@@ -50,7 +50,7 @@ def two_converiosn()
             q=str(n)+q
         print('该数的十六进制为：',q)
 
-def sixteen_conversion()
+def sixteen_conversion():
     dict1={'A':10,'B':11,'C':12,'D':13,'E':14,'F':15}
     while True:
         x=input('请输入一个十六进制数：')
@@ -85,5 +85,5 @@ if __name__ == "__main__":
         ten_conversion
     elif mode == "16":
         sixteen_conversion
-    else 
+    else:
         print("error mode ,please try again !")
