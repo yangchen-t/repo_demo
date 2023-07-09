@@ -1899,4 +1899,78 @@ map/multimap区别：
 
 - `template<class T>bool logical_not<T>`   // 逻辑非
 
-  
+## STL常用算法
+
+> C++/algorithm/
+
+概述：
+
+- 算法主要的头文件是由<algorithm> <functional> <numeric> 组成
+- <algorithm> 是所有STL头文件中最大的一个，范围设计到比较，交换，查找，遍历操作，复制，修改等等
+- <numeric> 体积很小，只包括几个在序列上面进行简单数学运算的模板函数
+- <functional> 定义了一些模板类，用以声明函数对象
+
+### 常用遍历算法：
+
+for_each    // 遍历容器
+
+- for_each(interator beg, interrator end, _func);
+  - beg 开始迭代器
+  - end 结束迭代器
+  - _func 函数或者函数对象
+
+transform   // 搬运容器到另一个容器中
+
+- transform(interator beg1, interator end1, interator beg2, _func)
+  - beg1 源容器开始迭代器
+  - end1 源容器结束迭代器
+  - beg2 目标容器开始迭代器
+  - _func 函数或者函数对象
+
+### 常用查找算法：
+
+- find // 查找算法
+  - 查找指定元素，找到返回指定元素的迭代器，找不到返回结束迭代器end()
+  - find (interator beg , interator end, value);
+  - beg 开始迭代器
+  - end 结束迭代器
+  - value 查找的元素
+- find_if // 按条件查找元素
+  - 按条件查找元素 , 找到返回知道位置迭代器，找不到返回结束迭代器位置
+  - find_If (iterator beg. iterator end, _Pred);
+  - beg 开始迭代器位置
+  - end 结束迭代器位置
+  - _Pred 函数或者谓词 (返回bool类型的仿函数)
+- adjacent_find  // 查找相邻重复元素
+  - 查找相邻重复元素，返回相邻元素的第一个位置的迭代器
+  - adjacent_find(iterator beg, iterator end);
+  - beg 开始迭代器
+  - end 结束迭代器
+- binary_search  // 二分查找法
+  - 查找指定的元素，查到返回true,否则返回false
+  - bool binary_search(iterator beg, iterator end, value);
+  - 注意： 在无序序列中不可用
+  - beg 开始迭代器
+  - end 结束迭代器
+  - value 查找的元素
+- count  // 统计元素个数
+  - 统计元素个数
+  - count(iterator beg, iterator end, value);
+  - beg 开始迭代器
+  - end 结束迭代器
+  - value 统计的元素
+- count_if  // 按照条件统计元素个数
+  - 按照条件统计元素个数
+  - count_if(iterator beg, iterator end, _Pred);
+  - beg 开始迭代器
+  - end 结束迭代器
+  - _Pred 谓词
+
+### 常用排序算法：
+
+### 常用拷贝和替换算法：
+
+### 常用算术生成算法：
+
+### 常用集合算法：
+
