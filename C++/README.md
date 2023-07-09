@@ -1968,7 +1968,60 @@ transform   // 搬运容器到另一个容器中
 
 ### 常用排序算法：
 
+- sort  // 对容器内的元素进行排序
+  - 对容器内元素进行排序
+  - sort(iterator beg, iterator end, _Pred);    # 默认从小到大
+  - 按值查找元素，找到返回指定位置迭代器，找不到返回结束迭代器位置
+  - beg 开始迭代器
+  - end 结束迭代器
+  - _Pred 谓词
+- random_shuffle  // 洗牌，指定范围内的元素水机调整次序
+  - 指定范围内的元素随机调整次序
+  - random_shuffle(iterator beg , iterator end);
+  - beg 开始迭代器
+  - end 结束迭代器
+- merge  // 容器元素合并，并存储到另一容器中
+  - 两个容器元素合并，并存储在另一个容器中
+  - merge(iterator beg1. iterator end1, iterator beg2, iterator end2, iterator dest);
+  - 注意： 两个容器必须是有序的
+  - beg1 容器1 开始迭代器
+  - end1 容器1 结束迭代器
+  - beg2 容器2 开始迭代器
+  - end2 容器2 结束迭代器
+  - dest 目标容器开始迭代器
+- reverse  // 反转指定范围的元素
+  - 将容器内元素进行反转
+  - reverse( iterator beg, iterator end);
+  - beg 开始迭代器
+  - end 结束迭代器
+
 ### 常用拷贝和替换算法：
+
+- copy  // 将容器内指定范围的元素拷贝到另一容器中
+  - 容器内指定范围的元素拷贝到另一个容器中
+  - copy(iterator beg, iterator end, iterator dest);
+  - beg 开始迭代器
+  - end 结束迭代器
+  - dest 目标容器开始迭代器
+- replace  // 将容器内指定范围的旧元素修改为新元素
+  - 将容器内指定范围的旧元素修改为新元素
+  - replace(iterator beg,iterator end, old , new);
+  - beg 开始迭代器
+  - end 结束迭代器
+  - old 旧元素
+  - new 新元素
+- replace_if  // 容器内指定范围满足条件的元素替换为新元素
+  - 将区间内满足条件的元素，替换成指定元素
+  - replace_if(iterator beg, iterator end , _pred , newvale);
+  - beg 开始迭代器
+  - end 结束迭代器
+  - _pred 谓词
+  - newvalue 替换的新元素
+- swap    // 互换两个容器的元素
+  - 互换两个容器的元素
+  - swap(container c1， container c2);
+  - c1 容器1
+  - c2  容器2 
 
 ### 常用算术生成算法：
 
