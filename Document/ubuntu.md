@@ -1029,3 +1029,16 @@ $sudo systemctl restart docker
 step-4: Build your image (now GPU available during build):
 $ nvidia-docker build -t my_image_name:latest .
 ```
+
+## Q:docker 权限问题
+
+```bash
+官网推荐方式:
+sudo usermod -aG docker <username>
+
+other: 
+sudo gpasswd -a <username> docker 
+newgrp docker
+sudo systemctl restart docker
+```
+
