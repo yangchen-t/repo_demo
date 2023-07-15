@@ -1,0 +1,52 @@
+- project: wuhan
+  devices: 2
+  dcu1:
+    - "entrypoint_105": true
+    - "qp3_lidarpreprocess": true 
+    - "agent": true
+    - "keeper": true
+    - "fms_adaptor": true
+    - "vehicle": true
+    - "control": true
+    - "identification": true  
+    - "gnss_driver": true 
+    - "gnss_processor": true 
+    - "wheel_odom": true 
+    - "localization_adaptor": true  
+    - "localization_checker": true  
+    - "localization_logger": true  
+    - "fusion_localizer2": true 
+    - "video0": true  
+  dcu2:
+    - "entrypoint_106": false
+    - "qp3_lidarpreprocess": true
+    - "http_bridge": true
+    - "aeb": true
+    - "local_plan": true
+    - "vdr": true
+    - "test_rviz": false
+    - "test_vehicle_sim_plan": false
+    - "alignment_planner": true
+    - "lidar_obj_det": true
+    - "lidar_cps_alignment": true
+
+- project: tianjin
+  devices: true 
+  dcu1:
+    - "entrypoint_105": true
+    - "qp3_lidarpreprocess": true 
+    - "agent": true
+    - "keeper": true
+    - "fms_adaptor": true
+    - "vehicle": true
+    - "control": true
+    - "identification": true  
+    - "gnss_driver": true 
+    - "gnss_processor": true 
+    - "wheel_odom": true 
+    - "localization_adaptor": true  
+    - "localization_checker": true  
+    - "localization_logger": true  
+    - "fusion_localizer2": true 
+    - "video0": true  
+  dcu2: 
