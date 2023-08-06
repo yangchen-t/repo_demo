@@ -14,7 +14,6 @@ import (
 )
 
 const PROFILE string = "conf.yaml"
-const timeout time.Duration = time.Second * 5
 const IsEmpty string = ""
 
 type VersionCompare struct {
@@ -23,12 +22,13 @@ type VersionCompare struct {
 	VersionList    map[string]string
 }
 type ConnectInfo struct {
-	VehicleList []string `yaml:"vehiclelist"`
-	Port        int      `yaml:"port"`
-	Protocol    string   `yaml:"protocol"`
-	Hostname    string   `yaml:"hostname"`
-	Passwd      string   `yaml:"passwd"`
-	Command     string   `yaml:"command"`
+	VehicleList []string      `yaml:"vehiclelist"`
+	Port        int           `yaml:"port"`
+	Protocol    string        `yaml:"protocol"`
+	Hostname    string        `yaml:"hostname"`
+	Passwd      string        `yaml:"passwd"`
+	Command     string        `yaml:"command"`
+	Timeout     time.Duration `yaml:"timeout"`
 }
 
 var Version VersionCompare
@@ -46,11 +46,13 @@ func GetVersionInfo(VehIp string, info ConnectInfo, done func()) {
 		User:            info.Hostname,
 		Auth:            []ssh.AuthMethod{ssh.Password(info.Passwd)},
 		HostKeyCallback: ssh.InsecureIgnoreHostKey(),
-		Timeout:         timeout,
+		Timeout:         time.Second * info.Timeout,
 	})
 
 	if err != nil {
-		// fmt.Println(err)   debug
+		if os.Getenv("Vdebug") == "1" {
+			fmt.Println(err)
+		}
 		Sync.mu.Lock()
 		Version.CompareResult[VehIp] = IsEmpty
 		Sync.mu.Unlock()
@@ -128,18 +130,19 @@ func CompareDiffVersion() {
 			Version.VersionList[k] = v
 		}
 	}
-	fmt.Println("-----Disconnect Vehicle List ------")
+	fmt.Println("-------------设备不在线列表-------------")
 	for VehicleId, Offline := range Version.DisconnectList {
 		fmt.Printf("%-20s %s\n", VehicleId, Offline)
 	}
-	fmt.Println("---------------结束线---------------")
-	fmt.Println("-------Check Vehicle List --------")
+	fmt.Println("----------------结束线-----------------")
+	fmt.Println("----------------版本对比---------------")
 	CurVersion := StatisticalAlgorithms(Version.VersionList)
 	for Ck, Cv := range Version.VersionList {
 		if Cv != CurVersion {
-			fmt.Printf("%s 版本存在差异>>\n当前较多的版本为%s当前为%s", Ck, CurVersion, Cv)
+			fmt.Printf("%s 版本存在差异\n%s 的当前版本为%s", Ck, Ck, Cv)
 		}
 	}
+	fmt.Println("----------------结束线-----------------")
 }
 
 // 5s over

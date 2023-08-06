@@ -3,6 +3,7 @@ port: 22
 hostname: nvidia
 passwd: nvidia
 command: dpkg -s qpilot |grep Version | awk -F ":" '{print$2}'
+timeout: 5
 vehiclelist: 
   - 10.159.1.105
   - 10.159.2.105
@@ -19,6 +20,4 @@ vehiclelist:
   - 192.168.103.169
   - 192.168.103.105
   - 192.168.103.25
-  - 127.0.0.1
-  - 10.94.16.21
   - 192.168.103.172
