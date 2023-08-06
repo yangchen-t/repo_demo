@@ -17,7 +17,11 @@ const PROFILE string = "conf.yaml"
 const timeout time.Duration = time.Second * 5
 
 var wg sync.WaitGroup
+var mu sync.Mutex
 var CompareResult map[string]string
+var IsEmpty string = ""
+var DisconnectList map[string]string
+var VersionList map[string]string
 
 type ConnectInfo struct {
 	VehicleList []string `yaml:"vehiclelist"`
@@ -31,6 +35,7 @@ type ConnectInfo struct {
 func GetVersionInfo(VehIp string, info ConnectInfo, done func()) {
 	// fmt.Println("===========", VehIp, "===========")
 	defer done()
+
 	// 建立SSH客户端连接
 	client, err := ssh.Dial(info.Protocol, string(VehIp+":"+strconv.Itoa(info.Port)), &ssh.ClientConfig{
 		User:            info.Hostname,
@@ -39,7 +44,10 @@ func GetVersionInfo(VehIp string, info ConnectInfo, done func()) {
 		Timeout:         timeout,
 	})
 	if err != nil {
-		fmt.Println("SSH dial error:", err.Error())
+		fmt.Println(err)
+		mu.Lock()
+		CompareResult[VehIp] = IsEmpty
+		mu.Unlock()
 		return
 	}
 
@@ -86,8 +94,52 @@ func ReadConf() {
 	ConnectDevices(data)
 }
 
+func StatisticalAlgorithms(VersionList map[string]string) string {
+	// 创建一个用于存储出现次数的 map
+	counts := make(map[string]int)
+
+	// 统计 values 出现的次数
+	for _, value := range VersionList {
+		counts[value]++
+	}
+
+	// 找出出现次数最多的 value
+	maxCount := 0
+	maxValue := ""
+	for value, count := range counts {
+		if count > maxCount {
+			maxCount = count
+			maxValue = value
+		}
+	}
+	// 打印出现最多的 value 和其出现次数
+	fmt.Printf("出现最多的 value 是 %s，出现了 %d 次。\n", maxValue, maxCount)
+	return maxValue
+}
+
 func CompareDiffVersion() {
-	fmt.Println(CompareResult)
+	VersionList = make(map[string]string, len(CompareResult))
+	DisconnectList = make(map[string]string, len(CompareResult))
+	for k, v := range CompareResult {
+		if v == IsEmpty {
+			DisconnectList[k] = "offline"
+		} else {
+			VersionList[k] = v
+		}
+	}
+	fmt.Println("-----Disconnect Vehicle List ------")
+	for VehicleId, Offline := range DisconnectList {
+		fmt.Printf("%-20s %s\n", VehicleId, Offline)
+	}
+	fmt.Println("---------------结束线---------------")
+	fmt.Println("-------Check Vehicle List --------")
+	fmt.Println(VersionList)
+	CurVersion := StatisticalAlgorithms(VersionList)
+	for Ck, Cv := range VersionList {
+		if Cv != CurVersion {
+			fmt.Println(Ck, "版本存在差异, 标准为：", CurVersion, "当前为: ", Cv)
+		}
+	}
 }
 
 // 5s over
