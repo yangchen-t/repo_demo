@@ -15,14 +15,13 @@ import (
 
 const PROFILE string = "conf.yaml"
 const timeout time.Duration = time.Second * 5
+const IsEmpty string = ""
 
-var wg sync.WaitGroup
-var mu sync.Mutex
-var CompareResult map[string]string
-var IsEmpty string = ""
-var DisconnectList map[string]string
-var VersionList map[string]string
-
+type VersionCompare struct {
+	CompareResult  map[string]string
+	DisconnectList map[string]string
+	VersionList    map[string]string
+}
 type ConnectInfo struct {
 	VehicleList []string `yaml:"vehiclelist"`
 	Port        int      `yaml:"port"`
@@ -32,10 +31,16 @@ type ConnectInfo struct {
 	Command     string   `yaml:"command"`
 }
 
-func GetVersionInfo(VehIp string, info ConnectInfo, done func()) {
-	// fmt.Println("===========", VehIp, "===========")
-	defer done()
+var Version VersionCompare
+var data ConnectInfo
 
+var Sync struct {
+	wg sync.WaitGroup
+	mu sync.Mutex
+}
+
+func GetVersionInfo(VehIp string, info ConnectInfo, done func()) {
+	defer done()
 	// 建立SSH客户端连接
 	client, err := ssh.Dial(info.Protocol, string(VehIp+":"+strconv.Itoa(info.Port)), &ssh.ClientConfig{
 		User:            info.Hostname,
@@ -43,14 +48,14 @@ func GetVersionInfo(VehIp string, info ConnectInfo, done func()) {
 		HostKeyCallback: ssh.InsecureIgnoreHostKey(),
 		Timeout:         timeout,
 	})
+
 	if err != nil {
-		fmt.Println(err)
-		mu.Lock()
-		CompareResult[VehIp] = IsEmpty
-		mu.Unlock()
+		// fmt.Println(err)   debug
+		Sync.mu.Lock()
+		Version.CompareResult[VehIp] = IsEmpty
+		Sync.mu.Unlock()
 		return
 	}
-
 	// 建立新会话
 	session, err := client.NewSession()
 	defer session.Close()
@@ -64,14 +69,14 @@ func GetVersionInfo(VehIp string, info ConnectInfo, done func()) {
 		fmt.Fprintf(os.Stdout, "Failed to run command, Err:%s", err.Error())
 		os.Exit(0)
 	}
-	CompareResult[VehIp] = string(result)
+	Version.CompareResult[VehIp] = string(result)
 }
 
 func ConnectDevices(info ConnectInfo) {
-	wg.Add(len(info.VehicleList))
-	CompareResult = make(map[string]string, len(info.VehicleList))
+	Sync.wg.Add(len(info.VehicleList))
+	Version.CompareResult = make(map[string]string, len(info.VehicleList))
 	for i := 0; i < len(info.VehicleList); i++ {
-		go GetVersionInfo(info.VehicleList[i], info, wg.Done)
+		go GetVersionInfo(info.VehicleList[i], info, Sync.wg.Done)
 	}
 }
 
@@ -85,9 +90,7 @@ func ReadConf() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	var data ConnectInfo
 	err2 := yaml.Unmarshal(file, &data)
-
 	if err2 != nil {
 		log.Fatal(err2)
 	}
@@ -97,12 +100,10 @@ func ReadConf() {
 func StatisticalAlgorithms(VersionList map[string]string) string {
 	// 创建一个用于存储出现次数的 map
 	counts := make(map[string]int)
-
 	// 统计 values 出现的次数
 	for _, value := range VersionList {
 		counts[value]++
 	}
-
 	// 找出出现次数最多的 value
 	maxCount := 0
 	maxValue := ""
@@ -113,31 +114,30 @@ func StatisticalAlgorithms(VersionList map[string]string) string {
 		}
 	}
 	// 打印出现最多的 value 和其出现次数
-	fmt.Printf("出现最多的 value 是 %s，出现了 %d 次。\n", maxValue, maxCount)
+	fmt.Printf("当前较多的版本为: %s\n", maxValue)
 	return maxValue
 }
 
 func CompareDiffVersion() {
-	VersionList = make(map[string]string, len(CompareResult))
-	DisconnectList = make(map[string]string, len(CompareResult))
-	for k, v := range CompareResult {
+	Version.VersionList = make(map[string]string, len(Version.CompareResult))
+	Version.DisconnectList = make(map[string]string, len(Version.CompareResult))
+	for k, v := range Version.CompareResult {
 		if v == IsEmpty {
-			DisconnectList[k] = "offline"
+			Version.DisconnectList[k] = "offline"
 		} else {
-			VersionList[k] = v
+			Version.VersionList[k] = v
 		}
 	}
 	fmt.Println("-----Disconnect Vehicle List ------")
-	for VehicleId, Offline := range DisconnectList {
+	for VehicleId, Offline := range Version.DisconnectList {
 		fmt.Printf("%-20s %s\n", VehicleId, Offline)
 	}
 	fmt.Println("---------------结束线---------------")
 	fmt.Println("-------Check Vehicle List --------")
-	fmt.Println(VersionList)
-	CurVersion := StatisticalAlgorithms(VersionList)
-	for Ck, Cv := range VersionList {
+	CurVersion := StatisticalAlgorithms(Version.VersionList)
+	for Ck, Cv := range Version.VersionList {
 		if Cv != CurVersion {
-			fmt.Println(Ck, "版本存在差异, 标准为：", CurVersion, "当前为: ", Cv)
+			fmt.Printf("%s 版本存在差异>>\n当前较多的版本为%s当前为%s", Ck, CurVersion, Cv)
 		}
 	}
 }
@@ -145,6 +145,6 @@ func CompareDiffVersion() {
 // 5s over
 func main() {
 	ReadConf()
-	wg.Wait()
+	Sync.wg.Wait()
 	CompareDiffVersion()
 }
