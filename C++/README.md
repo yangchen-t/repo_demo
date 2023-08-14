@@ -2025,5 +2025,69 @@ transform   // 搬运容器到另一个容器中
 
 ### 常用算术生成算法：
 
+注意：
+
+算术生成算法属于小型算法,使用时包含的头文件为： #include <numeric>
+
+算法简介：
+
+- `accumulate`  // 计算容器内元素累计总和
+- `fill`              // 向容器中添加元素
+
+#### `accumulate` 
+
+功能描述：
+
+- 计算区间容器内元素的总和
+
+函数原型：
+
+- `accumulate(iterator beg, iterator end, value)`   // 计算容器元素累计总和
+  - beg 开始迭代器
+  - end 结束迭代器
+  - value 起始值
+
+#### `fill` 
+
+功能描述：
+
+- 向容器中填充指定的元素
+
+函数原型：
+
+- `fill(interator beg, iterator end, value);`  //向容器中填充元素
+  - beg 开始迭代器
+  - end 结束迭代器
+  - value 填充的值
+
 ### 常用集合算法：
 
+算法简介：
+
+- `set_intersection`   // 求两个容器的交集
+- `set_union`                // 求两个容器的并集
+- `set_difference`        // 求两个容器的差集
+
+
+
+#### `set_intersection`
+
+功能描述：
+
+- 求两个容器的交集
+
+函数原型：
+
+- `set_intersection(iterator beg1, iterator end1, iterator beg2, iterator end2, interator dest);`
+  - 求两个集合的交集
+
+#### `set_union`
+
+- 功能描述：
+
+  - 求两个集合的并集
+
+  函数原型：
+
+  - `set_union(iterator beg1, iterator end1, iterator beg2, iterator end2, interatotor dest)`
+    - 求两个集合的并集
