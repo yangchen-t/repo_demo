@@ -3,12 +3,14 @@
 import rclpy
 from rclpy.node import Node
 import numpy as np
-from planning_ros_msgs.msg import Trajectory
+from planning_ros_msgs.msg import Trajectory, TrajectoryPoint
+
+import time
+import random
 
 class MinimalPublisher(Node):
-
-    def __init__(self):
-        super().__init__('move_please')
+    def __init__(self,name):
+        super().__init__(name)
         self.publisher_ = self.create_publisher(Trajectory, '/tj003/test_plan/problem', 10)
         timer_period = 0.05  # seconds
         self.timer = self.create_timer(timer_period, self.timer_callback)
@@ -17,9 +19,28 @@ class MinimalPublisher(Node):
     def timer_callback(self):
         msg = Trajectory()
         # msg.header = ""
-        msg.dead_distance = ""
-        msg.stop_index = 2
-        # msg.points.x = 123.12
+        point = TrajectoryPoint()
+        for i in range(1, 100):
+            point.x = random.random()
+            point.v = 0.5
+            msg.points.append(point)
+        msg.dead_distance = 123.2
+        msg.stop_index = random.randint(1,100)
+
+        self.publisher_.publish(msg)
+        print(msg.stop_index, time.time())
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = MinimalPublisher("test_sub_localization")
+    rclpy.spin(node)
+    rclpy.shutdown()
+
+
+if __name__ == "__main__":
+    main()
+
+
         # msg.points.y = 1232.123
         # msg.points.heading_angle = 12
         # msg.points.s = 1
@@ -35,14 +56,3 @@ class MinimalPublisher(Node):
         # msg.chassis_ready_sts = True
         # msg.parking = False
         # self.publisher_.publish(msg)
-
-def main(args=None):
-    rclpy.init(args=args)
-    minimal_publisher = MinimalPublisher()
-    rclpy.spin(minimal_publisher)
-
-    minimal_publisher.destroy_node()
-    rclpy.shutdown()
-
-if __name__ == "__main__":
-    main()
