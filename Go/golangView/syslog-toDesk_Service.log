@@ -1,1 +1,0 @@
-cat syslog | grep toDesk_Service --> error
