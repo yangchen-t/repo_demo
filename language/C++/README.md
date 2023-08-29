@@ -2091,3 +2091,32 @@ transform   // 搬运容器到另一个容器中
 
   - `set_union(iterator beg1, iterator end1, iterator beg2, iterator end2, interatotor dest)`
     - 求两个集合的并集
+      - 注意： 两个集合必须是有序序列
+    - beg1 容器1 开始迭代器
+    - end1 容器1 结束迭代器
+    - beg2 容器2 开始迭代器
+    - end2 容器2 结束迭代器
+    - dest 目标容器开始迭代器
+
+#### `set_difference`
+
+功能描述
+
+- 求两个集合的差集
+
+函数原型
+
+- `set_difference(iterator beg1, iterator end1, iterator beg2, iterator end2, iterator dest)`
+
+  - 求两个集合的差集， 注意：两个集合必须是有序序列	
+  - beg1 容器1 开始迭代器
+  - end1 容器1 结束迭代器
+  - beg2 容器2 开始迭代器
+  - end2 容器2 结束迭代器
+  - dest 目标容器开始迭代器
+
+  #### 
+
+  
+
+  
