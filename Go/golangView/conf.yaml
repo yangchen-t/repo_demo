@@ -4,3 +4,4 @@ moduleslist:
   - "toDesk_Service"
   - "sunloginclie"
   - "code"
+  - "ToDesk_Client"

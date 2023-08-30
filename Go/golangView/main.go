@@ -8,8 +8,10 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 
 	"gonum.org/v1/plot"
@@ -17,24 +19,28 @@ import (
 	"gonum.org/v1/plot/plotutil"
 	"gonum.org/v1/plot/vg"
 	"gopkg.in/yaml.v2"
+
+	"github.com/jung-kurt/gofpdf"
 )
 
-const FILE string = "syslog"
 const PROFILE string = "conf.yaml"
 const JOURNALCTL string = "/bin/journalctl"
-const STARTTIME string = "2023-08-25 04:00:00"
-const ENDTIME string = "2023-08-25 05:00:00"
+const STARTTIME string = "2023-08-30 07:15:00"
+const ENDTIME string = "2023-08-30 07:25:00"
 const CPUSERVICE string = "qomolo_pidstat"
 const ALLSERVICE string = "qomolo_sar_monitor"
+const PDF string = "cpu.pdf"
+const IMAGEPATH string = "PNG/"
 
 type ModulesList struct {
 	MODULESLIST []string `yaml:"moduleslist"`
 }
 
 type Modules struct {
-	Time []string
-	Cpu  []float64
-	Name string
+	Time  []string
+	Cpu   []float64
+	Total []float64
+	Name  string
 }
 
 // StringTicks 是自定义的 X 轴标签类型
@@ -43,8 +49,12 @@ type StringTicks struct {
 	Labels []string
 }
 
-var modules ModulesList
-var subModules Modules
+var (
+	mutex      sync.Mutex
+	modules    ModulesList
+	subModules Modules
+	filelist   []string
+)
 
 // liunx cmd
 func execShell(s string) (string, error) {
@@ -57,7 +67,30 @@ func execShell(s string) (string, error) {
 	if err != nil {
 		return s + " --> error", err
 	}
-	return out.String(), err
+	Str := strings.TrimRight(out.String(), "\n")
+	return Str, err
+}
+
+func CheckPath(dirPath string) {
+	// 使用 os.Stat 检查路径是否存在
+	_, err := os.Stat(dirPath)
+
+	// 检查错误
+	if err != nil {
+		// 如果路径不存在，创建它
+		if os.IsNotExist(err) {
+			err := os.MkdirAll(dirPath, os.ModePerm)
+			if err != nil {
+				fmt.Println("创建路径失败:", err)
+				return
+			}
+		} else {
+			fmt.Println("检查路径时发生错误:", err)
+		}
+	} else {
+		fmt.Println(dirPath, "is exist")
+		return
+	}
 }
 
 func ReadConf() {
@@ -89,13 +122,40 @@ func WriteFile(str string, file string) {
 func GetFileLineCount(file string) int {
 	linecmd := "wc -l " + file + "| awk '{print$1}'"
 	lineCount, _ := execShell(linecmd)
-	Count, _ := strconv.Atoi(lineCount)
+	// trimmedStr := strings.TrimRight(lineCount, "\n")
+	Count, err := strconv.Atoi(lineCount)
+	if err != nil {
+		fmt.Println("转换失败:", err)
+	}
 	return Count
 }
 
-func MakePng(sub Modules, save_png string) {
+func visitFile(fp string, fi os.DirEntry, err error) error {
+	if err != nil {
+		fmt.Println(err) // 可以根据实际情况处理错误
+		return nil
+	}
+	if fi.IsDir() {
+		return nil // 忽略目录
+	}
+	filelist = append(filelist, fp) // 处理文件，这里简单地打印文件路径
+	return nil
+}
+
+func MakePng(sub Modules, save_png string, vtype string) {
+
+	mutex.Lock()         // 申请互斥锁
+	defer mutex.Unlock() // 在函数结束时释放互斥锁
+
 	// 创建一个新的绘图
 	p := plot.New()
+	data := make(plotter.XYs, len(sub.Time))
+	xLabels := make([]string, 0)
+
+	for i := 0; i < len(sub.Time); i++ {
+		data[i].X = float64(i)
+		data[i].Y = float64(i * i)
+	}
 
 	// 设置绘图的标题和轴标签
 	// p.Title.Text = "示例折线图"
@@ -104,8 +164,17 @@ func MakePng(sub Modules, save_png string) {
 
 	// 创建一个包含数据点的数据集
 	pts := make(plotter.XYs, 0)
-	for i, v := range sub.Cpu {
-			pts = append(pts, plotter.XY{X: i, Y: v})
+	if vtype == "cpu" {
+		fmt.Println("cpu")
+		for i, v := range sub.Cpu {
+			pts = append(pts, plotter.XY{X: float64(i + 1), Y: v})
+			xLabels = append(xLabels, fmt.Sprintf("%d", i))
+		}
+	} else if vtype == "total" {
+		fmt.Println("total")
+		for i, v := range sub.Total {
+			pts = append(pts, plotter.XY{X: float64(i + 1), Y: v})
+			xLabels = append(xLabels, fmt.Sprintf("%d", i))
 		}
 	}
 
@@ -123,51 +192,118 @@ func MakePng(sub Modules, save_png string) {
 	// 添加折线图到绘图
 	p.Add(line)
 
+	pngName := save_png + ".png"
+
+	CheckPath(IMAGEPATH)
 	// 保存绘图到文件
-	if err := p.Save(15*vg.Inch, 15*vg.Inch, save_png+".png"); err != nil {
+	if err := p.Save(20*vg.Inch, 10*vg.Inch, IMAGEPATH+pngName); err != nil {
 		log.Fatal(err)
 	}
 
-	log.Println("折线图已保存为: ", save_png+".png")
+	log.Println("折线图已保存为: ", IMAGEPATH+pngName)
 }
 
-// func png(sub Modules, save_png string) {
-// 	p := plot.New()
+// split informatin
+func CpuSplitInformation(filename string) Modules {
 
-// 	// 创建一个包含数据点的数据集
-// 	data := make(plotter.XYs, 0)
-// 	// xLabels := []string{"Jan", "Feb", "Mar", "Apr", "May"}
-// 	xLabels := sub.Time
+	file, err := os.Open(filename)
+	if err != nil {
+		fmt.Println("无法打开文件:", err)
+	}
+	defer file.Close() // 在函数结束时关闭文件
 
-// 	for i := 0; i < len(xLabels); i++ {
-// 		data[i].X = float64(i)
-// 		data[i].Y = float64(i * i)
-// 	}
+	reader := bufio.NewReader(file)
+	size := GetFileLineCount(filename)
+	subModules.Time = make([]string, 0)
+	subModules.Cpu = make([]float64, 0)
+	for i := 0; i < size; i++ {
+		line, err := reader.ReadString('\n')
+		if err != nil {
+			break
+		}
+		// 输出行内容
+		// arm
+		// cpu, _ := strconv.ParseFloat(strings.Join(strings.Split(line, " ")[6:7], " "), 64)
+		// x86
+		cpu, _ := strconv.ParseFloat(strings.Join(strings.Split(line, " ")[7:8], " "), 64)
+		time := strings.Join(strings.Split(line, " ")[2:3], " ")
 
-// 	// 创建折线图
-// 	line, err := plotter.NewLine(data)
-// 	if err != nil {
-// 		fmt.Println(err)
-// 		return
-// 	}
-// 	line.LineStyle.Width = vg.Points(1) // 设置线条宽度
+		// fmt.Println(cpu, time, filename)
+		subModules.Time = append(subModules.Time, time)
+		subModules.Cpu = append(subModules.Cpu, cpu)
+	}
+	subModules.Name = filename
+	return subModules
+}
 
-// 	// 设置 X 轴标签
-// 	p.X.Tick.Marker = StringTicks{
-// 		Values: data,
-// 		Labels: xLabels,
-// 	}
+func fullSplitInformation(filename string) Modules {
+	file, err := os.Open(filename)
+	if err != nil {
+		fmt.Println("无法打开文件:", err)
+	}
+	defer file.Close() // 在函数结束时关闭文件
+	reader := bufio.NewReader(file)
+	size := GetFileLineCount(filename)
+	subModules.Total = make([]float64, 0)
+	for i := 0; i < size; i++ {
+		line, err := reader.ReadString('\n')
+		if err != nil {
+			break
+		}
+		// 输出行内容
+		cmd := "echo '" + line + "' | awk '{print$NF}'"
+		total, _ := execShell(cmd)
+		ret, _ := strconv.ParseFloat(total, 64)
+		subModules.Total = append(subModules.Total, ret)
 
-// 	p.Add(line)
+	}
+	return subModules
+}
 
-// 	// 保存绘图到文件
-// 	if err := p.Save(4*vg.Inch, 4*vg.Inch, "custom_x_axis_line_plot.png"); err != nil {
-// 		fmt.Println(err)
-// 		return
-// 	}
+func CreatePdf() {
 
-// 	fmt.Println("折线图已保存为 custom_x_axis_line_plot.png")
-// }
+	// 创建新的 PDF 文档
+	pdf := gofpdf.New("P", "mm", "A4", "") // 页面尺寸为A4
+
+	// 添加一页新的页面
+	pdf.AddPage()
+
+	// 设置字体
+	pdf.SetFont("Arial", "B", 10)
+
+	root := IMAGEPATH // 指定要遍历的目录路径
+	err := filepath.WalkDir(root, visitFile)
+	if err != nil {
+		fmt.Printf("error walking the path %v: %v\n", root, err)
+	}
+	txtOffset := 100
+	imagesOffset := 50
+	for i, file := range filelist {
+
+		// 添加文本
+		// 设置 X 坐标，相当于设置左边距
+		// pdf.SetX(10)
+		// 使用 MultiCell 函数放置文本，并指定左对齐
+		// pdf.MultiCell(10, float64(10+txtOffset*i), file[len(IMAGEPATH):len(file)-3], "0", "L", false)
+
+		pdf.Cell(10, float64(10+txtOffset*i), file[len(IMAGEPATH):len(file)-4]) // 参数依次是宽度、高度、文本内容
+
+		// 插入图片
+		// 图片文件需要与代码在同一目录下或提供正确的文件路径
+		// 参数依次是 X、Y 坐标、宽度、高度、图片文件路径、链接
+		fmt.Println(file)
+		pdf.Image(file, 10, float64(20+imagesOffset*i), 80, 40, false, "", 0, "")
+	}
+	time.Sleep(time.Second * 1)
+	// 保存 PDF 文件
+	err = pdf.OutputFileAndClose(PDF)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	fmt.Println("PDF 文件已生成")
+}
 
 // Ticks 实现 plot.Ticker 接口
 func (s StringTicks) Ticks(min, max float64) []plot.Tick {
@@ -184,6 +320,7 @@ func (s StringTicks) Ticks(min, max float64) []plot.Tick {
 }
 
 func CpuInfo() {
+	const FILE string = "syslog"
 	cmd := fmt.Sprintf("%s -u %s --since '%s' --until '%s'", JOURNALCTL, CPUSERVICE, STARTTIME, ENDTIME)
 	ret, _ := execShell(cmd)
 	WriteFile(ret, FILE)
@@ -194,57 +331,40 @@ func CpuInfo() {
 		if v_info == "" {
 			continue
 		}
-		WriteFile(v_info, subfile)
 		if err != nil {
 			fmt.Println(err.Error())
 		} else {
-			// MakePng(SplitInformation(subfile), v)
-			// SplitInformation(subfile)
-			png(SplitInformation(subfile), v)
+			WriteFile(v_info, subfile)
+			MakePng(CpuSplitInformation(subfile), v, "cpu")
 		}
 	}
 }
 
-// split informatin
-func SplitInformation(filename string) Modules {
-
-	file, err := os.Open(filename)
+func fullInfo() {
+	const fullinfofile string = "sar"
+	cmd := fmt.Sprintf("%s -u %s --since '%s' --until '%s'", JOURNALCTL, ALLSERVICE, STARTTIME, ENDTIME)
+	ret, _ := execShell(cmd)
+	WriteFile(ret, fullinfofile)
+	cpucmd := fmt.Sprintf("cat %s | grep %s", fullinfofile, "all")
+	cpuinfo, err := execShell(cpucmd)
 	if err != nil {
-		fmt.Println("无法打开文件:", err)
+		fmt.Println(err.Error())
+	} else {
+		WriteFile(cpuinfo, "sar-cpuinfo")
+		MakePng(fullSplitInformation("sar-cpuinfo"), "cpuinfo", "total")
 	}
-	defer file.Close() // 在函数结束时关闭文件
-
-	reader := bufio.NewReader(file)
-	subModules.Time = make([]string, 1476)
-	subModules.Cpu = make([]float64, 1476)
-
-	for i := 0; i < 1476; i++ {
-		line, err := reader.ReadString('\n')
-		if err != nil {
-			break
-		}
-		// 输出行内容
-		cpu, _ := strconv.ParseFloat(strings.Join(strings.Split(line, " ")[7:8], " "), 64)
-		time := strings.Join(strings.Split(line, " ")[2:3], " ")
-		subModules.Time = append(subModules.Time, time)
-		subModules.Cpu = append(subModules.Cpu, cpu)
-	}
-	// subModules.Name = filename
-	return subModules
 }
 
 func ClearTmp() {
-	for _, m := range modules.MODULESLIST {
-		rmFile := "rm -rv " + FILE + "-" + m + ".log"
-		execShell(rmFile)
-	}
-	execShell("rm -rv " + FILE)
+	execShell("rm -rv *.log")
+	// execShell("rm -rv .png")
 }
 
 func main() {
 	ReadConf()
-	CpuInfo()
-	time.Sleep(time.Second * 2)
-	// ClearTmp()
-	// execShell("rm -r *.png")
+	// fullInfo()
+	// CpuInfo()
+	time.Sleep(time.Second * 1)
+	CreatePdf()
+	ClearTmp()
 }
