@@ -37,7 +37,7 @@ var (
 	ENDTIME   string
 )
 
-const PROFILE string = "conf.yaml"
+const PROFILE string = "/opt/qomolo/utils/qpilot_perf/scripts/.conf.yaml"
 const JOURNALCTL string = "/bin/journalctl"
 const CPUSERVICE string = "qomolo_pidstat"
 const MEMSERVICE string = "qomolo_mem_monitor"
@@ -73,13 +73,42 @@ type StringTicks struct {
 }
 
 func checkParam() {
-	if STARTTIME == "" || ENDTIME == "" {
-		timeInfo, _ := execShell("journalctl --list-boots")
-		fmt.Println(timeInfo)
-		fmt.Println("template: ./monitorView -s '2023-08-31 14:20:00' -e '2023-08-31 14:30:00'")
-		os.Exit(-1)
-	}
+	if len(os.Args) == 2 {
+		if os.Args[1] == "modify" || os.Args[1] == "edit" {
+			// 打开 Vim 编辑器
+			cmd := exec.Command("vim", PROFILE)
+			cmd.Stdin = os.Stdin
+			cmd.Stdout = os.Stdout
+			cmd.Stderr = os.Stderr
 
+			err := cmd.Run()
+			if err != nil {
+				fmt.Println("无法启动 Vim:", err)
+				return
+			}
+			// 读取编辑后的文件内容
+			editedText, err := ioutil.ReadFile(PROFILE)
+			if err != nil {
+				fmt.Println("无法读取编辑后的文件:", err)
+				return
+			}
+			// 打印编辑后的内容
+			fmt.Println("编辑后的内容:")
+			fmt.Println(string(editedText))
+
+			os.Exit(-1)
+		}
+	} else {
+		if STARTTIME == "" || ENDTIME == "" {
+			timeInfo, _ := execShell("journalctl --list-boots")
+			fmt.Println(timeInfo)
+			fmt.Println(`
+		edit conf : ./monitorView modify 
+		template: ./monitorView -s '2023-08-31 14:20:00' -e '2023-08-31 14:30:00'
+		`)
+			os.Exit(-1)
+		}
+	}
 }
 
 func execShell(s string) (string, error) {
@@ -106,11 +135,11 @@ func checkPath(dirPath string) {
 		if os.IsNotExist(err) {
 			err := os.MkdirAll(dirPath, os.ModePerm)
 			if err != nil {
-				fmt.Println("创建路径失败:", err)
+				fmt.Println("create path error:", err)
 				return
 			}
 		} else {
-			fmt.Println("检查路径时发生错误:", err)
+			fmt.Println("check path error :", err)
 		}
 	} else {
 		fmt.Println(dirPath, "is exist")
@@ -184,7 +213,7 @@ func getFileLineCount(file string) int {
 	lineCount, _ := execShell(linecmd)
 	Count, err := strconv.Atoi(lineCount)
 	if err != nil {
-		fmt.Println("转换失败:", err)
+		fmt.Println("error :", err)
 	}
 	return Count
 }
@@ -257,7 +286,7 @@ func CpuSplitInformation(filename string) Modules {
 
 	file, err := os.Open(filename)
 	if err != nil {
-		fmt.Println("无法打开文件:", err)
+		fmt.Println("open file failed:", err)
 	}
 	defer file.Close()
 
@@ -288,7 +317,7 @@ func CpuSplitInformation(filename string) Modules {
 func fullSplitInformation(filename string) Modules {
 	file, err := os.Open(filename)
 	if err != nil {
-		fmt.Println("无法打开文件:", err)
+		fmt.Println("open file failed:", err)
 	}
 	defer file.Close()
 	reader := bufio.NewReader(file)
@@ -345,7 +374,6 @@ func createPdf() {
 	for _, file := range filelist {
 		if count == 2 {
 			// 添加一页新的页面
-			fmt.Println("create new page")
 			pdf.AddPage()
 			count = 0
 		}
@@ -423,7 +451,7 @@ func makeFlameGraph() {
 	}
 	currentDir, err := os.Getwd()
 	if err != nil {
-		fmt.Println("无法获取当前工作目录:", err)
+		fmt.Println("get current path failed:", err)
 		return
 	}
 	for name, pid := range flameGraphList {

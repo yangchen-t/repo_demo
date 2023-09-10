@@ -1,5 +1,5 @@
-moduleslist:
-  - 'gnome-shell'
-  - 'feishu'
-  - 'code'
+time: 
+list:
+  - 'fusion_localize'
+  - 'gst-launc'
 
