@@ -76,7 +76,7 @@ func checkParam() {
 	if STARTTIME == "" || ENDTIME == "" {
 		timeInfo, _ := execShell("journalctl --list-boots")
 		fmt.Println(timeInfo)
-		fmt.Println("template: ./flag -s '2023-08-31 14:20:00' -e '2023-08-31 14:30:00'")
+		fmt.Println("template: ./monitorView -s '2023-08-31 14:20:00' -e '2023-08-31 14:30:00'")
 		os.Exit(-1)
 	}
 
