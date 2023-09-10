@@ -1,9 +1,5 @@
 moduleslist:
-  - "fusion2_local"
-  - "miivii_ftool"
-  - "toDesk_Service"
-  - "sunloginclie"
-  - "code"
-  - "ToDesk_Client"
-  - "feishu"
-  - "gnome-shell"
+  - 'gnome-shell'
+  - 'feishu'
+  - 'code'
+

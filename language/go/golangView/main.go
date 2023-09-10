@@ -13,6 +13,7 @@ import (
 	"strconv"
 	"strings"
 	"sync"
+	"time"
 
 	"gonum.org/v1/plot"
 	"gonum.org/v1/plot/plotter"
@@ -46,6 +47,8 @@ const IMAGEPATH string = "png/"
 const CPUINFO string = "cpuinfo"
 const FLAG string = "1"
 
+var FRAMEWORK string = "arch"
+
 var Sync struct {
 	wg sync.WaitGroup
 	mu sync.Mutex
@@ -70,9 +73,12 @@ type StringTicks struct {
 
 func checkParam() {
 	if STARTTIME == "" || ENDTIME == "" {
+		timeInfo, _ := execShell("journalctl --list-boots")
+		fmt.Println(timeInfo)
 		fmt.Println("template: ./flag -s '2023-08-31 14:20:00' -e '2023-08-31 14:30:00'")
 		os.Exit(-1)
 	}
+
 }
 
 func execShell(s string) (string, error) {
@@ -261,7 +267,7 @@ func CpuSplitInformation(filename string) Modules {
 		}
 		//TODO auto switch
 		var cpu float64
-		if ret, _ := execShell("arch"); ret == "x86_64" {
+		if FRAMEWORK, _ = execShell(FRAMEWORK); FRAMEWORK == "x86_64" {
 			cpu, _ = strconv.ParseFloat(strings.Join(strings.Split(line, " ")[7:8], " "), 64)
 		} else {
 			cpu, _ = strconv.ParseFloat(strings.Join(strings.Split(line, " ")[6:7], " "), 64)
@@ -299,26 +305,52 @@ func fullSplitInformation(filename string) Modules {
 func createPdf() {
 
 	// 创建pdf  页面尺寸为A4
-	pdf := gofpdf.New("P", "mm", "A5", "")
-
-	// 添加一页新的页面
+	pdf := gofpdf.New("P", "mm", "A4", "")
+	// create new page
 	pdf.AddPage()
-
 	// 设置字体
 	pdf.SetFont("Arial", "B", 10)
-
 	// 遍历的目录路径 IMAGEPATH
 	err := filepath.WalkDir(IMAGEPATH, visitFile)
 	if err != nil {
 		fmt.Printf("error walking the path %v: %v\n", IMAGEPATH, err)
 	}
-	txtOffset := 10
-	imagesOffset := 30
-	for i, file := range filelist {
+	// 标题
+	hostname, _ := execShell("hostname")
+	pdf.SetXY(40, 3)
+	pdf.CellFormat(1, 3, "current time: "+time.Now().Format("2006-01-02 15:04:05")+"-"+hostname, "", 0,
+		"CM", false, 0, "")
+	pdf.SetXY(40, 4)
+	pdf.CellFormat(12, 9, "search time: "+STARTTIME+"~"+ENDTIME, "", 0,
+		"CM", false, 0, "")
+	count := 0
+	var txtOffset, imagesOffset, txtPrefix, imagesPrefix int
+	if FRAMEWORK, _ = execShell(FRAMEWORK); FRAMEWORK == "x86_64" {
+		txtOffset = 250
+		imagesOffset = 130
+		txtPrefix = 10
+		imagesPrefix = 10
+
+	} else {
+		txtOffset = 245
+		imagesOffset = 120
+		txtPrefix = 10
+		imagesPrefix = 5
+	}
+	for _, file := range filelist {
+		if count == 2 {
+			// 添加一页新的页面
+			fmt.Println("create new page")
+			pdf.AddPage()
+			count = 0
+		}
 		// 添加文本 参数依次是宽度、高度、文本内容
-		pdf.Cell(10, float64(txtOffset*i+10), file[len(IMAGEPATH):len(file)-4])
+		pdf.SetXY(90, 10)
+		pdf.CellFormat(10, float64(txtOffset*count+txtPrefix), file[len(IMAGEPATH):len(file)-4], "", 0,
+			"CM", false, 0, "")
 		// 插入图片 参数依次是 X、Y 坐标、宽度、高度、图片文件路径、链接
-		pdf.Image(file, 10, float64(imagesOffset*i+(len(filelist)*10)), 100, 20, false, "", 0, "")
+		pdf.Image(file, 10, float64(imagesOffset*count+(len(filelist)*imagesPrefix)), 180, 90, false, "", 0, "")
+		count++
 	}
 	// save
 	err = pdf.OutputFileAndClose(PDFFILE)
@@ -403,20 +435,26 @@ func failModules() {
 }
 
 func main() {
+	// currentDir, err := os.Getwd()
+	// if err != nil {
+	// 	fmt.Println("无法获取当前工作目录:", err)
+	// 	return
+	// }
 	flag.StringVar(&STARTTIME, "s", "", "")
 	flag.StringVar(&ENDTIME, "e", "", "")
 	flag.Parse()
 	Init()
 	cpuInfo()
-	// memInfo()
 	createPdf()
 	makeFlameGraph()
 	Sync.wg.Wait()
 	fmt.Println(flameGraphList)
-	for name, pid := range flameGraphList {
-		go execShell("perf_record " + pid + " 1 " + name)
-	}
-	execShell("make_svg")
+	// for name, pid := range flameGraphList {
+	// 	go execShell("perf_record " + pid + " 20 " + name)
+	// }
+	// time.Sleep(time.Second * 30)
+	// ret, _ := execShell("make_svg -p " + currentDir)
+	// fmt.Println(ret)
 }
 
 // func memInfo() {
