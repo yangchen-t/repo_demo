@@ -55,7 +55,8 @@ var Sync struct {
 }
 
 type ModulesList struct {
-	MODULESLIST []string `yaml:"moduleslist"`
+	List []string `yaml:"list"`
+	Time int      `yaml:"time"`
 }
 
 type Modules struct {
@@ -89,7 +90,7 @@ func execShell(s string) (string, error) {
 
 	err := cmd.Run()
 	if err != nil {
-		return s + " --> error", err
+		return "", err
 	}
 	Str := strings.TrimRight(out.String(), "\n") // remove string enter
 	return Str, err
@@ -150,13 +151,17 @@ func readConf() {
 func getPID(Pname string, done func()) {
 	defer done()
 	var pid string
-	cmd := "ps aux | grep " + Pname + " | grep -v grep | awk '{print $2}'"
+	cmd := "ps -aux | grep " + Pname + " | grep -v grep | awk '{print $2}'"
 	ret, _ := execShell(cmd)
 	Plist := strings.Split(ret, "\n")
 	for _, p := range Plist {
-		if ret, _ := execShell("ps -p " + p + "| wc -l"); ret != FLAG {
-			pid = p
-			break
+		if ret, _ := execShell("ps -p " + p + "| wc -l"); ret > FLAG {
+			if pname, _ := execShell("ps -p " + p + "| grep " + Pname); pname != "" {
+				if ret, _ := execShell("ps -p " + p + " | grep '00:00:00'"); ret == "" {
+					pid = p
+					break
+				}
+			}
 		}
 	}
 	if pid != "" {
@@ -373,8 +378,8 @@ func cpuInfo() {
 	cmd := fmt.Sprintf("%s -u %s --since '%s' --until '%s'", JOURNALCTL, CPUSERVICE, STARTTIME, ENDTIME)
 	ret, _ := execShell(cmd)
 	writeFile(ret, FILE)
-	ERRORFILE = make(map[string]string, len(modules.MODULESLIST))
-	for _, v := range modules.MODULESLIST {
+	ERRORFILE = make(map[string]string, len(modules.List))
+	for _, v := range modules.List {
 		getinfo := fmt.Sprintf("cat %s | grep %s", FILE, v)
 		v_info, err := execShell(getinfo)
 		subfile := v + ".log"
@@ -403,9 +408,9 @@ func cpuInfo() {
 }
 
 func makeFlameGraph() {
-	Sync.wg.Add(len(modules.MODULESLIST))
-	flameGraphList = make(map[string]string, len(modules.MODULESLIST))
-	for _, v := range modules.MODULESLIST {
+	Sync.wg.Add(len(modules.List))
+	flameGraphList = make(map[string]string, len(modules.List))
+	for _, v := range modules.List {
 		go getPID(v, Sync.wg.Done)
 	}
 
@@ -435,11 +440,11 @@ func failModules() {
 }
 
 func main() {
-	// currentDir, err := os.Getwd()
-	// if err != nil {
-	// 	fmt.Println("无法获取当前工作目录:", err)
-	// 	return
-	// }
+	currentDir, err := os.Getwd()
+	if err != nil {
+		fmt.Println("无法获取当前工作目录:", err)
+		return
+	}
 	flag.StringVar(&STARTTIME, "s", "", "")
 	flag.StringVar(&ENDTIME, "e", "", "")
 	flag.Parse()
@@ -449,12 +454,12 @@ func main() {
 	makeFlameGraph()
 	Sync.wg.Wait()
 	fmt.Println(flameGraphList)
-	// for name, pid := range flameGraphList {
-	// 	go execShell("perf_record " + pid + " 20 " + name)
-	// }
-	// time.Sleep(time.Second * 30)
-	// ret, _ := execShell("make_svg -p " + currentDir)
-	// fmt.Println(ret)
+	for name, pid := range flameGraphList {
+		go execShell("perf_record " + pid + " " + strconv.Itoa(modules.Time) + " " + name)
+	}
+	time.Sleep(time.Second * (time.Duration(modules.Time) + 10))
+	ret, _ := execShell("make_svg -p " + currentDir)
+	fmt.Println(ret)
 }
 
 // func memInfo() {
