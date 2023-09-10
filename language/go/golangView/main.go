@@ -407,7 +407,7 @@ func cpuInfo() {
 	}
 }
 
-func makeFlameGraph() {
+func realPid() {
 	Sync.wg.Add(len(modules.List))
 	flameGraphList = make(map[string]string, len(modules.List))
 	for _, v := range modules.List {
@@ -416,6 +416,23 @@ func makeFlameGraph() {
 
 }
 
+func makeFlameGraph() {
+	if modules.Time == 0 {
+		fmt.Println("skip frameGraph")
+		return
+	}
+	currentDir, err := os.Getwd()
+	if err != nil {
+		fmt.Println("无法获取当前工作目录:", err)
+		return
+	}
+	for name, pid := range flameGraphList {
+		go execShell("perf_record " + pid + " " + strconv.Itoa(modules.Time) + " " + name)
+	}
+	time.Sleep(time.Second * (time.Duration(modules.Time) + 10))
+	ret, _ := execShell("make_svg -p " + currentDir)
+	fmt.Println(ret)
+}
 func clearTmp() {
 	if os.Getenv("DELETE") == "false" {
 		return
@@ -440,26 +457,17 @@ func failModules() {
 }
 
 func main() {
-	currentDir, err := os.Getwd()
-	if err != nil {
-		fmt.Println("无法获取当前工作目录:", err)
-		return
-	}
 	flag.StringVar(&STARTTIME, "s", "", "")
 	flag.StringVar(&ENDTIME, "e", "", "")
 	flag.Parse()
 	Init()
 	cpuInfo()
 	createPdf()
-	makeFlameGraph()
+	realPid()
 	Sync.wg.Wait()
 	fmt.Println(flameGraphList)
-	for name, pid := range flameGraphList {
-		go execShell("perf_record " + pid + " " + strconv.Itoa(modules.Time) + " " + name)
-	}
-	time.Sleep(time.Second * (time.Duration(modules.Time) + 10))
-	ret, _ := execShell("make_svg -p " + currentDir)
-	fmt.Println(ret)
+	makeFlameGraph()
+
 }
 
 // func memInfo() {
