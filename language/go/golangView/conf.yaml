@@ -5,3 +5,5 @@ moduleslist:
   - "sunloginclie"
   - "code"
   - "ToDesk_Client"
+  - "feishu"
+  - "gnome-shell"
