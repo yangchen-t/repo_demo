@@ -857,12 +857,6 @@ sudo gpassws -a $USER docker
 newgrp docekr                   --即可
 ```
 
-
-
-
-
-
-
 - #### 一个完整的Docker有以下几个部分组成：
 
 1. DockerClient客户端
