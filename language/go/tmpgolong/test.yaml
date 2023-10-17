@@ -1,0 +1,413 @@
+# 武汉
+- project: wh
+  dcu1:
+    - "entrypoint_105": ["%(program_name)s.sh","%(program_name)s.log",false, false,false]
+    - "qp3_lidarpreprocess": true 
+    - "agent": true
+    - "keeper": true
+    - "fms_adaptor": true
+    - "vehicle": true
+    - "control": true
+    - "identification": true  
+    - "gnss_driver": true 
+    - "gnss_processor": true 
+    - "wheel_odom": true 
+    - "localization_adaptor": true  
+    - "localization_checker": true  
+    - "localization_logger": true  
+    - "fusion_localizer2": true 
+    - "video0": true 
+    - "dl_runtime2": true
+    - "mono_visual_record_data": true
+  dcu2:
+    - "entrypoint_106": false
+    - "qp3_lidarpreprocess": true
+    - "http_bridge": true
+    - "aeb": true
+    - "local_plan": true
+    - "vdr": true
+    - "test_rviz": false
+    - "test_vehicle_sim_plan": false
+    - "alignment_planner": true
+    - "lidar_obj_det": true
+    - "lidar_cps_alignment": true
+    - "lidar_config_check": false
+# 天津双米文
+- project: tj
+  dcu1:
+    - "entrypoint_105": false
+    - "qp3_lidarpreprocess": true 
+    - "agent": true
+    - "keeper": true
+    - "fms_adaptor": true
+    - "vehicle": true
+    - "control": true
+    - "identification": true  
+    - "gnss_driver": true 
+    - "gnss_processor": true 
+    - "wheel_odom": true 
+    - "localization_adaptor": true  
+    - "localization_checker": true  
+    - "localization_logger": true  
+    - "fusion_localizer2": true 
+    - "video0": true 
+  dcu2:
+    - "entrypoint_106": false
+    - "qp3_lidarpreprocess": true
+    - "http_bridge": true
+    - "aeb": true
+    - "local_plan": true
+    - "vdr": true
+    - "test_rviz": false
+    - "test_vehicle_sim_plan": false
+    - "alignment_planner": true
+    - "lidar_config_check": false
+# 天津单米文
+- project: tj_single
+  dcu1:
+    - "entrypoint_105": false
+    - "qp3_lidarpreprocess": true 
+    - "agent": true
+    - "keeper": true
+    - "fms_adaptor": true
+    - "vehicle": true
+    - "control": true
+    - "identification": true  
+    - "gnss_driver": true 
+    - "gnss_processor": true 
+    - "wheel_odom": true 
+    - "localization_adaptor": true  
+    - "localization_checker": true  
+    - "localization_logger": true  
+    - "fusion_localizer2": true 
+    - "video0": true 
+    - "http_bridge": true
+    - "aeb": true
+    - "local_plan": true
+    - "vdr": true
+    - "test_rviz": false
+    - "test_vehicle_sim_plan": false
+    - "alignment_planner": true
+    - "lidar_config_check": false
+# 大连
+- project: dl
+  dcu1:
+    - "entrypoint_105": false
+    - "qp3_lidarpreprocess": true 
+    - "agent": true
+    - "keeper": true
+    - "fms_adaptor": true
+    - "vehicle": true
+    - "control": true
+    - "identification": true  
+    - "gnss_driver": true 
+    - "gnss_processor": true 
+    - "wheel_odom": true 
+    - "localization_adaptor": true  
+    - "localization_checker": true  
+    - "localization_logger": true  
+    - "fusion_localizer2": true 
+    - "video0": true 
+  dcu2:
+    - "entrypoint_106": false
+    - "qp3_lidarpreprocess": true
+    - "http_bridge": true
+    - "aeb": true
+    - "local_plan": true
+    - "vdr": true
+    - "test_rviz": false
+    - "test_vehicle_sim_plan": false
+    - "alignment_planner": true
+    - "lidar_obj_det": true
+    - "lidar_cps_alignment": true
+    - "lidar_config_check": false
+# 大连q车
+- project: dlqt
+  dcu1:
+    - "entrypoint_105": false
+    - "qp3_lidarpreprocess": true 
+    - "agent": true
+    - "keeper": true
+    - "fms_adaptor": true
+    - "vehicle": true
+    - "control": true
+    - "identification": true  
+    - "gnss_driver": true 
+    - "gnss_processor": true 
+    - "wheel_odom": true 
+    - "localization_adaptor": true  
+    - "localization_checker": true  
+    - "localization_logger": true  
+    - "fusion_localizer2": true 
+    - "video0": true 
+  dcu2:
+    - "entrypoint_106": false
+    - "qp3_lidarpreprocess": true
+    - "http_bridge": true
+    - "aeb": true
+    - "local_plan": true
+    - "vdr": true
+    - "test_rviz": false
+    - "test_vehicle_sim_plan": false
+    - "alignment_planner": true
+    - "lidar_obj_det": true
+    - "lidar_cps_alignment": true
+    - "lidar_config_check": false
+# 墨西哥
+- project: ica
+  dcu1:
+    - "entrypoint_105": false
+    - "qp3_lidarpreprocess": true 
+    - "agent": true
+    - "keeper": true
+    - "fms_adaptor": true
+    - "vehicle": true
+    - "control": true
+    - "identification": true  
+    - "gnss_driver": true 
+    - "gnss_processor": true 
+    - "wheel_odom": true 
+    - "localization_adaptor": true  
+    - "localization_checker": true  
+    - "localization_logger": true  
+    - "fusion_localizer2": true 
+    - "video0": true 
+  dcu2:
+    - "entrypoint_106": false
+    - "qp3_lidarpreprocess": true
+    - "http_bridge": true
+    - "aeb": true
+    - "local_plan": true
+    - "vdr": true
+    - "test_rviz": false
+    - "test_vehicle_sim_plan": false
+    - "alignment_planner": true
+    - "lidar_obj_det": true
+    - "lidar_cps_alignment": true
+    - "lidar_config_check": false
+# 青浦
+- project: qp
+  dcu1:
+    - "entrypoint_105": false
+    - "qp3_lidarpreprocess": true 
+    - "agent": true
+    - "keeper": true
+    - "fms_adaptor": true
+    - "vehicle": true
+    - "control": true
+    - "identification": true  
+    - "gnss_driver": true 
+    - "gnss_processor": true 
+    - "wheel_odom": true 
+    - "localization_adaptor": true  
+    - "localization_checker": true  
+    - "localization_logger": true  
+    - "fusion_localizer2": true 
+    - "video0": true 
+  dcu2:
+    - "entrypoint_106": false
+    - "qp3_lidarpreprocess": true
+    - "http_bridge": true
+    - "aeb": true
+    - "local_plan": true
+    - "vdr": true
+    - "test_rviz": false
+    - "test_vehicle_sim_plan": false
+    - "alignment_planner": true
+    - "lidar_obj_det": true
+    - "lidar_cps_alignment": true
+    - "lidar_config_check": false
+# 厦门海润
+- project: hr
+  dcu1:
+    - "entrypoint_105": false
+    - "qp3_lidarpreprocess": true 
+    - "agent": true
+    - "keeper": true
+    - "fms_adaptor": true
+    - "vehicle": true
+    - "control": true
+    - "identification": true  
+    - "gnss_driver": true 
+    - "gnss_processor": true 
+    - "wheel_odom": true 
+    - "localization_adaptor": true  
+    - "localization_checker": true  
+    - "localization_logger": true  
+    - "fusion_localizer2": true 
+    - "video0": true 
+    - "container_size_client": true
+    - "dl_runtime2": true
+    - "lstr": true
+    - "stream0": false
+    - "stream1": false
+    - "stream2": false
+    - "stream3": false
+    - "stream4": false
+    - "stream5": false
+    - "stream6": false
+    - "stream7": false
+    - "led_server": true
+    - "mono_visual_record_data": true
+  dcu2:
+    - "entrypoint_106": false
+    - "qp3_lidarpreprocess": true
+    - "http_bridge": true
+    - "aeb": true
+    - "local_plan": true
+    - "vdr": true
+    - "test_rviz": false
+    - "test_vehicle_sim_plan": false
+    - "alignment_planner": true
+    - "lidar_obj_det": true
+    - "lidar_cps_alignment": true
+    - "lidar_config_check": false
+# 二连浩特
+- project: eh
+  dcu1:
+    - "entrypoint_105": false
+    - "agent": true
+    - "keeper": true
+    - "fms_adaptor": true
+    - "vehicle": true
+    - "control": true
+    - "identification": true
+    - "gnss_driver": true
+    - "gnss_processor": true
+    - "wheel_odom": true
+    - "localization_adaptor": true
+    - "localization_checker": true
+    - "localization_logger": true
+    - "fusion_localizer2": true
+    - "video0": true
+    - "http_bridge": true
+    - "aeb": true
+    - "local_plan": true 
+    - "vdr": true 
+    - "test_rviz": false
+    - "test_vehicle_sim_plan": false
+    - "lidar_preprocess": true
+    - "hesai_lidar_2in1": true
+    - "sick_driver": true
+    - "lidar_config_check": false
+# 策克
+- project: ck
+  dcu1:
+    - "entrypoint_105": false
+    - "agent": true
+    - "keeper": true
+    - "fms_adaptor": true
+    - "vehicle": true
+    - "control": true
+    - "identification": true
+    - "gnss_driver": true
+    - "gnss_processor": true
+    - "wheel_odom": true
+    - "localization_adaptor": true
+    - "localization_checker": true
+    - "localization_logger": true
+    - "fusion_localizer2": true
+    - "video0": true
+    - "http_bridge": true
+    - "aeb": true
+    - "local_plan": true 
+    - "vdr": true 
+    - "test_rviz": false
+    - "test_vehicle_sim_plan": false
+    - "lidar_preprocess": true
+    - "hesai_lidar_2in1": true
+    - "sick_driver": true
+    - "lidar_config_check": false
+# 精科q车换电车型
+- project: jkq-hd
+  dcu1:
+    - "entrypoint_105": false
+    - "qp3_lidarpreprocess": true 
+    - "agent": true
+    - "keeper": true
+    - "fms_adaptor": true
+    - "vehicle": true
+    - "control": true
+    - "identification": true  
+    - "gnss_driver": true 
+    - "gnss_processor": true 
+    - "wheel_odom": true 
+    - "localization_adaptor": true  
+    - "localization_checker": true  
+    - "localization_logger": true  
+    - "fusion_localizer2": true 
+    - "video0": true 
+  dcu2:
+    - "entrypoint_106": false
+    - "qp3_lidarpreprocess": true
+    - "http_bridge": true
+    - "aeb": true
+    - "local_plan": true
+    - "vdr": true
+    - "test_rviz": false
+    - "test_vehicle_sim_plan": false
+    - "alignment_planner": true
+    - "lidar_obj_det": true
+    - "lidar_config_check": false
+# 精科
+- project: jk
+  dcu1:
+    - "entrypoint_105": false
+    - "qp3_lidarpreprocess": true 
+    - "agent": true
+    - "keeper": true
+    - "fms_adaptor": true
+    - "vehicle": true
+    - "control": true
+    - "identification": true  
+    - "gnss_driver": true 
+    - "gnss_processor": true 
+    - "wheel_odom": true 
+    - "localization_adaptor": true  
+    - "localization_checker": true  
+    - "localization_logger": true  
+    - "fusion_localizer2": true 
+    - "video0": true 
+  dcu2:
+    - "entrypoint_106": false
+    - "qp3_lidarpreprocess": true
+    - "http_bridge": true
+    - "aeb": true
+    - "local_plan": true
+    - "vdr": true
+    - "test_rviz": false
+    - "test_vehicle_sim_plan": false
+    - "alignment_planner": true
+    - "lidar_obj_det": true
+    - "lidar_config_check": false
+# 靖江
+- project: jj
+  dcu1:
+    - "entrypoint_105": false
+    - "qp3_lidarpreprocess": true 
+    - "agent": true
+    - "keeper": true
+    - "fms_adaptor": true
+    - "vehicle": true
+    - "control": true
+    - "identification": true  
+    - "gnss_driver": true 
+    - "gnss_processor": true 
+    - "wheel_odom": true 
+    - "localization_adaptor": true  
+    - "localization_checker": true  
+    - "localization_logger": true  
+    - "fusion_localizer2": true 
+    - "video0": true 
+  dcu2:
+    - "entrypoint_106": false
+    - "qp3_lidarpreprocess": true
+    - "http_bridge": true
+    - "aeb": true
+    - "local_plan": true
+    - "vdr": true
+    - "test_rviz": false
+    - "test_vehicle_sim_plan": false
+    - "alignment_planner": true
+    - "lidar_obj_det": true
+    - "lidar_config_check": false
