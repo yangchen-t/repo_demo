@@ -1,5 +1,5 @@
 #include <iostream>
-#include <filesystem>
+#include <experimental/filesystem>
 #include <vector>
 #include <string>
 #include <chrono>
@@ -7,8 +7,9 @@
 #include <sys/stat.h>
 #include <map>
 #include <sys/statvfs.h>
+#include <iomanip>
 
-namespace fs = std::filesystem;
+namespace fs = std::experimental::filesystem;
 
 enum class Level {
     Low = 0,
@@ -18,10 +19,14 @@ enum class Level {
 
 struct PathInfo {
     std::string _path;
-    int _size;
+    float _size;
     Level _level;
 };
+
 std::map<std::string, int> creationTime;
+std::vector<PathInfo> v;
+std::multimap<int, std::string> multiMap;
+
 const int THRESHOLD = 200;
 
 void init();
@@ -31,44 +36,46 @@ double directorySizeCount(const fs::path&);
 void convert();
 int currentFreeSpace();
 void handle();
+void deleteUselessFileReleaseSpace(std::vector<PathInfo>::iterator&);
 
 int main() {
     init();
-    handle();
     if (currentFreeSpace() < THRESHOLD){
         std::cout << "sos" << std::endl;
+        handle();
     }
-    convert();
     return 0; 
 }
 
 void init() {
 
-    PathInfo csv = {"/data/code/all_ws/ws/csv/", 100 , Level::High};
-    PathInfo igv_log = {"/data/code/all_ws/ws/igv_log/", 100 , Level::Middle};
-    PathInfo coredump = {"/data/code/all_ws/ws/coredump/", 100 , Level::Low};
-    PathInfo odom = {"/data/key_log/odom/", 100 , Level::Middle};
-    PathInfo test = {"/debug/igv_log/", 100, Level::Low};
-    std::vector<PathInfo> v;
+    PathInfo csv = {"/data/code/all_ws/ws/csv/", 250 , Level::High};
+    PathInfo igv_log = {"/data/code/all_ws/ws/igv_log/", 50 , Level::Middle};
+    PathInfo coredump = {"/data/code/all_ws/ws/coredump/", 50 , Level::Low};
+    PathInfo odom = {"/data/key_log/odom/", 50 , Level::Middle};
+    PathInfo logpush_nas = {"/data/code/all_ws/ws/logpush_nas/", 20, Level::Low};
+    PathInfo qfile = {"/data/code/all_ws/ws/qfile/", 300, Level::High};
+    PathInfo logpush_tmp = {"/data/code/all_ws/ws/logpush_tmp/", 20, Level::Low};
+    PathInfo pcd = {"/data/key_log/lidar", 30, Level::Middle};
+    PathInfo pcd_int16 = {"/data/key_log/lidar_int16", 30, Level::Middle};
     v.push_back(csv);
     v.push_back(igv_log);
     v.push_back(coredump);
     v.push_back(odom);
-    v.push_back(test);
-
-    for (std::vector<PathInfo>::iterator it = v.begin(); it < v.end(); it++) {
-        findPath(it->_path);
-    }
+    v.push_back(logpush_nas);
+    v.push_back(qfile);
+    v.push_back(logpush_tmp);
 }
 
 void findPath(std::string directory) {
-    fs::path directoryPath = directory;
+    fs::path directoryPath = directory + "/";
 
     if (fs::exists(directoryPath) && fs::is_directory(directoryPath)) {
-        directorySizeCount(directory);
         for (const auto& entry : fs::directory_iterator(directoryPath)) {
             if (fs::is_regular_file(entry.path())) {
-                std::map<std::string, int> ret = getCreateTime(directory,  entry.path().filename());
+                std::map<std::string, int> ret = getCreateTime(directoryPath,  entry.path().filename());
+            }else{
+                findPath(entry.path());
             }
         }
     } else {
@@ -78,14 +85,16 @@ void findPath(std::string directory) {
 
 std::map<std::string, int> getCreateTime(const std::string& directoryPath, const std::string& filename) {
     std::string filepath = directoryPath + filename;
+    struct stat stat_buffer;
     if (fs::exists(filepath)) {
-        struct stat stat_buffer;
         int result = stat(filepath.c_str(), &stat_buffer);
 
-        if (result == 0) {
-            time_t c_time = stat_buffer.st_ctime; // last modify time
+        if (result == 0) { // st_atime: Access_time, st_mtime: modify_time st_ctime change_time 
+            time_t c_time = stat_buffer.st_mtime; 
             creationTime[filepath] = c_time;
-        } 
+        }else {
+            std::cout << filepath << " is stat get err" << std::endl;
+        }
         return creationTime;
     }else {
         std::cout << "File does not exist: " << filepath << std::endl;
@@ -104,7 +113,7 @@ double directorySizeCount(const fs::path& folderPath) {
     }
     if (fs::exists(folderPath) && fs::is_directory(folderPath)) {
         sizeGB = static_cast<double>(size) / (1 << 30); // 转换为 GB
-        std::cout << "Folder size: " << std::fixed << std::setprecision(2) << sizeGB << " GB" << std::endl;
+        std::cout << "size: " << std::fixed << std::setprecision(2) << sizeGB << std::endl;
     } else {
         std::cerr << "Invalid folder path." << std::endl;
     }
@@ -112,7 +121,6 @@ double directorySizeCount(const fs::path& folderPath) {
 }
 
 void convert(){
-    std::multimap<int, std::string> multiMap;
     // 将原始 map 的数据填充到 multimap 中
     for(const auto& pair : creationTime) {
         multiMap.insert(std::make_pair(pair.second, pair.first));
@@ -131,5 +139,26 @@ int currentFreeSpace(){
     }
 }
 void handle(){
+    for (std::vector<PathInfo>::iterator it = v.begin(); it < v.end(); it++) {
+        if (fs::exists(it->_path) && fs::is_directory(it->_path)){
+            if (directorySizeCount(it->_path) > it->_size){
+                std::cout  << it->_path << std::endl;
+                findPath(it->_path);
+                convert();
+                deleteUselessFileReleaseSpace(it);
+            }else {
+                std::cout << it->_path << " -> " << it->_size << std::endl;
+            }
+        }
+    }
+}
 
+void deleteUselessFileReleaseSpace(std::vector<PathInfo>::iterator& _v){
+    for (const auto& pair : multiMap) {
+        if (directorySizeCount(_v->_path) < _v->_size){break;}
+        else {
+            std::cout << pair.second << std::endl;
+            fs::remove(pair.second);
+        }
+    }
 }
