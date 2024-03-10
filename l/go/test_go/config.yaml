@@ -1,0 +1,25 @@
+standard: 518   # GB
+trigger_time: 3600   # s
+day: 5 # day
+pathlist:
+  igv_log:
+    path: /data/code/all_ws/ws/igv_log/
+    size: 100   
+    level: 2
+  coredump:
+    path: /data/code/all_ws/ws/coredump/
+    size: 2000
+    level: 1
+  logpush_nas:
+    path: /data/code/all_ws/ws/logpush_nas/
+    size: 20
+    level: 1
+  qfile:
+    path: /data/code/all_ws/ws/qfile/
+    size: 300
+    level: 0
+  logpush_tmp:
+    path: /data/code/all_ws/ws/logpush_tmp/
+    size: 20
+    level: 1
+
