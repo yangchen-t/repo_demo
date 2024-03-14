@@ -181,6 +181,8 @@ sudo tcpdump src/dst host 192.168.xx.xx              # src 源  dst目的
 sudo tcpdump -e 
 过滤一系列端口
 sudo tcpdump portrange 80-10000
+查看包内的内容已ASCII码打印
+sudo tcpdump -i <interface>  -vvv -nnA
 ```
 
 ## Q:iftop
