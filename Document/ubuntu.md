@@ -449,7 +449,10 @@ root # echo 1 > /sys/devices/system/cpu/cpuX/online
 - ####  debugfs
 
 1. sudo debugfs -R 'stat  <Inode>'  /dev/device
-2. crtime 为创建的时间Q
+
+2. crtime 为创建的时间
+
+   ![ln](./Pictures/ln.jpg)
 
 ## Q:脚本自动传参 tab补全
 
@@ -772,7 +775,7 @@ $ ssh -Q cipher
 # 通过下以命令查看ssh使用了哪些ciphers
 ```
 
-![](./ssh_bug.png)
+![ssh_bug](./Pictures/ssh_bug.png)
 
 >参考网址：
 >
@@ -1048,5 +1051,38 @@ sudo systemctl restart docker
 
 ```bash
 dpkg --list |grep "^rc" | cut -d " " -f 3 | xargs sudo dpkg --purge  # 移除所有rc
+```
+
+## Q:  tmate
+
+>tmate 即 teammates，是 tmux 的一个分支，并且和 tmux 使用相同的配置信息 (i.e:tmate 可与 tmux 共享 ~/.tmux.conf )。**tmate 不仅是一个终端多路复用器，而且具有即时分享终端的能力。**它允许在单个屏幕中创建并操控多个终端，同时这些终端还能与其他人分享
+>
+>tmux refer: https://github.com/tmux/tmux/wiki
+
+原理图：
+
+![tmate-Simplified-Architecture-Diagram](./Pictures/tmate-Simplified-Architecture-Diagram.png)
+
+e.g.  A & B
+
+install 
+
+```bash
+sudo apt update; sudo apt install tmate 
+```
+
+ connect
+
+>支持四种连接方式： ssh、ssh-ro、web、web-ro
+
+```bash
+A$: tmate  # enter session space
+A$: tmate show-messages
+```
+
+![tmate_demo](./Pictures/tmate_demo.png)
+
+```bash
+B$: 选择几种模式将链接发送过去即可。
 ```
 
