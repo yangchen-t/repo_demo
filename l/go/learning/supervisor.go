@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"strings"
 
 	"github.com/cierdes/supervisor-api/supervisor"
@@ -91,9 +92,21 @@ func Arrcmp(src []string, dest []string) ([]string, []string) {
 	return added, deleted
 }
 
+func filterFilesInDir(dir string, searchString string, tmpList *[]string) {
+	files, err := os.ReadDir(dir)
+	if err != nil {
+		fmt.Println("Error accessing directory:", err)
+	}
+	for _, file := range files {
+		if !file.IsDir() && strings.Contains(file.Name(), searchString) {
+			*tmpList = append(*tmpList, filepath.Join(dir, file.Name()))
+		}
+	}
+}
+
 func UselessLogClean(diff []string) string {
 	for _, v := range diff {
-		logname := "echo nvidia | sudo -S rm -rv /data/code/all_ws/ws/" + v
+		logname := "echo nvidia | sudo -S rm -rv " + v
 		_, err := execShell(logname)
 		if err != nil {
 			return "operation error"
@@ -105,12 +118,13 @@ func UselessLogClean(diff []string) string {
 func supervisorCompare() {
 	client, _ := supervisor.NewSupervisor(URL)
 	defer client.Close()
-
+	_workspace := "/data/code/all_ws/ws/"
 	ret, _ := client.GetAllProcessInfo()
 	for i := 0; i < len(ret); i++ {
-		modulelist.CurList = append(modulelist.CurList, ret[i].ProcessName+".log")
+		modulelist.CurList = append(modulelist.CurList, _workspace+ret[i].ProcessName+".log")
 	}
-	local_file_ret, _ := execShell("cd /data/code/all_ws/ws && ls *.log")
+
+	local_file_ret, _ := execShell(fmt.Sprintf("ls %s*.log", _workspace))
 	modulelist.RealList = strings.Fields(local_file_ret)
 	diff, _ := Arrcmp(modulelist.CurList, modulelist.RealList)
 	if *s == "s" || *s == "supervisor" {
@@ -119,12 +133,18 @@ func supervisorCompare() {
 		}
 		return
 	}
+	_tmpWorkspace := "/data/code/all_ws/ws/igv_log/"
+	var _workspaceDiffFileList []string
+	for _, searchString := range diff {
+		filterFilesInDir(_tmpWorkspace, strings.TrimSuffix(filepath.Base(searchString), ".log"), &_workspaceDiffFileList)
+	}
+	allFileList := append(_workspaceDiffFileList, diff...)
 	colorize(ColorBlue, "----------------diff----------------")
-	if diff == nil {
+	if allFileList == nil {
 		fmt.Println("no diff")
 		return
 	} else {
-		for _, v := range diff {
+		for _, v := range allFileList {
 			fmt.Println(v)
 		}
 	}
@@ -137,7 +157,7 @@ func supervisorCompare() {
 	}
 	switch input {
 	case "y\n":
-		fmt.Println(UselessLogClean(diff))
+		fmt.Println(UselessLogClean(allFileList))
 	default:
 		colorize(ColorRed, "You are not welcome here! Goodbye!")
 	}
