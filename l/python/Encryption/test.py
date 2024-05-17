@@ -26,5 +26,5 @@ def decrypt(ksa, s):
     return b.decode("utf-8")
 
 
-print(encrypt(66, "gate@west#"))
-print(decrypt(66, '@/>/>0/00.=0/090>003'))
+print(encrypt(11, "AAxijing123.."))
+print(decrypt(11, '?1?1/413031343;3/1.1@0@/@/'))
