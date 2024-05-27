@@ -1,0 +1,12 @@
+qpilot:
+  igv-2: # igv 表示车型类别，2表示两个dcu
+    dcu1:
+      - name: keeper # 模块名称
+        module: keepr1 # conf 中的名称
+      - name: control
+        module: control_xx1
+    dcu2:
+      - name: keeper
+        module: keeper1
+      - name: qp3_lidarpreprocess
+        module: qp3_lidarpreprocess1
