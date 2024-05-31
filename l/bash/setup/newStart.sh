@@ -9,14 +9,12 @@ fi  # export SETUP_MODE="debug"
 set -u  # NullVarCheck
 set -o pipefail
 
-WORKING_PATH="/opt/qomolo/utils/qpilot_setup/2.10"
+readonly WORKING_PATH="/opt/qomolo/utils/qpilot_setup/2.10"
 
 # include 
-source ${WORKING_PATH}/include/variable.sh  # as v
-source ${WORKING_PATH}/include/tools.sh     # as t
+source ${WORKING_PATH}/include/tools.sh
+source ${WORKING_PATH}/include/variable.sh
 
-# all var load
-vCheckStartVar
 
 _Initialize() {
 
@@ -36,16 +34,17 @@ DcokerCreate() {
     
     _Initialize
     case ${OPTIONS} in
-    "-f"|"--force") tLogger W "skip version diff check" ;;
-    "-config"|"--supervisor") tConfigGenerated
-        tLogger I "Generated supervisor config finish" && exit -1;;
-    "defalut") tGroupVersionDiffCheck && tConfigGenerated ;;
+    "-log"|"--information") tDebugContainerInformation ;;
+    "-i"|"--into") tIntoCreateContainer ;;
+    "-config"|"--supervisor") vCheckStartVar && tLogger W "use config ${SUPERVISOR_CONFIG}" && exit -1;;
+    "-f"|"--force") tLogger W "skip version diff check" && vCheckStartVar ;;
+    "defalut") vCheckStartVar && tGroupVersionDiffCheck  ;;
     *) tUsages && exit -1 ;;
     esac
     tGroupVersionGet
 
     tLogger I "workspace: ${WORKING_PATH}"
-    tLogger I "conf     : ${SUPER}"
+    tLogger I "conf     : ${SUPERVISOR_CONFIG}"
     tLogger I "images   : ${IMAGE}"
     docker container kill ${QPILOT} &> /dev/zero || true
     docker container stop ${QPILOT} &> /dev/zero || true
@@ -101,7 +100,7 @@ DcokerCreate() {
         -v ${WORKING_PATH}/conf/tester_for_eth.launch.py:/opt/ros/foxy/share/novatel_gps_driver/launch/tester_for_eth.launch.py \
         -v ${WORKING_PATH}/conf/cyclonedds.xml:/cyclonedds.xml \
         -v ${WORKING_PATH}/conf/DEFAULT_FASTRTPS_PROFILES.xml:/DEFAULT_FASTRTPS_PROFILES.xml \
-        -v ${WORKING_PATH}/conf/${SUPER}:/etc/supervisor/conf.d/supervisord.conf \
+        -v ${SUPERVISOR_CONFIG}:/etc/supervisor/conf.d/supervisord.conf \
         -v ${WORKING_PATH}/scripts:/scripts \
         -v /etc/qomolo/profile:/etc/qomolo/profile \
         -w /debug \
