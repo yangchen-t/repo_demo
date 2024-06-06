@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infrastructure</title>
+
+    <style>
+        .my-spaces {
+            white-space: pre;
+        }
+        #clock {
+            font-size: 18px;
+        }
+        .centered-text {
+            text-align: center;
+        }
+        .left-text {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="centered-text">集成人员值班表</h1>
+    <div id="clock"></div>
+    <!-- 添加一个区域用于实时显示值班人员信息 -->
+    <div id="dutyPerson"></div>
+
+    <script>
+        function updateClock() {
+            // 更新当前时间
+            var now = new Date();
+            var year = now.getFullYear();
+            var month = now.getMonth() + 1;
+            var day = now.getDate();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+
+            month = month < 10 ? "0" + month : month;
+            day = day < 10 ? "0" + day : day;
+            hours = hours < 10 ? "0" + hours : hours;
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            var timeString = "<strong>" + "当前时间: " + year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds + "</strong>";
+            document.getElementById("clock").innerHTML = timeString;
+        }
+    </script>
+    <script>
+        function updateDutyPersonnel() {
+            // 发送 AJAX 请求以获取新的值班人员信息
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var dutyPersonnel = this.responseText.split(', '); // 将返回的字符串分割为两个人员
+                    document.getElementById("dutyPerson").innerHTML = "<h3 class='left-text'>集成值班人员: " + dutyPersonnel[0] + "</h3>" +
+                "<h3 class='left-text'>英国专职值班人员: " + dutyPersonnel[1] + "</h3>";                 }
+            };
+            xhttp.open("GET", "/get_duty_personnel", true);
+            xhttp.send();
+        }
+
+        // 每5秒更新一次值班人员信息
+        setInterval(updateDutyPersonnel, 10000);
+        // 页面加载时立即调用一次更新函数
+        updateDutyPersonnel();
+        // 每秒更新一次时钟
+        setInterval(updateClock, 1000);
+        // 页面加载时立即调用一次时钟更新
+        updateClock();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,13 @@
+version: '3'
+services:
+  dutyofficer:
+    image: dutyofficer:${VERSION}
+    command: bash -c "python3 /wrokspace/src/main.py"
+    restart: always
+    network_mode: "host"
+    volumes:
+      - ./config/:/config/
+      - ./src:/wrokspace/src/ 
+    env_file:
+      - .env
+
