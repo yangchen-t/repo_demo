@@ -1112,3 +1112,40 @@ A$: tmate show-messages
 B$: 选择几种模式将链接发送过去即可。
 ```
 
+## Q: 调整系统日志输出路径
+
+```bash
+sudo vim /etc/rsyslog.d/50-default.conf
+*.*;auth,authpriv.none          -/data/syslog     # 自定义路径
+kern.*                          -/data/kern.log   # 自定义路径 
+
+-rw-r--r--   1 syslog adm             792K Mar 15 23:08 syslog
+sudo chown -R ${group}.${host} ${path}
+# 确保文件归属与老的保持一致
+```
+
+## Q: openssl 加密
+
+>sudo apt install openssl
+>
+>refer:  https://github.com/openssl/openssl
+
+base64 
+
+```bash
+echo -n "encode me" | openssl enc -base64 
+echo "xx" | openssl enc -base64 -d 
+```
+
+256位AES算法CB
+
+```bash
+openssl enc -aes-256-cbc -a -salt -in file.txt -out file.enc
+openssl enc -d -aes-256-cbc -a -in file.enc
+# 在命令行提供密码
+openssl enc -aes-256-cbc -salt -in file.txt \
+	-out file.enc -pass pass:mySillyPassword
+# 在一个文件中提供密码
+openssl enc -aes-256-cbc -salt -in file.txt \
+	-out file.enc -pass file:/path/to/secret/password.txt
+```
