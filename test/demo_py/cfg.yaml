@@ -1,0 +1,13 @@
+# chromedriver   # https://www.cnblogs.com/aiyablog/articles/17948703
+PATH: 'C:\Users\westwell\Downloads\chromedriver-win64\chromedriver-win64/chromedriver.exe'
+
+# number 发送次数
+NUMBER: 50
+
+# who 群名
+WHO: ""
+
+# at 需要艾特的人 支持多个
+AT: 
+  - ""
+  - ""

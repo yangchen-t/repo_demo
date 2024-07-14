@@ -1,0 +1,99 @@
+qpilot:
+  igv-1:
+    dcu1:
+      - module: entrypoint_105
+        name: entrypoint_105
+      - module: qp3_lidarpreprocess_1
+        name: qp3_lidarpreprocess
+      - null
+      - module: fms_adaptor
+        name: fms_adaptor
+      - module: vehicle
+        name: vehicle
+      - module: control
+        name: control
+      - module: gnss_driver
+        name: gnss_driver
+      - module: wheel_odom
+        name: wheel_odom
+      - module: localization_adaptor
+        name: localization_adaptor
+      - module: localization_checker
+        name: localization_checker
+      - module: localization_logger
+        name: localization_logger
+      - autorestart: true
+        module: landmark_localizer_ros2
+        name: landmark_localizer_ros1
+      - module: http_bridge
+        name: http_bridge
+      - module: aeb
+        name: aeb
+      - autorestart: true
+        module: local_plan
+        name: local_plan
+      - module: vdr
+        name: vdr
+      - autostart: false
+        module: test_rviz
+        name: test_rviz
+      - autostart: false
+        module: test_vehicle_sim_plan
+        name: test_vehicle_sim_plan
+      - module: alignment_planner
+        name: alignment_planner
+      - module: lidar_config_check
+        name: lidar_config_check
+  igv-2:
+    dcu1:
+      - module: entrypoint_105
+        name: entrypoint_105
+      - module: qp3_perception
+        name: qp3_perception
+      - module: agent
+        name: agent
+      - module: keeper
+        name: keeper
+      - module: fms_adaptor
+        name: fms_adaptor
+      - module: vehicle
+        name: vehicle
+      - autorestart: true
+        module: control
+        name: control
+      - module: gnss_driver
+        name: gnss_driver
+      - module: wheel_odom
+        name: wheel_odom
+      - module: localization_adaptor
+        name: localization_adaptor
+      - module: localization_checker
+        name: localization_checker
+      - module: localization_logger
+        name: localization_logger
+      - module: landmark_localizer_ros2
+        name: landmark_localizer_ros2
+    dcu2:
+      - module: entrypoint_106
+        name: entrypoint_106
+      - module: qp3_perception
+        name: qp3_perception
+      - module: http_bridge
+        name: http_bridge
+      - module: aeb
+        name: aeb
+      - autorestart: true
+        module: local_plan
+        name: local_plan
+      - module: vdr
+        name: vdr
+      - autostart: false
+        module: test_rviz
+        name: test_rviz
+      - autostart: false
+        module: test_vehicle_sim_plan
+        name: test_vehicle_sim_plan
+      - module: alignment_planner
+        name: alignment_planner
+      - module: lidar_config_check
+        name: lidar_config_check

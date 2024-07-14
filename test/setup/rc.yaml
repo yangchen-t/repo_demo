@@ -1,0 +1,165 @@
+qpilot:
+    bus-2:
+        dcu1:
+            start:
+                - module: remote_control
+                  name: remote_control
+                - module: remote_control_adaptor
+                  name: remote_control_adaptor
+            stop:
+                - module: local_plan
+                  name: local_plan
+                - module: control
+                  name: control
+        dcu2:
+            start: null
+            stop:
+                - module: local_plan
+                  name: local_plan
+                - module: control
+                  name: control
+    et-2:
+        dcu1:
+            start:
+                - module: remote_control
+                  name: remote_control
+                - module: remote_control_adaptor
+                  name: remote_control_adaptor
+            stop:
+                - module: local_plan
+                  name: local_plan
+                - module: control
+                  name: control
+        dcu2:
+            start: null
+            stop:
+                - module: local_plan
+                  name: local_plan
+                - module: control
+                  name: control
+    igv-1:
+        dcu1:
+            start:
+                - module: remote_control
+                  name: remote_control
+                - module: remote_control_adaptor
+                  name: remote_control_adaptor
+            stop:
+                - module: local_plan
+                  name: local_plan
+                - module: control
+                  name: control
+    igv-2:
+        dcu1:
+            start:
+                - module: remote_control
+                  name: remote_control
+                - module: remote_control_adaptor
+                  name: remote_control_adaptor
+            stop:
+                - module: local_plan
+                  name: local_plan
+                - module: control
+                  name: control
+        dcu2:
+            start: null
+            stop:
+                - module: local_plan
+                  name: local_plan
+                - module: control
+                  name: control
+    qbus-2:
+        dcu1:
+            start:
+                - module: remote_control
+                  name: remote_control
+                - module: remote_control_adaptor
+                  name: remote_control_adaptor
+            stop:
+                - module: local_plan
+                  name: local_plan
+                - module: control
+                  name: control
+        dcu2:
+            start: null
+            stop:
+                - module: local_plan
+                  name: local_plan
+                - module: control
+                  name: control
+    qt-2:
+        dcu1:
+            start:
+                - module: remote_control
+                  name: remote_control
+                - module: remote_control_adaptor
+                  name: remote_control_adaptor
+            stop:
+                - module: local_plan
+                  name: local_plan
+                - module: control
+                  name: control
+        dcu2:
+            start: null
+            stop:
+                - module: local_plan
+                  name: local_plan
+                - module: control
+                  name: control
+    qthd-2:
+        dcu1:
+            start:
+                - module: remote_control
+                  name: remote_control
+                - module: remote_control_adaptor
+                  name: remote_control_adaptor
+            stop:
+                - module: local_plan
+                  name: local_plan
+                - module: control
+                  name: control
+        dcu2:
+            start: null
+            stop:
+                - module: local_plan
+                  name: local_plan
+                - module: control
+                  name: control
+    tug-2:
+        dcu1:
+            start:
+                - module: remote_control
+                  name: remote_control
+                - module: remote_control_adaptor
+                  name: remote_control_adaptor
+            stop:
+                - module: local_plan
+                  name: local_plan
+                - module: control
+                  name: control
+        dcu2:
+            start: null
+            stop:
+                - module: local_plan
+                  name: local_plan
+                - module: control
+                  name: control
+    ws-2:
+        dcu1:
+            start:
+                - module: remote_control
+                  name: remote_control
+                - module: remote_control_adaptor
+                  name: remote_control_adaptor
+            stop:
+                - module: local_plan
+                  name: local_plan
+                - module: control
+                  name: control
+        dcu2:
+            start: null
+            stop:
+                - module: local_plan
+                  name: local_plan
+                - module: control
+                  name: control
