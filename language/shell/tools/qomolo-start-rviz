@@ -1,0 +1,17 @@
+#!/bin/bash
+ 
+
+
+if [ "$(id -u)" -ne 0 ]; then
+	echo "请进入docker执行"
+	exit
+else
+	echo
+fi
+
+
+source /opt/qomolo/qpilot/setup.bash
+source /opt/ros/foxy/setup.bash
+
+rviz2 -d /debug/start_second.rviz
+

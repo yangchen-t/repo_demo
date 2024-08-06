@@ -1,0 +1,22 @@
+#!/bin/bash
+
+
+
+if [ "$(id -u)" -ne 0 ]; then
+  echo
+else
+  echo "Please DO NOT run the build script as root"
+  exit
+fi
+
+
+source /opt/qomolo/utils/gcs_setup/gcs_docker/.env
+HOST=`docker ps | grep gcs_ | awk '{print $1}'`
+
+if [[ ${HOST} == "" ]];then
+	echo "请检查docker,docker未启动
+启动指令: cd /opt/qomolo/utils/gcs_setup/gcs_docker/ && bash gcs_docker_start.sh"
+else
+	docker exec -it ${CONTAINER_NAME} bash
+fi
+

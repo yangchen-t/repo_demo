@@ -1,0 +1,21 @@
+#!/bin/bash
+
+
+
+
+if [ "$(id -u)" -ne 0 ]; then
+	echo "请进入docker执行"
+	exit
+else
+	echo
+fi
+
+
+if [[ $1 == "" ]];then
+	echo "需要添加车号"
+	exit 0 
+fi 
+export QOMOLO_ROBOT_ID=$1
+source /opt/ros/foxy/setup.bash
+source /debug/new_sensor_odom/install/setup.bash
+ros2 launch sensor_calibration odom_calibration.launch.py

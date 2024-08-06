@@ -1,0 +1,274 @@
+#!/bin/bash
+
+tUsages()
+{   vQPILOT
+    echo "Usage:bash $0 [option]"
+    echo "Options:"
+    echo -e "\t -f                  :Version difference checking is skipped"
+    echo -e "\t    --force"
+    echo -e "\t -i                  :Enter the create ${QPILOT} container"
+    echo -e "\t -log                :Debug creates ${QPILOT} container information"
+    echo -e "\t    -log @number"
+    echo -e "\t -r @read_config     :Read config start docker container"
+    echo -e "\t -config             :Only supervisor configurations are generated"
+    echo -e "\t -lidar              :Switch to lidar sleep mode"
+    echo -e "\t -k @container_name  :Force kill container [def: ${QPILOT}]"
+    echo -e "\t    --kill @container_name"
+    echo -e "\t -lidar -f           :Switch to lidar sleep mode and skip version checks"
+    echo -e "\t    -lidar --force"      
+    echo -e "\t -m                  :View a list of supported configuration adjustments"
+    echo -e "\t    -m @config       :Modify configuration"
+    echo -e "\t --module            :Print module list"
+}
+
+tLogger()
+{
+    _RED='\033[0;31m'      # ERROR
+    _GREEN='\033[0;32m'    # INFO
+    _YELLOW='\033[0;33m'   # WARN
+    _NC='\033[0m'          # NORMAL
+    case "${1}" in
+    "E") printf "${_RED}${2}${_NC}\n";;        
+    "I") printf "${_GREEN}${2}${_NC}\n";;
+    "W") printf "${_YELLOW}${2}${_NC}\n";;
+    "N"|""|*) printf "${2}${_NC}\n";;
+    esac
+}
+
+tExitcode()
+{
+    local _code=$1
+    exec >&101-
+    sleep 0.02
+    exit ${_code}
+}
+
+tDebugContainerInformation()
+{
+   vQPILOT && docker container logs ${QPILOT} -f -n ${1:-"200"}
+}
+
+tForceKillDockerContainer()
+{
+    vQPILOT
+    local _container_name=${1:-"${QPILOT}"}
+    container_pid=$(docker inspect -f '{{.State.Pid}}' ${_container_name})
+    if [ $? -ne 0 ];then
+        exit -1
+    fi 
+    sudo kill -9 ${container_pid} && sudo systemctl restart --no-block docker && \
+        tLogger N "please try again start ${_container_name} container"
+}
+
+tIntoCreateContainer()
+{
+    vQPILOT && docker container exec -it ${QPILOT} bash; exit -1
+}
+
+tDependToolsCheck()
+{
+    if [ ! -f /usr/local/bin/${TOOLS_1} ]; then
+        sudo apt update
+        sudo apt install ${TOOLS_1} -y
+    fi
+    if [ ! -f /usr/local/bin/${TOOLS_2} ]; then
+        sudo apt update
+        sudo apt install qomolo-${TOOLS_2} -y
+    fi
+}
+
+tPermissionCheck()
+{
+    _dockerenv="/.dockerenv"
+    if [ -f ${_dockerenv} ]; then
+        tLogger E "Disallow restarting Docker within Docker";exit -1
+    fi
+}
+
+tNecessaryPathCheck()
+{
+    if [ ! -d "${WORKSPACE}/coredump" ]; then
+        sudo mkdir -p ${WORKSPACE}/coredump
+    fi
+    if [ ! -d "${WORKSPACE}/csv" ]; then
+        sudo mkdir -p ${WORKSPACE}/csv
+    fi
+    if [ ! -d "${WORKSPACE}/igv_log" ]; then
+        sudo mkdir -p ${WORKSPACE}/igv_log
+    fi
+}
+
+tGroupVersionDiffCheck()
+{
+    result=$(QLOG_STD_DISABLED=1 timeout 10s sudo qomolo-get g ${QPILOT_GROUP} --diff)
+    case $? in
+    1) tLogger W "maybe ${QPILOT_GROUP} not install ?" ;;
+    2)
+        tLogger E "found some erros, program stop, you must fix this err"
+        tLogger N "${result}" &&  exit -1 ;;
+    124) tLogger W "check timeout, skip check ${QPILOT_GROUP}" ;;
+    esac
+}
+
+tGroupVersionGet()
+{
+    local _QPILOT_GROUP=$(sudo qomolo-get g ${QPILOT_GROUP} --cur --format json | yq eval '.version')
+    if [ ${_QPILOT_GROUP} ] && [[ ${_QPILOT_GROUP} != "null" ]] ; then
+        GROUP_VERSION=${_QPILOT_GROUP}
+    else
+        GROUP_VERSION=$(dpkg -l | grep ${QPILOT} | head -n 1 | awk '{print $3}')
+    fi
+    GROUP_VERSION=${FAKE_VERSION:-${GROUP_VERSION}}
+    tLogger I "即将启动的group版本是 ${GROUP_VERSION}"
+}
+
+tReadSupervisorConfig()
+{
+    _configPath=${1:-${SUPERVISOR_CONFIG}}
+    case ${_configPath} in 
+    *)
+        if [[ ${_configPath} = /* ]];then
+            SUPERVISOR_CONFIG=${_configPath}
+        else
+            tLogger W "empty input config file or not an absolute path"; exit 1
+        fi 
+    ;;
+    esac
+}
+
+# defalut autostart = true
+# defalut autorestart = false
+tAdjustSupervisorConfigOtherChoose()
+{
+    _start="autostart"
+    _restart="autorestart"
+    _default_autostart="true"
+    _default_autorestart="false"
+    _insert_point="redirect_stderr=true"
+    _m_ary=${1:-""}
+
+    module_name=$(echo ${_m_ary} | grep -oP "program:\K\w+" || echo "")
+
+    yaml_module=$(yq eval '.qpilot.'"${_vehicle_type}"'-'$((_dcu_count-1))'.dcu'"${_dcu_mark}"'[] | select(.module == "'${module_name}'")' \
+                                                                                                                                ${PROJECT_YAML})
+    remote_control_module=$(yq eval '.qpilot.'"${_vehicle_type}"'-'$((_dcu_count-1))'.dcu'"${_dcu_mark}"'.start[] | select(.module == "'${module_name}'")' \
+                                                                                                                                ${REMOTE_CONTROL_PROJECT_YAML})
+    yaml_module_m=$(echo ${yaml_module} | grep -oP "module: \K\w+" ||  echo "")
+    remote_control_module_m=$(echo ${remote_control_module} | grep -oP "module: \K\w+" ||  echo "")
+
+    if [[ ${yaml_module_m} == "${module_name}" ]] ;then
+        autostart=$(
+            echo ${yaml_module} | grep -oP "${_start}: \K\w+" ||  \
+            echo ${_m_ary} | grep -oP "${_start}=\K\w+" || \
+            echo "${_default_autostart}")     
+        autorestart=$(
+            echo ${yaml_module} | grep -oP "${_restart}: \K\w+" || \
+            echo ${_m_ary} | grep -oP "${_restart}=\K\w+" || \
+            echo "${_default_autorestart}")
+    elif [[ ${remote_control_module_m} == "${module_name}" ]];then
+        autostart="false"; autorestart="false"
+    fi
+
+    if [[ "${_m_ary}" != *"${_start}"* ]];then
+        _m_ary=$(echo "${_m_ary}" | sed -E "s/${_insert_point}/${_insert_point}\n${_start}=${autostart}/")
+    else
+        _m_ary=$(echo "${_m_ary}" | sed -E "s/${_start}=.*/${_start}=${autostart}/")
+    fi
+    if [[ "${_m_ary}" != *"${_restart}"* ]];then
+        _m_ary=$(echo "${_m_ary}" | sed -E "s/${_insert_point}/${_insert_point}\n${_restart}=${autorestart}/")
+    else
+        _m_ary=$(echo "${_m_ary}" | sed -E "s/${_restart}=.*/${_restart}=${autorestart}/")
+    fi
+
+    echo -e "${_m_ary}\n" >> ${SUPERVISOR_CONFIG}
+}
+
+# generate supervisord config
+tGeneratedSupervisorConfig()
+{
+    if [ ! -f ${SUPERVISOR_CONFIG} ];then
+        sudo touch ${SUPERVISOR_CONFIG} >/dev/zero || true
+    fi 
+    sudo chown -R nvidia.nvidia ${SUPERVISOR_CONFIG}
+    sudo echo "" > ${SUPERVISOR_CONFIG}
+    if [ ! -s ${PROJECT_YAML} ];then
+        tLogger E "${PROJECT_YAML} maybe is empty, Running doesn't make any sense, stop..."; exit -1
+    fi
+
+    local _module_list=$(yq eval '.qpilot.'"${_vehicle_type}"'-'"$((${_dcu_count}-1))"'.dcu'"${_dcu_mark}"'[].name' ${PROJECT_YAML})
+    local _real_list=$(yq eval '.qpilot.'"${_vehicle_type}"'-'"$((${_dcu_count}-1))"'.dcu'"${_dcu_mark}"'[].module' ${PROJECT_YAML})
+
+    IFS=$'\n' read -d '' -r -a setup1 <<< "${_module_list}"
+    IFS=$'\n' read -d '' -r -a setup2 <<< "${_real_list}"
+    if [[ ${START_MODE} == "defalut" ]];then 
+        if [ -e ${REMOTE_CONTROL_PROJECT_YAML} ] && [ -s ${REMOTE_CONTROL_PROJECT_YAML} ];then
+            if [ ! -s ${REMOTE_CONTROL_PROJECT_YAML} ];then
+                tLogger W "${PROJECT_YAML} maybe is empty ?"
+            fi
+            local _remote_module_list=$(yq eval '.qpilot.'"${_vehicle_type}"'-'"$((${_dcu_count}-1))"'.dcu'"${_dcu_mark}"'.start[].name' \
+                                                                                                                    ${REMOTE_CONTROL_PROJECT_YAML})
+            local _remote_real_list=$(yq eval '.qpilot.'"${_vehicle_type}"'-'"$((${_dcu_count}-1))"'.dcu'"${_dcu_mark}"'.start[].module' \
+                                                                                                                    ${REMOTE_CONTROL_PROJECT_YAML})
+            IFS=$'\n' read -d '' -r -a remote_control1 <<< "${_remote_module_list}"
+            IFS=$'\n' read -d '' -r -a remote_control2 <<< "${_remote_real_list}"
+            setup1=("${setup1[@]}" "${remote_control1[@]}")
+            setup2=("${setup2[@]}" "${remote_control2[@]}")
+        fi
+    fi
+
+    for ((i=0; i<${#setup2[@]}; i++)); do
+        _module_map[${setup2[i]}]=${setup1[i]}
+    done
+
+    # prefix 
+    cat > ${SUPERVISOR_CONFIG} << EOF
+[inet_http_server]
+chmod=0777
+chown=nobody:nogroup
+port=0.0.0.0:9001
+username=qomolo
+password=123
+
+[supervisord]
+nodaemon=true 
+
+EOF
+
+    for key in "${!_module_map[@]}"; do
+        _module_config=$(awk "/\[program:${key}\]/,/^$/" ${REFERENCE_SUPERVISORD_CONFIG})
+        tAdjustSupervisorConfigOtherChoose "${_module_config}"
+    
+        if [[ ${key} != ${_module_map[${key}]} ]];then 
+            sudo sed -i "s/\[program:${key}\]/\[program:${_module_map[${key}]}\]/g" ${SUPERVISOR_CONFIG}
+        fi
+    done
+    tLogger I "generated supervisor config finish"
+}
+
+tConfigInformation()
+{
+    case "${1}" in 
+    "setup_yaml"|"all_super"|"remote"|"lidar")
+        sudo vim ${_config[${1}]};;
+    "None")
+        for key in "${!_config[@]}";do
+            tLogger W "${key}   \t${_config[${key}]}"
+        done
+        exit 0;;
+    *)
+        tLogger W "not config";;
+    esac
+}
+
+tCurModuleList()
+{
+    _module_list=$(yq eval '.qpilot.'"${_vehicle_type}"'-'"$((${_dcu_count}-1))"'.dcu'"${_dcu_mark}"'[].name' ${PROJECT_YAML})
+    _remote_module_list=$(yq eval '.qpilot.'"${_vehicle_type}"'-'"$((${_dcu_count}-1))"'.dcu'"${_dcu_mark}"'.start[].name' \
+                                                                                                                    ${REMOTE_CONTROL_PROJECT_YAML})
+    IFS=$'\n' read -d '' -r -a setup1 <<< "${_module_list}"
+    IFS=$'\n' read -d '' -r -a remote_control1 <<< "${_remote_module_list}"
+    all_setup=("${setup1[@]}" "${remote_control1[@]}")
+    for ((i=0; i<${#all_setup[@]}; i++)); do
+        tLogger N "${i} -> ${all_setup[${i}]} "
+    done                                                                                                       
+}

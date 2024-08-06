@@ -1,0 +1,19 @@
+#!/bin/bash
+
+
+
+if [ "$(id -u)" -ne 0 ]; then
+	echo "请进入docker执行"
+	exit
+else
+	echo
+fi
+
+
+if [[ $1 == "" ]];then
+	echo "需要输入文件,默认不是自动循环，如需循环，请加上 -l"
+	exit 0 
+fi
+source /opt/qomolo/qpilot/setup.bash
+ros2 bag play $1 $2
+

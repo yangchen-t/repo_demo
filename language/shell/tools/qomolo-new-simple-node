@@ -1,0 +1,20 @@
+#!/bin/bash 
+
+
+if [ "$(id -u)" -ne 0 ]; then
+  echo "请在docker内使用"
+  exit
+else
+  echo 
+fi
+
+if [[ $1 == "" ]];then
+    echo "请输入QOMOLO_ROBOT_ID"
+    exit
+else 
+    source /opt/ros/foxy/setup.bash
+    source /opt/qomolo/qpilot/setup.bash
+    source /debug/new_lidar_calibration/install/setup.bash
+    export QOMOLO_ROBOT_ID=$1
+    ros2 launch simple_node simple_node.launch.py
+fi

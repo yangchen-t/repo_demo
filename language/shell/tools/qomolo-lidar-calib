@@ -1,0 +1,60 @@
+#!/bin/bash
+
+readonly lidarview_tmp_path="logpush"
+ 
+default_start="launch"
+prefix="data:="
+
+if [ "$(id -u)" -eq 0 ]; then
+  echo "Please DO NOT run the build script as root";exit
+fi
+
+read_input_tar()
+{
+    read -p "请确认${1}正确存放在/home/$(logname)/qpilot_dev_ws/下
+并输入${1}名称 -> " logpath
+
+    if [ ! -f /home/$(logname)/qpilot_dev_ws/${logpath} ];then
+        echo "请确认 ${logpath} 正确存放在/home/$(logname)/qpilot_dev_ws/下"; exit 
+    else
+        check_lidar_data /home/$(logname)/qpilot_dev_ws/${logpath}
+        if [ ! -d /home/$(logname)/qpilot_dev_ws/${lidarview_tmp_path} ];then
+            sudo mkdir -p /home/$(logname)/qpilot_dev_ws/${lidarview_tmp_path}
+        fi
+        real_log=${logpath}
+        sudo tar -xf /home/$(logname)/qpilot_dev_ws/${logpath} -C /home/$(logname)/qpilot_dev_ws/${lidarview_tmp_path}
+    fi
+    real_log=$(basename "${logpath}" .tar.gz)
+
+}
+
+restart_docker(){
+    cd /opt/qomolo/utils/gcs_setup/gcs_docker/ && bash gcs_docker_start.sh
+}
+
+check_lidar_data(){
+    local check_path="$1"
+    local check_path_txt=`tar -tf ${check_path} | grep -E '.txt$'`
+    local check_path_pcd=`tar -tf ${check_path} | grep -E '.pcd$'`
+    if [ -z "${check_path_txt}" ] || [ -z "${check_path_pcd}" ]; then
+        echo "The data is not right, please ensure the data include .txt and .pcd"
+        exit 1
+    fi
+}
+
+read_input_tar
+restart_docker && echo "docker restarted"
+
+CONTAINER_NAME=$(docker ps | grep gcs_ | awk '{print $1}')
+if [[ $CONTAINER_NAME == "" ]]; then
+    echo "请检查docker,docker未启动
+启动指令: cd /opt/qomolo/utils/gcs_setup/gcs_docker/ && bash gcs_docker_start.sh "; exit 0
+fi
+
+docker exec -it ${CONTAINER_NAME} bash -c \
+    "source /opt/qomolo/qpilot_tools/setup.bash  && \
+    ros2 ${default_start} localization_rviz_tools lidar_calib_viz.launch.py ${prefix}/debug/${lidarview_tmp_path}/${real_log}"
+
+if [ -d  /home/$(logname)/qpilot_dev_ws/${lidarview_tmp_path}/${real_log} ];then
+        sudo rm -r /home/$(logname)/qpilot_dev_ws/${lidarview_tmp_path}/${real_log}
+fi

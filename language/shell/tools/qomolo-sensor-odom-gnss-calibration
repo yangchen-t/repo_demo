@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [ "$(id -u)" -ne 0 ]; then
+	echo "请进入docker执行"
+	exit
+else
+	echo
+fi
+
+if [[ $1 == "" ]]; then
+	echo "需要输入车号"
+	exit 0
+fi
+
+export QOMOLO_ROBOT_ID=$1
+source /opt/qomolo/qpilot/setup.bash
+source /debug/install/setup.bash
+source /debug/new_sensor_odom/install/setup.bash
+
+ros2 launch calib_odom_and_gnss test.launch.py

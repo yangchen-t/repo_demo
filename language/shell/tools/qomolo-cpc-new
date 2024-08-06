@@ -1,0 +1,12 @@
+#!/bin/bash
+vehicle_id=$1
+dcu_id=105
+
+
+printf "\033[0;33mlogin: ${vehicle_id}车${dcu_id}"
+
+if [[ ${vehicle_id} == "1" ]];then
+	vehicle_id="251"
+fi
+
+sshpass -p "nvidia" ssh -o StrictHostKeyChecking=no nvidia@10.250.1.${vehicle_id} -p 2${dcu_id}

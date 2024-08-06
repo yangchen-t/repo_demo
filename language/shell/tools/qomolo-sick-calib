@@ -1,0 +1,75 @@
+#!/bin/bash 
+
+
+# check 
+if [[ $1 == "" ]];then
+	echo "robot_id is empty"
+	exit
+fi 
+export QOMOLO_ROBOT_ID=$1
+if [[ ! -d /debug/sick_calib_config ]];then
+	mkdir -p /debug/sick_calib_config
+fi
+
+# step1 Check the required parameters file
+echo "请确认sick的初始校准参数是否写入, 这只是一个提醒!(回车进行下一步)"
+read -p  "文件存放在 /debug/sick_calib_config"
+sleep 2
+
+
+# step2 Check and adjust for position sick 
+echo ""
+readonly LAUNCH_PATH="/debug/sick_calib_install/calib_sick/share/calib_sick/launch/calibration_sick.launch.py"
+readonly STATUS="True"
+
+if [[ ! -f ${LAUNCH_PATH} ]];then
+	echo "INPUT Launch_path is error"
+	exit
+fi 
+
+CurrentState=$(cat ${LAUNCH_PATH}  | grep ${STATUS} | wc -l )
+while true
+do
+	echo "调整标定sick激光"
+	read -p "f(前) or r (后) : " POSITION
+	if [[ ${POSITION} == "f" ]]; then
+		if [[ ${CurrentState} -ne 0 ]];then
+			echo -e "\033[31m当前配置为 标定前部sick\033[0m"
+			break
+		else
+			sed -i 's/False/True/g' ${LAUNCH_PATH}
+			echo -e "\033[31m调整完成\033[0m"
+			break
+		fi
+	elif [[ ${POSITION} == "r" ]];then
+		if [[ ${CurrentState} -ne 0 ]];then
+                        sed -i 's/True/False/g' ${LAUNCH_PATH}
+                        echo -e "\033[31m调整完成\033[0m"
+                        break
+		else
+                        echo -e "\033[31m当前配置为 标定后部sick\033[0m"
+                        break
+                fi
+
+	else
+		echo -e "\033[31m选择错误,只能选择f(前) or r(后)\033[0m"
+	fi 	
+done 
+
+sleep 2;echo ""
+echo "即将启动 rviz2 进行标定";sleep 2 
+
+echo "=========================================rviz2========================================="
+# step3  start RVIZ2 calib tools 
+readonly SICK_CALIB_CONFIG="/debug/sick_calib_install/calib_sick/share/calib_sick/config/"
+
+source /opt/qomolo/qpilot/setup.bash
+source /debug/sick_calib_install/setup.bash
+
+ls ${SICK_CALIB_CONFIG}  | xargs -I {} ln ${SICK_CALIB_CONFIG}/{} /debug/sick_calib_config/{} 
+
+if [[ $2 == "-d" ]];then
+	ros2 launch calib_sick calibration_sick.launch.py | grep "calib_sick_trans" -A 3 
+else
+	ros2 launch calib_sick calibration_sick.launch.py
+fi 

@@ -1,0 +1,147 @@
+#!/bin/bash
+
+readonly lidarview_tmp_path="logpush"
+readonly opts1=$1
+readonly opts2=$2
+
+CONTAINER_NAME=$(docker ps | grep gcs_ | awk '{print $1}')
+
+declare -A launchMap
+launchMap["default"]="calib_check_rviz.launch.py"
+launchMap["all"]="map_pointcloud.launch.py"
+launchMap["pcd"]="pub_pcd_node"
+launchMap["noRviz"]="projection_without_rviz.launch.py"
+launchMap["rviz"]="rviz2.launch.py"
+ 
+default_start="launch"
+prefix="bag_path:="
+
+if [ "$(id -u)" -eq 0 ]; then
+  echo "Please DO NOT run the build script as root";exit
+fi
+
+if [[ $CONTAINER_NAME == "" ]]; then
+  echo "请检查docker,docker未启动
+启动指令: cd /opt/qomolo/utils/gcs_setup/gcs_docker/ && bash gcs_docker_start.sh "; exit 0
+else
+    cd /opt/qomolo/utils/gcs_setup/gcs_docker/ && bash gcs_docker_start.sh >/dev/null 2>&1
+    sleep 1
+fi 
+CONTAINER_NAME=$(docker ps | grep gcs_ | awk '{print $1}')
+
+Usages()
+{
+    echo "Usage: script_name [option]"
+    echo "Options:"
+    echo "default : 标定验收反投影（只有定位反投影及轨迹）"
+    echo "all     : 问题分析反投影（定位, gps, 里程计反投影及轨迹）【支持拓展显示集装箱, 静态地图】"
+    echo "noRviz  : 只启动算法节点, 不启动rviz界面, 对应【问题分析反投影(定位, gps, 里程计反投影及轨迹)】"
+    echo "rviz    : 单独打开rviz窗口, 对应【问题分析反投影(定位, gps, 里程计反投影及轨迹)】"
+    echo "pcd     : 一次性发布点云（过滤发布)"
+    echo "add_map : 添加地图文件"
+    echo "del_map : 移除地图文件"
+    exit -1
+}
+
+read_input_tar()
+{
+    read -p "请确认${1}正确存放在/home/$(logname)/qpilot_dev_ws/下
+并输入${1}名称 -> " logpath
+
+    if [ ! -${2} /home/$(logname)/qpilot_dev_ws/${logpath} ];then
+        echo "请确认 ${logpath} 正确存放在/home/$(logname)/qpilot_dev_ws/下"; exit 
+    else
+        if [ ! -d /home/$(logname)/qpilot_dev_ws/${lidarview_tmp_path} ];then
+            sudo mkdir -p /home/$(logname)/qpilot_dev_ws/${lidarview_tmp_path}
+        fi
+        if [ "d" == $2 ];then
+            if ! [ -${2} /home/$(logname)/qpilot_dev_ws/${lidarview_tmp_path}/${logpath} ];then
+                sudo mkdir -p /home/$(logname)/qpilot_dev_ws/${lidarview_tmp_path}/$(dirname ${logpath})
+            fi
+            sudo cp -r /home/$(logname)/qpilot_dev_ws/${logpath} /home/$(logname)/qpilot_dev_ws/${lidarview_tmp_path}/$(dirname ${logpath})
+            real_log=${logpath}
+            return 
+        fi
+        sudo tar -zxf /home/$(logname)/qpilot_dev_ws/${logpath} -C /home/$(logname)/qpilot_dev_ws/${lidarview_tmp_path}
+    fi
+    real_log=$(basename "${logpath}" .tar.gz)
+
+}
+
+add_input_wall_map()
+{
+    local _configPath=${1}
+    local _mapPath="/home/$(logname)/qpilot_dev_ws/cloud_projector_rviz/cloud_projector_rviz/share/cloud_projector_rviz/maps"
+    if [ ! ${_configPath} ];then
+        echo "need input wall yaml"; exit 1;
+    fi
+    if [[ ${_configPath} = /* ]];then
+        if [ -f ${_configPath} ];then
+            if [ -f ${_mapPath}/$(basename ${_configPath}) ];then
+                echo "============================ diff ============================"
+                diff ${_mapPath}/$(basename ${_configPath}) ${_configPath}
+                read -p "$(basename ${_configPath}) is exist, right cover ?[Y/y]: " input_opts
+                case ${input_opts} in 
+                "Y"|"y") sudo cp -v ${_configPath} ${_mapPath}; exit 0;;
+                *) echo "your choose cancel !"; exit 0 ;;
+                esac
+            fi
+            sudo cp -v ${_configPath} ${_mapPath}
+        else
+            echo "input yaml err"; exit 1
+        fi
+    else
+        echo "empty input config file or not an absolute path"; exit 1
+    fi
+}
+
+del_wall_map()
+{
+    local _mapPath="/home/$(logname)/qpilot_dev_ws/cloud_projector_rviz/cloud_projector_rviz/share/cloud_projector_rviz/maps"
+    ls ${_mapPath} 
+    read -p "please input your have del wall map file name: " del_map
+    if [ ${del_map} ] || [ -f "${_mapPath}/${del_map}" ];then
+        sudo rm -i ${_mapPath}/${del_map}
+    else
+        echo "file name err && input is empty"; exit -1
+    fi
+}
+
+case "${opts1}:${opts2}" in
+"all":*)
+    startScripts=${launchMap["all"]} 
+    read_input_tar "压缩包" "f" ;;
+"pcd":*)
+    startScripts=${launchMap["pcd"]}
+    default_start="run"
+    prefix=" "
+    read_input_tar "pcd文件夹" "d";;
+"-h":*|"--help":*|"help":*)
+    Usages ;;
+"noRviz":*)
+    startScripts=${launchMap["noRviz"]} 
+    read_input_tar "压缩包" "f" ;;
+"rviz":*)
+    startScripts=${launchMap["rviz"]} 
+    read_input_tar "压缩包" "f" ;;
+"add_map":*)
+    add_input_wall_map ${opts2}; exit 0 ;;
+"del_map":*)
+    del_wall_map ; exit 0 ;;
+"default":*|*:*)
+    startScripts=${launchMap["default"]}
+    read_input_tar "压缩包" "f" ;;
+esac
+
+data_dir=`ls /home/$(logname)/qpilot_dev_ws/${lidarview_tmp_path}/${real_log}/`
+if echo ${data_dir} | grep 'driver' | grep 'qpilot-hw-param' > /dev/null ; then
+    docker exec -it ${CONTAINER_NAME} bash -c "nohup bash qp3_to_pointcloud.sh ${lidarview_tmp_path}/${real_log} ${lidarview_tmp_path}/${real_log}/lidar_rosbag"
+fi
+
+docker exec -it ${CONTAINER_NAME} bash -c \
+    "source /debug/cloud_projector_rviz/setup.bash && \
+    ros2 ${default_start} cloud_projector_rviz ${startScripts} ${prefix}/debug/${lidarview_tmp_path}/${real_log}"
+
+if [ -d  /home/$(logname)/qpilot_dev_ws/${lidarview_tmp_path}/${real_log} ];then
+        sudo rm -r /home/$(logname)/qpilot_dev_ws/${lidarview_tmp_path}/${real_log}
+fi

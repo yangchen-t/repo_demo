@@ -1,0 +1,4 @@
+#!/bin/bash
+
+
+sshpass -p nvidia ssh nvidia@10.159.$1.106 -p 22 -o StrictHostKeyChecking=no

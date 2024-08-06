@@ -1,0 +1,60 @@
+#!/bin/bash
+
+if [ "$(id -u)" -eq 0 ]; then
+  echo "Please DO NOT run the build script as root"
+  exit
+fi
+
+HOST=$(logname)
+CONTAINER_NAME=$(docker ps | grep gcs_ | awk '{print $1}')
+
+if [[ $CONTAINER_NAME == "" ]]; then
+  echo "请检查docker,docker未启动
+启动指令: bash /opt/qomolo/utils/gcs_setup/gcs_docker/gcs_docker_start.sh "
+  exit 0
+fi
+
+cd /opt/qomolo/utils/gcs_setup/gcs_docker/ && bash gcs_docker_start.sh
+
+PROJECT="ck, hd, hr, tj, wh, dl, jtg, ica, cnrzh, cnxmeyh egaleaqct"
+echo "请选择场地,目前支持：" ${PROJECT} 
+read -p "" InputProject 
+if [ ! -n "${InputProject}" ];then
+    echo "empty input";exit -1
+fi
+if [[ "${PROJECT[@]}" =~  "${InputProject}" ]];then 
+  lidarview_config_exist=$(dpkg -l | grep igv-sensor | awk '{print$1}')
+    if [[ $lidarview_config_exist == "ii" ]]; then
+        sudo sed -i "19c \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ {'landmark_file': '${InputProject}_wall.yaml'}]" /opt/qomolo/igv-sensor/share/cloud2map_viewer/launch/map_pointcloud.launch.py
+        echo "set success!"
+    else
+        echo "please install igv-sensor"
+    fi
+else
+  echo "project is error"
+  exit -1 
+fi
+
+read -p "输入日志文件名如：TJ_IGV_23_2022-05-14-1621_log_bag.tar.gz：" log_bag_name
+
+if [ -f /key_log/key_log/${log_bag_name} ]; then
+  cd /key_log/key_log
+  folder_name=$(basename ${log_bag_name} .tar.gz)
+  echo ${folder_name}
+  cd ~/qpilot_dev_ws && sudo tar -zxf /key_log/key_log/${log_bag_name} ${folder_name}/lidar -C .
+  #echo "检测到了以下点云包文件夹:"
+  result=$(ls /home/${HOST}/qpilot_dev_ws/${folder_name}/lidar)
+  echo $result
+  read -p "请输入问题发生的时间前的时刻【按照格式：20220522011140】：" start_time
+  play_folder=/home/${HOST}/qpilot_dev_ws/${folder_name}/lidar
+  sudo sed -i "18c \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ {'lidar_path': '/debug/${folder_name}/lidar'}," /opt/qomolo/igv-sensor/share/cloud2map_viewer/launch/map_pointcloud.launch.py
+  if [[ ${#start_time} != 14 ]]; then
+    echo "时间格式不对，无法执行，请按照格式来输入如20220522011140"
+    exit 0
+  fi
+  sudo sed -i "17c \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ {'start_time': '${start_time}'}," /opt/qomolo/igv-sensor/share/cloud2map_viewer/launch/map_pointcloud.launch.py
+  qomolo_robot_id=${InputProject}1
+  docker exec -it ${CONTAINER_NAME} bash -c "export QOMOLO_ROBOT_ID=$qomolo_robot_id && source /opt/qomolo/igv-sensor/setup.bash && ros2 launch cloud2map_viewer map_pointcloud.launch.py"
+else
+  echo "您输入的路径有误,请检查/key_log/key_log下是否存在该文件"
+fi

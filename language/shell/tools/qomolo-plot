@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if [[ $1 == "" ]];then
+	echo "需要输入车号"
+	exit 0
+fi 
+
+
+if [ "$(id -u)" -ne 0 ]; then
+	echo "请进入docker执行"
+	exit
+else
+	echo
+fi
+
+
+export QOMOLO_ROBOT_ID=$1
+source /opt/ros/foxy/setup.bash
+source /opt/qomolo/qpilot/setup.bash
+
+#ros2 bag play $2 
+
+ros2 run rqt_plot rqt_plot /$QOMOLO_ROBOT_ID/gnss/odom/twist/twist/linear/x /$QOMOLO_ROBOT_ID/odom/twist/twist/linear/x
+

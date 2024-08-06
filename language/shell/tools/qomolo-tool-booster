@@ -1,0 +1,158 @@
+#!/bin/bash
+
+if [ "$(id -u)" -ne 0 ]; then
+	echo "请进入docker执行"
+	exit
+else
+	echo
+fi
+
+source /opt/ros/foxy/setup.bash
+source /opt/qomolo/qpilot_tools/setup.bash
+
+echo "========================================================================
+
+ ██████╗██████╗████╗     ██████╗████████╗    ████████╗██████╗ ██████╗██╗     
+██╔═══████╔══██████║    ██╔═══██╚══██╔══╝    ╚══██╔══██╔═══████╔═══████║     
+██║   ████████╔████║    ██║   ██║  ██║          ██║  ██║   ████║   ████║     
+██║▄▄ ████╔═══╝████║    ██║   ██║  ██║          ██║  ██║   ████║   ████║     
+╚██████╔██║    █████████╚██████╔╝  ██║          ██║  ╚██████╔╚██████╔███████╗
+ ╚══▀▀═╝╚═╝    ╚═╚══════╝╚═════╝   ╚═╝          ╚═╝   ╚═════╝ ╚═════╝╚══════╝
+                                                                             
+ ฅ^•ﻌ•^ฅ Good day! It's Westwell qpilot tool version 2.0.0
+========================================================================"
+echo "[版本更新]了解最新使用方法, 查看最新更新[./tool_booster.sh -h]."
+
+# function check_deb_exist()
+# {
+#     if [[ $(dpkg -s $1 | grep Status | awk '{print$2}') == "install" ]]; then
+#         echo "Version:" $(dpkg -s $1 | grep Version | awk '{print$2}')
+#     elif [[ $(dpkg -s $1 | grep Status | awk '{print$2}') == "deinstall" ]]; then
+#         echo "$1 deb is not install"
+#         exit 
+#     else
+#         exit 
+#     fi
+# }
+
+# function plotjuggler()
+# {
+#     check_deb_exist qpilot-qlog-tools
+# }
+# function logviewer(){
+#     check_deb_exist qpilot-tools
+# }
+
+while true; do
+    if [[ $1 ]]; then
+        commond=$1
+        echo "遵命 (⊙.☉)7."
+
+    else
+        echo -n "输入指令[h: help; p: plotjuggler; l: logviwer ...] : "
+        read commond
+    fi
+    case $commond in
+    *'h'*)
+        echo "========================================================================
+## 你好啊! 很高兴认识你, 我姓Qpilot,名Tools, 你可以叫我小T.
+## 以后要经常和大家一起工作了, 请阅读一下使用文档,我们互相了解一下吧!
+## 另外,我猜QA的小伙伴不喜欢英文界面, 所以小T决定这个版本开始说人话了 ( ˘ ³˘)♥. "
+        echo "## 本帮助文档只提供脚本的使用说明,具体的日志绘制说明请参见:
+##      https://confluence.westwell-lab.com/display/QA/QLog+Tutorial."
+        echo "## [版本2.0更新] 本次带来了一些小更新:
+##      1.增加的了帮助文档
+##      2.增加提示"
+        echo "## [使用方法] 
+## ./tool_booster.sh {p,l,o,c}
+##     [h]               打开帮助
+##     [p]               打开Plotjuggler绘制数据
+##     [l]               打开LogViewer查看qlog日志
+##     [o]               可视化定位误差
+##     [c]               可视化一层点云图
+##     [ass]             可视化二层点云图
+##     注意shell脚本只需要输入一个参数,或者直接[./tool_booster]打开脚本即可.
+## Just do it (~‾▿‾)~
+========================================================================"
+        ;;
+    *'p'*)
+        echo "## 开始启动Plotjuggler... "
+        if [ ! -f /opt/qomolo/qpilot_qlog_qtools/qlog_tools/lib/plotjuggler/plotjuggler ];then 
+            echo "qpilot-qlog-tools is not installed, please install qpilot-qlog-tools"
+            echo "please operation cmd: sudo apt update ;sudo apt install qpilot-qlog-tools"
+            exit -1 
+        fi 
+        /opt/qomolo/qpilot_qlog_qtools/qlog_tools/lib/plotjuggler/plotjuggler
+        ;;
+    *'l'*)
+        echo "## 开始启动Logviwer... "
+        ros2 run logviewer logviewer
+        ;;
+    *'aeb'*)
+        echo "## 可视化二层安全,默认循环播放的."
+        speed=1
+        if [[ $2 ]]; then
+            rosbag=$2
+        else
+            echo "## 请输入二层ROSBAG路径 : "
+            read rosbag
+        fi
+        if [[ $3 ]]; then
+            speed=$3
+        fi
+        echo "## 播放速度为 $speed"
+        echo "## 读取到二层ROSBAH路径为: $rosbag"
+        echo "## 开始播放的二层ROSBAG并在RIVZ2中可视化.
+========================================================================"
+        python3 /opt/qomolo/qpilot_tools/scripts/aeb_visualizer.py $rosbag &
+        ros2 bag play -r $speed -l $rosbag
+        pkill ros2
+
+        echo "二层可视化结束.
+========================================================================".
+        ;;
+
+    *'c'*)
+        echo "## 可视化一层安全 ..."
+        if [[ $2 ]]; then
+            rosbag=$2
+        else
+            echo "## 输入定位ROSBA目录路径: "
+            read rosbag
+        fi
+        # if [[ $3 = *'l'* ]]; then
+        #     echo "## 设置为循环播放ROSBAG... "
+        # else
+        #     echo "## 是否设置循环播放ROSBAG? [y/n] : "
+        #     read loop
+        #     if [[ $loop = *'y'* ]]; then
+        #         echo "## 设置为循环播放ROSBAG... "
+        #         loop='-l'
+        #     fi
+        #  fi
+        python3 /opt/qomolo/qpilot_tools/scripts/lidar_loc_repub_new.py $rosbag &
+        ros2 bag play $rosbag
+        pkill python3
+        pkill dbus-launch
+        ;;
+    *'o'*)
+        echo "## 可视化定位误差 ..."
+        if [[ $2 ]]; then
+            rosbag=$2
+        else
+            echo "## 输入定位ROSBA目录路径: "
+            read rosbag
+        fi
+        echo "## 请输入issue发生的时刻, [格式为: YYYY-MM-DD-HH:MM:SS] :"
+        read time
+        echo "## 请输入可视化时间长度[0~50] : "
+        read duration
+
+        python3 /opt/qomolo/qpilot_tools/scripts/plot_rosbag.py $time $duration $rosbag
+        echo "* Task finised."
+        ;;
+    esac
+    if [[ $1 ]]; then
+        break
+    fi
+done

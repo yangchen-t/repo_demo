@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if [ "$(id -u)" -ne 0 ]; then
+    echo "请在docker内使用"
+    exit
+else
+    echo
+fi
+
+if [[ $1 == "" ]]; then
+    echo "请输入*.db3 绝对路径"
+    exit
+fi
+
+source /opt/qomolo/qpilot/setup.bash
+
+cd /debug/ && python3 magnetic_nail_SOP_tool.py $1
+
+STR1=$(echo $1 | awk -F "/" '{print$NF}')
+STR2=$1
+str1=$(echo $STR1 | wc -c)
+str2=$(echo $STR2 | wc -c)
+
+echo "图片与csv保存在: " ${STR2:0:${str2}-${str1}} "下"

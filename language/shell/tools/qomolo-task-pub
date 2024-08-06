@@ -1,0 +1,23 @@
+#!/bin/bash
+
+
+
+if [ "$(id -u)" -ne 0 ]; then
+  echo
+else
+  echo "Please DO NOT run the build script as root"
+  exit
+fi
+
+
+if [[ $1 == '' ]] && [[ $2 == '' ]];then
+	echo "缺少参数
+	qomolo-test_hw_pub 路线id namespace(A021)"
+	exit 0 
+fi
+
+CONTAINER_NAME=`docker ps | grep gcs_ | awk '{print $1}'`
+echo ${CONTAINER_NAME}
+
+docker exec -it ${CONTAINER_NAME} bash -c "source /opt/qomolo/qpilot/setup.bash && cd /debug/test_hw_pub/ && python3 test_hw_scripts.py $1 $2" 1>/dev/null 
+echo "finish"
