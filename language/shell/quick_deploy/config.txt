@@ -1,0 +1,15 @@
+qomolo-get
+qomolo-beiyun-log
+qomolo-config
+qomolo-config-can
+qomolo-gcs-scripts
+qomolo-gst-plugin-ros2bridge
+qomolo-lidar-config
+qomolo-miivii-apex-ad10-l4t-core
+qomolo-miivii-apex-ad10-l4t-modules
+qomolo-networkd-dispatcher
+qomolo-ptp
+qomolo-rate-locked
+qomolo-sys-monitor
+qomolo-trace-down
+qomolo-upgrade-ssdfw

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload Status</title>
+</head>
+<body>
+    <h1>File Upload Status</h1>
+    <div id="status">Waiting for progress...</div>
+
+    <script>
+        function updateFileUploadStatus() {
+            // 发送 AJAX 请求以获取文件上传状态
+            var xhttp = new XMLHttpRequest();
+
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var uploadStatus = this.responseText;
+                    document.getElementById("status").innerHTML = "Upload status: " + uploadStatus;
+                }
+            };
+
+            xhttp.open("GET", "/get_upload_status", true);
+            xhttp.send();
+        }
+
+        // 每10秒更新一次文件上传状态
+        setInterval(updateFileUploadStatus, 10000);
+
+        // 页面加载时立即调用一次更新函数
+        updateFileUploadStatus();
+    </script>
+</body>
+</html>

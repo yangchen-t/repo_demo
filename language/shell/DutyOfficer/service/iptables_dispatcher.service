@@ -1,0 +1,11 @@
+[Unit]
+Description=iptables dispatcher
+After=network.target
+
+[Service]
+ExecStart=/home/wwl/workspace/tools/DutyOfficer/iptables.sh
+User=wwl
+Type=simple
+
+[Install]
+WantedBy=multi-user.target

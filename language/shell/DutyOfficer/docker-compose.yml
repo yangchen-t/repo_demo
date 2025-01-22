@@ -10,4 +10,5 @@ services:
       - ./src:/wrokspace/src/ 
     env_file:
       - .env
-
+    environment:
+      - TZ=Asia/Shanghai

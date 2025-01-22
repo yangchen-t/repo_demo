@@ -46,23 +46,23 @@
             var timeString = "<strong>" + "当前时间: " + year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds + "</strong>";
             document.getElementById("clock").innerHTML = timeString;
         }
-    </script>
-    <script>
+
         function updateDutyPersonnel() {
             // 发送 AJAX 请求以获取新的值班人员信息
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     var dutyPersonnel = this.responseText.split(', '); // 将返回的字符串分割为两个人员
-                    document.getElementById("dutyPerson").innerHTML = "<h3 class='left-text'>集成值班人员: " + dutyPersonnel[0] + "</h3>" +
-                "<h3 class='left-text'>英国专职值班人员: " + dutyPersonnel[1] + "</h3>";                 }
+                    document.getElementById("dutyPerson").innerHTML = "<h3 class='left-text'>集成值班人员: " + dutyPersonnel[0] + "</h3>"
+                    //  + "<h3 class='left-text'>英国专职值班人员: " + dutyPersonnel[1] + "</h3>"
+                     ;}
             };
-            xhttp.open("GET", "/get_duty_personnel", true);
+            xhttp.open("GET", "/_get_duty_personnel", true);
             xhttp.send();
         }
 
         // 每5秒更新一次值班人员信息
-        setInterval(updateDutyPersonnel, 10000);
+        setInterval(updateDutyPersonnel, 5000);
         // 页面加载时立即调用一次更新函数
         updateDutyPersonnel();
         // 每秒更新一次时钟
@@ -70,6 +70,7 @@
         // 页面加载时立即调用一次时钟更新
         updateClock();
     </script>
+    <button onclick="window.location.href='/_information';">点击查看值班计划详细信息</button>
+    <button onclick="window.location.href='/_project_information';">点击查看项目负责人详细信息</button>
 </body>
-
 </html>

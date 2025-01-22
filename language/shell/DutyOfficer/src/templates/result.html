@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <table>
+        <p>download group path->  {{ result }}</p>
+    </table>
+    <form action="/transmission" method="POST">
+        <input type="hidden" name="result" value="{{ result }}">
+        <p>device host <input type="text" name="host"/></p>
+        <p>device ip <input type="text" name="ip"/></p>
+        <p>device passwd <input type="password" name="passwd"/></p>  
+        <p><input type="submit" value="开始传输"/></p>
+    </form>
+</body>
+</html>
